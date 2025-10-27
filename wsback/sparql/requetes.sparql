@@ -1,0 +1,200 @@
+# 1️⃣ Tous les individus et leurs classes
+##############################################
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX ex: <http://www.semanticweb.org/msi/ontologies/2025/8/bookshare#>
+
+SELECT DISTINCT ?individu ?classe ?label
+WHERE {
+  ?individu rdf:type ?classe .
+  OPTIONAL { ?individu rdfs:label ?label . }
+  FILTER(!isBlank(?individu))
+}
+LIMIT 100
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://www.semanticweb.org/msi/ontologies/2025/8/bookshare#>
+
+SELECT ?Centre_de_recyclage ?centerName ?capacity ?energyConsumption ?location ?openingDate ?status ?recyclingRate
+WHERE {
+  ?Centre_de_recyclage rdf:type ex:Centre_de_recyclage ;
+          ex:centerName ?centerName ;
+          ex:capacity_center ?capacity ;
+          ex:energyConsumption ?energyConsumption ;
+          ex:location_center ?location ;
+          ex:openingDate ?openingDate ;
+          ex:operationStatus ?status ;
+          ex:recyclingRate ?recyclingRate .
+}
+
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX ex: <http://www.semanticweb.org/msi/ontologies/2025/8/bookshare#>
+
+SELECT ?equipement ?nomEquipement ?typeEquipement ?capacite ?energieUtilisee ?etat
+WHERE {
+  ?equipement rdf:type ex:Equipement ;
+              ex:nomEquipement ?nomEquipement ;
+              ex:typeEquipement ?typeEquipement ;
+              ex:capacite ?capacite ;
+              ex:energieUtilisee ?energieUtilisee ;
+              ex:etat ?etat .
+}
+
+
+
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://www.semanticweb.org/msi/ontologies/2025/8/bookshare#>
+
+SELECT ?citoyen ?nom ?address ?email ?dateNaissance ?telephone ?citizenID
+WHERE {
+  ?citoyen rdf:type ex:citoyen ;
+           ex:nom_citoyen ?nom ;
+           ex:address ?address ;
+           ex:email ?email ;
+           ex:dateNaissance ?dateNaissance ;
+           ex:telephone ?telephone ;
+           ex:citizenID ?citizenID .
+}
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://www.semanticweb.org/msi/ontologies/2025/8/bookshare#>
+
+SELECT ?citoyen ?nom ?address ?email ?dateNaissance ?telephone ?citizenID
+WHERE {
+  ?citoyen rdf:type ex:citoyen ;
+           ex:nom_citoyen ?nom ;
+           ex:address ?address ;
+           ex:email ?email ;
+           ex:dateNaissance ?dateNaissance ;
+           ex:telephone ?telephone ;
+           ex:citizenID ?citizenID .
+  FILTER(?nom = "mohamed")
+}
+
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://www.semanticweb.org/msi/ontologies/2025/8/bookshare#>
+
+SELECT ?service_de_transport ?nomService ?typeVéhicule ?capacité ?fréquence ?zoneCouverture ?label
+WHERE {
+  ?service_de_transport rdf:type ex:service_de_transport ;
+           ex:nomService ?nomService ;
+           ex:typeVehicule ?typeVehicule ;
+           ex:capacite ?capacite ;
+           ex:frequence ?frequence ;
+           ex:zoneCouverture ?zoneCouverture .
+           
+}
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://www.semanticweb.org/msi/ontologies/2025/8/bookshare#>
+
+SELECT ?point ?capacity ?location ?status ?typeConteneur ?label
+WHERE {
+  ?point rdf:type ex:Point_de_collecte ;
+         ex:capacity_point_de_collecte ?capacity ;
+         ex:location_point_de_collecte ?location ;
+         ex:status_point_de_collecte ?status ;
+         ex:typeConteneur ?typeConteneur .
+         
+  OPTIONAL { ?point rdfs:label ?label }
+}
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://www.semanticweb.org/msi/ontologies/2025/8/bookshare#>
+
+SELECT ?event ?nomEvenement ?description ?lieu ?dateDebut ?dateFin
+WHERE {
+  ?event rdf:type ex:Evenement ;
+         ex:nomEvenement ?nomEvenement ;
+         ex:description_event ?description ;
+         ex:lieu ?lieu ;
+         ex:dateDebut ?dateDebut ;
+         ex:dateFin ?dateFin .
+         
+  FILTER(?nomEvenement = "Atelier Recyclage Papier et Plastique")
+}
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://www.semanticweb.org/msi/ontologies/2025/8/bookshare#>
+
+SELECT ?dechet ?name ?identifiant ?condition ?dateGenerated ?etatTraitement ?isRecyclable ?volume ?weight
+WHERE {
+  ?dechet rdf:type ex:Déchet ;
+          ex:name_dechet ?name ;
+          ex:identifiantDéchet ?identifiant ;
+          ex:condition ?condition ;
+          ex:dateGenerated ?dateGenerated ;
+          ex:etatTraitement ?etatTraitement ;
+          ex:isRecyclable ?isRecyclable ;
+          ex:volume ?volume ;
+          ex:weight ?weight .
+          
+}
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://www.semanticweb.org/msi/ontologies/2025/8/bookshare#>
+
+SELECT ?Type_de_dechet ?categoryName ?label ?colorCode ?composition ?dangerLevel ?description ?decompositionDurée ?toxicité
+WHERE {
+  ?Type_de_dechet rdf:type ex:Type_de_dechet ;
+             ex:categoryName ?categoryName ;
+             ex:colorCode ?colorCode ;
+             ex:composition ?composition ;
+             ex:dangerLevel ?dangerLevel ;
+             ex:description ?description ;
+             ex:décompositionDurée ?décompositionDurée ;
+             ex:toxicité ?toxicité .
+             
+  
+}
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://www.semanticweb.org/msi/ontologies/2025/8/bookshare#>
+
+SELECT ?Municipalité ?nom ?adresseSiege ?codePostal ?population ?surface
+WHERE {
+  ?Municipalité rdf:type ex:Municipalité ;
+                ex:nom_municipalite ?nom ;
+                ex:adresseSiege ?adresseSiege ;
+                ex:codePostal ?codePostal ;
+                ex:population ?population ;
+                ex:surface ?surface .
+}
+
+
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX ex: <http://www.semanticweb.org/msi/ontologies/2025/8/bookshare#>
+
+SELECT ?centre_de_sensibilisation ?nomCentre ?adresse ?capacité ?dateCreation ?description
+WHERE {
+  ?centre_de_sensibilisation rdf:type ex:centre_de_sensibilisation ;
+          ex:nomCentre ?nomCentre ;
+          ex:adresse ?adresse ;
+          ex:capacite_de_sensibilisation ?capacité ;
+          ex:dateCreation ?dateCreation ;
+          ex:description_centre_de_sensibilisation ?description .
+}

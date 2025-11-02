@@ -1,983 +1,1544 @@
 @prefix : <http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/> .
 @prefix ex: <http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/> .
 
-<http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34> a owl:Ontology .
+<http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34> rdf:type owl:Ontology .
 
-ex:Collecte_EVT002 a ex:Collecte,
-        owl:NamedIndividual ;
-    ex:nombreBenevoles 25 ;
-    ex:partOf ex:EVT002 ;
-    ex:quantitecollecte 1.505e+02 .
+#################################################################
+#    Annotation properties
+#################################################################
 
-ex:Collecte_EVT003 a ex:Collecte,
-        owl:NamedIndividual ;
-    ex:nombreBenevoles 25 ;
-    ex:partOf ex:EVT003 ;
-    ex:quantitecollecte 1.505e+02 .
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#collecteID
+ex:collecteID rdf:type owl:AnnotationProperty .
 
-ex:Collecte_EVT005 a ex:Collecte,
-        owl:NamedIndividual ;
-    ex:nombreBenevoles 25 ;
-    ex:partOf ex:EVT005 ;
-    ex:quantitecollecte 1.505e+02 .
 
-ex:Collecte_EVT0078 a ex:Collecte,
-        owl:NamedIndividual ;
-    ex:nombreBenevoles 25 ;
-    ex:partOf ex:EVT0078 ;
-    ex:quantitecollecte 150.5 .
-
-ex:EVT0079 a ex:evenement ;
-    ex:dateDebut "2025-11-05"^^xsd:date ;
-    ex:dateFin "2025-11-10"^^xsd:date ;
-    ex:descriptionevent "Nettoyage de la plage" ;
-    ex:lieu "Plage de Sousse" ;
-    ex:nombreBenevoles 25 ;
-    ex:nombreParticipants 10 ;
-    ex:nomevent "Nettoyage Plage Sousse" ;
-    ex:publicCible "Etudiants" ;
-    ex:quantitecollecte 150.5 ;
-    ex:typeEvenement "Collecte" ;
-    ex:zoneCible "Zone littorale" .
-
-ex:Formation_EVT002 ex:nombreParticipants 10 ;
-    ex:partOf ex:EVT002 ;
-    ex:publicCible "Etudiants" ;
-    ex:zoneCible "Zone littorale" .
-
-ex:Formation_EVT003 ex:nombreParticipants 10 ;
-    ex:partOf ex:EVT003 ;
-    ex:publicCible "Etudiants" ;
-    ex:zoneCible "Zone littorale" .
-
-ex:Formation_EVT005 ex:nombreParticipants 10 ;
-    ex:partOf ex:EVT005 ;
-    ex:publicCible "Etudiants" ;
-    ex:zoneCible "Zone littorale" .
-
-ex:Formation_EVT0078 ex:nombreParticipants 10 ;
-    ex:partOf ex:EVT0078 ;
-    ex:publicCible "Etudiants" ;
-    ex:zoneCible "Zone littorale" .
-
-ex:dateDebut a owl:AnnotationProperty .
-
-ex:dateFin a owl:AnnotationProperty .
-
-ex:descriptionevent a owl:AnnotationProperty .
-
-ex:lieu a owl:AnnotationProperty .
-
-ex:nombreBenevoles a owl:AnnotationProperty .
-
-ex:nombreParticipants a owl:AnnotationProperty .
-
-ex:nomevent a owl:AnnotationProperty .
-
-ex:partOf a owl:AnnotationProperty .
-
-ex:publicCible a owl:AnnotationProperty .
-
-ex:quantitecollecte a owl:AnnotationProperty .
-
-ex:typeEvenement a owl:AnnotationProperty .
-
-ex:zoneCible a owl:AnnotationProperty .
-
-:Business a owl:Class ;
-    rdfs:subClassOf :citoyen .
-
-:Conférence a owl:Class ;
-    rdfs:subClassOf :campagne_de_sensibilisation .
-
-:LocaliseDans a owl:ObjectProperty ;
-    rdfs:domain :Point_de_collecte ;
-    rdfs:range :Municipalité ;
-    rdfs:subPropertyOf :point_decollecte ;
-    owl:inverseOf :possedePointCollecte .
-
-:P_possede a owl:ObjectProperty ;
-    rdfs:domain :Point_de_collecte ;
-    rdfs:range :Dechet ;
-    rdfs:subPropertyOf :point_decollecte ;
-    owl:inverseOf :associePointCollecte .
-
-:Point_de_Collecte_Mobile a owl:Class ;
-    rdfs:subClassOf :Point_de_collecte .
-
-:aPourParticipant a owl:ObjectProperty ;
-    rdfs:domain :evenement ;
-    rdfs:range :resident ;
-    rdfs:subPropertyOf :eventtt ;
-    owl:inverseOf :participea .
-
-:aPourResident a owl:ObjectProperty ;
-    rdfs:domain :Municipalité ;
-    rdfs:range :resident ;
-    rdfs:subPropertyOf :municcipalite ;
-    owl:inverseOf :habiteDans .
-
-:addresscit a owl:DatatypeProperty ;
-    rdfs:domain :citoyen ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :citoyennn .
-
-:adresseSiege a owl:DatatypeProperty ;
-    rdfs:domain :Municipalité ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :municipa .
-
-:adressepointdecollecte a owl:DatatypeProperty ;
-    rdfs:domain :Point_de_collecte ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :pointdecolecte .
-
-:age a owl:DatatypeProperty ;
-    rdfs:domain :resident ;
-    rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :citoyennn .
-
-:biodegradable a owl:DatatypeProperty ;
-    rdfs:domain :AgriculturalWaste ;
-    rdfs:range xsd:boolean ;
-    rdfs:subPropertyOf :dechetts .
-
-:campaignID a owl:DatatypeProperty ;
-    rdfs:domain :campagne_de_sensibilisation ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :campagne .
-
-:capacite a owl:DatatypeProperty ;
-    rdfs:domain :Equipement ;
-    rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :equipementts .
-
-:capaciteMax a owl:DatatypeProperty ;
-    rdfs:domain :service_de_transport ;
-    rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :servicedetrransport .
-
-:capacitedepointdecollecte a owl:DatatypeProperty ;
-    rdfs:domain :Point_de_collecte ;
-    rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :pointdecolecte .
-
-:capacity_center a owl:DatatypeProperty ;
-    rdfs:domain :centre_de_recyclage ;
-    rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :centrederecy .
-
-:categorie a owl:DatatypeProperty ;
-    rdfs:domain :Type_de_dechet ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :typededecheet .
-
-:centerName a owl:DatatypeProperty ;
-    rdfs:domain :centre_de_recyclage ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :centrederecy .
-
-:centreid a owl:DatatypeProperty ;
-    rdfs:domain :campagne_de_sensibilisation ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :centrederecy .
-
-:citieznID a owl:DatatypeProperty ;
-    rdfs:domain :citoyen ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :citoyennn .
-
-:collabaveccampagne a owl:ObjectProperty ;
-    rdfs:domain :centre_de_recyclage ;
-    rdfs:range :campagne_de_sensibilisation ;
-    rdfs:subPropertyOf :centrederecycla ;
-    owl:inverseOf :collaboreAvecCentre .
-
-:collaboreAvecService a owl:ObjectProperty ;
-    rdfs:domain :centre_de_recyclage ;
-    rdfs:range :service_de_transport ;
-    rdfs:subPropertyOf :centrederecycla ;
-    owl:inverseOf :transfertvers .
-
-:collecteParService a owl:ObjectProperty ;
-    rdfs:domain :Dechet ;
-    rdfs:range :service_de_transport ;
-    rdfs:subPropertyOf :dechetss ;
-    owl:inverseOf :transporteDechet .
-
-:compositionplatic a owl:DatatypeProperty ;
-    rdfs:domain :PlasticWaste ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :typededecheet .
-
-:contenu a owl:DatatypeProperty ;
-    rdfs:domain :réseaux_sociaux ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :campagne .
-
-:contenuimage a owl:DatatypeProperty ;
-    rdfs:domain :affiche ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :campagne .
-
-:couleur a owl:DatatypeProperty ;
-    rdfs:domain :Dechet ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :dechetts .
-
-:dangerEnvironnement a owl:DatatypeProperty ;
-    rdfs:domain :HazardousWaste ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :typededecheet .
-
-:dateDebut a owl:DatatypeProperty ;
-    rdfs:domain :evenement ;
-    rdfs:range xsd:dateTime ;
-    rdfs:subPropertyOf :eventss .
-
-:dateFin a owl:DatatypeProperty ;
-    rdfs:domain :evenement ;
-    rdfs:range xsd:dateTime ;
-    rdfs:subPropertyOf :eventss .
-
-:dechetID a owl:DatatypeProperty ;
-    rdfs:domain :Dechet ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :dechetts .
-
-:desciptionevent a owl:DatatypeProperty ;
-    rdfs:domain :evenement ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :eventss .
-
-:description a owl:DatatypeProperty ;
-    rdfs:domain :Dechet ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :dechetts .
-
-:descriptioncampa a owl:DatatypeProperty ;
-    rdfs:domain :campagne_de_sensibilisation ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :campagne .
-
-:dessertPointDeCollecte a owl:ObjectProperty ;
-    rdfs:domain :service_de_transport ;
-    rdfs:range :Point_de_collecte ;
-    rdfs:subPropertyOf :servicedetranssport ;
-    owl:inverseOf :estDesserviPar .
-
-:dureeVie a owl:DatatypeProperty ;
-    rdfs:domain :Type_de_dechet ;
-    rdfs:range xsd:int ;
-    rdfs:subPropertyOf :typededecheet .
-
-:email a owl:DatatypeProperty ;
-    rdfs:domain :citoyen ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :citoyennn .
-
-:endDate a owl:DatatypeProperty ;
-    rdfs:domain :campagne_de_sensibilisation ;
-    rdfs:range xsd:dateTime ;
-    rdfs:subPropertyOf :campagne .
-
-:energyConsumption a owl:DatatypeProperty ;
-    rdfs:domain :centre_de_recyclage ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :centrederecy .
-
-:equipementID a owl:DatatypeProperty ;
-    rdfs:domain :Equipement ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :equipementts .
-
-:equipementRecyclagemetaux a owl:DatatypeProperty ;
-    rdfs:domain :Usine_de_Recyclage_Métaux ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :centrederecy .
-
-:equipementSpecialisee a owl:DatatypeProperty ;
-    rdfs:domain :Centre_de_Traitement_des_Déchets_Dangereux ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :centrederecy .
-
-:estLocaliseDans a owl:ObjectProperty ;
-    rdfs:domain :centre_de_recyclage ;
-    rdfs:range :Municipalité ;
-    rdfs:subPropertyOf :centrederecycla ;
-    owl:inverseOf :possedeCentreRecyclage .
-
-:estTypeDe a owl:ObjectProperty ;
-    rdfs:domain :Type_de_dechet ;
-    rdfs:range :Dechet ;
-    rdfs:subPropertyOf owl:topObjectProperty ;
-    owl:inverseOf :type_of .
-
-:etat a owl:DatatypeProperty ;
-    rdfs:domain :Equipement ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :equipementts .
-
-:etatpointdecollecte a owl:DatatypeProperty ;
-    rdfs:domain :Point_de_collecte ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :pointdecolecte .
-
-:etattransport a owl:DatatypeProperty ;
-    rdfs:domain :service_de_transport ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :servicedetrransport .
-
-:evenementID a owl:DatatypeProperty ;
-    rdfs:domain :evenement ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :eventss .
-
-:fragile a owl:DatatypeProperty ;
-    rdfs:domain :GlassWaste ;
-    rdfs:range xsd:boolean ;
-    rdfs:subPropertyOf :typededecheet .
-
-:frequenceCollecte a owl:DatatypeProperty ;
-    rdfs:domain :Poubelle_Publique ;
-    rdfs:range xsd:int ;
-    rdfs:subPropertyOf :pointdecolecte .
-
-:generatedBy a owl:ObjectProperty ;
-    rdfs:domain :Dechet ;
-    rdfs:range :citoyen ;
-    rdfs:subPropertyOf :dechetss ;
-    owl:inverseOf :genereDechet .
-
-:generatedDate a owl:DatatypeProperty ;
-    rdfs:domain :Dechet ;
-    rdfs:range xsd:dateTime ;
-    rdfs:subPropertyOf :dechetts .
-
-:grammage a owl:DatatypeProperty ;
-    rdfs:domain :PaperWaste ;
-    rdfs:range xsd:float ;
-    rdfs:subPropertyOf :typededecheet .
-
-:image a owl:DatatypeProperty ;
-    rdfs:domain :affiche ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :campagne .
-
-:impliqueCitoyen a owl:ObjectProperty ;
-    rdfs:domain :campagne_de_sensibilisation ;
-    rdfs:range :citoyen ;
-    rdfs:subPropertyOf :campagnedesensi ;
-    owl:inverseOf :impliquea .
-
-:industrie a owl:DatatypeProperty ;
-    rdfs:domain :IndustrialWaste ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :dechetts .
-
-:infectieux a owl:DatatypeProperty ;
-    rdfs:domain :MedicalWaste ;
-    rdfs:range xsd:boolean ;
-    rdfs:subPropertyOf :dechetts .
-
-:inflammable a owl:DatatypeProperty ;
-    rdfs:domain :HazardousWaste ;
-    rdfs:range xsd:boolean ;
-    rdfs:subPropertyOf :typededecheet .
-
-:isrecyclable a owl:DatatypeProperty ;
-    rdfs:domain :Dechet ;
-    rdfs:range xsd:boolean ;
-    rdfs:subPropertyOf :dechetts .
-
-:lien a owl:DatatypeProperty ;
-    rdfs:domain :réseaux_sociaux ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :campagne .
-
-:lieu a owl:DatatypeProperty ;
-    rdfs:domain :evenement ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :eventss .
-
-:localisation a owl:DatatypeProperty ;
-    rdfs:domain :Equipement ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :equipementts .
-
-:location_center a owl:DatatypeProperty ;
-    rdfs:domain :centre_de_recyclage ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :centrederecy .
-
-:maintenu a owl:ObjectProperty ;
-    rdfs:domain :Municipalité ;
-    rdfs:range :Equipement ;
-    rdfs:subPropertyOf :municcipalite ;
-    owl:inverseOf :maintenuPar .
-
-:materiau a owl:DatatypeProperty ;
-    rdfs:domain :Poubelle_Publique ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :pointdecolecte .
-
-:municipaliteID a owl:DatatypeProperty ;
-    rdfs:domain :Municipalité ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :municipa .
-
-:naemcitoyen a owl:DatatypeProperty ;
-    rdfs:domain :citoyen ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :citoyennn .
-
-:nomPlateforme a owl:DatatypeProperty ;
-    rdfs:domain :réseaux_sociaux ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :campagne .
-
-:nombreBenevoles a owl:DatatypeProperty ;
-    rdfs:domain :Collecte ;
-    rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :eventss .
-
-:nombreParticipants a owl:DatatypeProperty ;
-    rdfs:domain :FormationPersonnel ;
-    rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :eventss .
-
-:nombreQuartiers a owl:DatatypeProperty ;
-    rdfs:domain :Municipalité_Rurale ;
-    rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :municipa .
-
-:nombreVillages a owl:DatatypeProperty ;
-    rdfs:domain :Municipalité_Urbaine ;
-    rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :municipa .
-
-:nomdechet a owl:DatatypeProperty ;
-    rdfs:domain :Dechet ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :dechetts .
-
-:nomequiement a owl:DatatypeProperty ;
-    rdfs:domain :Equipement ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :equipementts .
-
-:nomevent a owl:DatatypeProperty ;
-    rdfs:domain :evenement ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :eventss .
-
-:nommunicipalite a owl:DatatypeProperty ;
-    rdfs:domain :Municipalité ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :municipa .
-
-:normesSecurite a owl:DatatypeProperty ;
-    rdfs:domain :TransportDechetsDangereux ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :servicedetrransport .
-
-:odeur a owl:DatatypeProperty ;
-    rdfs:domain :HouseholdWaste ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :dechetts .
-
-:operation_Status a owl:DatatypeProperty ;
-    rdfs:domain :centre_de_recyclage ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :centrederecy .
-
-:organiserevent a owl:ObjectProperty ;
-    rdfs:domain :Municipalité ;
-    rdfs:range :evenement ;
-    rdfs:subPropertyOf :municcipalite ;
-    owl:inverseOf :orginazedby .
-
-:origine a owl:DatatypeProperty ;
-    rdfs:domain :OrganicWaste ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :typededecheet .
-
-:phoneNumber a owl:DatatypeProperty ;
-    rdfs:domain :citoyen ;
-    rdfs:range xsd:integer ;
-    rdfs:subPropertyOf :citoyennn .
-
-:planned a owl:ObjectProperty ;
-    rdfs:domain :campagne_de_sensibilisation ;
-    rdfs:range :evenement ;
-    rdfs:subPropertyOf :campagnedesensi ;
-    owl:inverseOf :plannedby .
-
-:poids a owl:DatatypeProperty ;
-    rdfs:domain :Dechet ;
-    rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :dechetts .
-
-:pointID a owl:DatatypeProperty ;
-    rdfs:domain :Point_de_collecte ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :pointdecolecte .
-
-:population a owl:DatatypeProperty ;
-    rdfs:domain :Municipalité ;
-    rdfs:range xsd:integer ;
-    rdfs:subPropertyOf :municipa .
-
-:pressionCompaction a owl:DatatypeProperty ;
-    rdfs:domain :compacteur ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :equipementts .
-
-:publicCible a owl:DatatypeProperty ;
-    rdfs:domain :FormationPersonnel ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :eventss .
-
-:quantite a owl:DatatypeProperty ;
-    rdfs:domain :Dechet ;
-    rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :dechetts .
-
-:quantitecollecte a owl:DatatypeProperty ;
-    rdfs:domain :Collecte ;
-    rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :eventss .
-
-:recoitDechet a owl:ObjectProperty ;
-    rdfs:domain :centre_de_recyclage ;
-    rdfs:range :Dechet ;
-    rdfs:subPropertyOf :centrederecycla ;
-    owl:inverseOf :traiteDansCentre .
-
-:recyclingRate a owl:DatatypeProperty ;
-    rdfs:domain :centre_de_recyclage ;
-    rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :centrederecy .
-
-:servicetransportID a owl:DatatypeProperty ;
-    rdfs:domain :service_de_transport ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :servicedetrransport .
-
-:startDate a owl:DatatypeProperty ;
-    rdfs:domain :campagne_de_sensibilisation ;
-    rdfs:range xsd:dateTime ;
-    rdfs:subPropertyOf :campagne .
-
-:stockageSpecial a owl:DatatypeProperty ;
-    rdfs:domain :MedicalWaste ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :dechetts .
-
-:taille a owl:DatatypeProperty ;
-    rdfs:domain :Conteneur ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :equipementts .
-
-:targetAudience a owl:DatatypeProperty ;
-    rdfs:domain :campagne_de_sensibilisation ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :campagne .
-
-:tempsCompostage a owl:DatatypeProperty ;
-    rdfs:domain :Centre_de_Compostage ;
-    rdfs:range xsd:int ;
-    rdfs:subPropertyOf :centrederecy .
-
-:title a owl:DatatypeProperty ;
-    rdfs:domain :campagne_de_sensibilisation ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :campagne .
-
-:toxic a owl:DatatypeProperty ;
-    rdfs:domain :Type_de_dechet ;
-    rdfs:range xsd:boolean ;
-    rdfs:subPropertyOf :typededecheet .
-
-:typeAppareil a owl:DatatypeProperty ;
-    rdfs:domain :ElectronicWaste ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :typededecheet .
-
-:typeBusiness a owl:DatatypeProperty ;
-    rdfs:subPropertyOf :citoyennn .
-
-:typeDeDechetTraite a owl:DatatypeProperty ;
-    rdfs:domain :centre_de_recyclage ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :centrederecy .
-
-:typeDeMetauxTraites a owl:DatatypeProperty ;
-    rdfs:domain :Usine_de_Recyclage_Métaux ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :centrederecy .
-
-:typeDechetAccepte a owl:DatatypeProperty ;
-    rdfs:domain :Point_de_collecte ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :pointdecolecte .
-
-:typeDechetBroyé a owl:DatatypeProperty ;
-    rdfs:domain :Broyeur ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :equipementts .
-
-:typeDechetDangereux a owl:DatatypeProperty ;
-    rdfs:domain :TransportDechetsDangereux ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :servicedetrransport .
-
-:typeDechetTransporte a owl:DatatypeProperty ;
-    rdfs:domain :camion_de_déchets ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :servicedetrransport .
-
-:typeEvenement a owl:DatatypeProperty ;
-    rdfs:domain :evenement ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :eventss .
-
-:typeID a owl:DatatypeProperty ;
-    rdfs:domain :Type_de_dechet ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :typededecheet .
-
-:typeMetal a owl:DatatypeProperty ;
-    rdfs:domain :MetalWaste ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :typededecheet .
-
-:typePoint a owl:DatatypeProperty ;
-    rdfs:domain :Point_de_collecte ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :pointdecolecte .
-
-:use a owl:ObjectProperty ;
-    rdfs:domain :Point_de_collecte ;
-    rdfs:range :Equipement ;
-    rdfs:subPropertyOf :point_decollecte ;
-    owl:inverseOf :utilisePour .
-
-:utiliseVehicule a owl:ObjectProperty ;
-    rdfs:domain :service_de_transport ;
-    rdfs:range :Equipement ;
-    rdfs:subPropertyOf :servicedetranssport ;
-    owl:inverseOf :utilisepar .
-
-:vehiculeAssocie a owl:DatatypeProperty ;
-    rdfs:domain :Point_de_collecte ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :pointdecolecte .
-
-:volumeBenne a owl:DatatypeProperty ;
-    rdfs:domain :CamionBenne ;
-    rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :equipementts .
-
-:zoneCible a owl:DatatypeProperty ;
-    rdfs:domain :Collecte ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :eventss .
-
-:zoneCouverture a owl:DatatypeProperty ;
-    rdfs:domain :service_de_transport ;
-    rdfs:range xsd:string ;
-    rdfs:subPropertyOf :servicedetrransport .
-
-xsd:date a rdfs:Datatype .
-
-:AgriculturalWaste a owl:Class ;
-    rdfs:subClassOf :Dechet .
-
-:Broyeur a owl:Class ;
-    rdfs:subClassOf :Equipement .
-
-:CamionBenne a owl:Class ;
-    rdfs:subClassOf :Equipement .
-
-:Centre_de_Compostage a owl:Class ;
-    rdfs:subClassOf :centre_de_recyclage .
-
-:Centre_de_Traitement_des_Déchets_Dangereux a owl:Class ;
-    rdfs:subClassOf :centre_de_recyclage .
-
-:Conteneur a owl:Class ;
-    rdfs:subClassOf :Equipement .
-
-:ElectronicWaste a owl:Class ;
-    rdfs:subClassOf :Type_de_dechet .
-
-:GlassWaste a owl:Class ;
-    rdfs:subClassOf :Type_de_dechet .
-
-:HouseholdWaste a owl:Class ;
-    rdfs:subClassOf :Dechet .
-
-:IndustrialWaste a owl:Class ;
-    rdfs:subClassOf :Dechet .
-
-:MetalWaste a owl:Class ;
-    rdfs:subClassOf :Type_de_dechet .
-
-:Municipalité_Rurale a owl:Class ;
-    rdfs:subClassOf :Municipalité .
-
-:Municipalité_Urbaine a owl:Class ;
-    rdfs:subClassOf :Municipalité .
-
-:OrganicWaste a owl:Class ;
-    rdfs:subClassOf :Type_de_dechet .
-
-:PaperWaste a owl:Class ;
-    rdfs:subClassOf :Type_de_dechet .
-
-:PlasticWaste a owl:Class ;
-    rdfs:subClassOf :Type_de_dechet .
-
-:associePointCollecte a owl:ObjectProperty ;
-    rdfs:domain :Dechet ;
-    rdfs:range :Point_de_collecte ;
-    rdfs:subPropertyOf :dechetss .
-
-:camion_de_déchets a owl:Class ;
-    rdfs:subClassOf :service_de_transport .
-
-:collaboreAvecCentre a owl:ObjectProperty ;
-    rdfs:domain :campagne_de_sensibilisation ;
-    rdfs:range :centre_de_recyclage ;
-    rdfs:subPropertyOf :campagnedesensi .
-
-:compacteur a owl:Class ;
-    rdfs:subClassOf :Equipement .
-
-:estDesserviPar a owl:ObjectProperty ;
-    rdfs:domain :Point_de_collecte ;
-    rdfs:range :service_de_transport ;
-    rdfs:subPropertyOf :point_decollecte .
-
-:genereDechet a owl:ObjectProperty ;
-    rdfs:domain :citoyen ;
-    rdfs:range :Dechet ;
-    rdfs:subPropertyOf :citoyyyen .
-
-:habiteDans a owl:ObjectProperty ;
-    rdfs:domain :resident ;
-    rdfs:range :Municipalité ;
-    rdfs:subPropertyOf :citoyyyen .
-
-:impliquea a owl:ObjectProperty ;
-    rdfs:domain :citoyen ;
-    rdfs:range :campagne_de_sensibilisation ;
-    rdfs:subPropertyOf :citoyyyen .
-
-:maintenuPar a owl:ObjectProperty ;
-    rdfs:domain :Equipement ;
-    rdfs:range :Municipalité ;
-    rdfs:subPropertyOf :equipemeent .
-
-:orginazedby a owl:ObjectProperty ;
-    rdfs:domain :evenement ;
-    rdfs:range :Municipalité ;
-    rdfs:subPropertyOf :eventtt .
-
-:participea a owl:ObjectProperty ;
-    rdfs:domain :resident ;
-    rdfs:range :evenement ;
-    rdfs:subPropertyOf :citoyyyen .
-
-:plannedby a owl:ObjectProperty ;
-    rdfs:domain :evenement ;
-    rdfs:range :campagne_de_sensibilisation ;
-    rdfs:subPropertyOf :eventtt .
-
-:possedeCentreRecyclage a owl:ObjectProperty ;
-    rdfs:domain :Municipalité ;
-    rdfs:range :centre_de_recyclage ;
-    rdfs:subPropertyOf :municcipalite .
-
-:possedePointCollecte a owl:ObjectProperty ;
-    rdfs:domain :Municipalité ;
-    rdfs:range :Point_de_collecte ;
-    rdfs:subPropertyOf :municcipalite .
-
-:traiteDansCentre a owl:ObjectProperty ;
-    rdfs:domain :Dechet ;
-    rdfs:range :centre_de_recyclage ;
-    rdfs:subPropertyOf :dechetss .
-
-:transfertvers a owl:ObjectProperty ;
-    rdfs:domain :service_de_transport ;
-    rdfs:range :centre_de_recyclage ;
-    rdfs:subPropertyOf :servicedetranssport .
-
-:transporteDechet a owl:ObjectProperty ;
-    rdfs:domain :service_de_transport ;
-    rdfs:range :Dechet ;
-    rdfs:subPropertyOf :servicedetranssport .
-
-:type_of a owl:ObjectProperty ;
-    rdfs:domain :Dechet ;
-    rdfs:range :Type_de_dechet ;
-    rdfs:subPropertyOf :dechetss .
-
-:utilisePour a owl:ObjectProperty ;
-    rdfs:domain :Equipement ;
-    rdfs:range :Point_de_collecte ;
-    rdfs:subPropertyOf :equipemeent .
-
-:utilisepar a owl:ObjectProperty ;
-    rdfs:domain :Equipement ;
-    rdfs:range :service_de_transport ;
-    rdfs:subPropertyOf :equipemeent .
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#dateDebut
+ex:dateDebut rdf:type owl:AnnotationProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#dateFin
+ex:dateFin rdf:type owl:AnnotationProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#descriptionevent
+ex:descriptionevent rdf:type owl:AnnotationProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#evenementID
+ex:evenementID rdf:type owl:AnnotationProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#formationID
+ex:formationID rdf:type owl:AnnotationProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#lieu
+ex:lieu rdf:type owl:AnnotationProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#nombreBenevoles
+ex:nombreBenevoles rdf:type owl:AnnotationProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#nombreParticipants
+ex:nombreParticipants rdf:type owl:AnnotationProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#nomevent
+ex:nomevent rdf:type owl:AnnotationProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#partOf
+ex:partOf rdf:type owl:AnnotationProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#publicCible
+ex:publicCible rdf:type owl:AnnotationProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#quantitecollecte
+ex:quantitecollecte rdf:type owl:AnnotationProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#typeEvenement
+ex:typeEvenement rdf:type owl:AnnotationProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#zoneCible
+ex:zoneCible rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/LocaliseDans
+:LocaliseDans rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :point_decollecte ;
+              owl:inverseOf :possedePointCollecte ;
+              rdfs:domain :Point_de_collecte ;
+              rdfs:range :Municipalité .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/P_possede
+:P_possede rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :point_decollecte ;
+           owl:inverseOf :associePointCollecte ;
+           rdfs:domain :Point_de_collecte ;
+           rdfs:range :Dechet .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/aPourParticipant
+:aPourParticipant rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :eventtt ;
+                  owl:inverseOf :participea ;
+                  rdfs:domain :evenement ;
+                  rdfs:range :resident .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/aPourResident
+:aPourResident rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :municcipalite ;
+               owl:inverseOf :habiteDans ;
+               rdfs:domain :Municipalité ;
+               rdfs:range :resident .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/associePointCollecte
+:associePointCollecte rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :dechetss ;
+                      rdfs:domain :Dechet ;
+                      rdfs:range :Point_de_collecte .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/campagnedesensi
+:campagnedesensi rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/centrederecycla
+:centrederecycla rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/citoyyyen
+:citoyyyen rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/collabaveccampagne
+:collabaveccampagne rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :centrederecycla ;
+                    owl:inverseOf :collaboreAvecCentre ;
+                    rdfs:domain :centre_de_recyclage ;
+                    rdfs:range :campagne_de_sensibilisation .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/collaboreAvecCentre
+:collaboreAvecCentre rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf :campagnedesensi ;
+                     rdfs:domain :campagne_de_sensibilisation ;
+                     rdfs:range :centre_de_recyclage .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/collaboreAvecService
+:collaboreAvecService rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :centrederecycla ;
+                      owl:inverseOf :transfertvers ;
+                      rdfs:domain :centre_de_recyclage ;
+                      rdfs:range :service_de_transport .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/collecteParService
+:collecteParService rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :dechetss ;
+                    owl:inverseOf :transporteDechet ;
+                    rdfs:domain :Dechet ;
+                    rdfs:range :service_de_transport .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/dechetss
+:dechetss rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/dessertPointDeCollecte
+:dessertPointDeCollecte rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf :servicedetranssport ;
+                        owl:inverseOf :estDesserviPar ;
+                        rdfs:domain :service_de_transport ;
+                        rdfs:range :Point_de_collecte .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/equipemeent
+:equipemeent rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/estDesserviPar
+:estDesserviPar rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :point_decollecte ;
+                rdfs:domain :Point_de_collecte ;
+                rdfs:range :service_de_transport .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/estLocaliseDans
+:estLocaliseDans rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :centrederecycla ;
+                 owl:inverseOf :possedeCentreRecyclage ;
+                 rdfs:domain :centre_de_recyclage ;
+                 rdfs:range :Municipalité .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/estTypeDe
+:estTypeDe rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           owl:inverseOf :type_of ;
+           rdfs:domain :Type_de_dechet ;
+           rdfs:range :Dechet .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/eventtt
+:eventtt rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/generatedBy
+:generatedBy rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :dechetss ;
+             owl:inverseOf :genereDechet ;
+             rdfs:domain :Dechet ;
+             rdfs:range :citoyen .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/genereDechet
+:genereDechet rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :citoyyyen ;
+              rdfs:domain :citoyen ;
+              rdfs:range :Dechet .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/habiteDans
+:habiteDans rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :citoyyyen ;
+            rdfs:domain :resident ;
+            rdfs:range :Municipalité .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/impliqueCitoyen
+:impliqueCitoyen rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :campagnedesensi ;
+                 owl:inverseOf :impliquea ;
+                 rdfs:domain :campagne_de_sensibilisation ;
+                 rdfs:range :citoyen .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/impliquea
+:impliquea rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :citoyyyen ;
+           rdfs:domain :citoyen ;
+           rdfs:range :campagne_de_sensibilisation .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/maintenu
+:maintenu rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :municcipalite ;
+          owl:inverseOf :maintenuPar ;
+          rdfs:domain :Municipalité ;
+          rdfs:range :Equipement .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/maintenuPar
+:maintenuPar rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :equipemeent ;
+             rdfs:domain :Equipement ;
+             rdfs:range :Municipalité .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/municcipalite
+:municcipalite rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/organiserevent
+:organiserevent rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :municcipalite ;
+                owl:inverseOf :orginazedby ;
+                rdfs:domain :Municipalité ;
+                rdfs:range :evenement .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/orginazedby
+:orginazedby rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :eventtt ;
+             rdfs:domain :evenement ;
+             rdfs:range :Municipalité .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/participea
+:participea rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :citoyyyen ;
+            rdfs:domain :resident ;
+            rdfs:range :evenement .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/planned
+:planned rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :campagnedesensi ;
+         owl:inverseOf :plannedby ;
+         rdfs:domain :campagne_de_sensibilisation ;
+         rdfs:range :evenement .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/plannedby
+:plannedby rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :eventtt ;
+           rdfs:domain :evenement ;
+           rdfs:range :campagne_de_sensibilisation .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/point_decollecte
+:point_decollecte rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/possedeCentreRecyclage
+:possedeCentreRecyclage rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf :municcipalite ;
+                        rdfs:domain :Municipalité ;
+                        rdfs:range :centre_de_recyclage .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/possedePointCollecte
+:possedePointCollecte rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :municcipalite ;
+                      rdfs:domain :Municipalité ;
+                      rdfs:range :Point_de_collecte .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/recoitDechet
+:recoitDechet rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :centrederecycla ;
+              owl:inverseOf :traiteDansCentre ;
+              rdfs:domain :centre_de_recyclage ;
+              rdfs:range :Dechet .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/servicedetranssport
+:servicedetranssport rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/traiteDansCentre
+:traiteDansCentre rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :dechetss ;
+                  rdfs:domain :Dechet ;
+                  rdfs:range :centre_de_recyclage .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/transfertvers
+:transfertvers rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :servicedetranssport ;
+               rdfs:domain :service_de_transport ;
+               rdfs:range :centre_de_recyclage .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/transporteDechet
+:transporteDechet rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :servicedetranssport ;
+                  rdfs:domain :service_de_transport ;
+                  rdfs:range :Dechet .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/type_of
+:type_of rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :dechetss ;
+         rdfs:domain :Dechet ;
+         rdfs:range :Type_de_dechet .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/use
+:use rdf:type owl:ObjectProperty ;
+     rdfs:subPropertyOf :point_decollecte ;
+     owl:inverseOf :utilisePour ;
+     rdfs:domain :Point_de_collecte ;
+     rdfs:range :Equipement .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/utilisePour
+:utilisePour rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :equipemeent ;
+             rdfs:domain :Equipement ;
+             rdfs:range :Point_de_collecte .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/utiliseVehicule
+:utiliseVehicule rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :servicedetranssport ;
+                 owl:inverseOf :utilisepar ;
+                 rdfs:domain :service_de_transport ;
+                 rdfs:range :Equipement .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/utilisepar
+:utilisepar rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :equipemeent ;
+            rdfs:domain :Equipement ;
+            rdfs:range :service_de_transport .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/addresscit
+:addresscit rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :citoyennn ;
+            rdfs:domain :citoyen ;
+            rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/adresseSiege
+:adresseSiege rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :municipa ;
+              rdfs:domain :Municipalité ;
+              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/adressepointdecollecte
+:adressepointdecollecte rdf:type owl:DatatypeProperty ;
+                        rdfs:subPropertyOf :pointdecolecte ;
+                        rdfs:domain :Point_de_collecte ;
+                        rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/age
+:age rdf:type owl:DatatypeProperty ;
+     rdfs:subPropertyOf :citoyennn ;
+     rdfs:domain :resident ;
+     rdfs:range xsd:decimal .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/biodegradable
+:biodegradable rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :dechetts ;
+               rdfs:domain :AgriculturalWaste ;
+               rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/campagne
+:campagne rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/campaignID
+:campaignID rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :campagne ;
+            rdfs:domain :campagne_de_sensibilisation ;
+            rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/capacite
+:capacite rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :equipementts ;
+          rdfs:domain :Equipement ;
+          rdfs:range xsd:decimal .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/capaciteMax
+:capaciteMax rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :servicedetrransport ;
+             rdfs:domain :service_de_transport ;
+             rdfs:range xsd:decimal .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/capacitedepointdecollecte
+:capacitedepointdecollecte rdf:type owl:DatatypeProperty ;
+                           rdfs:subPropertyOf :pointdecolecte ;
+                           rdfs:domain :Point_de_collecte ;
+                           rdfs:range xsd:decimal .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/capacity_center
+:capacity_center rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :centrederecy ;
+                 rdfs:domain :centre_de_recyclage ;
+                 rdfs:range xsd:decimal .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/categorie
+:categorie rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :typededecheet ;
+           rdfs:domain :Type_de_dechet ;
+           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/centerName
+:centerName rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :centrederecy ;
+            rdfs:domain :centre_de_recyclage ;
+            rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/centrederecy
+:centrederecy rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/centreid
+:centreid rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :centrederecy ;
+          rdfs:domain :campagne_de_sensibilisation ;
+          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/citieznID
+:citieznID rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :citoyennn ;
+           rdfs:domain :citoyen ;
+           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/citoyennn
+:citoyennn rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/compositionplatic
+:compositionplatic rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf :typededecheet ;
+                   rdfs:domain :PlasticWaste ;
+                   rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/contenu
+:contenu rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :campagne ;
+         rdfs:domain :réseaux_sociaux ;
+         rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/contenuimage
+:contenuimage rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :campagne ;
+              rdfs:domain :affiche ;
+              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/couleur
+:couleur rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :dechetts ;
+         rdfs:domain :Dechet ;
+         rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/dangerEnvironnement
+:dangerEnvironnement rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf :typededecheet ;
+                     rdfs:domain :HazardousWaste ;
+                     rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/dateDebut
+:dateDebut rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :eventss ;
+           rdfs:domain :evenement ;
+           rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/dateFin
+:dateFin rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :eventss ;
+         rdfs:domain :evenement ;
+         rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/dechetID
+:dechetID rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :dechetts ;
+          rdfs:domain :Dechet ;
+          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/dechetts
+:dechetts rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/desciptionevent
+:desciptionevent rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :eventss ;
+                 rdfs:domain :evenement ;
+                 rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/description
+:description rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :dechetts ;
+             rdfs:domain :Dechet ;
+             rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/descriptioncampa
+:descriptioncampa rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :campagne ;
+                  rdfs:domain :campagne_de_sensibilisation ;
+                  rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/dureeVie
+:dureeVie rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :typededecheet ;
+          rdfs:domain :Type_de_dechet ;
+          rdfs:range xsd:int .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/email
+:email rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :citoyennn ;
+       rdfs:domain :citoyen ;
+       rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/endDate
+:endDate rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :campagne ;
+         rdfs:domain :campagne_de_sensibilisation ;
+         rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/energyConsumption
+:energyConsumption rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf :centrederecy ;
+                   rdfs:domain :centre_de_recyclage ;
+                   rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/equipementID
+:equipementID rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :equipementts ;
+              rdfs:domain :Equipement ;
+              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/equipementRecyclagemetaux
+:equipementRecyclagemetaux rdf:type owl:DatatypeProperty ;
+                           rdfs:subPropertyOf :centrederecy ;
+                           rdfs:domain :Usine_de_Recyclage_Métaux ;
+                           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/equipementSpecialisee
+:equipementSpecialisee rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf :centrederecy ;
+                       rdfs:domain :Centre_de_Traitement_des_Déchets_Dangereux ;
+                       rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/equipementts
+:equipementts rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/etat
+:etat rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf :equipementts ;
+      rdfs:domain :Equipement ;
+      rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/etatpointdecollecte
+:etatpointdecollecte rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf :pointdecolecte ;
+                     rdfs:domain :Point_de_collecte ;
+                     rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/etattransport
+:etattransport rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :servicedetrransport ;
+               rdfs:domain :service_de_transport ;
+               rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/evenementID
+:evenementID rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :eventss ;
+             rdfs:domain :evenement ;
+             rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/eventss
+:eventss rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/fragile
+:fragile rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :typededecheet ;
+         rdfs:domain :GlassWaste ;
+         rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/frequenceCollecte
+:frequenceCollecte rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf :pointdecolecte ;
+                   rdfs:domain :Poubelle_Publique ;
+                   rdfs:range xsd:int .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/generatedDate
+:generatedDate rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :dechetts ;
+               rdfs:domain :Dechet ;
+               rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/grammage
+:grammage rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :typededecheet ;
+          rdfs:domain :PaperWaste ;
+          rdfs:range xsd:float .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/image
+:image rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :campagne ;
+       rdfs:domain :affiche ;
+       rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/industrie
+:industrie rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :dechetts ;
+           rdfs:domain :IndustrialWaste ;
+           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/infectieux
+:infectieux rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :dechetts ;
+            rdfs:domain :MedicalWaste ;
+            rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/inflammable
+:inflammable rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :typededecheet ;
+             rdfs:domain :HazardousWaste ;
+             rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/isrecyclable
+:isrecyclable rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :dechetts ;
+              rdfs:domain :Dechet ;
+              rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/lien
+:lien rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf :campagne ;
+      rdfs:domain :réseaux_sociaux ;
+      rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/lieu
+:lieu rdf:type owl:DatatypeProperty ;
+      rdfs:subPropertyOf :eventss ;
+      rdfs:domain :evenement ;
+      rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/localisation
+:localisation rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :equipementts ;
+              rdfs:domain :Equipement ;
+              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/location_center
+:location_center rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :centrederecy ;
+                 rdfs:domain :centre_de_recyclage ;
+                 rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/materiau
+:materiau rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :pointdecolecte ;
+          rdfs:domain :Poubelle_Publique ;
+          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/municipa
+:municipa rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/municipaliteID
+:municipaliteID rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :municipa ;
+                rdfs:domain :Municipalité ;
+                rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/naemcitoyen
+:naemcitoyen rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :citoyennn ;
+             rdfs:domain :citoyen ;
+             rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/nomPlateforme
+:nomPlateforme rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :campagne ;
+               rdfs:domain :réseaux_sociaux ;
+               rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/nombreBenevoles
+:nombreBenevoles rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :eventss ;
+                 rdfs:domain :Collecte ;
+                 rdfs:range xsd:decimal .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/nombreParticipants
+:nombreParticipants rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf :eventss ;
+                    rdfs:domain :FormationPersonnel ;
+                    rdfs:range xsd:decimal .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/nombreQuartiers
+:nombreQuartiers rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :municipa ;
+                 rdfs:domain :Municipalité_Rurale ;
+                 rdfs:range xsd:decimal .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/nombreVillages
+:nombreVillages rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :municipa ;
+                rdfs:domain :Municipalité_Urbaine ;
+                rdfs:range xsd:decimal .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/nomdechet
+:nomdechet rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :dechetts ;
+           rdfs:domain :Dechet ;
+           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/nomequiement
+:nomequiement rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :equipementts ;
+              rdfs:domain :Equipement ;
+              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/nomevent
+:nomevent rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :eventss ;
+          rdfs:domain :evenement ;
+          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/nommunicipalite
+:nommunicipalite rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :municipa ;
+                 rdfs:domain :Municipalité ;
+                 rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/normesSecurite
+:normesSecurite rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :servicedetrransport ;
+                rdfs:domain :TransportDechetsDangereux ;
+                rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/odeur
+:odeur rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :dechetts ;
+       rdfs:domain :HouseholdWaste ;
+       rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/operation_Status
+:operation_Status rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :centrederecy ;
+                  rdfs:domain :centre_de_recyclage ;
+                  rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/origine
+:origine rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :typededecheet ;
+         rdfs:domain :OrganicWaste ;
+         rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/phoneNumber
+:phoneNumber rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :citoyennn ;
+             rdfs:domain :citoyen ;
+             rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/poids
+:poids rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :dechetts ;
+       rdfs:domain :Dechet ;
+       rdfs:range xsd:decimal .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/pointID
+:pointID rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :pointdecolecte ;
+         rdfs:domain :Point_de_collecte ;
+         rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/pointdecolecte
+:pointdecolecte rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/population
+:population rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :municipa ;
+            rdfs:domain :Municipalité ;
+            rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/pressionCompaction
+:pressionCompaction rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf :equipementts ;
+                    rdfs:domain :compacteur ;
+                    rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/publicCible
+:publicCible rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :eventss ;
+             rdfs:domain :FormationPersonnel ;
+             rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/quantite
+:quantite rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :dechetts ;
+          rdfs:domain :Dechet ;
+          rdfs:range xsd:decimal .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/quantitecollecte
+:quantitecollecte rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :eventss ;
+                  rdfs:domain :Collecte ;
+                  rdfs:range xsd:decimal .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/recyclingRate
+:recyclingRate rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :centrederecy ;
+               rdfs:domain :centre_de_recyclage ;
+               rdfs:range xsd:decimal .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/servicedetrransport
+:servicedetrransport rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/servicetransportID
+:servicetransportID rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf :servicedetrransport ;
+                    rdfs:domain :service_de_transport ;
+                    rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/startDate
+:startDate rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :campagne ;
+           rdfs:domain :campagne_de_sensibilisation ;
+           rdfs:range xsd:dateTime .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/stockageSpecial
+:stockageSpecial rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :dechetts ;
+                 rdfs:domain :MedicalWaste ;
+                 rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/taille
+:taille rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf :equipementts ;
+        rdfs:domain :Conteneur ;
+        rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/targetAudience
+:targetAudience rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :campagne ;
+                rdfs:domain :campagne_de_sensibilisation ;
+                rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/tempsCompostage
+:tempsCompostage rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :centrederecy ;
+                 rdfs:domain :Centre_de_Compostage ;
+                 rdfs:range xsd:int .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/title
+:title rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :campagne ;
+       rdfs:domain :campagne_de_sensibilisation ;
+       rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/toxic
+:toxic rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :typededecheet ;
+       rdfs:domain :Type_de_dechet ;
+       rdfs:range xsd:boolean .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/typeAppareil
+:typeAppareil rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :typededecheet ;
+              rdfs:domain :ElectronicWaste ;
+              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/typeBusiness
+:typeBusiness rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf :citoyennn .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/typeDeDechetTraite
+:typeDeDechetTraite rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf :centrederecy ;
+                    rdfs:domain :centre_de_recyclage ;
+                    rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/typeDeMetauxTraites
+:typeDeMetauxTraites rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf :centrederecy ;
+                     rdfs:domain :Usine_de_Recyclage_Métaux ;
+                     rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/typeDechetAccepte
+:typeDechetAccepte rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf :pointdecolecte ;
+                   rdfs:domain :Point_de_collecte ;
+                   rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/typeDechetBroyé
+:typeDechetBroyé rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :equipementts ;
+                 rdfs:domain :Broyeur ;
+                 rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/typeDechetDangereux
+:typeDechetDangereux rdf:type owl:DatatypeProperty ;
+                     rdfs:subPropertyOf :servicedetrransport ;
+                     rdfs:domain :TransportDechetsDangereux ;
+                     rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/typeDechetTransporte
+:typeDechetTransporte rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf :servicedetrransport ;
+                      rdfs:domain :camion_de_déchets ;
+                      rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/typeEvenement
+:typeEvenement rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :eventss ;
+               rdfs:domain :evenement ;
+               rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/typeID
+:typeID rdf:type owl:DatatypeProperty ;
+        rdfs:subPropertyOf :typededecheet ;
+        rdfs:domain :Type_de_dechet ;
+        rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/typeMetal
+:typeMetal rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :typededecheet ;
+           rdfs:domain :MetalWaste ;
+           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/typePoint
+:typePoint rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :pointdecolecte ;
+           rdfs:domain :Point_de_collecte ;
+           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/typededecheet
+:typededecheet rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/vehiculeAssocie
+:vehiculeAssocie rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :pointdecolecte ;
+                 rdfs:domain :Point_de_collecte ;
+                 rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/volumeBenne
+:volumeBenne rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :equipementts ;
+             rdfs:domain :CamionBenne ;
+             rdfs:range xsd:decimal .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/zoneCible
+:zoneCible rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :eventss ;
+           rdfs:domain :Collecte ;
+           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/zoneCouverture
+:zoneCouverture rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :servicedetrransport ;
+                rdfs:domain :service_de_transport ;
+                rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#collecte
+ex:collecte rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/AgriculturalWaste
+:AgriculturalWaste rdf:type owl:Class ;
+                   rdfs:subClassOf :Dechet .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/Broyeur
+:Broyeur rdf:type owl:Class ;
+         rdfs:subClassOf :Equipement .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/Business
+:Business rdf:type owl:Class ;
+          rdfs:subClassOf :citoyen .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/CamionBenne
+:CamionBenne rdf:type owl:Class ;
+             rdfs:subClassOf :Equipement .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/Centre_de_Compostage
+:Centre_de_Compostage rdf:type owl:Class ;
+                      rdfs:subClassOf :centre_de_recyclage .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/Centre_de_Traitement_des_Déchets_Dangereux
+:Centre_de_Traitement_des_Déchets_Dangereux rdf:type owl:Class ;
+                                            rdfs:subClassOf :centre_de_recyclage .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/Collecte
+:Collecte rdf:type owl:Class ;
+          rdfs:subClassOf :evenement .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/Conférence
+:Conférence rdf:type owl:Class ;
+            rdfs:subClassOf :campagne_de_sensibilisation .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/Conteneur
+:Conteneur rdf:type owl:Class ;
+           rdfs:subClassOf :Equipement .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/Dechet
+:Dechet rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/ElectronicWaste
+:ElectronicWaste rdf:type owl:Class ;
+                 rdfs:subClassOf :Type_de_dechet .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/Equipement
+:Equipement rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/FormationPersonnel
+:FormationPersonnel rdf:type owl:Class ;
+                    rdfs:subClassOf :evenement .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/GlassWaste
+:GlassWaste rdf:type owl:Class ;
+            rdfs:subClassOf :Type_de_dechet .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/HazardousWaste
+:HazardousWaste rdf:type owl:Class ;
+                rdfs:subClassOf :Type_de_dechet .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/HouseholdWaste
+:HouseholdWaste rdf:type owl:Class ;
+                rdfs:subClassOf :Dechet .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/IndustrialWaste
+:IndustrialWaste rdf:type owl:Class ;
+                 rdfs:subClassOf :Dechet .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/MedicalWaste
+:MedicalWaste rdf:type owl:Class ;
+              rdfs:subClassOf :Dechet .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/MetalWaste
+:MetalWaste rdf:type owl:Class ;
+            rdfs:subClassOf :Type_de_dechet .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/Municipalité
+:Municipalité rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/Municipalité_Rurale
+:Municipalité_Rurale rdf:type owl:Class ;
+                     rdfs:subClassOf :Municipalité .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/Municipalité_Urbaine
+:Municipalité_Urbaine rdf:type owl:Class ;
+                      rdfs:subClassOf :Municipalité .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/OrganicWaste
+:OrganicWaste rdf:type owl:Class ;
+              rdfs:subClassOf :Type_de_dechet .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/PaperWaste
+:PaperWaste rdf:type owl:Class ;
+            rdfs:subClassOf :Type_de_dechet .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/PlasticWaste
+:PlasticWaste rdf:type owl:Class ;
+              rdfs:subClassOf :Type_de_dechet .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/Point_de_Collecte_Mobile
+:Point_de_Collecte_Mobile rdf:type owl:Class ;
+                          rdfs:subClassOf :Point_de_collecte .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/Point_de_collecte
+:Point_de_collecte rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/Poubelle_Publique
+:Poubelle_Publique rdf:type owl:Class ;
+                   rdfs:subClassOf :Point_de_collecte .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/TransportDechetsDangereux
+:TransportDechetsDangereux rdf:type owl:Class ;
+                           rdfs:subClassOf :service_de_transport .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/Type_de_dechet
+:Type_de_dechet rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/Usine_de_Recyclage_Métaux
+:Usine_de_Recyclage_Métaux rdf:type owl:Class ;
+                           rdfs:subClassOf :centre_de_recyclage .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/affiche
+:affiche rdf:type owl:Class ;
+         rdfs:subClassOf :campagne_de_sensibilisation .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/camion_de_déchets
+:camion_de_déchets rdf:type owl:Class ;
+                   rdfs:subClassOf :service_de_transport .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/campagne_de_sensibilisation
+:campagne_de_sensibilisation rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/centre_de_recyclage
+:centre_de_recyclage rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/citoyen
+:citoyen rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/compacteur
+:compacteur rdf:type owl:Class ;
+            rdfs:subClassOf :Equipement .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/evenement
+:evenement rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/resident
+:resident rdf:type owl:Class ;
+          rdfs:subClassOf :citoyen .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/réseaux_sociaux
+:réseaux_sociaux rdf:type owl:Class ;
+                 rdfs:subClassOf :campagne_de_sensibilisation .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/service_de_transport
+:service_de_transport rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#C756
+ex:C756 rdf:type owl:NamedIndividual ,
+                 ex:collecte ;
+        ex:collecteID "C756" ;
+        ex:nombreBenevoles 12 ;
+        ex:quantitecollecte 250.5 .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#C814
+ex:C814 rdf:type owl:NamedIndividual ,
+                 :Collecte ;
+        ex:collecteID "C814" ;
+        ex:nombreBenevoles 18 ;
+        ex:quantitecollecte 320.75 .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#Collecte_EVT002
+ex:Collecte_EVT002 rdf:type owl:NamedIndividual ;
+                   ex:nombreBenevoles 25 ;
+                   ex:partOf ex:EVT002 ;
+                   ex:quantitecollecte "150.5"^^xsd:double .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#Collecte_EVT003
+ex:Collecte_EVT003 rdf:type owl:NamedIndividual ;
+                   ex:nombreBenevoles 25 ;
+                   ex:partOf ex:EVT003 ;
+                   ex:quantitecollecte "150.5"^^xsd:double .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#Collecte_EVT005
+ex:Collecte_EVT005 rdf:type owl:NamedIndividual ;
+                   ex:nombreBenevoles 25 ;
+                   ex:partOf ex:EVT005 ;
+                   ex:quantitecollecte "150.5"^^xsd:double .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#Collecte_EVT0078
+ex:Collecte_EVT0078 rdf:type owl:NamedIndividual ;
+                    ex:nombreBenevoles 25 ;
+                    ex:partOf ex:EVT0078 ;
+                    ex:quantitecollecte 150.5 .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#E775
+ex:E775 rdf:type owl:NamedIndividual ,
+                 :evenement ;
+        ex:dateDebut "2025-11-05"^^xsd:date ;
+        ex:dateFin "2025-11-10"^^xsd:date ;
+        ex:descriptionevent "Nettoyage de la plage" ;
+        ex:evenementID "E775" ;
+        ex:lieu "Plage de Sousse" ;
+        ex:nombreBenevoles 25 ;
+        ex:nombreParticipants 10 ;
+        ex:nomevent "Nettoyage Plage Sousse" ;
+        ex:publicCible "Etudiants" ;
+        ex:quantitecollecte 150.5 ;
+        ex:typeEvenement "Collecte" ;
+        ex:zoneCible "Zone littorale" .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#E788
+ex:E788 rdf:type owl:NamedIndividual ,
+                 :evenement ;
+        ex:dateDebut "2025-11-05"^^xsd:date ;
+        ex:dateFin "2025-11-10"^^xsd:date ;
+        ex:descriptionevent "Nettoyage de la plage" ;
+        ex:evenementID "E788" ;
+        ex:lieu "Plage de Sousse" ;
+        ex:nombreBenevoles 25 ;
+        ex:nombreParticipants 10 ;
+        ex:nomevent "Nettoyage Plage Sousse" ;
+        ex:publicCible "Etudiants" ;
+        ex:quantitecollecte 150.5 ;
+        ex:typeEvenement "Collecte" ;
+        ex:zoneCible "Zone littorale" .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#EVT0078
+ex:EVT0078 rdf:type owl:NamedIndividual ,
+                    :evenement ;
+           ex:dateDebut "2025-11-05"^^xsd:date ;
+           ex:dateFin "2025-11-10"^^xsd:date ;
+           ex:descriptionevent "Nettoyage de la plage" ;
+           ex:lieu "Plage de Sousse" ;
+           ex:nombreBenevoles 25 ;
+           ex:nombreParticipants 10 ;
+           ex:nomevent "Nettoyage Plage Sousse" ;
+           ex:publicCible "Etudiants" ;
+           ex:quantitecollecte 150.5 ;
+           ex:typeEvenement "Collecte" ;
+           ex:zoneCible "Zone littorale" .
+
+
+###  http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#F801
+ex:F801 rdf:type owl:NamedIndividual ,
+                 :FormationPersonnel ;
+        ex:formationID "F801" ;
+        ex:nombreParticipants 40 ;
+        ex:publicCible "Personnel hospitalier" ;
+        ex:zoneCible "Ariana" .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+ex:C806 ex:collecteID "C806" ;
+        ex:nombreBenevoles 18 ;
+        ex:quantitecollecte 320.75 .
+
+
+ex:C810 ex:collecteID "C810" ;
+        ex:nombreBenevoles 18 ;
+        ex:quantitecollecte 320.75 .
+
 
 ex:EVT002 ex:dateDebut "2025-11-05"^^xsd:date ;
-    ex:dateFin "2025-11-10"^^xsd:date ;
-    ex:descriptionevent "Nettoyage de la plage" ;
-    ex:lieu "Plage de Sousse" ;
-    ex:nomevent "Nettoyage Plage Sousse" ;
-    ex:typeEvenement "Collecte" .
+          ex:dateFin "2025-11-10"^^xsd:date ;
+          ex:descriptionevent "Nettoyage de la plage" ;
+          ex:lieu "Plage de Sousse" ;
+          ex:nomevent "Nettoyage Plage Sousse" ;
+          ex:typeEvenement "Collecte" .
+
 
 ex:EVT003 ex:dateDebut "2025-11-05"^^xsd:date ;
-    ex:dateFin "2025-11-10"^^xsd:date ;
-    ex:descriptionevent "Nettoyage de la plage" ;
-    ex:lieu "Plage de Sousse" ;
-    ex:nomevent "Nettoyage Plage Sousse" ;
-    ex:typeEvenement "Collecte" .
+          ex:dateFin "2025-11-10"^^xsd:date ;
+          ex:descriptionevent "Nettoyage de la plage" ;
+          ex:lieu "Plage de Sousse" ;
+          ex:nomevent "Nettoyage Plage Sousse" ;
+          ex:typeEvenement "Collecte" .
+
 
 ex:EVT005 ex:dateDebut "2025-11-05"^^xsd:date ;
-    ex:dateFin "2025-11-10"^^xsd:date ;
-    ex:descriptionevent "Nettoyage de la plage" ;
-    ex:lieu "Plage de Sousse" ;
-    ex:nomevent "Nettoyage Plage Sousse" ;
-    ex:typeEvenement "Collecte" .
+          ex:dateFin "2025-11-10"^^xsd:date ;
+          ex:descriptionevent "Nettoyage de la plage" ;
+          ex:lieu "Plage de Sousse" ;
+          ex:nomevent "Nettoyage Plage Sousse" ;
+          ex:typeEvenement "Collecte" .
 
-ex:EVT0078 a :evenement ;
-    ex:dateDebut "2025-11-05"^^xsd:date ;
-    ex:dateFin "2025-11-10"^^xsd:date ;
-    ex:descriptionevent "Nettoyage de la plage" ;
-    ex:lieu "Plage de Sousse" ;
-    ex:nombreBenevoles 25 ;
-    ex:nombreParticipants 10 ;
-    ex:nomevent "Nettoyage Plage Sousse" ;
-    ex:publicCible "Etudiants" ;
-    ex:quantitecollecte 150.5 ;
-    ex:typeEvenement "Collecte" ;
-    ex:zoneCible "Zone littorale" .
 
-:FormationPersonnel a owl:Class ;
-    rdfs:subClassOf :evenement .
+ex:EVT0079 ex:dateDebut "2025-11-05"^^xsd:date ;
+           ex:dateFin "2025-11-10"^^xsd:date ;
+           ex:descriptionevent "Nettoyage de la plage" ;
+           ex:lieu "Plage de Sousse" ;
+           ex:nombreBenevoles 25 ;
+           ex:nombreParticipants 10 ;
+           ex:nomevent "Nettoyage Plage Sousse" ;
+           ex:publicCible "Etudiants" ;
+           ex:quantitecollecte 150.5 ;
+           ex:typeEvenement "Collecte" ;
+           ex:zoneCible "Zone littorale" .
 
-:HazardousWaste a owl:Class ;
-    rdfs:subClassOf :Type_de_dechet .
 
-:MedicalWaste a owl:Class ;
-    rdfs:subClassOf :Dechet .
+ex:F760 ex:formationID "F760" ;
+        ex:nombreParticipants 30 ;
+        ex:publicCible "Étudiants en environnement" ;
+        ex:zoneCible "Tunis" .
 
-:Poubelle_Publique a owl:Class ;
-    rdfs:subClassOf :Point_de_collecte .
 
-:TransportDechetsDangereux a owl:Class ;
-    rdfs:subClassOf :service_de_transport .
+ex:F765 ex:formationID "F765" ;
+        ex:nombreParticipants 37 ;
+        ex:publicCible "Étudiants en environnementsss" ;
+        ex:zoneCible "Ariana" .
 
-:Usine_de_Recyclage_Métaux a owl:Class ;
-    rdfs:subClassOf :centre_de_recyclage .
 
-:affiche a owl:Class ;
-    rdfs:subClassOf :campagne_de_sensibilisation .
+ex:F770 ex:formationID "F770" ;
+        ex:nombreParticipants 37 ;
+        ex:publicCible "Étudiants en environnementsss" ;
+        ex:zoneCible "Ariana" .
 
-:Collecte a owl:Class ;
-    rdfs:subClassOf :evenement .
 
-:campagnedesensi a owl:ObjectProperty ;
-    rdfs:subPropertyOf owl:topObjectProperty .
+ex:Formation_EVT002 ex:nombreParticipants 10 ;
+                    ex:partOf ex:EVT002 ;
+                    ex:publicCible "Etudiants" ;
+                    ex:zoneCible "Zone littorale" .
 
-:equipemeent a owl:ObjectProperty ;
-    rdfs:subPropertyOf owl:topObjectProperty .
 
-:eventtt a owl:ObjectProperty ;
-    rdfs:subPropertyOf owl:topObjectProperty .
+ex:Formation_EVT003 ex:nombreParticipants 10 ;
+                    ex:partOf ex:EVT003 ;
+                    ex:publicCible "Etudiants" ;
+                    ex:zoneCible "Zone littorale" .
 
-:réseaux_sociaux a owl:Class ;
-    rdfs:subClassOf :campagne_de_sensibilisation .
 
-ex:Collecte a owl:Class .
+ex:Formation_EVT005 ex:nombreParticipants 10 ;
+                    ex:partOf ex:EVT005 ;
+                    ex:publicCible "Etudiants" ;
+                    ex:zoneCible "Zone littorale" .
 
-:centrederecycla a owl:ObjectProperty ;
-    rdfs:subPropertyOf owl:topObjectProperty .
 
-:citoyyyen a owl:ObjectProperty ;
-    rdfs:subPropertyOf owl:topObjectProperty .
+ex:Formation_EVT0078 ex:nombreParticipants 10 ;
+                     ex:partOf ex:EVT0078 ;
+                     ex:publicCible "Etudiants" ;
+                     ex:zoneCible "Zone littorale" .
 
-:point_decollecte a owl:ObjectProperty ;
-    rdfs:subPropertyOf owl:topObjectProperty .
 
-:servicedetranssport a owl:ObjectProperty ;
-    rdfs:subPropertyOf owl:topObjectProperty .
-
-:dechetss a owl:ObjectProperty ;
-    rdfs:subPropertyOf owl:topObjectProperty .
-
-:municcipalite a owl:ObjectProperty ;
-    rdfs:subPropertyOf owl:topObjectProperty .
-
-:resident a owl:Class ;
-    rdfs:subClassOf :citoyen .
-
-:municipa a owl:DatatypeProperty ;
-    rdfs:subPropertyOf owl:topDataProperty .
-
-:citoyennn a owl:DatatypeProperty ;
-    rdfs:subPropertyOf owl:topDataProperty .
-
-:servicedetrransport a owl:DatatypeProperty ;
-    rdfs:subPropertyOf owl:topDataProperty .
-
-:equipementts a owl:DatatypeProperty ;
-    rdfs:subPropertyOf owl:topDataProperty .
-
-:pointdecolecte a owl:DatatypeProperty ;
-    rdfs:subPropertyOf owl:topDataProperty .
-
-:campagne a owl:DatatypeProperty ;
-    rdfs:subPropertyOf owl:topDataProperty .
-
-:citoyen a owl:Class .
-
-:centrederecy a owl:DatatypeProperty ;
-    rdfs:subPropertyOf owl:topDataProperty .
-
-:eventss a owl:DatatypeProperty ;
-    rdfs:subPropertyOf owl:topDataProperty .
-
-:typededecheet a owl:DatatypeProperty ;
-    rdfs:subPropertyOf owl:topDataProperty .
-
-:Type_de_dechet a owl:Class .
-
-:dechetts a owl:DatatypeProperty ;
-    rdfs:subPropertyOf owl:topDataProperty .
-
-:service_de_transport a owl:Class .
-
-:Equipement a owl:Class .
-
-:Municipalité a owl:Class .
-
-:campagne_de_sensibilisation a owl:Class .
-
-:evenement a owl:Class .
-
-:Point_de_collecte a owl:Class .
-
-:centre_de_recyclage a owl:Class .
-
-:Dechet a owl:Class .
-
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

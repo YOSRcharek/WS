@@ -5,7 +5,8 @@ from rdflib.namespace import RDF, XSD
 from config import g, EX, PREFIX, FUSEKI_UPDATE_URL, RDF_FILE, FUSEKI_QUERY_URL
 
 evenement_bp = Blueprint("evenement_bp", __name__)
-EVENEMENT_CLASS_URI = EX.evenement
+EVENEMENT_CLASS_URI = URIRef("http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/evenement")
+
 
 # --- CREATE ---
 @evenement_bp.route("/evenements", methods=["POST"])

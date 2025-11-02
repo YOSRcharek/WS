@@ -11,7 +11,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 """
 
-RDF_FILE = r"C:\Users\yosry\Downloads\dechet.ttl"
+RDF_FILE = "../dechet.ttl"
 
 # === Initialisation du graphe RDF ===
 g = Graph()

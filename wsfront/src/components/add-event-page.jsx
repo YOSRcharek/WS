@@ -1,8 +1,8 @@
-import { useState, useContext } from "react";
-import { AppContext } from "../context/AppContext";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function AddEventPage() {
-  const { events, setEvents, setCurrentPage } = useContext(AppContext);
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     title: "",
@@ -17,32 +17,78 @@ export default function AddEventPage() {
     objectives: "",
   });
 
+  // 🟢 Gestion du changement de valeur des champs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  // 🟢 Soumission du formulaire
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setEvents([
-      ...events,
-      { id: Date.now(), participants: 0, status: "planifie", ...formData },
-    ]);
-    alert("Événement créé avec succès !");
-    setFormData({
-      title: "", type: "", description: "", date: "", time: "",
-      location: "", capacity: "", organizer: "", contact: "", objectives: ""
-    });
-    setCurrentPage("events"); // redirige vers la page events
+
+    const eventData = {
+      nomevent: formData.title,
+      typeEvenement: formData.type,
+      descriptionevent: formData.description,
+      dateDebut: formData.date,
+      dateFin: formData.date, // ou gérer une date de fin séparée
+      lieu: formData.location,
+      nombreParticipants: parseInt(formData.capacity) || 0,
+      organizer: formData.organizer,
+      contact: formData.contact,
+      publicCible: "",
+      zoneCible: "",
+      objectifs: formData.objectives,
+    };
+
+    try {
+      const res = await fetch("http://127.0.0.1:5000/evenements", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(eventData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("✅ " + data.message);
+
+        // 🟢 Réinitialiser le formulaire
+        setFormData({
+          title: "",
+          type: "",
+          description: "",
+          date: "",
+          time: "",
+          location: "",
+          capacity: "",
+          organizer: "",
+          contact: "",
+          objectives: "",
+        });
+
+        // 🟢 Redirection vers la liste des événements
+        navigate("/events");
+      } else {
+        alert("⚠️ Erreur lors de la création de l'événement : " + data.message);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("❌ Erreur serveur, impossible de créer l'événement.");
+    }
   };
 
+  // 🟢 Rendu du formulaire
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
       <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
         <h2 className="text-4xl font-bold text-gray-800 mb-8 text-center">
           Créer un Événement
         </h2>
+
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* --- Informations principales --- */}
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -80,6 +126,7 @@ export default function AddEventPage() {
             </div>
           </div>
 
+          {/* --- Description --- */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Description
@@ -95,10 +142,11 @@ export default function AddEventPage() {
             />
           </div>
 
+          {/* --- Date & Heure --- */}
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Date de l'Événement
+                Date
               </label>
               <input
                 name="date"
@@ -124,6 +172,7 @@ export default function AddEventPage() {
             </div>
           </div>
 
+          {/* --- Lieu & Capacité --- */}
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -134,7 +183,7 @@ export default function AddEventPage() {
                 value={formData.location}
                 onChange={handleChange}
                 type="text"
-                placeholder="Adresse ou lieu de l'événement"
+                placeholder="Adresse ou lieu"
                 className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition"
                 required
               />
@@ -155,6 +204,7 @@ export default function AddEventPage() {
             </div>
           </div>
 
+          {/* --- Organisateur & Contact --- */}
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -186,6 +236,7 @@ export default function AddEventPage() {
             </div>
           </div>
 
+          {/* --- Objectifs --- */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Objectifs de l'Événement
@@ -200,6 +251,7 @@ export default function AddEventPage() {
             />
           </div>
 
+          {/* --- Bouton --- */}
           <button
             type="submit"
             className="w-full bg-blue-500 hover:bg-blue-600 text-white py-4 rounded-xl font-semibold text-lg transition"

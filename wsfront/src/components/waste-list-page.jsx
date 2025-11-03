@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const wastes = [
   { type: "Plastique", weight: "12 kg", location: "Casablanca", date: "20/10/2025", status: "Trié" },
@@ -6,14 +7,16 @@ const wastes = [
   { type: "Verre", weight: "15 kg", location: "Marrakech", date: "22/10/2025", status: "Trié" },
 ];
 
-export default function WasteListPage({ showAddWaste }) {
+export default function WasteListPage() {
+  const navigate = useNavigate();
+
   return (
     <div className="page-content">
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-4xl font-bold text-gray-800">Liste des Déchets</h2>
           <button
-            onClick={showAddWaste}
+            onClick={() => navigate("/add-waste")}
             className="btn-primary text-white px-6 py-3 rounded-xl font-semibold"
           >
             + Ajouter

@@ -1,6 +1,9 @@
 from flask import Flask
-from wsback.routes.dechets.dechets import dechets_bp
-from wsback.routes.typeDechets.typeDechets import typedechets_bp
+from routes.dechets.dechets import dechets_bp
+
+
+
+from routes.typeDechets.typeDechets import typedechets_bp
 from routes.citoyen import citoyen_bp
 from routes.aidechet import iadechet_bp
 from routes.events.event import evenement_bp

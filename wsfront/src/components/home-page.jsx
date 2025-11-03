@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
-import { AppContext } from "../context/AppContext";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
 const services = [
   { emoji: "♻️", title: "Tri Intelligent", description: "Système de classification automatique des déchets pour un tri optimal et efficace" },
   { emoji: "🚛", title: "Collecte Optimisée", description: "Planification intelligente des itinéraires de collecte pour réduire les coûts" },
@@ -14,7 +15,8 @@ const stats = [
 ];
 
 export default function HomePage() {
-  const { setCurrentPage } = useContext(AppContext);
+  const navigate = useNavigate();
+
   return (
     <div className="page-content">
       {/* Hero Section */}
@@ -31,18 +33,18 @@ export default function HomePage() {
             Plateforme intelligente pour l'optimisation du tri, de la collecte et du recyclage des déchets
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in">
-            <button onClick={() => setCurrentPage("add-waste")} className="btn-primary text-white px-8 py-4 rounded-full font-semibold text-lg">
+            <button onClick={() => navigate("/add-waste")} className="btn-primary text-white px-8 py-4 rounded-full font-semibold text-lg">
               Ajouter un Déchet
             </button>
-            <button onClick={() => setCurrentPage("waste-list")} className="bg-white text-emerald-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-emerald-50 transition">
+            <button onClick={() => navigate("/waste-list")} className="bg-white text-emerald-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-emerald-50 transition">
               Voir les Déchets
             </button>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-6 fade-in">
-            <button onClick={() => setCurrentPage("add-event")} className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition">
+            <button onClick={() => navigate("/add-event")} className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition">
               Créer un Événement
             </button>
-            <button onClick={() => setCurrentPage("add-campaign")} className="bg-purple-500 hover:bg-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition">
+            <button onClick={() => navigate("/add-campaign")} className="bg-purple-500 hover:bg-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg transition">
               Lancer une Campagne
             </button>
           </div>

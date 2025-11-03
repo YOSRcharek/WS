@@ -1,63 +1,178 @@
-import React from "react";
-
-const statsCards = [
-  { icon: "📅", label: "Événements Actifs", value: 24, change: "+12%", color: "emerald" },
-  { icon: "👥", label: "Participants Total", value: "8,547", change: "+28%", color: "blue" },
-  { icon: "📢", label: "Campagnes en Cours", value: 8, change: "+15%", color: "purple" },
-  { icon: "⭐", label: "Taux de Satisfaction", value: "96%", change: "+5%", color: "amber" },
-];
-
-const monthlyParticipation = [
-  { month: "Janvier", value: 1240, percent: 62 },
-  { month: "Février", value: 1580, percent: 79 },
-  { month: "Mars", value: 2000, percent: 100 },
-];
-
-const eventTypes = [
-  { icon: "🌍", label: "Sensibilisation", value: 12, bg: "emerald-50", text: "emerald-600" },
-  { icon: "🎓", label: "Formation", value: 8, bg: "blue-50", text: "blue-600" },
-  { icon: "🤝", label: "Collecte Citoyenne", value: 4, bg: "purple-50", text: "purple-600" },
-];
-
-const environmentalImpact = [
-  { icon: "♻️", label: "Déchets Collectés", value: "12.5 tonnes" },
-  { icon: "🌱", label: "CO₂ Évité", value: "8.2 tonnes" },
-  { icon: "🌳", label: "Arbres Sauvés", value: 340 },
-];
+import React, { useEffect, useState } from "react";
+import { getStats } from "../services/eventService";
 
 export default function DashboardPage() {
+  const [stats, setStats] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const defaultStats = {
+    eventsActive: 24,
+    totalParticipants: 8547,
+    campaignsActive: 8,
+    satisfactionRate: "96%",
+    monthlyParticipation: [
+      { month: "Janvier", value: 1240, percent: 62 },
+      { month: "Février", value: 1580, percent: 79 },
+      { month: "Mars", value: 2000, percent: 100 },
+    ],
+    eventTypes: [
+      { icon: "🌍", label: "Sensibilisation", value: 12, bg: "emerald-50", text: "emerald-600" },
+      { icon: "🎓", label: "Formation", value: 8, bg: "blue-50", text: "blue-600" },
+      { icon: "🤝", label: "Collecte Citoyenne", value: 4, bg: "purple-50", text: "purple-600" },
+    ],
+    environmentalImpact: [
+      { icon: "♻️", label: "Déchets Collectés", value: "12.5 tonnes" },
+      { icon: "🌱", label: "CO₂ Évité", value: "8.2 tonnes" },
+      { icon: "🌳", label: "Arbres Sauvés", value: 340 },
+    ],
+  };
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const rawData = await getStats();
+
+        const participation = rawData?.participation_par_mois ?? [];
+        const maxParticipationValue =
+          participation.length > 0
+            ? Math.max(...participation.map((x) => x.value))
+            : 1;
+
+        const mappedData = {
+          eventsActive: rawData?.total_evenements ?? 0,
+          totalParticipants: rawData?.total_participants ?? 0,
+          campaignsActive: rawData?.total_campagnes ?? 0,
+          satisfactionRate: rawData?.satisfaction_rate
+            ? `${rawData.satisfaction_rate}%`
+            : "N/A",
+          monthlyParticipation: participation.map((m) => ({
+            month: m.month,
+            value: m.value,
+            percent: ((m.value / maxParticipationValue) * 100).toFixed(2),
+          })),
+          eventTypes: (rawData?.types_evenements ?? []).map((t) => ({
+            icon: "📅",
+            label: t.label,
+            value: t.count,
+            bg: "emerald-50",
+            text: "emerald-600",
+          })),
+          environmentalImpact: rawData?.impact_environnemental
+            ? [
+                {
+                  icon: "♻️",
+                  label: "Déchets Collectés",
+                  value: rawData.impact_environnemental.dechets_collectes,
+                },
+                {
+                  icon: "🌱",
+                  label: "CO₂ Évité",
+                  value: rawData.impact_environnemental.co2_evite,
+                },
+                {
+                  icon: "🌳",
+                  label: "Arbres Sauvés",
+                  value: rawData.impact_environnemental.arbres_sauves,
+                },
+              ]
+            : [],
+        };
+
+        setStats(mappedData);
+      } catch (err) {
+        console.error("Erreur lors du chargement des statistiques:", err);
+        setError("Impossible de charger les statistiques");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStats();
+  }, []);
+
+  const data = stats || defaultStats;
+
+  if (loading)
+    return <p className="text-center mt-10 text-gray-500">Chargement...</p>;
+  if (error)
+    return <p className="text-center mt-10 text-red-500">{error}</p>;
+
+  const totalParticipants = Number(data?.totalParticipants || 0);
+
+  const statsCards = [
+    {
+      icon: "📅",
+      label: "Événements Actifs",
+      value: data.eventsActive,
+      change: "+12%",
+      color: "emerald",
+    },
+    {
+      icon: "👥",
+      label: "Participants Total",
+      value: totalParticipants.toLocaleString("fr-FR"),
+      change: "+28%",
+      color: "blue",
+    },
+    {
+      icon: "📢",
+      label: "Campagnes en Cours",
+      value: data.campaignsActive,
+      change: "+15%",
+      color: "purple",
+    },
+    {
+      icon: "⭐",
+      label: "Taux de Satisfaction",
+      value: data.satisfactionRate,
+      change: "+5%",
+      color: "amber",
+    },
+  ];
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
       <h2 className="text-4xl font-bold text-gray-800 mb-12 text-center">
         Dashboard Événements & Campagnes
       </h2>
 
-      {/* Statistiques */}
+      {/* --- Statistiques principales --- */}
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
         {statsCards.map((card, idx) => (
           <div key={idx} className="bg-white rounded-2xl shadow-lg p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="text-4xl">{card.icon}</div>
-              <div className={`bg-${card.color}-100 text-${card.color}-600 px-3 py-1 rounded-full text-sm font-semibold`}>
+              <div
+                className={`bg-${card.color}-100 text-${card.color}-600 px-3 py-1 rounded-full text-sm font-semibold`}
+              >
                 {card.change}
               </div>
             </div>
-            <h3 className="text-gray-600 text-sm font-semibold mb-2">{card.label}</h3>
+            <h3 className="text-gray-600 text-sm font-semibold mb-2">
+              {card.label}
+            </h3>
             <p className="text-3xl font-bold text-gray-800">{card.value}</p>
           </div>
         ))}
       </div>
 
-      {/* Participation et types d'événements */}
+      {/* --- Participation par Mois --- */}
       <div className="grid lg:grid-cols-2 gap-8 mb-8">
         <div className="bg-white rounded-3xl shadow-xl p-8">
-          <h3 className="text-2xl font-bold text-gray-800 mb-6">Participation par Mois</h3>
+          <h3 className="text-2xl font-bold text-gray-800 mb-6">
+            Participation par Mois
+          </h3>
           <div className="space-y-4">
-            {monthlyParticipation.map((item, idx) => (
+            {(data.monthlyParticipation ?? []).map((item, idx) => (
               <div key={idx}>
                 <div className="flex justify-between mb-2">
-                  <span className="text-gray-600 font-medium">{item.month}</span>
-                  <span className="font-bold text-emerald-600">{item.value}</span>
+                  <span className="text-gray-600 font-medium">
+                    {item.month}
+                  </span>
+                  <span className="font-bold text-emerald-600">
+                    {item.value}
+                  </span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-3">
                   <div
@@ -70,28 +185,41 @@ export default function DashboardPage() {
           </div>
         </div>
 
+        {/* --- Types d'Événements --- */}
         <div className="bg-white rounded-3xl shadow-xl p-8">
-          <h3 className="text-2xl font-bold text-gray-800 mb-6">Types d'Événements</h3>
+          <h3 className="text-2xl font-bold text-gray-800 mb-6">
+            Types d'Événements
+          </h3>
           <div className="space-y-4">
-            {eventTypes.map((type, idx) => (
-              <div key={idx} className={`flex items-center justify-between p-4 bg-${type.bg} rounded-xl`}>
+            {(data.eventTypes ?? []).map((type, idx) => (
+              <div
+                key={idx}
+                className={`flex items-center justify-between p-4 bg-${type.bg} rounded-xl`}
+              >
                 <div className="flex items-center space-x-3">
                   <div className="text-3xl">{type.icon}</div>
-                  <span className="font-semibold text-gray-800">{type.label}</span>
+                  <span className="font-semibold text-gray-800">
+                    {type.label}
+                  </span>
                 </div>
-                <span className={`text-2xl font-bold text-${type.text}`}>{type.value}</span>
+                <span className={`text-2xl font-bold text-${type.text}`}>
+                  {type.value}
+                </span>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Impact environnemental */}
+      {/* --- Impact Environnemental --- */}
       <div className="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-3xl shadow-xl p-8 text-white">
         <h3 className="text-2xl font-bold mb-6">Impact Environnemental</h3>
         <div className="grid md:grid-cols-3 gap-6">
-          {environmentalImpact.map((impact, idx) => (
-            <div key={idx} className="bg-white bg-opacity-20 rounded-xl p-6 backdrop-blur-sm">
+          {(data.environmentalImpact ?? []).map((impact, idx) => (
+            <div
+              key={idx}
+              className="bg-white bg-opacity-20 rounded-xl p-6 backdrop-blur-sm"
+            >
               <div className="text-4xl mb-3">{impact.icon}</div>
               <p className="text-emerald-100 mb-2">{impact.label}</p>
               <p className="text-3xl font-bold">{impact.value}</p>

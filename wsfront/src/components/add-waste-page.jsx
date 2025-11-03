@@ -1,9 +1,8 @@
-import { useState, useContext } from "react";
-import { AppContext } from "../context/AppContext";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function AddWastePage() {
-  const { wastes, setWastes, setCurrentPage } = useContext(AppContext);
-
+  const navigate = useNavigate(); // hook pour naviguer
   const [formData, setFormData] = useState({
     type: "",
     weight: "",
@@ -20,7 +19,7 @@ export default function AddWastePage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setWastes([...wastes, { id: Date.now(), ...formData }]);
+    // Ici tu pourrais faire un POST vers ton API ou mettre à jour le state global
     alert("Déchet ajouté avec succès !");
     setFormData({
       type: "",
@@ -30,7 +29,7 @@ export default function AddWastePage() {
       date: "",
       status: "en-attente",
     });
-    setCurrentPage("waste-list"); // redirige vers la liste des déchets
+    navigate("/waste-list"); // navigation vers la liste des déchets
   };
 
   return (

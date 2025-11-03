@@ -1,9 +1,9 @@
-import { useState, useContext } from "react";
-import { AppContext } from "../context/AppContext";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { createCampagne } from "../services/campagneService"; // ✅ Import du service backend
 
 export default function AddCampaignPage() {
-  const { campaigns, setCampaigns, setCurrentPage } = useContext(AppContext);
-
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
     type: "",
@@ -19,24 +19,33 @@ export default function AddCampaignPage() {
     contact: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
+  // 🟢 Gérer les changements des inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  // 🟢 Soumettre le formulaire et envoyer au backend
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setCampaigns([
-      ...campaigns,
-      { id: Date.now(), progress: 0, participants: 0, status: "active", ...formData },
-    ]);
-    alert("Campagne lancée avec succès !");
-    setFormData({
-      title: "", type: "", description: "", startDate: "", endDate: "",
-      target: "", goalType: "", goalValue: "", budget: "",
-      actions: "", coordinator: "", contact: ""
-    });
-    setCurrentPage("events"); // redirige vers la page events après ajout
+    setLoading(true);
+
+    try {
+      const newCampagne = await createCampagne(formData); // 🔥 Appel API vers Flask
+      if (newCampagne) {
+        alert("✅ Campagne ajoutée avec succès !");
+        navigate("/events"); // redirige après ajout
+      } else {
+        alert("❌ Erreur lors de l'ajout de la campagne.");
+      }
+    } catch (error) {
+      console.error("Erreur handleSubmit:", error);
+      alert("⚠️ Erreur de connexion au serveur.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -45,6 +54,7 @@ export default function AddCampaignPage() {
         <h2 className="text-4xl font-bold text-gray-800 mb-8 text-center">
           Lancer une Campagne
         </h2>
+
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid md:grid-cols-2 gap-6">
             <div>
@@ -61,6 +71,7 @@ export default function AddCampaignPage() {
                 required
               />
             </div>
+
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Type de Campagne
@@ -112,6 +123,7 @@ export default function AddCampaignPage() {
                 required
               />
             </div>
+
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Date de Fin
@@ -127,7 +139,6 @@ export default function AddCampaignPage() {
             </div>
           </div>
 
-          {/* Ajouter les autres champs de la même manière */}
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -148,6 +159,7 @@ export default function AddCampaignPage() {
                 <option value="tous">Tous</option>
               </select>
             </div>
+
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Type d'Objectif
@@ -182,6 +194,7 @@ export default function AddCampaignPage() {
                 className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition"
               />
             </div>
+
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Budget (MAD)
@@ -225,6 +238,7 @@ export default function AddCampaignPage() {
                 className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition"
               />
             </div>
+
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 Contact
@@ -242,9 +256,12 @@ export default function AddCampaignPage() {
 
           <button
             type="submit"
-            className="w-full bg-purple-500 hover:bg-purple-600 text-white py-4 rounded-xl font-semibold text-lg transition"
+            disabled={loading}
+            className={`w-full ${
+              loading ? "bg-gray-400" : "bg-purple-500 hover:bg-purple-600"
+            } text-white py-4 rounded-xl font-semibold text-lg transition`}
           >
-            Lancer la Campagne
+            {loading ? "Envoi en cours..." : "Lancer la Campagne"}
           </button>
         </form>
       </div>

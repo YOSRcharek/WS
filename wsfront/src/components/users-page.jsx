@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const citizens = [
   { name: "Ahmed Benali", city: "Casablanca - Maarif", recycled: 245 },
@@ -14,6 +15,8 @@ const municipalities = [
 ];
 
 export default function UsersPage() {
+  const navigate = useNavigate();
+
   return (
     <div className="page-content">
       <div className="max-w-7xl mx-auto px-4 py-12">
@@ -49,6 +52,13 @@ export default function UsersPage() {
                   <div className="text-right">
                     <p className="font-bold text-emerald-600">{citizen.recycled} kg</p>
                     <p className="text-xs text-gray-500">Recyclés</p>
+                    {/* Exemple de bouton pour naviguer vers le profil */}
+                    <button
+                      onClick={() => navigate(`/citizens/${idx}`)}
+                      className="mt-2 text-sm text-white bg-emerald-600 px-3 py-1 rounded hover:bg-emerald-700 transition"
+                    >
+                      Voir Profil
+                    </button>
                   </div>
                 </div>
               ))}
@@ -83,6 +93,12 @@ export default function UsersPage() {
                       <p className="text-xl font-bold text-emerald-600">{muni.citizens}</p>
                     </div>
                   </div>
+                  <button
+                    onClick={() => navigate(`/municipalities/${idx}`)}
+                    className="mt-4 text-sm text-white bg-teal-600 px-3 py-1 rounded hover:bg-teal-700 transition"
+                  >
+                    Gérer
+                  </button>
                 </div>
               ))}
             </div>

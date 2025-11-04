@@ -72,7 +72,10 @@ def get_municipalites():
 
     municipalites = []
     for result in results["results"]["bindings"]:
-        municipalites.append({k: v["value"] for k, v in result.items()})
+        muni_data = {k: v["value"] for k, v in result.items()}
+        if 'municipalite' in muni_data:
+            muni_data['municipaliteID'] = muni_data['municipalite'].split('#')[-1]
+        municipalites.append(muni_data)
 
     return jsonify(municipalites)
 
@@ -106,6 +109,7 @@ def update_municipalite(municipalite_id):
     insert_query = PREFIX + f"""
     INSERT DATA {{
         <{municipalite_ref}> a <{MUNICIPALITE_CLASS_URI}> ;
+            ex:municipaliteID "{municipalite_id}"^^xsd:string ;
             ex:nom "{data.get('nom','')}"^^xsd:string ;
             ex:adresse "{data.get('adresse','')}"^^xsd:string ;
             ex:codePostal "{data.get('codePostal','')}"^^xsd:string ;
@@ -124,6 +128,22 @@ def update_municipalite(municipalite_id):
     sparql.setQuery(insert_query)
     sparql.query()
 
+    # Update local graph
+    for triple in list(g.triples((municipalite_ref, None, None))):
+        g.remove(triple)
+    
+    g.add((municipalite_ref, RDF.type, MUNICIPALITE_CLASS_URI))
+    g.add((municipalite_ref, EX.municipaliteID, Literal(municipalite_id, datatype=XSD.string)))
+    g.add((municipalite_ref, EX.nom, Literal(data.get('nom',''), datatype=XSD.string)))
+    g.add((municipalite_ref, EX.adresse, Literal(data.get('adresse',''), datatype=XSD.string)))
+    g.add((municipalite_ref, EX.codePostal, Literal(data.get('codePostal',''), datatype=XSD.string)))
+    g.add((municipalite_ref, EX.telephone, Literal(data.get('telephone',''), datatype=XSD.string)))
+    g.add((municipalite_ref, EX.email, Literal(data.get('email',''), datatype=XSD.string)))
+    g.add((municipalite_ref, EX.region, Literal(data.get('region',''), datatype=XSD.string)))
+    g.add((municipalite_ref, EX.population, Literal(data.get('population',0), datatype=XSD.integer)))
+    g.add((municipalite_ref, EX.surface, Literal(data.get('surface',0.0), datatype=XSD.float)))
+    
+    g.serialize(destination=RDF_FILE, format="turtle")
     return jsonify({"message": f"♻️ Municipalité '{municipalite_id}' mise à jour avec succès !"})
 
 # --- DELETE ---

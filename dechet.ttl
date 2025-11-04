@@ -54,13 +54,90 @@ ex:Affiche_Campagne_934 a ex:Affiche,
     ex:image "visuel_don_sang.jpg" ;
     ex:partOf ex:Campagne_934 .
 
-ex:C1104 a ex:Citoyen ;
-    ex:addresscit "madina "^^xsd:string ;
-    ex:age 24 ;
-    ex:citizenID "C1104"^^xsd:string ;
+ex:C1 a :citoyen ;
+    ex:addresscit "cité sanebel, kef"^^xsd:string ;
+    ex:age 40 ;
+    ex:citizenID "C1"^^xsd:string ;
     ex:email "chamekheya1@gmail.com"^^xsd:string ;
-    ex:neaemcitoyen "eya"^^xsd:string ;
+    ex:habiteDans ex:M1111 ;
+    ex:neaemcitoyen "med"^^xsd:string ;
+    ex:phoneNumber "93377210"^^xsd:string ;
+    ex:type "Resident"^^xsd:string .
+
+ex:C1121 a ex:Citoyen ;
+    ex:addresscit "tunis"^^xsd:string ;
+    ex:age 35 ;
+    ex:citizenID "C1121"^^xsd:string ;
+    ex:email "mohamed@gmail.com"^^xsd:string ;
+    ex:habiteDans ex:M874 ;
+    ex:neaemcitoyen "mohamed"^^xsd:string ;
+    ex:phoneNumber "24256321"^^xsd:string .
+
+ex:C1128 a ex:Citoyen ;
+    ex:addresscit "hammamet"^^xsd:string ;
+    ex:age 25 ;
+    ex:citizenID "C1128"^^xsd:string ;
+    ex:email "slouma@gmail.com"^^xsd:string ;
+    ex:neaemcitoyen "slouma"^^xsd:string ;
     ex:phoneNumber "93377210"^^xsd:string .
+
+ex:C1135 a ex:Citoyen ;
+    ex:addresscit "tunis"^^xsd:string ;
+    ex:age 24 ;
+    ex:citizenID "C1135"^^xsd:string ;
+    ex:email "eya.chamekh@esprit.tn"^^xsd:string ;
+    ex:habiteDans ex:M874 ;
+    ex:neaemcitoyen "eya ch"^^xsd:string ;
+    ex:phoneNumber "93377210"^^xsd:string .
+
+ex:C1142 a ex:Citoyen ;
+    ex:addresscit "tunis"^^xsd:string ;
+    ex:age 30 ;
+    ex:citizenID "C1142"^^xsd:string ;
+    ex:email "tasnim@gmail.com"^^xsd:string ;
+    ex:habiteDans ex:M874 ;
+    ex:neaemcitoyen "tasnim"^^xsd:string ;
+    ex:phoneNumber "96112365"^^xsd:string ;
+    ex:type "Resident"^^xsd:string .
+
+ex:C2 a :citoyen ;
+    ex:addresscit "cité sanebel, kef"^^xsd:string ;
+    ex:age 60 ;
+    ex:citizenID "C2"^^xsd:string ;
+    ex:email "chamekheya1@gmail.com"^^xsd:string ;
+    ex:habiteDans ex:M1111 ;
+    ex:neaemcitoyen "salah"^^xsd:string ;
+    ex:phoneNumber "93377210"^^xsd:string ;
+    ex:type "Resident"^^xsd:string .
+
+ex:C3 a :citoyen ;
+    ex:addresscit "madina, ben arous"^^xsd:string ;
+    ex:age 50 ;
+    ex:citizenID "C3"^^xsd:string ;
+    ex:email "chamekheya1@gmail.com"^^xsd:string ;
+    ex:habiteDans ex:M908 ;
+    ex:neaemcitoyen "hichem"^^xsd:string ;
+    ex:phoneNumber "93377210"^^xsd:string ;
+    ex:type "Business"^^xsd:string .
+
+ex:C6 a ex:Citoyen ;
+    ex:addresscit "knbjh"^^xsd:string ;
+    ex:age 22 ;
+    ex:citizenID "C6"^^xsd:string ;
+    ex:email "chamekheya1@gmail.com"^^xsd:string ;
+    ex:habiteDans ex:M874 ;
+    ex:neaemcitoyen "kjh"^^xsd:string ;
+    ex:phoneNumber "93377210"^^xsd:string ;
+    ex:type "Resident"^^xsd:string .
+
+ex:C7 a ex:Citoyen ;
+    ex:addresscit "cité sanebel"^^xsd:string ;
+    ex:age 25 ;
+    ex:citizenID "C7"^^xsd:string ;
+    ex:email "chamekheya1@gmail.com"^^xsd:string ;
+    ex:neaemcitoyen "test"^^xsd:string ;
+    ex:phoneNumber "93377210"^^xsd:string ;
+    ex:type "Resident"^^xsd:string .
 
 ex:C756 a ex:collecte,
         owl:NamedIndividual ;
@@ -91,16 +168,9 @@ ex:C884 a ex:Citoyen ;
     ex:age 30 ;
     ex:citizenID "C884"^^xsd:string ;
     ex:email "chamekheya1@gmail.com"^^xsd:string ;
+    ex:habiteDans ex:M874 ;
     ex:neaemcitoyen "Eya Chamekh"^^xsd:string ;
     ex:phoneNumber "93377210"^^xsd:string .
-
-ex:C901 a ex:Citoyen ;
-    ex:addresscit "madina"^^xsd:string ;
-    ex:age 25 ;
-    ex:citizenID "C901"^^xsd:string ;
-    ex:email "eya.chamekh@esprit.tn"^^xsd:string ;
-    ex:neaemcitoyen "eya"^^xsd:string ;
-    ex:phoneNumber "98989351"^^xsd:string .
 
 ex:Collecte_EVT002 a ex:Collecte,
         owl:NamedIndividual ;
@@ -273,27 +343,60 @@ ex:Formation_EVT0078 ex:nombreParticipants 10 ;
     ex:publicCible "Etudiants" ;
     ex:zoneCible "Zone littorale" .
 
-ex:M1111 a :Municipalite ;
-    ex:adresse "kef"^^xsd:string ;
-    ex:codePostal "7170"^^xsd:string ;
-    ex:email "kef@gmail.com"^^xsd:string ;
-    ex:municipaliteID "M1111"^^xsd:string ;
-    ex:nom "kef municipalite"^^xsd:string ;
-    ex:population 45 ;
-    ex:region "kef"^^xsd:string ;
-    ex:surface ""^^xsd:float ;
-    ex:telephone "78212456"^^xsd:string .
+ex:M1159 a :Municipalite ;
+    ex:adresse "test"^^xsd:string ;
+    ex:codePostal "5465"^^xsd:string ;
+    ex:email "eya.chamekh@esprit.tn"^^xsd:string ;
+    ex:municipaliteID "M1159"^^xsd:string ;
+    ex:nom "testt"^^xsd:string ;
+    ex:population 545545 ;
+    ex:region "test"^^xsd:string ;
+    ex:surface "5445457.0"^^xsd:float ;
+    ex:telephone "93377210"^^xsd:string .
 
-ex:M874 a :Municipalite ;
-    ex:adresse "Avenue Habib Bourguiba"^^xsd:string ;
-    ex:codePostal "1000"^^xsd:string ;
-    ex:email "contact@tunis.gov.tn"^^xsd:string ;
-    ex:municipaliteID "M874"^^xsd:string ;
-    ex:nom "Tunis"^^xsd:string ;
-    ex:population 1200000 ;
+ex:M1163 a :municcipalite ;
+    ex:adresse "madina"^^xsd:string ;
+    ex:codePostal "7170"^^xsd:string ;
+    ex:email "chamekheya1@gmail.com"^^xsd:string ;
+    ex:municipaliteID "M1163"^^xsd:string ;
+    ex:nom "tunis municip"^^xsd:string ;
+    ex:population 45724 ;
     ex:region "Grand Tunis"^^xsd:string ;
-    ex:surface "212.63"^^xsd:float ;
-    ex:telephone "+216 71 123 456"^^xsd:string .
+    ex:surface "4578653.0"^^xsd:float ;
+    ex:telephone "93377210"^^xsd:string .
+
+ex:M1164 a :Municipalite ;
+    ex:adresse "cité sanebel"^^xsd:string ;
+    ex:codePostal "7170"^^xsd:string ;
+    ex:email "chamekheya1@gmail.com"^^xsd:string ;
+    ex:municipaliteID "M1164"^^xsd:string ;
+    ex:nom "tunis municipalite"^^xsd:string ;
+    ex:population 45250 ;
+    ex:region "Grand Tunis"^^xsd:string ;
+    ex:surface "2521225.0"^^xsd:float ;
+    ex:telephone "93377210"^^xsd:string .
+
+ex:M1182 a :Municipalite ;
+    ex:adresse "cité sanebel"^^xsd:string ;
+    ex:codePostal "7170"^^xsd:string ;
+    ex:email "chamekheya1@gmail.com"^^xsd:string ;
+    ex:municipaliteID "M1182"^^xsd:string ;
+    ex:nom "municip"^^xsd:string ;
+    ex:population 5852 ;
+    ex:region "Grand Tunis"^^xsd:string ;
+    ex:surface "58653.0"^^xsd:float ;
+    ex:telephone "93377210"^^xsd:string .
+
+ex:M1232 a :Municipalite ;
+    ex:adresse "ben arous"^^xsd:string ;
+    ex:codePostal "2063"^^xsd:string ;
+    ex:email "chamekheya1@gmail.com"^^xsd:string ;
+    ex:municipaliteID "M1232"^^xsd:string ;
+    ex:nom "madina municipalite"^^xsd:string ;
+    ex:population 215389 ;
+    ex:region "ben arous"^^xsd:string ;
+    ex:surface "5552444.0"^^xsd:float ;
+    ex:telephone "78956221"^^xsd:string .
 
 ex:M891 a :Municipalite ;
     ex:adresse "Avenue Habib Bourguiba"^^xsd:string ;
@@ -306,16 +409,44 @@ ex:M891 a :Municipalite ;
     ex:surface "212.63"^^xsd:float ;
     ex:telephone "+216 71 123 456"^^xsd:string .
 
-ex:M908 a :Municipalite ;
-    ex:adresse "madina,ben arous"^^xsd:string ;
-    ex:codePostal "2063"^^xsd:string ;
-    ex:email "madina@info.com"^^xsd:string ;
-    ex:municipaliteID "M908"^^xsd:string ;
-    ex:nom "ben arous"^^xsd:string ;
-    ex:population 20001 ;
-    ex:region "ben arous"^^xsd:string ;
-    ex:surface "14855.0"^^xsd:float ;
-    ex:telephone "78325652"^^xsd:string .
+ex:REQ149347 a ex:CitizenRequest ;
+    ex:citizenName "Eya Chamekh"^^xsd:string ;
+    ex:dateCreated "2025-11-04T21:49:27.837372"^^xsd:dateTime ;
+    ex:description "collecte non effectuee"^^xsd:string ;
+    ex:priority "Élevée"^^xsd:string ;
+    ex:requestID "REQ149347"^^xsd:string ;
+    ex:requestType "Collecte non effectuée"^^xsd:string ;
+    ex:status "En attente"^^xsd:string .
+
+ex:REQ310091 a ex:CitizenRequest ;
+    ex:citizenName "Eya Chamekh"^^xsd:string ;
+    ex:dateCreated "2025-11-04T22:45:56.269375"^^xsd:dateTime ;
+    ex:description "collecte non effectuée samed"^^xsd:string ;
+    ex:municipalityName "madina municipalite"^^xsd:string ;
+    ex:priority "Élevée"^^xsd:string ;
+    ex:requestID "REQ310091"^^xsd:string ;
+    ex:requestType "Collecte non effectuée"^^xsd:string ;
+    ex:status "En attente"^^xsd:string .
+
+ex:REQ318746 a ex:CitizenRequest ;
+    ex:citizenName "mohamed"^^xsd:string ;
+    ex:dateCreated "2025-11-04T22:14:22.496323"^^xsd:dateTime ;
+    ex:description "La poubelle est endommagée"^^xsd:string ;
+    ex:municipalityName "madina municipalite"^^xsd:string ;
+    ex:priority "Urgent"^^xsd:string ;
+    ex:requestID "REQ318746"^^xsd:string ;
+    ex:requestType "Poubelle endommagée"^^xsd:string ;
+    ex:status "En attente"^^xsd:string .
+
+ex:REQ398851 a ex:CitizenRequest ;
+    ex:citizenName "Eya Chamekh"^^xsd:string ;
+    ex:dateCreated "2025-11-04T22:48:38.333089"^^xsd:dateTime ;
+    ex:description "La poubelle est endommagée"^^xsd:string ;
+    ex:municipalityName "madina municipalite"^^xsd:string ;
+    ex:priority "Urgent"^^xsd:string ;
+    ex:requestID "REQ398851"^^xsd:string ;
+    ex:requestType "Poubelle endommagée"^^xsd:string ;
+    ex:status "En attente"^^xsd:string .
 
 ex:Reseau_865 a :réseaux_sociaux ;
     ex:contenu "Story de promotion" ;
@@ -1044,6 +1175,17 @@ xsd:date a rdfs:Datatype .
 
 ex:Dechet a owl:Class .
 
+ex:M908 a :Municipalite ;
+    ex:adresse "madina,ben arous"^^xsd:string ;
+    ex:codePostal "2063"^^xsd:string ;
+    ex:email "madina@info.com"^^xsd:string ;
+    ex:municipaliteID "M908"^^xsd:string ;
+    ex:nom "ben arous"^^xsd:string ;
+    ex:population 20001 ;
+    ex:region "ben arous"^^xsd:string ;
+    ex:surface "14855.0"^^xsd:float ;
+    ex:telephone "78325652"^^xsd:string .
+
 ex:collecte a owl:Class .
 
 :AgriculturalWaste a owl:Class ;
@@ -1299,6 +1441,17 @@ ex:EVT0078 a :evenement,
     ex:typeEvenement "Collecte" ;
     ex:zoneCible "Zone littorale" .
 
+ex:M1111 a :Municipalite ;
+    ex:adresse "kef"^^xsd:string ;
+    ex:codePostal "7170"^^xsd:string ;
+    ex:email "kef@gmail.com"^^xsd:string ;
+    ex:municipaliteID "M1111"^^xsd:string ;
+    ex:nom "kef municipalite"^^xsd:string ;
+    ex:population 45 ;
+    ex:region "kef"^^xsd:string ;
+    ex:surface ""^^xsd:float ;
+    ex:telephone "78212456"^^xsd:string .
+
 :Collect a owl:Class .
 
 :HazardousWaste a owl:Class ;
@@ -1352,6 +1505,17 @@ ex:Collecte a owl:Class .
 
 ex:Affiche a owl:Class .
 
+ex:M874 a :Municipalite ;
+    ex:adresse "Avenue Habib Bourguiba"^^xsd:string ;
+    ex:codePostal "1000"^^xsd:string ;
+    ex:email "contact@tunis.gov.tn"^^xsd:string ;
+    ex:municipaliteID "M874"^^xsd:string ;
+    ex:nom "Tunis"^^xsd:string ;
+    ex:population 1200000 ;
+    ex:region "Grand Tunis"^^xsd:string ;
+    ex:surface "212.63"^^xsd:float ;
+    ex:telephone "+216 71 123 456"^^xsd:string .
+
 ex:ReseauxSociaux a owl:Class .
 
 :affiche a owl:Class ;
@@ -1360,11 +1524,11 @@ ex:ReseauxSociaux a owl:Class .
 :dechetss a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
 
-:municcipalite a owl:ObjectProperty ;
-    rdfs:subPropertyOf owl:topObjectProperty .
-
 :resident a owl:Class ;
     rdfs:subClassOf :citoyen .
+
+:municcipalite a owl:ObjectProperty ;
+    rdfs:subPropertyOf owl:topObjectProperty .
 
 :municipa a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
@@ -1384,8 +1548,6 @@ ex:ReseauxSociaux a owl:Class .
 :campagne a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
-:citoyen a owl:Class .
-
 :centrederecy a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
@@ -1399,6 +1561,8 @@ ex:ReseauxSociaux a owl:Class .
 
 :dechetts a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
+
+:citoyen a owl:Class .
 
 :service_de_transport a owl:Class .
 

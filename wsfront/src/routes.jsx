@@ -19,6 +19,8 @@ import EventListPage from "./components/event-list";
 import CampaignListPage from "./components/campaign-list";
 import EditEventPage from "./components/edit-event-page";
 import EditCampaignPage from "./components/edit-campaign-page";
+import CitizenMatchingAI from "./components/citizen-matching-ai";
+import CitizenRequests from "./components/citizen-requests";
 
 export default function AppRoutes() {
   return (
@@ -40,6 +42,8 @@ export default function AppRoutes() {
       <Route path="/campaign-list" element={<CampaignListPage />} />
       <Route path="/campaign/:id" element={<CampaignDetailPage/>} />
       <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/ai-matching" element={<CitizenMatchingAI />} />
+      <Route path="/citizen-requests" element={<CitizenRequests />} />
     </Routes>
   );
 }

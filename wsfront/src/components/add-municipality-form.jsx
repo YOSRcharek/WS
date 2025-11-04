@@ -1,15 +1,16 @@
 import { useState } from "react";
 
-export default function AddMunicipalityForm({ onSubmit, onCancel }) {
+export default function AddMunicipalityForm({ onSubmit, onCancel, initialData, isEdit }) {
   const [formData, setFormData] = useState({
-    nom: "",
-    adresse: "",
-    codePostal: "",
-    telephone: "",
-    email: "",
-    region: "",
-    population: "",
-    surface: ""
+    nom: initialData?.nom || "",
+    adresse: initialData?.adresse || "",
+    codePostal: initialData?.codePostal || "",
+    telephone: initialData?.telephone || "",
+    email: initialData?.email || "",
+    region: initialData?.region || "",
+    population: initialData?.population || "",
+    surface: initialData?.surface || "",
+    type: initialData?.type || ""
   });
 
   const handleChange = (e) => {
@@ -25,7 +26,7 @@ export default function AddMunicipalityForm({ onSubmit, onCancel }) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-2xl p-8 max-w-2xl w-full mx-4 max-h-screen overflow-y-auto">
-        <h3 className="text-2xl font-bold text-gray-800 mb-6">Ajouter une Municipalité</h3>
+        <h3 className="text-2xl font-bold text-gray-800 mb-6">{isEdit ? 'Modifier la Municipalité' : 'Ajouter une Municipalité'}</h3>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid md:grid-cols-2 gap-4">
             <div>
@@ -39,6 +40,22 @@ export default function AddMunicipalityForm({ onSubmit, onCancel }) {
                 required
               />
             </div>
+            <div>
+              <label className="block text-sm font-semibold text-gray-700 mb-2">Type</label>
+              <select
+                name="type"
+                value={formData.type}
+                onChange={handleChange}
+                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-teal-500 focus:outline-none"
+                required
+              >
+                <option value="">Sélectionner le type</option>
+                <option value="municipalité rurale">Municipalité Rurale</option>
+                <option value="municipalité urbaine">Municipalité Urbaine</option>
+              </select>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">Région</label>
               <input
@@ -129,7 +146,7 @@ export default function AddMunicipalityForm({ onSubmit, onCancel }) {
               type="submit"
               className="flex-1 bg-teal-500 text-white py-3 rounded-xl font-semibold hover:bg-teal-600 transition"
             >
-              Ajouter
+              {isEdit ? 'Modifier' : 'Ajouter'}
             </button>
           </div>
         </form>

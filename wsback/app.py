@@ -24,6 +24,8 @@ from routes.services_transport.transport_dechets_dangereux import transport_dech
 #citoyen and municipalite
 from routes.municipalites.municipalite import municipalite_bp
 from routes.citoyens.citoyens import citoyen_bp
+from routes.citizen_matching_ai import citizen_matching_bp
+from routes.citizen_requests import citizen_requests_bp
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:3006"], supports_credentials=True)
@@ -53,7 +55,9 @@ app.register_blueprint(citoyen_bp)
 
 # Enregistrement des Blueprints
 app.register_blueprint(dechets_bp)
-app.register_blueprint(ia_bp) 
+app.register_blueprint(ia_bp)
+app.register_blueprint(citizen_matching_bp)
+app.register_blueprint(citizen_requests_bp) 
 
 if __name__ == "__main__":
     app.run(debug=True)

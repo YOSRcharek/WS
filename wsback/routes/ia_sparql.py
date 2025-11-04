@@ -189,53 +189,91 @@ def generate_and_execute_sparql():
             return jsonify({"status": "success", "results": simplified})
 
         # === INSERT ===
+        # === INSERT ===
         elif query_type == "insert":
-            new_event_id = "EVT" + str(uuid.uuid4().int)[:6]
+            # ✅ Génération d’un ID unique cohérent
+            new_event_id = "E" + str(len(g) + 1)
             evt_ref = EX[new_event_id]
 
+            # 🧩 Extraction des champs depuis le prompt
             event_data = {
-                "nomevent": re.search(r"nommé\s+'([^']+)'", prompt_text),
-                "dateDebut": re.search(r"début le\s+([\d\-]+)", prompt_text),
-                "dateFin": re.search(r"fin le\s+([\d\-]+)", prompt_text),
-                "lieu": re.search(r"lieu\s+'([^']+)'", prompt_text),
+                "nomevent": re.search(r"nomm[ée]\s+'([^']+)'", prompt_text),
+                "dateDebut": re.search(r"début(?:e)?\s+le\s+([\d\-]+)", prompt_text),
+                "dateFin": re.search(r"fin(?:it)?\s+le\s+([\d\-]+)", prompt_text),
+                "lieu": re.search(r"(?:au|à)\s+'([^']+)'", prompt_text),
                 "descriptionevent": re.search(r"description\s+'([^']+)'", prompt_text),
                 "typeEvenement": re.search(r"type\s+'([^']+)'", prompt_text),
                 "nombreBenevoles": re.search(r"(\d+)\s+bénévoles", prompt_text),
                 "quantitecollecte": re.search(r"(\d+)\s+kg", prompt_text),
                 "nombreParticipants": re.search(r"(\d+)\s+participants", prompt_text),
                 "publicCible": re.search(r"public cible\s+'([^']+)'", prompt_text),
-                "zoneCible": re.search(r"zone cible\s+'([^']+)'", prompt_text)
+                "zoneCible": re.search(r"zone cible\s+'([^']+)'", prompt_text),
+                "campaign": re.search(r"campagne\s+(E?\w+)", prompt_text),  # 🔹 détecter la campagne mentionnée
             }
 
-            triples = [f"{evt_ref.n3()} a <{EVENEMENT_CLASS_URI}> ."]
+            # 🧱 Construction des triplets RDF
+            triples = [
+                f"{evt_ref.n3()} a <{EVENEMENT_CLASS_URI}> ;",
+                f'ex:evenementID "{new_event_id}"^^xsd:string ;'
+            ]
+
             for field, match in event_data.items():
-                if match:
+                if match and field != "campaign":
                     value = match.group(1)
                     if field in ["nombreBenevoles", "quantitecollecte", "nombreParticipants"]:
-                        triples.append(f'{evt_ref.n3()} ex:{field} "{value}"^^xsd:integer .')
+                        triples.append(f'ex:{field} "{value}"^^xsd:integer ;')
+                    elif field in ["dateDebut", "dateFin"]:
+                        triples.append(f'ex:{field} "{value}"^^xsd:date ;')
                     else:
-                        triples.append(f'{evt_ref.n3()} ex:{field} "{value}" .')
+                        triples.append(f'ex:{field} "{value}"^^xsd:string ;')
 
-            sparql_insert = PREFIX + "\nINSERT DATA {\n" + "\n".join(triples) + "\n}"
+            # 🔗 Si une campagne est mentionnée
+            campaign_id = event_data["campaign"].group(1) if event_data["campaign"] else None
+            if campaign_id:
+                triples.append(f"ex:planned ex:{campaign_id} ;")
+
+            # Supprimer le dernier point-virgule et fermer le bloc
+            triples_str = "\n    ".join(triples).rstrip(";") + " ."
+
+            sparql_insert = PREFIX + "\nINSERT DATA {\n    " + triples_str + "\n}"
+
+            # --- Exécution SPARQL ---
             sparql_wrapper = SPARQLWrapper(FUSEKI_UPDATE_URL)
             sparql_wrapper.setMethod(POST)
             sparql_wrapper.setQuery(sparql_insert)
             sparql_wrapper.query()
 
-            # Sauvegarde RDF locale
+            # --- Sauvegarde RDF locale ---
             g.add((evt_ref, RDF.type, EVENEMENT_CLASS_URI))
+            g.add((evt_ref, EX.evenementID, Literal(new_event_id, datatype=XSD.string)))
             for field, match in event_data.items():
-                if match:
+                if match and field != "campaign":
                     value = match.group(1)
                     if field in ["nombreBenevoles", "quantitecollecte", "nombreParticipants"]:
                         g.add((evt_ref, EX[field], Literal(int(value), datatype=XSD.integer)))
+                    elif field in ["dateDebut", "dateFin"]:
+                        g.add((evt_ref, EX[field], Literal(value, datatype=XSD.date)))
                     else:
-                        g.add((evt_ref, EX[field], Literal(value)))
+                        g.add((evt_ref, EX[field], Literal(value, datatype=XSD.string)))
+
+            if campaign_id:
+                camp_ref = EX[campaign_id]
+                g.add((evt_ref, EX.planned, camp_ref))
+                print(f"🔗 Événement {new_event_id} lié à la campagne {campaign_id}")
+
             g.serialize(destination=RDF_FILE, format="turtle")
 
             result_item = {f: m.group(1) for f, m in event_data.items() if m}
             result_item["evenement"] = new_event_id
-            return jsonify({"status": "success", "results": [result_item]}), 200
+            if campaign_id:
+                result_item["campaign"] = campaign_id
+
+            return jsonify({
+                "status": "success",
+                "message": f"✅ Événement '{new_event_id}' ajouté avec succès.",
+                "results": [result_item],
+                "sparql": sparql_insert
+            }), 200
 
        # === DELETE ===
         elif query_type == "delete":

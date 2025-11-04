@@ -86,7 +86,7 @@ def get_evenements_fuseki():
         SELECT ?evenement ?nomevent ?dateDebut ?dateFin ?lieu ?descriptionevent ?typeEvenement
                ?nombreBenevoles ?quantitecollecte ?nombreParticipants ?publicCible ?zoneCible ?campaign
         WHERE {
-            ?evenement a <http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/evenement> .
+            ?evenement a <http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/evenement> . 
             OPTIONAL { ?evenement ex:nomevent ?nomevent }
             OPTIONAL { ?evenement ex:dateDebut ?dateDebut }
             OPTIONAL { ?evenement ex:dateFin ?dateFin }
@@ -105,17 +105,25 @@ def get_evenements_fuseki():
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
 
-    events = []
+    # Utilisation d'un dictionnaire pour éviter les doublons par evenementID
+    events_dict = {}
+
     for result in results["results"]["bindings"]:
         event_data = {}
         for k, v in result.items():
             if k == "evenement":
-                event_data["evenementID"] = v["value"].split('#')[-1]  # ✅ Ajouté ici
+                evenementID = v["value"].split('#')[-1]
+                event_data["evenementID"] = evenementID  # ID unique de l'événement
             if k == "campaign":
-                event_data["campaignID"] = v["value"].split('#')[-1]  # ✅ Campaign associé
+                event_data["campaignID"] = v["value"].split('#')[-1]  # Campaign associé
             else:
                 event_data[k] = v["value"]
-        events.append(event_data)
+
+        # Ajouter l'événement au dictionnaire en utilisant l'ID comme clé pour éviter la duplication
+        events_dict[evenementID] = event_data
+
+    # Convertir le dictionnaire en liste
+    events = list(events_dict.values())
 
     return jsonify({
         "status": "success",

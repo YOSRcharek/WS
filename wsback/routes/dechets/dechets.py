@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from SPARQLWrapper import SPARQLWrapper, POST, JSON
 from rdflib import Literal, URIRef
 from rdflib.namespace import RDF, XSD, RDFS
-from config import g, EX, PREFIX, FUSEKI_UPDATE_URL, FUSEKI_QUERY_URL, RDF_FILE
+from config import g, EX, PREFIX, FUSEKI_UPDATE_URL, RDF_FILE, FUSEKI_QUERY_URL
 
 dechets_bp = Blueprint("dechets_bp", __name__)
 # URI de la classe Déchet

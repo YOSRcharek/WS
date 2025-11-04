@@ -128,12 +128,9 @@ console.log(campaignId); // Vérifiez si l'ID est bien récupéré
                 required
               >
                 <option value="">Sélectionner un type</option>
-                <option value="sensibilisation">Sensibilisation</option>
+                <option value="General">General</option>
                 <option value="formation">Formation</option>
-                <option value="collecte">Collecte Citoyenne</option>
-                <option value="atelier">Atelier Pratique</option>
-                <option value="conference">Conférence</option>
-                <option value="nettoyage">Nettoyage Communautaire</option>
+                <option value="collecte">Collecte</option>
               </select>
             </div>
           </div>

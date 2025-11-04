@@ -1,8 +1,6 @@
 from flask import Flask
 from routes.dechets.dechets import dechets_bp
 
-
-
 from routes.typeDechets.typeDechets import typedechets_bp
 from routes.citoyen import citoyen_bp
 from routes.aidechet import iadechet_bp
@@ -12,7 +10,6 @@ from routes.events.formation import formation_bp
 from routes.compagne.campagne import campagne_bp
 from routes.compagne.reseaux import reseaux_bp
 from routes.compagne.affiche import affiche_bp
-from routes.citoyen.citoyen import citoyen_bp
 from routes.ia_sparql import ia_bp   
 from routes.centres.centres import centres_bp
 from routes.points_collecte.points_collecte import points_collecte_bp
@@ -58,11 +55,8 @@ app.register_blueprint(centres_bp)
 app.register_blueprint(points_collecte_bp)
 app.register_blueprint(ia_bp)
 app.register_blueprint(typedechets_bp)
-app.register_blueprint(citoyen_bp)
 app.register_blueprint(iadechet_bp)
 
-app.register_blueprint(ia_bp) 
-app.register_blueprint(citoyen_bp) 
 
 if __name__ == "__main__":
     app.run(debug=True)

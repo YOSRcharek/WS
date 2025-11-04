@@ -130,13 +130,19 @@ export default function EventListPage() {
               <tbody className="divide-y divide-gray-200">
                 {eventsToDisplay.length > 0 ? (
                   eventsToDisplay.map((event, idx) => (
-                    <tr key={idx} className="hover:bg-gray-50 transition">
+                    <tr key={idx} className="hover:bg-gray-50 transition" >
                       <td className="px-6 py-4">{event.nomevent || "—"}</td>
                       <td className="px-6 py-4">{event.dateDebut || "—"}</td>
                       <td className="px-6 py-4">{event.dateFin || "—"}</td>
                       <td className="px-6 py-4">{event.lieu || "—"}</td>
                       <td className="px-6 py-4">{event.typeEvenement || "—"}</td>
                       <td className="px-6 py-4">
+                          <button
+                         onClick={() => navigate(`/event/${event.evenementID}`)}
+                          className="text-blue-600 hover:underline mr-3"
+                        >
+                         Details
+                        </button>
                         <button
                           onClick={() => navigate(`/edit-event/${event.evenementID}`)}
                           className="text-blue-600 hover:underline mr-3"

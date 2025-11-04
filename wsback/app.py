@@ -6,7 +6,9 @@ from routes.events.formation import formation_bp
 from routes.compagne.campagne import campagne_bp
 from routes.compagne.reseaux import reseaux_bp
 from routes.compagne.affiche import affiche_bp
-from routes.ia_sparql import ia_bp   
+from routes.centres.centres import centres_bp
+from routes.points_collecte.points_collecte import points_collecte_bp
+from routes.ia_sparql import ia_bp
 from flask_cors import CORS
 
 # Import des équipements depuis le dossier equipements
@@ -45,7 +47,9 @@ app.register_blueprint(transport_dechets_dangereux_bp, url_prefix='/api')
 
 # Enregistrement des Blueprints
 app.register_blueprint(dechets_bp)
-app.register_blueprint(ia_bp) 
+app.register_blueprint(centres_bp)
+app.register_blueprint(points_collecte_bp)
+app.register_blueprint(ia_bp)
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function AddEventPage() {
   const navigate = useNavigate();
+  const location = useLocation(); // Pour accéder aux props de la navigation
 
   const [formData, setFormData] = useState({
     title: "",
@@ -16,6 +17,12 @@ export default function AddEventPage() {
     contact: "",
     objectives: "",
   });
+
+  // Récupérer la campagne si elle est passée via navigate
+ const campaign = location.state?.campaign; // Accède à l'objet complet de la campagne
+console.log(campaign); // Vérifiez ici si l'objet `campaign` est bien passé
+const campaignId = campaign?.id; // Accède à l'id de la campagne
+console.log(campaignId); // Vérifiez si l'ID est bien récupéré
 
   // 🟢 Gestion du changement de valeur des champs
   const handleChange = (e) => {
@@ -40,7 +47,12 @@ export default function AddEventPage() {
       publicCible: "",
       zoneCible: "",
       objectifs: formData.objectives,
+      // Ajouter la campaignId si une campagne est présente
+       campagneID: campaign?.id, // Accède à l'id de la campagne
     };
+
+    // Affichage dans la console pour vérifier que les données sont correctes
+    console.log(eventData);
 
     try {
       const res = await fetch("http://127.0.0.1:5000/evenements", {

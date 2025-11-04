@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getCampagneById } from "../services/campagneService";
+import { getCampagneById , getEvenementsByCampagne } from "../services/campagneService";
+import {useNavigate } from "react-router-dom";
 
 const defaultConfig = {
   title: "Campagne Océans Propres",
@@ -23,42 +24,65 @@ const defaultConfig = {
 export default function CampaignDetailPage() {
   const { id } = useParams(); // Récupère l’ID depuis /campaign/:id
   const [campaign, setCampaign] = useState(null);
+  const [events, setEvents] = useState(null);
+  const navigate = useNavigate(); // Hook pour naviguer
 
-  useEffect(() => {
-    const fetchCampagne = async () => {
-      try {
-        const data = await getCampagneById(id);
-        if (data) {
-          setCampaign({
-            title: data.title || defaultConfig.title,
-            start_date: data.startDate || defaultConfig.start_date,
-            end_date: data.endDate || defaultConfig.end_date,
-            nom_plateforme: data.nom_plateforme || defaultConfig.nom_plateforme,
-            description_campa: data.descriptioncampa || defaultConfig.description_campa,
-            contenu: data.contenu || defaultConfig.contenu,
-            target_audience: data.targetAudience || defaultConfig.target_audience,
-            lien: data.lien || defaultConfig.lien,
-            primary_color: data.primary_color || defaultConfig.primary_color,
-            background_color: data.background_color || defaultConfig.background_color,
-            text_color: data.text_color || defaultConfig.text_color,
-            button_color: data.button_color || defaultConfig.button_color,
-            accent_color: data.accent_color || defaultConfig.accent_color,
-          });
-        } else {
-          setCampaign(defaultConfig);
-        }
-      } catch (err) {
-        console.error("Erreur lors du chargement de la campagne:", err);
+ useEffect(() => {
+  const fetchCampagne = async () => {
+    try {
+
+      const data = await getCampagneById(id);
+      console.log(data)
+      if (data) {
+        setCampaign({
+          id: data.id,
+          title: data.title || defaultConfig.title,
+          start_date: data.startDate || defaultConfig.start_date,
+          end_date: data.endDate || defaultConfig.end_date,
+          nom_plateforme: data.nom_plateforme || defaultConfig.nom_plateforme,
+          description_campa: data.descriptioncampa || defaultConfig.description_campa,
+          contenu: data.contenu || defaultConfig.contenu,
+          target_audience: data.targetAudience || defaultConfig.target_audience,
+          lien: data.lien || defaultConfig.lien,
+          primary_color: data.primary_color || defaultConfig.primary_color,
+          background_color: data.background_color || defaultConfig.background_color,
+          text_color: data.text_color || defaultConfig.text_color,
+          button_color: data.button_color || defaultConfig.button_color,
+          accent_color: data.accent_color || defaultConfig.accent_color,
+          evenements: data.evenements || [], // S'assurer que les événements sont bien présents
+        });
+      } else {
         setCampaign(defaultConfig);
+      }
+    } catch (err) {
+      console.error("Erreur lors du chargement de la campagne:", err);
+      setCampaign(defaultConfig);
+    }
+  };
+
+  fetchCampagne();
+}, [id]);
+
+ useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const data = await getEvenementsByCampagne(id);
+        setEvents(data); // Mettre à jour les événements
+      } catch (err) {
+        console.error("Erreur lors du chargement des événements:", err);
       }
     };
 
-    fetchCampagne();
+    if (id) {
+      fetchEvents();
+    }
   }, [id]);
 
   if (!campaign) {
     return <div className="text-center py-10 text-gray-600">Chargement de la campagne...</div>;
   }
+   console.log( campaign.id)
+
 
   return (
     <main>
@@ -121,11 +145,53 @@ export default function CampaignDetailPage() {
                 <GoalCard icon="🤝" title="Communauté" desc="Créer un réseau d'ambassadeurs" bg="orange" />
               </div>
             </Section>
+
+              <Section title="Événements de la campagne" icon="📝">
+              <div>
+                {events && events.length > 0 ? (
+                  events.map((event, idx) => (
+                    <div key={idx} className="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded mb-5">
+                      <p
+                        className="text-emerald-800"
+                        onClick={() => navigate(`/event/${event.evenementID}`)} // Naviguer vers la page de détail de l'événement
+                      >
+                        <strong>📅 {event.nomevent}</strong>
+                        <br />
+                        <span>{event.dateDebut} - {event.dateFin}</span>
+                      </p>
+                    </div>
+                  ))
+                ) : (
+                  <p>Aucun événement trouvé pour cette campagne.</p>
+                )}
+              </div>
+            </Section>
+
           </div>
 
           {/* Sidebar */}
           <div className="space-y-6">
-            <CTAButton link={campaign.lien} primaryColor={campaign.primary_color} buttonColor={campaign.button_color} />
+            <div className="bg-white rounded-2xl shadow-lg p-6 fade-in">
+              <div className="badge bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold inline-block mb-4">
+                Campagne active
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">Rejoignez-nous !</h3>
+              <p className="text-gray-600 mb-6">
+                Participez à cette campagne et faites la différence.
+              </p>
+             <button
+              onClick={() => navigate("/add-event", { state: { campaign } })} 
+              rel="noopener noreferrer"
+              className="w-full block text-white font-bold py-4 px-6 rounded-xl text-lg mb-4 text-center"
+              style={{
+                background: `linear-gradient(135deg, ${campaign.button_color} 0%, ${campaign.primary_color} 100%)`,
+              }}
+            >
+              Ajouter un événement
+            </button>
+
+            </div>
+           
             <PlatformCard plateforme={campaign.nom_plateforme} />
             <TimelineCard start={campaign.start_date} end={campaign.end_date} />
             <ShareCard />
@@ -164,7 +230,7 @@ const GoalCard = ({ icon, title, desc, bg }) => (
   </div>
 );
 
-const CTAButton = ({ link, primaryColor, buttonColor }) => (
+const CTAButton = ({ link, primaryColor, buttonColor, campaign, onClick }) => (
   <div className="bg-white rounded-2xl shadow-lg p-6 fade-in">
     <div className="badge bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold inline-block mb-4">
       Campagne active
@@ -174,18 +240,20 @@ const CTAButton = ({ link, primaryColor, buttonColor }) => (
       Participez à cette campagne et faites la différence.
     </p>
     <a
-      href={link}
-      target="_blank"
+      href="#"
+      onClick={onClick} // Ajout de onClick ici
+    
       rel="noopener noreferrer"
       className="w-full block text-white font-bold py-4 px-6 rounded-xl text-lg mb-4 text-center"
       style={{
         background: `linear-gradient(135deg, ${buttonColor} 0%, ${primaryColor} 100%)`,
       }}
     >
-      Participer maintenant
+      Ajouter un événement
     </a>
   </div>
 );
+
 
 const PlatformCard = ({ plateforme }) => (
   <div className="bg-white rounded-2xl shadow-lg p-6">

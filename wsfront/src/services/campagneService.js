@@ -98,3 +98,16 @@ export const deleteCampagne = async (campagneId) => {
     return null;
   }
 };
+
+export const associateEventToCampagne = async (campagneId, evenementId) => {
+  try {
+    const res = await fetch(`${API_BASE_URL}/campagnes/${campagneId}/associer_evenement/${evenementId}`, {
+      method: "POST",
+    });
+    const data = await res.json();
+    return data; // Message de succès ou d'erreur
+  } catch (error) {
+    console.error("Erreur associateEventToCampagne:", error);
+    return null;
+  }
+};

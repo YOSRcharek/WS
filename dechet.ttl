@@ -94,6 +94,233 @@ ex:C814 a :Collecte,
     ex:nombreBenevoles 18 ;
     ex:quantitecollecte 320.75 .
 
+ex:CCentre_Tunis_Nord a :centre_de_recyclage,
+        owl:NamedIndividual ;
+    ex:capacity_center "1000" ;
+    ex:centerName "Centre Tunis Nord" ;
+    ex:energyConsumption "500" ;
+    ex:location_center "Tunis" ;
+    ex:operation_Status "Actif" ;
+    ex:recyclingRate "85%" ;
+    ex:typeDeDechetTraite "Plastique" .
+
+ex:CCompostage_Ariana a :Centre_de_Compostage,
+        owl:NamedIndividual ;
+    ex:capacity_center "500 kg/jour" ;
+    ex:centerName "Compostage Ariana" ;
+    ex:energyConsumption "150 kWh" ;
+    ex:location_center "Ariana" ;
+    ex:operation_Status "Actif" ;
+    ex:recyclingRate "80%" ;
+    ex:tempsCompostage "45 jours" ;
+    ex:typeDeDechetTraite "Organiques" .
+
+ex:CCompostage_Ariana1 a :Centre_de_Compostage,
+        owl:NamedIndividual ;
+    ex:capacity_center "500 kg/jour" ;
+    ex:centerName "Compostage Ariana1" ;
+    ex:energyConsumption "150 kWh" ;
+    ex:location_center "Ariana" ;
+    ex:operation_Status "Actif" ;
+    ex:recyclingRate "80%" ;
+    ex:tempsCompostage "45 jours" ;
+    ex:typeDeDechetTraite "Organiques" .
+
+ex:CCompostage_Ariana2 a :centre_de_recyclage,
+        owl:NamedIndividual ;
+    ex:capacity_center "500 kg/jour" ;
+    ex:centerName "Compostage Ariana2" ;
+    ex:energyConsumption "150 kWh" ;
+    ex:location_center "Ariana" ;
+    ex:operation_Status "Actif" ;
+    ex:recyclingRate "80%" ;
+    ex:typeDeDechetTraite "Organiques" .
+
+ex:CR1 a :centre_de_recyclage,
+        owl:NamedIndividual ;
+    ex:capacity_center 2000.0 ;
+    ex:centerName "Centre Sfax",
+        "Centre Sfax1" ;
+    ex:centreID "CR1" ;
+    ex:energyConsumption "Faible" ;
+    ex:location_center "Sfax" ;
+    ex:operation_Status "Actif" ;
+    ex:recyclingRate 92.5 ;
+    ex:typeDeDechetTraite "Plastique, Papier" .
+
+ex:CR1061 a owl:NamedIndividual ;
+    ex:capacity_center 300.0 ;
+    ex:centerName "Centre El Mourouj" ;
+    ex:centreID "CR1061" ;
+    ex:energyConsumption "Moyenne" ;
+    ex:location_center "Tunis" ;
+    ex:operation_Status "Actif" ;
+    ex:recyclingRate 65.5 ;
+    ex:typeDeDechetTraite "Plastique" .
+
+ex:CR1070 a owl:NamedIndividual ;
+    ex:capacity_center 300.0 ;
+    ex:centerName "Centre El Mourouj" ;
+    ex:centreID "CR1070" ;
+    ex:energyConsumption "Moyenne" ;
+    ex:location_center "Tunis" ;
+    ex:operation_Status "Actif" ;
+    ex:recyclingRate 65.5 ;
+    ex:typeDeDechetTraite "Plastique" .
+
+ex:CR1079 a owl:NamedIndividual ;
+    ex:capacity_center 300.0 ;
+    ex:centerName "Centre El Mourouj" ;
+    ex:centreID "CR1079" ;
+    ex:energyConsumption "Moyenne" ;
+    ex:location_center "Tunis" ;
+    ex:operation_Status "Actif" ;
+    ex:recyclingRate 65.5 ;
+    ex:typeDeDechetTraite "Plastique" .
+
+ex:CR1124 a owl:NamedIndividual ;
+    ex:capacity_center 2000.0 ;
+    ex:centerName "Centre Sfax1" ;
+    ex:centreID "CR1124" ;
+    ex:energyConsumption "Faible" ;
+    ex:location_center "Sfax" ;
+    ex:operation_Status "Actif" ;
+    ex:recyclingRate 92.5 ;
+    ex:typeDeDechetTraite "Plastique, Papier" .
+
+ex:CR1133 a owl:NamedIndividual ;
+    ex:capacity_center 2000.0 ;
+    ex:centerName "Centre Sfax11" ;
+    ex:centreID "CR1133" ;
+    ex:energyConsumption "Faible" ;
+    ex:location_center "Sfax" ;
+    ex:operation_Status "Actif" ;
+    ex:recyclingRate 92.5 ;
+    ex:typeDeDechetTraite "Plastique, Papier" .
+
+ex:CR1142 a owl:NamedIndividual ;
+    ex:capacity_center 2000.0 ;
+    ex:centerName "Centre Sfax12" ;
+    ex:centreID "CR1142" ;
+    ex:energyConsumption "Faible" ;
+    ex:location_center "Sfax" ;
+    ex:operation_Status "Actif" ;
+    ex:recyclingRate 92.5 ;
+    ex:typeDeDechetTraite "Plastique, Papier" .
+
+ex:CR1193 a owl:NamedIndividual ;
+    ex:capacity_center 2000.0 ;
+    ex:centerName "Centre Sfax12" ;
+    ex:centreID "CR1193" ;
+    ex:energyConsumption "Faible" ;
+    ex:location_center "Sfax" ;
+    ex:operation_Status "Actif" ;
+    ex:recyclingRate 92.5 ;
+    ex:typeDeDechetTraite "Plastique, Papier" .
+
+ex:CR1202 a owl:NamedIndividual ;
+    ex:capacity_center 2000.0 ;
+    ex:centerName "Centre Sfax12" ;
+    ex:centreID "CR1202" ;
+    ex:energyConsumption "Faible" ;
+    ex:location_center "Sfax" ;
+    ex:operation_Status "Actif" ;
+    ex:recyclingRate 92.5 ;
+    ex:typeDeDechetTraite "Plastique, Papier" .
+
+ex:CR1211 a owl:NamedIndividual ;
+    ex:capacity_center 2000.0 ;
+    ex:centerName "Centre Sfax12" ;
+    ex:centreID "CR1211" ;
+    ex:energyConsumption "Faible" ;
+    ex:location_center "Sfax" ;
+    ex:operation_Status "Actif" ;
+    ex:recyclingRate 92.5 ;
+    ex:typeDeDechetTraite "Plastique, Papier" .
+
+ex:CR1220 a owl:NamedIndividual ;
+    ex:capacity_center 2000.0 ;
+    ex:centerName "Centre Sfax12" ;
+    ex:centreID "CR1220" ;
+    ex:energyConsumption "Faible" ;
+    ex:location_center "Sfax" ;
+    ex:operation_Status "Actif" ;
+    ex:recyclingRate 92.5 ;
+    ex:typeDeDechetTraite "Plastique, Papier" .
+
+ex:CR1229 a owl:NamedIndividual ;
+    ex:capacity_center 2000.0 ;
+    ex:centerName "Centre Sfax12" ;
+    ex:centreID "CR1229" ;
+    ex:energyConsumption "Faible" ;
+    ex:location_center "Sfax" ;
+    ex:operation_Status "Actif" ;
+    ex:recyclingRate 92.5 ;
+    ex:typeDeDechetTraite "Plastique, Papier" .
+
+ex:CR1238 a :Centre_de_Compostage,
+        owl:NamedIndividual ;
+    ex:capacity_center 120.0 ;
+    ex:centerName "Centre Compost Nord" ;
+    ex:centreID "CR1238" ;
+    ex:energyConsumption "50kWh" ;
+    ex:location_center "Tunis" ;
+    ex:operation_Status "Actif" ;
+    ex:recyclingRate 45.6 ;
+    ex:typeDeDechetTraite "Organique" .
+
+ex:Caaa a :Usine_de_Recyclage_Métaux ;
+    ex:capacity_center "120" ;
+    ex:centerName "bbbb" ;
+    ex:energyConsumption "" ;
+    ex:equipmentRecyclagemetaux "" ;
+    ex:location_center "zz" ;
+    ex:operation_Status "" ;
+    ex:recyclingRate "" ;
+    ex:typeDeDechetTraite "pppp" ;
+    ex:typeDeMetauxTraites "" .
+
+ex:Casaasa a :Usine_de_Recyclage_Métaux ;
+    ex:capacity_center "120" ;
+    ex:centerName "asaasa" ;
+    ex:energyConsumption "" ;
+    ex:equipmentRecyclagemetaux "" ;
+    ex:location_center "asasa" ;
+    ex:operation_Status "xxx" ;
+    ex:recyclingRate "20" ;
+    ex:typeDeDechetTraite "aa" ;
+    ex:typeDeMetauxTraites "" .
+
+ex:Cbbbb a :centre_de_recyclage ;
+    ex:capacity_center "120" ;
+    ex:centerName "bbbbcc" ;
+    ex:energyConsumption "" ;
+    ex:location_center "zz" ;
+    ex:operation_Status "" ;
+    ex:recyclingRate "" ;
+    ex:typeDeDechetTraite "pppp" .
+
+ex:Clalllall a :Centre_de_Compostage ;
+    ex:capacity_center "120" ;
+    ex:centerName "lalllall" ;
+    ex:energyConsumption "" ;
+    ex:location_center "asasaxxx" ;
+    ex:operation_Status "xxx" ;
+    ex:recyclingRate "20" ;
+    ex:tempsCompostage "" ;
+    ex:typeDeDechetTraite "aa" .
+
+ex:Clkkkkk a :Centre_de_Compostage,
+        :centre_de_recyclage ;
+    ex:capacity_center "120" ;
+    ex:centerName "lkkkkk" ;
+    ex:energyConsumption "" ;
+    ex:location_center "asasaxxx" ;
+    ex:operation_Status "xxx" ;
+    ex:recyclingRate "20" ;
+    ex:tempsCompostage "" ;
+    ex:typeDeDechetTraite "aa" .
+
 ex:Collecte_EVT002 a ex:Collecte,
         owl:NamedIndividual ;
     ex:nombreBenevoles 25 ;
@@ -156,6 +383,27 @@ ex:E1108 a :evenement ;
     ex:dateFin "2025-11-06"^^xsd:date ;
     ex:descriptionevent "fffffff" ;
     ex:evenementID "E1108"^^xsd:string ;
+ex:E1088 a :evenement,
+        owl:NamedIndividual ;
+    ex:dateDebut "2025-11-01"^^xsd:date ;
+    ex:dateFin "2025-11-05"^^xsd:date ;
+    ex:descriptionevent "Journée de recyclage communautaire" ;
+    ex:evenementID "E1088" ;
+    ex:lieu "Tunis" ;
+    ex:nombreBenevoles 25 ;
+    ex:nombreParticipants 200 ;
+    ex:nomevent "Recyclons Ensemble" ;
+    ex:publicCible "Écoles et habitants locaux" ;
+    ex:quantitecollecte 350.5 ;
+    ex:typeEvenement "Environnement" ;
+    ex:zoneCible "Grand Tunis" .
+
+ex:E1089 a :evenement,
+        owl:NamedIndividual ;
+    ex:dateDebut "2025-11-06"^^xsd:date ;
+    ex:dateFin "2025-11-06"^^xsd:date ;
+    ex:descriptionevent "yosrrr" ;
+    ex:evenementID "E1089" ;
     ex:lieu "tunis" ;
     ex:nombreBenevoles 0 ;
     ex:nombreParticipants 14444 ;
@@ -281,6 +529,50 @@ ex:E1247 a :evenement ;
     ex:quantitecollecte 0.0 ;
     ex:typeEvenement "sensibilisation" ;
     ex:zoneCible "" .
+ex:E1101 a :evenement,
+        owl:NamedIndividual ;
+    ex:dateDebut "2025-11-01"^^xsd:date ;
+    ex:dateFin "2025-11-05"^^xsd:date ;
+    ex:descriptionevent "Journée de recyclage communautaire" ;
+    ex:evenementID "E1101" ;
+    ex:lieu "Tunis" ;
+    ex:nombreBenevoles 25 ;
+    ex:nombreParticipants 200 ;
+    ex:nomevent "Recyclons Ensemble" ;
+    ex:publicCible "Écoles et habitants locaux" ;
+    ex:quantitecollecte 350.5 ;
+    ex:typeEvenement "Environnement" ;
+    ex:zoneCible "Grand Tunis" .
+
+ex:E1180 a :evenement,
+        owl:NamedIndividual ;
+    ex:dateDebut "2025-11-01"^^xsd:date ;
+    ex:dateFin "2025-11-05"^^xsd:date ;
+    ex:descriptionevent "Journée de recyclage communautaire" ;
+    ex:evenementID "E1180" ;
+    ex:lieu "Tunis" ;
+    ex:nombreBenevoles 25 ;
+    ex:nombreParticipants 200 ;
+    ex:nomevent "Recyclons Ensemble" ;
+    ex:publicCible "Écoles et habitants locaux" ;
+    ex:quantitecollecte 350.5 ;
+    ex:typeEvenement "Environnement" ;
+    ex:zoneCible "Grand Tunis" .
+
+ex:E1251 a :evenement,
+        owl:NamedIndividual ;
+    ex:dateDebut "2025-11-01"^^xsd:date ;
+    ex:dateFin "2025-11-05"^^xsd:date ;
+    ex:descriptionevent "Journée de recyclage communautaire" ;
+    ex:evenementID "E1251" ;
+    ex:lieu "Tunis" ;
+    ex:nombreBenevoles 25 ;
+    ex:nombreParticipants 200 ;
+    ex:nomevent "Recyclons Ensemble" ;
+    ex:publicCible "Écoles et habitants locaux" ;
+    ex:quantitecollecte 350.5 ;
+    ex:typeEvenement "Environnement" ;
+    ex:zoneCible "Grand Tunis" .
 
 ex:E906 a :evenement,
         owl:NamedIndividual ;
@@ -316,7 +608,7 @@ ex:E920 a :evenement,
 
 ex:EVT0079 ex:dateDebut "2025-11-05"^^xsd:date ;
     ex:dateFin "2025-11-10"^^xsd:date ;
-    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse"^^xsd:string ;
+    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse" ;
     ex:lieu "Plage de Sousse" ;
     ex:nombreBenevoles 25 ;
     ex:nombreParticipants 10 ;
@@ -326,7 +618,8 @@ ex:EVT0079 ex:dateDebut "2025-11-05"^^xsd:date ;
     ex:typeEvenement "Collecte" ;
     ex:zoneCible "Zone littorale" .
 
-ex:EVT224699 a :evenement ;
+ex:EVT224699 a :evenement,
+        owl:NamedIndividual ;
     ex:dateDebut "2025-11-10" ;
     ex:dateFin "2025-11-10" ;
     ex:descriptionevent "Planter des arbres" ;
@@ -428,6 +721,47 @@ ex:Formation_EVT0078 ex:nombreParticipants 10 ;
     ex:publicCible "Etudiants" ;
     ex:zoneCible "Zone littorale" .
 
+ex:PCPoint_Mobile_Centre_Nord ex:associatedCentre ex:CCentre_Tunis_Nord1 ;
+    ex:description "Collecte des déchets recyclables" ;
+    ex:location "Rue 123, Tunis" ;
+    ex:name "Point Mobile Centre Nord" .
+
+ex:PC_MonPoint a :Point_de_Collecte_Mobile ;
+    ex:associatedCentre ex:CMonCentre ;
+    ex:description "Point mobile près de la place" ;
+    ex:location "Avenue Habib Bourguiba" ;
+    ex:name "MonPoint" .
+
+ex:PC_MonPoint1 a :Point_de_Collecte_Mobile ;
+    ex:associatedCentre ex:CMonCentre ;
+    ex:description "Point mobile près de la place" ;
+    ex:location "Avenue Habib Bourguiba" ;
+    ex:name "MonPoint1" .
+
+ex:PC_MonPoint2 a :Poubelle_Publique ;
+    ex:associatedCentre ex:CMonCentre ;
+    ex:description "Point mobile près de la place" ;
+    ex:location "Avenue Habib Bourguiba" ;
+    ex:name "MonPoint3" .
+
+ex:PC_Point_Mobile_Centre_slouma a :Point_de_Collecte_Mobile ;
+    ex:associatedCentre ex:CCentre_Tunis_Nord1 ;
+    ex:description "Collecte des déchets recyclables" ;
+    ex:location "Rue 123, Tunis" ;
+    ex:name "Point Mobile Centre slouma" .
+
+ex:PC_Point_Mobile_Centre_slouma1 a :Point_de_Collecte_Mobile ;
+    ex:associatedCentre ex:CCentre_Tunis_Nord1 ;
+    ex:description "Collecte des déchets recyclables" ;
+    ex:location "Rue 123, Tunis" ;
+    ex:name "Point Mobile Centre slouma1" .
+
+ex:PC_Point_Mobile_Centre_slouma2 a :Point_de_Collecte_Mobile ;
+    ex:associatedCentre ex:CCentre_Tunis_Nord1 ;
+    ex:description "Collecte des déchets recyclables" ;
+    ex:location "Rue 123, Tunis" ;
+    ex:name "Point Mobile Centre slouma2" .
+
 ex:Reseau_865 a :réseaux_sociaux,
         owl:NamedIndividual ;
     ex:contenu "Story de promotion" ;
@@ -470,6 +804,20 @@ ex:Reseau_Campagne_934 a ex:ReseauxSociaux,
     ex:nomPlateforme "Twitter" ;
     ex:partOf ex:Campagne_934 .
 
+ex:associatedCentre a owl:AnnotationProperty .
+
+ex:associe_a a owl:ObjectProperty ;
+    rdfs:domain :Point_de_collecte ;
+    rdfs:range :centre_de_recyclage ;
+    rdfs:subPropertyOf :point_decollecte ;
+    owl:inverseOf ex:avoir .
+
+ex:capacity_center a owl:AnnotationProperty .
+
+ex:centerName a owl:AnnotationProperty .
+
+ex:centreID a owl:AnnotationProperty .
+
 ex:collecteID a owl:AnnotationProperty .
 
 ex:contenu a owl:AnnotationProperty .
@@ -490,6 +838,10 @@ ex:descriptionevent a owl:AnnotationProperty .
 
 ex:endDate a owl:AnnotationProperty .
 
+ex:energyConsumption a owl:AnnotationProperty .
+
+ex:equipmentRecyclagemetaux a owl:AnnotationProperty .
+
 ex:evenementID a owl:AnnotationProperty .
 
 ex:formationID a owl:AnnotationProperty .
@@ -504,6 +856,12 @@ ex:lien a owl:AnnotationProperty .
 
 ex:lieu a owl:AnnotationProperty .
 
+ex:location a owl:AnnotationProperty .
+
+ex:location_center a owl:AnnotationProperty .
+
+ex:name a owl:AnnotationProperty .
+
 ex:nomPlateforme a owl:AnnotationProperty .
 
 ex:nombreBenevoles a owl:AnnotationProperty .
@@ -513,6 +871,8 @@ ex:nombreParticipants a owl:AnnotationProperty .
 ex:nomdechet a owl:AnnotationProperty .
 
 ex:nomevent a owl:AnnotationProperty .
+
+ex:operation_Status a owl:AnnotationProperty .
 
 ex:organise a owl:AnnotationProperty .
 
@@ -537,11 +897,19 @@ ex:quantite a owl:AnnotationProperty .
 
 ex:quantitecollecte a owl:AnnotationProperty .
 
+ex:recyclingRate a owl:AnnotationProperty .
+
 ex:startDate a owl:AnnotationProperty .
 
 ex:targetAudience a owl:AnnotationProperty .
 
+ex:tempsCompostage a owl:AnnotationProperty .
+
 ex:title a owl:AnnotationProperty .
+
+ex:typeDeDechetTraite a owl:AnnotationProperty .
+
+ex:typeDeMetauxTraites a owl:AnnotationProperty .
 
 ex:typeEvenement a owl:AnnotationProperty .
 
@@ -564,9 +932,6 @@ ex:zoneCible a owl:AnnotationProperty .
     rdfs:range :Dechet ;
     rdfs:subPropertyOf :point_decollecte ;
     owl:inverseOf :associePointCollecte .
-
-:Point_de_Collecte_Mobile a owl:Class ;
-    rdfs:subClassOf :Point_de_collecte .
 
 :aPourParticipant a owl:ObjectProperty ;
     rdfs:domain :evenement ;
@@ -1203,6 +1568,10 @@ ex:E1149 a :evenement ;
     ex:quantitecollecte 0.0 ;
     ex:typeEvenement "formation" ;
     ex:zoneCible "" .
+ex:avoir a owl:ObjectProperty ;
+    rdfs:domain :centre_de_recyclage ;
+    rdfs:range :Point_de_collecte ;
+    rdfs:subPropertyOf :centrederecycla .
 
 ex:collecte a owl:Class .
 
@@ -1214,12 +1583,6 @@ ex:collecte a owl:Class .
 
 :CamionBenne a owl:Class ;
     rdfs:subClassOf :Equipement .
-
-:Centre_de_Compostage a owl:Class ;
-    rdfs:subClassOf :centre_de_recyclage .
-
-:Centre_de_Traitement_des_Déchets_Dangereux a owl:Class ;
-    rdfs:subClassOf :centre_de_recyclage .
 
 :Conteneur a owl:Class ;
     rdfs:subClassOf :Equipement .
@@ -1392,7 +1755,7 @@ ex:E775 a :evenement,
         owl:NamedIndividual ;
     ex:dateDebut "2025-11-05"^^xsd:date ;
     ex:dateFin "2025-11-10"^^xsd:date ;
-    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse"^^xsd:string ;
+    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse" ;
     ex:evenementID "E775" ;
     ex:lieu "Plage de Sousse" ;
     ex:nombreBenevoles 25 ;
@@ -1407,7 +1770,7 @@ ex:E788 a :evenement,
         owl:NamedIndividual ;
     ex:dateDebut "2025-11-05"^^xsd:date ;
     ex:dateFin "2025-11-10"^^xsd:date ;
-    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse"^^xsd:string ;
+    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse" ;
     ex:evenementID "E788" ;
     ex:lieu "Plage de Sousse" ;
     ex:nombreBenevoles 25 ;
@@ -1420,21 +1783,21 @@ ex:E788 a :evenement,
 
 ex:EVT002 ex:dateDebut "2025-11-05"^^xsd:date ;
     ex:dateFin "2025-11-10"^^xsd:date ;
-    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse"^^xsd:string ;
+    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse" ;
     ex:lieu "Plage de Sousse" ;
     ex:nomevent "Nettoyage Plage Sousse" ;
     ex:typeEvenement "Collecte" .
 
 ex:EVT003 ex:dateDebut "2025-11-05"^^xsd:date ;
     ex:dateFin "2025-11-10"^^xsd:date ;
-    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse"^^xsd:string ;
+    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse" ;
     ex:lieu "Plage de Sousse" ;
     ex:nomevent "Nettoyage Plage Sousse" ;
     ex:typeEvenement "Collecte" .
 
 ex:EVT005 ex:dateDebut "2025-11-05"^^xsd:date ;
     ex:dateFin "2025-11-10"^^xsd:date ;
-    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse"^^xsd:string ;
+    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse" ;
     ex:lieu "Plage de Sousse" ;
     ex:nomevent "Nettoyage Plage Sousse" ;
     ex:typeEvenement "Collecte" .
@@ -1443,7 +1806,7 @@ ex:EVT0078 a :evenement,
         owl:NamedIndividual ;
     ex:dateDebut "2025-11-05"^^xsd:date ;
     ex:dateFin "2025-11-10"^^xsd:date ;
-    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse"^^xsd:string ;
+    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse" ;
     ex:lieu "Plage de Sousse" ;
     ex:nombreBenevoles 25 ;
     ex:nombreParticipants 10 ;
@@ -1453,6 +1816,9 @@ ex:EVT0078 a :evenement,
     ex:typeEvenement "Collecte" ;
     ex:zoneCible "Zone littorale" .
 
+:Centre_de_Traitement_des_Déchets_Dangereux a owl:Class ;
+    rdfs:subClassOf :centre_de_recyclage .
+
 :Collect a owl:Class .
 
 :HazardousWaste a owl:Class ;
@@ -1461,19 +1827,26 @@ ex:EVT0078 a :evenement,
 :MedicalWaste a owl:Class ;
     rdfs:subClassOf :Dechet .
 
-:Poubelle_Publique a owl:Class ;
-    rdfs:subClassOf :Point_de_collecte .
-
 :TransportDechetsDangereux a owl:Class ;
     rdfs:subClassOf :service_de_transport .
 
-:Usine_de_Recyclage_Métaux a owl:Class ;
-    rdfs:subClassOf :centre_de_recyclage .
+ex:CMonCentre a :Centre_de_Traitement_des_Déchets_Dangereux ;
+    ex:capacity_center "200" ;
+    ex:centerName "MonCentre1" ;
+    ex:energyConsumption "150" ;
+    ex:equipementSpecialisee "" ;
+    ex:location_center "Tunis" ;
+    ex:operation_Status "Actif" ;
+    ex:recyclingRate "85" ;
+    ex:typeDeDechetTraite "Organique" .
 
 ex:formationPersonnel a owl:Class .
 
 :FormationPersonnel a owl:Class ;
     rdfs:subClassOf :evenement .
+
+:Poubelle_Publique a owl:Class ;
+    rdfs:subClassOf :Point_de_collecte .
 
 :campagnedesensi a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
@@ -1484,18 +1857,25 @@ ex:formationPersonnel a owl:Class .
 :eventtt a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
 
+ex:CCentre_Tunis_Nord1 a :centre_de_recyclage,
+        owl:NamedIndividual ;
+    ex:capacity_center "1000" ;
+    ex:centerName "Centre Tunis Nord1" ;
+    ex:energyConsumption "500" ;
+    ex:location_center "Tunis" ;
+    ex:operation_Status "Actif" ;
+    ex:recyclingRate "85%" ;
+    ex:typeDeDechetTraite "Plastique" .
+
 ex:Collecte a owl:Class .
 
 :Collecte a owl:Class ;
     rdfs:subClassOf :evenement .
 
-:centrederecycla a owl:ObjectProperty ;
-    rdfs:subPropertyOf owl:topObjectProperty .
+:Usine_de_Recyclage_Métaux a owl:Class ;
+    rdfs:subClassOf :centre_de_recyclage .
 
 :citoyyyen a owl:ObjectProperty ;
-    rdfs:subPropertyOf owl:topObjectProperty .
-
-:point_decollecte a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
 
 :réseaux_sociaux a owl:Class ;
@@ -1508,8 +1888,14 @@ ex:Affiche a owl:Class .
 
 ex:ReseauxSociaux a owl:Class .
 
+:Point_de_Collecte_Mobile a owl:Class ;
+    rdfs:subClassOf :Point_de_collecte .
+
 :affiche a owl:Class ;
     rdfs:subClassOf :campagne_de_sensibilisation .
+
+:centrederecycla a owl:ObjectProperty ;
+    rdfs:subPropertyOf owl:topObjectProperty .
 
 :dechetss a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
@@ -1517,8 +1903,14 @@ ex:ReseauxSociaux a owl:Class .
 :municcipalite a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
 
+:point_decollecte a owl:ObjectProperty ;
+    rdfs:subPropertyOf owl:topObjectProperty .
+
 :resident a owl:Class ;
     rdfs:subClassOf :citoyen .
+
+:Centre_de_Compostage a owl:Class ;
+    rdfs:subClassOf :centre_de_recyclage .
 
 :municipa a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
@@ -1572,11 +1964,11 @@ ex:Campagne1 a :campagne_de_sensibilisation,
 
 :Point_de_collecte a owl:Class .
 
-:centre_de_recyclage a owl:Class .
-
 :campagne_de_sensibilisation a owl:Class .
 
 :Dechet a owl:Class .
+
+:centre_de_recyclage a owl:Class .
 
 :evenement a owl:Class .
 

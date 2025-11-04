@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from routes.dechets.dechets import dechets_bp
 from routes.events.event import evenement_bp
 from routes.events.collect import collecte_bp
@@ -20,10 +21,15 @@ from routes.equipements.conteneur import conteneur_bp
 from routes.services_transport.service_transport import service_transport_bp
 from routes.services_transport.camion_dechets import camion_dechets_bp
 from routes.services_transport.transport_dechets_dangereux import transport_dechets_dangereux_bp
+#citoyen and municipalite
+from routes.municipalites.municipalite import municipalite_bp
+from routes.citoyens.citoyens import citoyen_bp
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:3006"], supports_credentials=True)
 # Enregistrement des Blueprints
+
+
 app.register_blueprint(evenement_bp)
 app.register_blueprint(collecte_bp)
 app.register_blueprint(formation_bp)
@@ -42,6 +48,8 @@ app.register_blueprint(conteneur_bp, url_prefix='/api')
 # Transport service subclasses
 app.register_blueprint(camion_dechets_bp, url_prefix='/api')
 app.register_blueprint(transport_dechets_dangereux_bp, url_prefix='/api')
+app.register_blueprint(municipalite_bp)
+app.register_blueprint(citoyen_bp)
 
 # Enregistrement des Blueprints
 app.register_blueprint(dechets_bp)

@@ -54,6 +54,14 @@ ex:Affiche_Campagne_934 a ex:Affiche,
     ex:image "visuel_don_sang.jpg" ;
     ex:partOf ex:Campagne_934 .
 
+ex:C1104 a ex:Citoyen ;
+    ex:addresscit "madina "^^xsd:string ;
+    ex:age 24 ;
+    ex:citizenID "C1104"^^xsd:string ;
+    ex:email "chamekheya1@gmail.com"^^xsd:string ;
+    ex:neaemcitoyen "eya"^^xsd:string ;
+    ex:phoneNumber "93377210"^^xsd:string .
+
 ex:C756 a ex:collecte,
         owl:NamedIndividual ;
     ex:collecteID "C756" ;
@@ -77,6 +85,22 @@ ex:C814 a :Collecte,
     ex:collecteID "C814" ;
     ex:nombreBenevoles 18 ;
     ex:quantitecollecte 320.75 .
+
+ex:C884 a ex:Citoyen ;
+    ex:addresscit "tunis"^^xsd:string ;
+    ex:age 30 ;
+    ex:citizenID "C884"^^xsd:string ;
+    ex:email "chamekheya1@gmail.com"^^xsd:string ;
+    ex:neaemcitoyen "Eya Chamekh"^^xsd:string ;
+    ex:phoneNumber "93377210"^^xsd:string .
+
+ex:C901 a ex:Citoyen ;
+    ex:addresscit "madina"^^xsd:string ;
+    ex:age 25 ;
+    ex:citizenID "C901"^^xsd:string ;
+    ex:email "eya.chamekh@esprit.tn"^^xsd:string ;
+    ex:neaemcitoyen "eya"^^xsd:string ;
+    ex:phoneNumber "98989351"^^xsd:string .
 
 ex:Collecte_EVT002 a ex:Collecte,
         owl:NamedIndividual ;
@@ -249,8 +273,51 @@ ex:Formation_EVT0078 ex:nombreParticipants 10 ;
     ex:publicCible "Etudiants" ;
     ex:zoneCible "Zone littorale" .
 
-ex:Reseau_865 a :réseaux_sociaux,
-        owl:NamedIndividual ;
+ex:M1111 a :Municipalite ;
+    ex:adresse "kef"^^xsd:string ;
+    ex:codePostal "7170"^^xsd:string ;
+    ex:email "kef@gmail.com"^^xsd:string ;
+    ex:municipaliteID "M1111"^^xsd:string ;
+    ex:nom "kef municipalite"^^xsd:string ;
+    ex:population 45 ;
+    ex:region "kef"^^xsd:string ;
+    ex:surface ""^^xsd:float ;
+    ex:telephone "78212456"^^xsd:string .
+
+ex:M874 a :Municipalite ;
+    ex:adresse "Avenue Habib Bourguiba"^^xsd:string ;
+    ex:codePostal "1000"^^xsd:string ;
+    ex:email "contact@tunis.gov.tn"^^xsd:string ;
+    ex:municipaliteID "M874"^^xsd:string ;
+    ex:nom "Tunis"^^xsd:string ;
+    ex:population 1200000 ;
+    ex:region "Grand Tunis"^^xsd:string ;
+    ex:surface "212.63"^^xsd:float ;
+    ex:telephone "+216 71 123 456"^^xsd:string .
+
+ex:M891 a :Municipalite ;
+    ex:adresse "Avenue Habib Bourguiba"^^xsd:string ;
+    ex:codePostal "1000"^^xsd:string ;
+    ex:email "contact@tunis.gov.tn"^^xsd:string ;
+    ex:municipaliteID "M891"^^xsd:string ;
+    ex:nom "Tunis"^^xsd:string ;
+    ex:population 1200000 ;
+    ex:region "Grand Tunis"^^xsd:string ;
+    ex:surface "212.63"^^xsd:float ;
+    ex:telephone "+216 71 123 456"^^xsd:string .
+
+ex:M908 a :Municipalite ;
+    ex:adresse "madina,ben arous"^^xsd:string ;
+    ex:codePostal "2063"^^xsd:string ;
+    ex:email "madina@info.com"^^xsd:string ;
+    ex:municipaliteID "M908"^^xsd:string ;
+    ex:nom "ben arous"^^xsd:string ;
+    ex:population 20001 ;
+    ex:region "ben arous"^^xsd:string ;
+    ex:surface "14855.0"^^xsd:float ;
+    ex:telephone "78325652"^^xsd:string .
+
+ex:Reseau_865 a :réseaux_sociaux ;
     ex:contenu "Story de promotion" ;
     ex:lien "https://instagram.com/marque" ;
     ex:nomPlateforme "Instagram" ;

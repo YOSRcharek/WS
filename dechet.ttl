@@ -54,6 +54,22 @@ ex:Affiche_Campagne_934 a ex:Affiche,
     ex:image "visuel_don_sang.jpg" ;
     ex:partOf ex:Campagne_934 .
 
+ex:C1261 a :citoyen ;
+    ex:addresscit "123 Rue de Paris, Paris"^^xsd:string ;
+    ex:age 30 ;
+    ex:citizenID "C1261"^^xsd:string ;
+    ex:email "jean.dupont@example.com"^^xsd:string ;
+    ex:neaemcitoyen "Jean Dupont"^^xsd:string ;
+    ex:phoneNumber "+33 1 23 45 67 89"^^xsd:string .
+
+ex:C1268 a :citoyen ;
+    ex:addresscit "123 Rue de Paris, Paris"^^xsd:string ;
+    ex:age 30 ;
+    ex:citizenID "C1268"^^xsd:string ;
+    ex:email "jean.dupont@example.com"^^xsd:string ;
+    ex:neaemcitoyen "Jean Dupont"^^xsd:string ;
+    ex:phoneNumber "+33 1 23 45 67 89"^^xsd:string .
+
 ex:C756 a ex:collecte,
         owl:NamedIndividual ;
     ex:collecteID "C756" ;
@@ -103,17 +119,167 @@ ex:Collecte_EVT0078 a ex:Collecte,
     ex:quantitecollecte 150.5 .
 
 ex:E1089 a :evenement ;
-    ex:dateDebut "2025-11-06"^^xsd:date ;
-    ex:dateFin "2025-11-06"^^xsd:date ;
-    ex:descriptionevent "yosrrr" ;
+    ex:dateDebut "2025-11-06"^^xsd:date,
+        "2025-11-12"^^xsd:date ;
+    ex:dateFin "2025-11-06"^^xsd:date,
+        "2025-11-12"^^xsd:date ;
+    ex:descriptionevent "un event relierrr from front",
+        "yosrrr" ;
     ex:evenementID "E1089"^^xsd:string ;
     ex:lieu "tunis" ;
     ex:nombreBenevoles 0 ;
     ex:nombreParticipants 14444 ;
-    ex:nomevent "yosrrr" ;
+    ex:nomevent "un event relierrr from front",
+        "yosrrr" ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "collecte",
+        "sensibilisation" ;
+    ex:zoneCible "" .
+
+ex:E1095 a :evenement ;
+    ex:dateDebut "2025-11-27"^^xsd:date ;
+    ex:dateFin "2025-11-27"^^xsd:date ;
+    ex:descriptionevent "gggggg" ;
+    ex:evenementID "E1095"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 14444 ;
+    ex:nomevent "hhhhhhhhh" ;
     ex:publicCible "" ;
     ex:quantitecollecte 0.0 ;
     ex:typeEvenement "collecte" ;
+    ex:zoneCible "" .
+
+ex:E1108 a :evenement ;
+    ex:dateDebut "2025-11-06"^^xsd:date ;
+    ex:dateFin "2025-11-06"^^xsd:date ;
+    ex:descriptionevent "fffffff" ;
+    ex:evenementID "E1108"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 14444 ;
+    ex:nomevent "fffff" ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "formation" ;
+    ex:zoneCible "" .
+
+ex:E1121 a :evenement ;
+    ex:dateDebut "2025-11-11"^^xsd:date ;
+    ex:dateFin "2025-11-11"^^xsd:date ;
+    ex:descriptionevent "fffffff" ;
+    ex:evenementID "E1121"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 14444 ;
+    ex:nomevent "formmm herr" ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "atelier" ;
+    ex:zoneCible "" .
+
+ex:E1165 a :evenement ;
+    ex:dateDebut "2025-11-27"^^xsd:date ;
+    ex:dateFin "2025-11-27"^^xsd:date ;
+    ex:descriptionevent "apres testeeee" ;
+    ex:evenementID "E1165"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 14444 ;
+    ex:nomevent "apres testeeee" ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "collecte" ;
+    ex:zoneCible "" .
+
+ex:E1178 a :evenement ;
+    ex:dateDebut "2025-11-13"^^xsd:date ;
+    ex:dateFin "2025-11-13"^^xsd:date ;
+    ex:descriptionevent "fffffffffffffffff" ;
+    ex:estOrganisePar ex:Campagne_1178 ;
+    ex:evenementID "E1178"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 5784 ;
+    ex:nomevent "fffffffffffffffffffffff" ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "formation" ;
+    ex:zoneCible "" .
+
+ex:E1192 a :evenement ;
+    ex:dateDebut "2025-11-14"^^xsd:date ;
+    ex:dateFin "2025-11-14"^^xsd:date ;
+    ex:descriptionevent "dddddddddddd" ;
+    ex:estOrganisePar ex:Campagne_1178 ;
+    ex:evenementID "E1192"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 5784 ;
+    ex:nomevent "dddddddddddd" ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "collecte" ;
+    ex:zoneCible "" .
+
+ex:E1206 a :evenement ;
+    ex:dateDebut "2025-11-22"^^xsd:date ;
+    ex:dateFin "2025-11-22"^^xsd:date ;
+    ex:descriptionevent "event seul" ;
+    ex:evenementID "E1206"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 5784 ;
+    ex:nomevent "event seul" ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "collecte" ;
+    ex:zoneCible "" .
+
+ex:E1219 a :evenement ;
+    ex:dateDebut "2025-11-14"^^xsd:date ;
+    ex:dateFin "2025-11-14"^^xsd:date ;
+    ex:descriptionevent "planned" ;
+    ex:evenementID "E1219"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 5784 ;
+    ex:nomevent "event planned" ;
+    ex:planned ex:Campagne_1219 ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "formation" ;
+    ex:zoneCible "" .
+
+ex:E1233 a :evenement ;
+    ex:dateDebut "2023-11-01"^^xsd:date ;
+    ex:dateFin "2023-11-01"^^xsd:date ;
+    ex:descriptionevent "Un événement pour sensibiliser au recyclage." ;
+    ex:evenementID "E1233"^^xsd:string ;
+    ex:lieu "Parc Municipal" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 100 ;
+    ex:nomevent "Journée Mondiale du Recyclage" ;
+    ex:planned ex:Campagne1 ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "sensibilisation" ;
+    ex:zoneCible "" .
+
+ex:E1247 a :evenement ;
+    ex:dateDebut "2023-11-01"^^xsd:date ;
+    ex:dateFin "2023-11-01"^^xsd:date ;
+    ex:descriptionevent "Un événement pour sensibiliser au recyclage." ;
+    ex:evenementID "E1247"^^xsd:string ;
+    ex:lieu "Parc Municipal" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 100 ;
+    ex:nomevent "Journée Mondiale du Recyclage" ;
+    ex:planned ex:Campagne1 ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "sensibilisation" ;
     ex:zoneCible "" .
 
 ex:E906 a :evenement,
@@ -196,6 +362,19 @@ ex:EVT299889 a :evenement,
     ex:nombreBenevoles 15 ;
     ex:nombreParticipants 20 ;
     ex:nomevent "Plantation arbres7845" ;
+    ex:publicCible "Étudiants" ;
+    ex:quantitecollecte 0 ;
+    ex:typeEvenement "Environnement" ;
+    ex:zoneCible "Centre" .
+
+ex:EVT310038 a :evenement ;
+    ex:dateDebut "2025-11-10" ;
+    ex:dateFin "2025-11-10" ;
+    ex:descriptionevent "Planter des arbres" ;
+    ex:lieu "Tunis" ;
+    ex:nombreBenevoles 15 ;
+    ex:nombreParticipants 20 ;
+    ex:nomevent "Yosr from front Plantation arbres" ;
     ex:publicCible "Étudiants" ;
     ex:quantitecollecte 0 ;
     ex:typeEvenement "Environnement" ;
@@ -977,6 +1156,54 @@ xsd:date a rdfs:Datatype .
 
 ex:Dechet a owl:Class .
 
+ex:E1073 a :evenement ;
+    ex:dateDebut "2024-12-01"^^xsd:date ;
+    ex:dateFin "2024-12-10"^^xsd:date ;
+    ex:descriptionevent "Nettoyage des plages à Tunis." ;
+    ex:evenementID "E1073"^^xsd:string ;
+    ex:lieu "Plage de la Marsa" ;
+    ex:nombreBenevoles 50 ;
+    ex:nombreParticipants 100 ;
+    ex:nomevent "Nettoyage Plage" ;
+    ex:organizedBy ex:Campagne1 ;
+    ex:partOf ex:Campagne1 ;
+    ex:publicCible "Citoyens, Étudiants" ;
+    ex:quantitecollecte 200.5 ;
+    ex:typeEvenement "Environnement" ;
+    ex:zoneCible "Tunis" .
+
+ex:E1133 a :evenement ;
+    ex:dateDebut "2025-11-23"^^xsd:date ;
+    ex:dateFin "2025-11-23"^^xsd:date ;
+    ex:descriptionevent "yosrr event" ;
+    ex:evenementID "E1133"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 14444 ;
+    ex:nomevent "yosrr event" ;
+    ex:organizedBy ex:Campagne555 ;
+    ex:partOf ex:Campagne555 ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "conference" ;
+    ex:zoneCible "" .
+
+ex:E1149 a :evenement ;
+    ex:dateDebut "2025-11-07"^^xsd:date ;
+    ex:dateFin "2025-11-07"^^xsd:date ;
+    ex:descriptionevent "sdjblebd" ;
+    ex:evenementID "E1149"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 14444 ;
+    ex:nomevent "heyeyey" ;
+    ex:organizedBy ex:Campagne1 ;
+    ex:partOf ex:Campagne1 ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "formation" ;
+    ex:zoneCible "" .
+
 ex:collecte a owl:Class .
 
 :AgriculturalWaste a owl:Class ;
@@ -1123,13 +1350,7 @@ ex:collecte a owl:Class .
     rdfs:range :service_de_transport ;
     rdfs:subPropertyOf :equipemeent .
 
-ex:Campagne1 a :campagne_de_sensibilisation,
-        owl:NamedIndividual ;
-    ex:descriptioncampa "Sensibilisation à la réduction du plastique" ;
-    ex:endDate "2025-11-15"^^xsd:date ;
-    ex:startDate "2025-11-01"^^xsd:date ;
-    ex:targetAudience "Écoles primaires" ;
-    ex:title "Stop au plastique" .
+ex:Campagne555 ex:hasEvent ex:E1133 .
 
 ex:Campagne_842 a :campagne_de_sensibilisation,
         owl:NamedIndividual ;
@@ -1308,6 +1529,16 @@ ex:ReseauxSociaux a owl:Class .
 :servicedetrransport a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
+ex:Campagne1 a :campagne_de_sensibilisation,
+        owl:NamedIndividual ;
+    ex:descriptioncampa "Sensibilisation à la réduction du plastique" ;
+    ex:endDate "2025-11-15"^^xsd:date ;
+    ex:hasEvent ex:E1073,
+        ex:E1149 ;
+    ex:startDate "2025-11-01"^^xsd:date ;
+    ex:targetAudience "Écoles primaires" ;
+    ex:title "Stop au plastique" .
+
 :equipementts a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
@@ -1316,8 +1547,6 @@ ex:ReseauxSociaux a owl:Class .
 
 :campagne a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
-
-:citoyen a owl:Class .
 
 :centrederecy a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
@@ -1329,6 +1558,8 @@ ex:ReseauxSociaux a owl:Class .
     rdfs:subPropertyOf owl:topDataProperty .
 
 :Type_de_dechet a owl:Class .
+
+:citoyen a owl:Class .
 
 :dechetts a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .

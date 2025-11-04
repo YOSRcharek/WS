@@ -37,7 +37,7 @@ def add_evenement():
             ex:nombreParticipants "{data.get('nombreParticipants',0)}"^^xsd:integer ;
             ex:publicCible "{data.get('publicCible','')}"^^xsd:string ;
             ex:zoneCible "{data.get('zoneCible','')}"^^xsd:string
-            {"; ex:partOf " + camp_ref.n3() if camp_ref else ""} .
+            {"; ex:planned " + camp_ref.n3() if camp_ref else ""} ;  # Utilisation de ex:planned
     }}
     """
 
@@ -63,9 +63,8 @@ def add_evenement():
 
     # Lier à la campagne localement
     if camp_ref:
-        g.add((evt_ref, EX.partOf, camp_ref))
-        # Optionnel : lier la campagne à cet événement
-        g.add((camp_ref, EX.hasEvent, evt_ref))
+        g.add((evt_ref, EX.planned, camp_ref))  # Lier l'événement à la campagne avec ex:planned
+        print(f"Événement {evenement_id} lié à la campagne {campaign_id}.")  # Log pour vérifier que la relation est ajoutée
 
     # Sauvegarder RDF local
     g.serialize(destination=RDF_FILE, format="turtle")
@@ -77,6 +76,7 @@ def add_evenement():
     return jsonify({"message": msg})
 
 # --- READ ALL ---
+# --- READ ALL (Liste des événements) ---
 @evenement_bp.route("/evenements", methods=["GET"])
 def get_evenements_fuseki():
     sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
@@ -98,7 +98,7 @@ def get_evenements_fuseki():
             OPTIONAL { ?evenement ex:nombreParticipants ?nombreParticipants }
             OPTIONAL { ?evenement ex:publicCible ?publicCible }
             OPTIONAL { ?evenement ex:zoneCible ?zoneCible }
-            OPTIONAL { ?evenement ex:partOf ?campaign }
+            OPTIONAL { ?evenement ex:plannedBy ?campaign }  # Utilisation de ex:plannedBy
         }
     """)
 
@@ -112,7 +112,7 @@ def get_evenements_fuseki():
             if k == "evenement":
                 event_data["evenementID"] = v["value"].split('#')[-1]  # ✅ Ajouté ici
             if k == "campaign":
-                event_data["campaignID"] = v["value"].split('#')[-1]
+                event_data["campaignID"] = v["value"].split('#')[-1]  # ✅ Campaign associé
             else:
                 event_data[k] = v["value"]
         events.append(event_data)
@@ -123,7 +123,7 @@ def get_evenements_fuseki():
         "results": events
     })
 
-# --- READ ONE ---
+# --- READ ONE (Détails d'un événement) ---
 @evenement_bp.route("/evenements/<evenement_id>", methods=["GET"])
 def get_evenement(evenement_id):
     evt_ref = EX[evenement_id]
@@ -141,13 +141,75 @@ def get_evenement(evenement_id):
     for r in results["results"]["bindings"]:
         key = r["p"]["value"].split('#')[-1]
         value = r["o"]["value"]
-        if key == "partOf":  # ✅ campagne
+        if key == "plannedBy":  # ✅ campaign (relation plannedBy)
             data["campaignID"] = value.split('#')[-1]
         else:
             data[key] = value
 
     return jsonify(data)
 
+# --- READ ONE (Détails d'un événement avec ID) ---
+@evenement_bp.route("/evenements/<evenement_id>/details", methods=["GET"])
+def get_evenement_details(evenement_id):
+    evt_ref = EX[evenement_id]
+    query = PREFIX + f"""
+    SELECT ?p ?o WHERE {{
+        <{evt_ref}> ?p ?o .
+        FILTER(?p != ex:plannedBy)  # Exclure la relation 'plannedBy'
+    }}
+    """
+    sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
+    sparql.setQuery(query)
+    sparql.setReturnFormat(JSON)
+    results = sparql.query().convert()
+
+    data = {}
+    for r in results["results"]["bindings"]:
+        key = r["p"]["value"].split('#')[-1]
+        value = r["o"]["value"]
+        if key == "plannedBy":  # ✅ Campaign associated
+            data["campaignID"] = value.split('#')[-1]
+        else:
+            data[key] = value
+
+    return jsonify(data)
+
+# --- GET --- Récupérer la campagne associée à un événement spécifique
+@evenement_bp.route("/evenements/<evenement_id>/campagne", methods=["GET"])
+def get_campagne_by_evenement(evenement_id):
+    # Créer la référence RDF de l'événement
+    evt_ref = EX[evenement_id]
+    
+    # Requête SPARQL pour obtenir l'ID et le nom (title) de la campagne associée
+    query = PREFIX + f"""
+    SELECT 
+        (STRAFTER(STR(?campagne), "#") AS ?campagneID)
+        ?title
+    WHERE {{
+        ?evenement ex:planned ?campagne .  
+        ?campagne ex:title ?title .  # Ajout du nom de la campagne
+        FILTER(STRAFTER(STR(?evenement), "#") = "{evenement_id}")
+    }}
+    """
+    
+    sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
+    sparql.setQuery(query)
+    sparql.setReturnFormat(JSON)
+    
+    try:
+        results = sparql.query().convert()
+        
+        # Vérifier si une campagne a été trouvée
+        if results["results"]["bindings"]:
+            campagne_id = results["results"]["bindings"][0]["campagneID"]["value"]
+            campagne_title = results["results"]["bindings"][0]["title"]["value"]
+            return jsonify({"campagne_id": campagne_id, "campagne_title": campagne_title})
+        else:
+            return jsonify({"error": "Aucune campagne associée à cet événement."}), 404
+    
+    except Exception as e:
+        print(f"Erreur lors de la requête SPARQL: {e}")
+        return jsonify({"error": "Erreur de serveur."}), 500
 
 # --- UPDATE ---
 @evenement_bp.route("/evenements/<evenement_id>", methods=["PUT"])
@@ -180,6 +242,134 @@ def update_evenement(evenement_id):
     sparql.query()
     return jsonify({"message": f"Événement '{evenement_id}' mis à jour."})
 
+@evenement_bp.route("/evenements/<evenement_id>/associer-citoyen/<citoyen_id>", methods=["POST"])
+def associer_citoyen_a_evenement(evenement_id, citoyen_id):
+    # Créer l'URI du citoyen et de l'événement
+    citoyen_uri = f"http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/citoyen#{citoyen_id}"
+    evenement_uri = f"http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/evenement#{evenement_id}"
+
+    # Requête SPARQL pour ajouter la relation Participe
+    insert_query = f"""
+    PREFIX ex: <http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#>
+
+    INSERT DATA {{
+        <{citoyen_uri}> ex:participe <{evenement_uri}> .
+    }}
+    """
+
+    # Exécution de la requête SPARQL
+    sparql = SPARQLWrapper(FUSEKI_UPDATE_URL)  # URL de votre endpoint SPARQL
+    sparql.setMethod(POST)
+    sparql.setQuery(insert_query)
+
+    try:
+        sparql.query()  # Exécution de la requête
+        return jsonify({"message": f"✅ Citoyen '{citoyen_id}' associé à l'événement '{evenement_id}' avec succès !"})
+    except Exception as e:
+        print(f"Erreur lors de l'insertion : {e}")
+        return jsonify({"error": "Erreur serveur."}), 500
+    
+
+@evenement_bp.route("/evenements/<evenement_id>/participants", methods=["GET"])
+def get_participants_by_evenement(evenement_id):
+    # Créer l'URI de l'événement
+    evenement_uri = f"http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/evenement#{evenement_id}"
+
+    # Formuler la requête SPARQL pour obtenir les citoyens associés à l'événement
+    query = PREFIX + f"""
+    SELECT 
+        ?citoyen 
+        (STRAFTER(STR(?citoyen), "#") AS ?citizenID)  # Extraction de l'ID du citoyen depuis l'URI
+        ?neaemcitoyen 
+        ?addresscit 
+        ?age 
+        ?email 
+        ?phoneNumber
+    WHERE {{
+        ?citoyen ex:participe <{evenement_uri}> .  # URI de l'événement
+        OPTIONAL {{ ?citoyen ex:neaemcitoyen ?neaemcitoyen . }}
+        OPTIONAL {{ ?citoyen ex:addresscit ?addresscit . }}
+        OPTIONAL {{ ?citoyen ex:age ?age . }}
+        OPTIONAL {{ ?citoyen ex:email ?email . }}
+        OPTIONAL {{ ?citoyen ex:phoneNumber ?phoneNumber . }}
+    }}
+    """
+
+    sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
+    sparql.setQuery(query)
+    sparql.setReturnFormat(JSON)
+
+    try:
+        results = sparql.query().convert()
+
+        # Vérifier si des citoyens ont été trouvés
+        if results["results"]["bindings"]:
+            participants = []
+            for result in results["results"]["bindings"]:
+                # Récupérer le citizenID
+                citizen_id = result.get("citizenID", {}).get("value", "Inconnu")
+
+                # Appeler la fonction pour obtenir les détails du citoyen
+                citoyen_details = get_citoyen_by_id(citizen_id)
+
+                # Ajouter les détails du citoyen aux participants
+                participant = {
+                    "citizenID": citizen_id,
+                    "namecitoyen": citoyen_details.get("neaemcitoyen", "Inconnu"),
+                    "addresscit": citoyen_details.get("addresscit", "Inconnu"),
+                    "age": citoyen_details.get("age", "Inconnu"),
+                    "email": citoyen_details.get("email", "Inconnu"),
+                    "phoneNumber": citoyen_details.get("phoneNumber", "Inconnu")
+                }
+
+                participants.append(participant)
+
+            return jsonify({"message": f"Participants de l'événement '{evenement_id}'", "participants": participants})
+        else:
+            return jsonify({"message": f"Aucun citoyen n'a participé à l'événement '{evenement_id}'."}), 404
+
+    except Exception as e:
+        print(f"Erreur lors de la requête SPARQL: {e}")
+        return jsonify({"error": "Erreur de serveur."}), 500
+def get_citoyen_by_id(citizen_id):
+    query = PREFIX + f"""
+    SELECT ?citoyen ?citizenID ?namecitoyen ?addresscit ?age ?email ?phoneNumber
+    WHERE {{
+        ?citoyen ex:citizenID "{citizen_id}"^^xsd:string .  # Assurez-vous que le citizenID correspond exactement
+        OPTIONAL {{ ?citoyen ex:namecitoyen ?namecitoyen . }}
+        OPTIONAL {{ ?citoyen ex:addresscit ?addresscit . }}
+        OPTIONAL {{ ?citoyen ex:age ?age . }}
+        OPTIONAL {{ ?citoyen ex:email ?email . }}
+        OPTIONAL {{ ?citoyen ex:phoneNumber ?phoneNumber . }}
+    }}
+    """
+
+    sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
+    sparql.setQuery(query)
+    sparql.setReturnFormat(JSON)
+
+    try:
+        results = sparql.query().convert()
+
+        # Vérifier si des résultats ont été trouvés
+        if results["results"]["bindings"]:
+            r = results["results"]["bindings"][0]
+            citoyen = {
+                "citizenID": citizen_id,
+                "namecitoyen": r.get("namecitoyen", {}).get("value", "Inconnu"),
+                "addresscit": r.get("addresscit", {}).get("value", "Inconnu"),
+                "age": r.get("age", {}).get("value", "Inconnu"),
+                "email": r.get("email", {}).get("value", "Inconnu"),
+                "phoneNumber": r.get("phoneNumber", {}).get("value", "Inconnu")
+            }
+            return citoyen
+        else:
+            return {"message": f"Citoyen '{citizen_id}' non trouvé"}
+
+    except Exception as e:
+        print(f"Erreur lors de la requête SPARQL: {e}")
+        return {"error": "Erreur de serveur."}
+
 # --- DELETE ---
 @evenement_bp.route("/evenements/<evenement_id>", methods=["DELETE"])
 def delete_evenement(evenement_id):
@@ -206,6 +396,50 @@ def delete_evenement(evenement_id):
     g.serialize(destination=RDF_FILE, format="turtle")
 
     return jsonify({"message": f"✅ Événement '{evenement_id}' supprimé avec succès."})
+
+@evenement_bp.route("/citoyens", methods=["GET"])
+def get_all_citoyens():
+    query = PREFIX + """
+    SELECT ?citoyen ?citizenID ?neaemcitoyen ?addresscit ?age ?email ?phoneNumber
+    WHERE {
+        ?citoyen a ex:Citoyen .  # Assurez-vous que la classe est correcte ici
+        OPTIONAL { ?citoyen ex:citizenID ?citizenID . }
+        OPTIONAL { ?citoyen ex:neaemcitoyen ?neaemcitoyen . }
+        OPTIONAL { ?citoyen ex:addresscit ?addresscit . }
+        OPTIONAL { ?citoyen ex:age ?age . }
+        OPTIONAL { ?citoyen ex:email ?email . }
+        OPTIONAL { ?citoyen ex:phoneNumber ?phoneNumber . }
+    }
+    """
+    
+    sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
+    sparql.setQuery(query)
+    sparql.setReturnFormat(JSON)
+
+    try:
+        results = sparql.query().convert()
+        citoyens = []
+        
+        for result in results["results"]["bindings"]:
+            citoyens.append({
+                "uri": result.get("citoyen", {}).get("value"),
+                "citizenID": result.get("citizenID", {}).get("value", "Inconnu"),
+                "neaemcitoyen": result.get("neaemcitoyen", {}).get("value", "Inconnu"),
+                "addresscit": result.get("addresscit", {}).get("value", "Inconnu"),
+                "age": result.get("age", {}).get("value", "Inconnu"),
+                "email": result.get("email", {}).get("value", "Inconnu"),
+                "phoneNumber": result.get("phoneNumber", {}).get("value", "Inconnu")
+            })
+
+        # Vérifier si la liste est vide et renvoyer un message si nécessaire
+        if not citoyens:
+            return jsonify({"message": "Aucun citoyen trouvé"}), 404
+
+        return jsonify(citoyens)
+
+    except Exception as e:
+        print(f"Erreur lors de la requête SPARQL: {e}")
+        return jsonify({"error": "Erreur de serveur."}), 500
 
 @evenement_bp.route("/stats", methods=["GET"])
 def get_dashboard_stats():

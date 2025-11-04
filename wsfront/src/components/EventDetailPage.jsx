@@ -1,11 +1,72 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getEvenement } from "../services/eventService";
+import { getEvenement,getCampagneByEvenement,getParticipantsByEvenement, getAllCitoyens, associerCitoyenAEvenement } from "../services/eventService";
+
 
 export default function EventDetailPage() {
   const { id } = useParams(); // ✅ récupère /event/:id
   const [config, setConfig] = useState(null);
+  const [campagne, setCampagne] = useState(null);
+ const [participants, setParticipants] = useState([]);
+  const [citoyens, setCitoyens] = useState([]);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [selectedCitoyen, setSelectedCitoyen] = useState(null);
+  const [error, setError] = useState("");
+useEffect(() => {
+  const fetchParticipants = async () => {
+    try {
+      const data = await getParticipantsByEvenement(id);
+      console.log(data);
+      setParticipants(data.participants); // Accédez au tableau de participants ici
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
+  fetchParticipants();
+}, [id]);
+
+
+  // Récupérer tous les citoyens disponibles
+  useEffect(() => {
+    const fetchCitoyens = async () => {
+      try {
+        const data = await getAllCitoyens();
+       
+        setCitoyens(data);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchCitoyens();
+  }, []);
+
+  // Ouvrir la popup pour associer un citoyen
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  // Fermer la popup
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+    setSelectedCitoyen(null);
+  };
+
+  // Confirmer l'association d'un citoyen à l'événement
+  const handleAssocierCitoyen = async () => {
+    if (selectedCitoyen) {
+      try {
+        await associerCitoyenAEvenement(id, selectedCitoyen);
+        // Actualiser les participants après l'association
+        const data = await getParticipantsByEvenement(id);
+        setParticipants(data);
+        handleClosePopup();
+      } catch (error) {
+        setError(error.message);
+      }
+    }
+  };
   useEffect(() => {
     const fetchEvent = async () => {
       const data = await getEvenement(id);
@@ -38,30 +99,28 @@ export default function EventDetailPage() {
   }, [id]);
 
   // Effet pour appliquer les styles dynamiques
-  useEffect(() => {
-    if (!config) return;
+useEffect(() => {
+    const fetchCampagneName = async () => {
+      try {
+        const data = await getCampagneByEvenement(id);
+        if (data) {
+          setCampagne(data.campagne_title|| "Aucune campagne associée");
+        } else {
+          setCampagne("Il n'y a pas encore de campagne associée");
+        }
+      } catch (error) {
+        console.error("Erreur lors de la récupération de la campagne:", error);
+        setCampagne("Erreur lors de la récupération de la campagne");
+      }
+    };
 
-    document.body.style.background = `linear-gradient(to bottom right, ${config.background_color}, ${config.accent_color}20)`;
-    const headers = document.querySelectorAll("h1, h2, h3");
-    headers.forEach((h) => (h.style.color = config.text_color));
-
-    const statCards = document.querySelectorAll(".stat-card .text-emerald-600");
-    statCards.forEach((card) => (card.style.color = config.primary_color));
-
-    const ctaButton = document.getElementById("cta-button");
-    if (ctaButton) {
-      ctaButton.style.background = `linear-gradient(135deg, ${config.button_color} 0%, ${config.primary_color} 100%)`;
-    }
-
-    const gradientHeader = document.querySelector(".gradient-green");
-    if (gradientHeader) {
-      gradientHeader.style.background = `linear-gradient(135deg, ${config.button_color} 0%, ${config.primary_color} 50%, ${config.accent_color} 100%)`;
-    }
-  }, [config]);
+    fetchCampagneName();
+  }, [id]);
 
   if (!config) {
     return <div className="text-center py-10 text-gray-600">Chargement des détails...</div>;
   }
+
 
   return (
     <main>
@@ -174,32 +233,38 @@ export default function EventDetailPage() {
               <div className="badge bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold inline-block mb-4">Places limitées</div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Participez !</h3>
               <p className="text-gray-600 mb-6">Inscrivez-vous dès maintenant et faites partie du changement.</p>
-              <button id="cta-button" className="btn-primary w-full text-white font-bold py-4 px-6 rounded-xl text-lg">S'inscrire maintenant</button>
+              <button id="cta-button" className="btn-primary w-full text-white font-bold py-4 px-6 rounded-xl text-lg" onClick={handleOpenPopup} >Associer un citoyen</button>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-lg p-6">
+                      <div className="bg-white rounded-2xl shadow-lg p-6">
               <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center"><span className="text-2xl mr-2">👥</span> Organisation</h3>
               <div className="space-y-4">
                 <div className="bg-gray-50 p-4 rounded-xl">
                   <div className="text-sm text-gray-500 mb-1">Organisateur</div>
-                  <div id="organisateur" className="font-semibold text-gray-800">{config.organisateur}</div>
+                  <div id="organisateur" className="font-semibold text-gray-800">{campagne}</div> {/* Nom de la campagne */}
                 </div>
-                <div className="bg-gray-50 p-4 rounded-xl">
-                  <div className="text-sm text-gray-500 mb-1">Campagne associée</div>
-                  <div id="campagne-associee" className="font-semibold text-gray-800">{config.campagne_associee}</div>
-                </div>
+               
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center"><span className="text-2xl mr-2">ℹ️</span> Informations pratiques</h3>
-              <div className="space-y-3 text-gray-600">
-                <div className="flex items-center gap-3"><span className="text-xl">🎫</span> Gratuit</div>
-                <div className="flex items-center gap-3"><span className="text-xl">👕</span> Tenue décontractée</div>
-                <div className="flex items-center gap-3"><span className="text-xl">🌤️</span> En extérieur</div>
-                <div className="flex items-center gap-3"><span className="text-xl">♿</span> Accessible PMR</div>
-              </div>
-            </div>
+           <div className="bg-white rounded-2xl shadow-lg p-6">
+  <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+    <span className="text-2xl mr-2">ℹ️</span> Liste des participants
+  </h3>
+  <div className="space-y-3 text-gray-600">
+    {participants.length > 0 ? (
+      participants.map((participant) => (
+        <div key={participant.citizenID} className="flex items-center gap-3">
+          <span className="text-xl">🎫</span>
+          {participant.email}
+        </div>
+      ))
+    ) : (
+      <p>Aucun participant trouvé.</p>
+    )}
+  </div>
+</div>
+
 
             <div className="bg-white rounded-2xl shadow-lg p-6">
               <h3 className="text-xl font-bold text-gray-800 mb-4">Partagez l'événement</h3>
@@ -212,6 +277,34 @@ export default function EventDetailPage() {
           </div>
         </div>
       </div>
+     {isPopupOpen && (
+  <div className="popup">
+    <div className="popup-content">
+      <h2>Choisir un citoyen à associer</h2>
+      <ul>
+        {citoyens.length > 0 ? (
+          citoyens.map((citoyen) => (
+            <li
+              key={citoyen.citizenID} // Utilisez le citizenID comme clé unique
+              onClick={() => setSelectedCitoyen(citoyen.citizenID)} // Sélectionnez le citizenID pour l'association
+              style={{
+                cursor: "pointer",
+                backgroundColor: selectedCitoyen === citoyen.citizenID ? "#e0e0e0" : "transparent",
+              }}
+            >
+              {citoyen.neaemcitoyen} {/* Affichage du nom du citoyen */}
+            </li>
+          ))
+        ) : (
+          <p>Aucun citoyen disponible.</p>
+        )}
+      </ul>
+      <button className="popbutton" onClick={handleAssocierCitoyen}>Confirmer l'association</button>
+      <button className="popbutton" onClick={handleClosePopup}>Fermer</button>
+    </div>
+  </div>
+)}
+
     </main>
   );
 }

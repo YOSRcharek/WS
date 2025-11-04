@@ -94,226 +94,239 @@ ex:C814 a :Collecte,
     ex:nombreBenevoles 18 ;
     ex:quantitecollecte 320.75 .
 
-ex:Campagne555 ex:hasEvent ex:E1133 .
+ex:Collecte_EVT002 a ex:Collecte,
+        owl:NamedIndividual ;
+    ex:nombreBenevoles 25 ;
+    ex:partOf ex:EVT002 ;
+    ex:quantitecollecte 1.505e+02 .
 
-ex:Collecte a owl:Class .
+ex:Collecte_EVT003 a ex:Collecte,
+        owl:NamedIndividual ;
+    ex:nombreBenevoles 25 ;
+    ex:partOf ex:EVT003 ;
+    ex:quantitecollecte 1.505e+02 .
 
-ex:E1008 a :Collecte ;
-    ex:dateDebut "2025-11-20"^^xsd:date ;
-    ex:dateFin "2025-11-21"^^xsd:date ;
-    ex:descriptionevent "Collecte des déchets plastiques dans la ville"^^xsd:string ;
-    ex:evenementID "E1008"^^xsd:string ;
-    ex:lieu "Marseille"^^xsd:string ;
-    ex:nombreBenevoles 15 ;
-    ex:nombreParticipants 0 ;
-    ex:nomevent "Collecte de plastique"^^xsd:string ;
-    ex:publicCible ""^^xsd:string ;
-    ex:quantitecollecte 350.5 ;
-    ex:typeEvenement "collecte"^^xsd:string ;
-    ex:zoneCible ""^^xsd:string .
+ex:Collecte_EVT005 a ex:Collecte,
+        owl:NamedIndividual ;
+    ex:nombreBenevoles 25 ;
+    ex:partOf ex:EVT005 ;
+    ex:quantitecollecte 1.505e+02 .
 
-ex:E1021 a :FormationPersonnel ;
-    ex:dateDebut "2025-11-14"^^xsd:date ;
-    ex:dateFin "2025-11-14"^^xsd:date ;
-    ex:descriptionevent "dd"^^xsd:string ;
-    ex:evenementID "E1021"^^xsd:string ;
-    ex:lieu "tunis"^^xsd:string ;
-    ex:nombreBenevoles 0 ;
-    ex:nombreParticipants 5784 ;
-    ex:nomevent "journee mondial"^^xsd:string ;
-    ex:publicCible ""^^xsd:string ;
-    ex:quantitecollecte 0.0 ;
-    ex:typeEvenement "formation"^^xsd:string ;
-    ex:zoneCible ""^^xsd:string .
-
-ex:E1024 a :FormationPersonnel ;
-    ex:dateDebut "2025-11-15"^^xsd:date ;
-    ex:dateFin "2025-11-17"^^xsd:date ;
-    ex:descriptionevent "Apprendre les techniques de compostage"^^xsd:string ;
-    ex:evenementID "E1024"^^xsd:string ;
-    ex:lieu "Paris"^^xsd:string ;
-    ex:nombreBenevoles 0 ;
-    ex:nombreParticipants 25 ;
-    ex:nomevent "Formation compostage"^^xsd:string ;
-    ex:publicCible "Citoyens"^^xsd:string ;
-    ex:quantitecollecte 0.0 ;
-    ex:typeEvenement "formation"^^xsd:string ;
-    ex:zoneCible "Île-de-France"^^xsd:string .
-
-ex:E1034 a :evenement ;
-    ex:dateDebut "2025-11-21"^^xsd:date ;
-    ex:dateFin "2025-11-21"^^xsd:date ;
-    ex:descriptionevent "general"^^xsd:string ;
-    ex:evenementID "E1034"^^xsd:string ;
-    ex:lieu "tunis"^^xsd:string ;
-    ex:nombreBenevoles 0 ;
-    ex:nombreParticipants 5784 ;
-    ex:nomevent "general"^^xsd:string ;
-    ex:publicCible ""^^xsd:string ;
-    ex:quantitecollecte 0.0 ;
-    ex:typeEvenement "General"^^xsd:string ;
-    ex:zoneCible ""^^xsd:string .
-
-ex:E1037 a :Collecte ;
-    ex:dateDebut "2025-11-05"^^xsd:date ;
-    ex:dateFin "2025-11-10"^^xsd:date ;
-    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse"^^xsd:string ;
-    ex:evenementID "E1037"^^xsd:string ;
-    ex:lieu "collece"^^xsd:string ;
-    ex:nombreBenevoles ""^^xsd:integer ;
-    ex:nombreParticipants ""^^xsd:integer ;
-    ex:nomevent "collect"^^xsd:string ;
-    ex:publicCible ""^^xsd:string ;
-    ex:quantitecollecte ""^^xsd:decimal ;
-    ex:typeEvenement "Collecte"^^xsd:string ;
-    ex:zoneCible ""^^xsd:string .
-
-ex:E1047 a :FormationPersonnel ;
-    ex:dateDebut "2025-11-15"^^xsd:date ;
-    ex:dateFin "2025-11-17"^^xsd:date ;
-    ex:descriptionevent "Apprendre les techniques de compostage"^^xsd:string ;
-    ex:evenementID "E1047"^^xsd:string ;
-    ex:lieu "Paris"^^xsd:string ;
-    ex:nombreBenevoles 0 ;
-    ex:nombreParticipants 25 ;
-    ex:nomevent "Formation compostage"^^xsd:string ;
-    ex:publicCible "Citoyens"^^xsd:string ;
-    ex:quantitecollecte 0.0 ;
-    ex:typeEvenement "formation"^^xsd:string ;
-    ex:zoneCible "Île-de-France"^^xsd:string .
-
-ex:E1050 a :Collecte ;
-    ex:dateDebut "2025-11-05"^^xsd:date ;
-    ex:dateFin "2025-11-10"^^xsd:date ;
-    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse"^^xsd:string ;
-    ex:evenementID "E1050"^^xsd:string ;
-    ex:lieu "collece"^^xsd:string ;
-    ex:nombreBenevoles ""^^xsd:integer ;
-    ex:nombreParticipants ""^^xsd:integer ;
-    ex:nomevent "collect"^^xsd:string ;
-    ex:publicCible ""^^xsd:string ;
-    ex:quantitecollecte ""^^xsd:decimal ;
-    ex:typeEvenement "Collecte"^^xsd:string ;
-    ex:zoneCible ""^^xsd:string .
-
-ex:E1063 a :Collecte ;
-    ex:dateDebut "2025-11-14"^^xsd:date ;
-    ex:dateFin "2025-11-14"^^xsd:date ;
-    ex:descriptionevent "dddddddd"^^xsd:string ;
-    ex:evenementID "E1063"^^xsd:string ;
-    ex:lieu "d"^^xsd:string ;
-    ex:nombreBenevoles 0 ;
-    ex:nombreParticipants 100 ;
-    ex:nomevent "ddddddddd"^^xsd:string ;
-    ex:publicCible ""^^xsd:string ;
-    ex:quantitecollecte 0.0 ;
-    ex:typeEvenement "collecte"^^xsd:string ;
-    ex:zoneCible ""^^xsd:string .
-
-ex:E1076 a :evenement ;
-    ex:dateDebut "2025-11-05"^^xsd:date ;
-    ex:dateFin "2025-11-10"^^xsd:date ;
-    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse" ;
-    ex:evenementID "E1076"^^xsd:string ;
-    ex:lieu "collece" ;
-    ex:nombreBenevoles ""^^xsd:integer ;
-    ex:nombreParticipants ""^^xsd:integer ;
-    ex:nomevent "collect" ;
-    ex:publicCible "" ;
-    ex:quantitecollecte ""^^xsd:decimal ;
-    ex:typeEvenement "Collecte" ;
-    ex:zoneCible "" .
+ex:Collecte_EVT0078 a ex:Collecte,
+        owl:NamedIndividual ;
+    ex:nombreBenevoles 25 ;
+    ex:partOf ex:EVT0078 ;
+    ex:quantitecollecte 150.5 .
 
 ex:E1089 a :evenement ;
+    ex:dateDebut "2025-11-06"^^xsd:date,
+        "2025-11-12"^^xsd:date ;
+    ex:dateFin "2025-11-06"^^xsd:date,
+        "2025-11-12"^^xsd:date ;
+    ex:descriptionevent "un event relierrr from front",
+        "yosrrr" ;
+    ex:evenementID "E1089"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 14444 ;
+    ex:nomevent "un event relierrr from front",
+        "yosrrr" ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "collecte",
+        "sensibilisation" ;
+    ex:zoneCible "" .
+
+ex:E1095 a :evenement ;
+    ex:dateDebut "2025-11-27"^^xsd:date ;
+    ex:dateFin "2025-11-27"^^xsd:date ;
+    ex:descriptionevent "gggggg" ;
+    ex:evenementID "E1095"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 14444 ;
+    ex:nomevent "hhhhhhhhh" ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "collecte" ;
+    ex:zoneCible "" .
+
+ex:E1108 a :evenement ;
+    ex:dateDebut "2025-11-06"^^xsd:date ;
+    ex:dateFin "2025-11-06"^^xsd:date ;
+    ex:descriptionevent "fffffff" ;
+    ex:evenementID "E1108"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 14444 ;
+    ex:nomevent "fffff" ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "formation" ;
+    ex:zoneCible "" .
+
+ex:E1121 a :evenement ;
+    ex:dateDebut "2025-11-11"^^xsd:date ;
+    ex:dateFin "2025-11-11"^^xsd:date ;
+    ex:descriptionevent "fffffff" ;
+    ex:evenementID "E1121"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 14444 ;
+    ex:nomevent "formmm herr" ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "atelier" ;
+    ex:zoneCible "" .
+
+ex:E1165 a :evenement ;
+    ex:dateDebut "2025-11-27"^^xsd:date ;
+    ex:dateFin "2025-11-27"^^xsd:date ;
+    ex:descriptionevent "apres testeeee" ;
+    ex:evenementID "E1165"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 14444 ;
+    ex:nomevent "apres testeeee" ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "collecte" ;
+    ex:zoneCible "" .
+
+ex:E1178 a :evenement ;
+    ex:dateDebut "2025-11-13"^^xsd:date ;
+    ex:dateFin "2025-11-13"^^xsd:date ;
+    ex:descriptionevent "fffffffffffffffff" ;
+    ex:estOrganisePar ex:Campagne_1178 ;
+    ex:evenementID "E1178"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 5784 ;
+    ex:nomevent "fffffffffffffffffffffff" ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "formation" ;
+    ex:zoneCible "" .
+
+ex:E1192 a :evenement ;
+    ex:dateDebut "2025-11-14"^^xsd:date ;
+    ex:dateFin "2025-11-14"^^xsd:date ;
+    ex:descriptionevent "dddddddddddd" ;
+    ex:estOrganisePar ex:Campagne_1178 ;
+    ex:evenementID "E1192"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 5784 ;
+    ex:nomevent "dddddddddddd" ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "collecte" ;
+    ex:zoneCible "" .
+
+ex:E1206 a :evenement ;
+    ex:dateDebut "2025-11-22"^^xsd:date ;
+    ex:dateFin "2025-11-22"^^xsd:date ;
+    ex:descriptionevent "event seul" ;
+    ex:evenementID "E1206"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 5784 ;
+    ex:nomevent "event seul" ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "collecte" ;
+    ex:zoneCible "" .
+
+ex:E1219 a :evenement ;
+    ex:dateDebut "2025-11-14"^^xsd:date ;
+    ex:dateFin "2025-11-14"^^xsd:date ;
+    ex:descriptionevent "planned" ;
+    ex:evenementID "E1219"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 5784 ;
+    ex:nomevent "event planned" ;
+    ex:planned ex:Campagne_1219 ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "formation" ;
+    ex:zoneCible "" .
+
+ex:E1233 a :evenement ;
+    ex:dateDebut "2023-11-01"^^xsd:date ;
+    ex:dateFin "2023-11-01"^^xsd:date ;
+    ex:descriptionevent "Un événement pour sensibiliser au recyclage." ;
+    ex:evenementID "E1233"^^xsd:string ;
+    ex:lieu "Parc Municipal" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 100 ;
+    ex:nomevent "Journée Mondiale du Recyclage" ;
+    ex:planned ex:Campagne1 ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "sensibilisation" ;
+    ex:zoneCible "" .
+
+ex:E1247 a :evenement ;
+    ex:dateDebut "2023-11-01"^^xsd:date ;
+    ex:dateFin "2023-11-01"^^xsd:date ;
+    ex:descriptionevent "Un événement pour sensibiliser au recyclage." ;
+    ex:evenementID "E1247"^^xsd:string ;
+    ex:lieu "Parc Municipal" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 100 ;
+    ex:nomevent "Journée Mondiale du Recyclage" ;
+    ex:planned ex:Campagne1 ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "sensibilisation" ;
+    ex:zoneCible "" .
+
+ex:E1275 a :evenement ;
     ex:dateDebut "2025-11-15"^^xsd:date ;
     ex:dateFin "2025-11-17"^^xsd:date ;
     ex:descriptionevent "Apprendre les techniques de compostage" ;
-    ex:evenementID "E1089"^^xsd:string ;
+    ex:evenementID "E1275"^^xsd:string ;
     ex:lieu "Paris" ;
     ex:nombreBenevoles 0 ;
     ex:nombreParticipants 25 ;
-    ex:nomevent "Formation compostage" ;
+    ex:nomevent "Formation compostage785" ;
     ex:publicCible "Citoyens" ;
     ex:quantitecollecte 0.0 ;
     ex:typeEvenement "formation" ;
     ex:zoneCible "Île-de-France" .
 
-ex:E1292 a :FormationPersonnel ;
-    ex:dateDebut "2025-11-15"^^xsd:date ;
-    ex:dateFin "2025-11-17"^^xsd:date ;
-    ex:descriptionevent "Apprendre les techniques de compostage"^^xsd:string ;
-    ex:evenementID "E1292"^^xsd:string ;
-    ex:lieu "Paris"^^xsd:string ;
+ex:E906 a :evenement,
+        owl:NamedIndividual ;
+    ex:dateDebut "2025-12-01"^^xsd:date ;
+    ex:dateFin "2025-12-02"^^xsd:date ;
+    ex:descriptionevent "Sensibilisation au tri des déchets" ;
+    ex:evenementID "E906" ;
+    ex:lieu "Centre Culturel de Sfax" ;
     ex:nombreBenevoles 0 ;
-    ex:nombreParticipants 25 ;
-    ex:nomevent "Formation compostage"^^xsd:string ;
-    ex:publicCible "Citoyens"^^xsd:string ;
+    ex:nombreParticipants 100 ;
+    ex:nomevent "Conférence Zéro Déchet" ;
+    ex:partOf ex:Campagne_1 ;
+    ex:publicCible "" ;
     ex:quantitecollecte 0.0 ;
-    ex:typeEvenement "formation"^^xsd:string ;
-    ex:zoneCible "Île-de-France"^^xsd:string .
+    ex:typeEvenement "Conférence" ;
+    ex:zoneCible "" .
 
-ex:E1300 a :Collecte ;
-    ex:dateDebut "2025-11-20"^^xsd:date ;
-    ex:dateFin "2025-11-21"^^xsd:date ;
-    ex:descriptionevent "Collecte des déchets plastiques dans la ville"^^xsd:string ;
-    ex:evenementID "E1300"^^xsd:string ;
-    ex:lieu "Marseille"^^xsd:string ;
-    ex:nombreBenevoles 15 ;
-    ex:nombreParticipants 0 ;
-    ex:nomevent "Collecte de plastique"^^xsd:string ;
-    ex:publicCible ""^^xsd:string ;
-    ex:quantitecollecte 350.5 ;
-    ex:typeEvenement "collecte"^^xsd:string ;
-    ex:zoneCible ""^^xsd:string .
-
-ex:E1305 a :Collecte ;
-    ex:dateDebut "2025-11-20"^^xsd:date ;
-    ex:dateFin "2025-11-21"^^xsd:date ;
-    ex:descriptionevent "Collecte des déchets plastiques dans la ville"^^xsd:string ;
-    ex:evenementID "E1305"^^xsd:string ;
-    ex:lieu "Marseille"^^xsd:string ;
-    ex:nombreBenevoles 15 ;
-    ex:nombreParticipants 0 ;
-    ex:nomevent "Collecte de plastique"^^xsd:string ;
-    ex:publicCible ""^^xsd:string ;
-    ex:quantitecollecte 350.5 ;
-    ex:typeEvenement "collecte"^^xsd:string ;
-    ex:zoneCible ""^^xsd:string .
-
-ex:E1313 a :Collecte ;
-    ex:dateDebut "2025-11-20"^^xsd:date ;
-    ex:dateFin "2025-11-21"^^xsd:date ;
-    ex:descriptionevent "Collecte des déchets plastiques dans la ville"^^xsd:string ;
-    ex:evenementID "E1313"^^xsd:string ;
-    ex:lieu "Marseille"^^xsd:string ;
-    ex:nombreBenevoles 15 ;
-    ex:nombreParticipants 0 ;
-    ex:nomevent "Collecte de plastique"^^xsd:string ;
-    ex:publicCible ""^^xsd:string ;
-    ex:quantitecollecte 350.5 ;
-    ex:typeEvenement "collecte"^^xsd:string ;
-    ex:zoneCible ""^^xsd:string .
-
-ex:EVT002 ex:dateDebut "2025-11-05"^^xsd:date ;
-    ex:dateFin "2025-11-10"^^xsd:date ;
-    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse"^^xsd:string ;
-    ex:lieu "Plage de Sousse" ;
-    ex:nomevent "Nettoyage Plage Sousse" ;
-    ex:typeEvenement "Collecte" .
-
-ex:EVT003 ex:dateDebut "2025-11-05"^^xsd:date ;
-    ex:dateFin "2025-11-10"^^xsd:date ;
-    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse"^^xsd:string ;
-    ex:lieu "Plage de Sousse" ;
-    ex:nomevent "Nettoyage Plage Sousse" ;
-    ex:typeEvenement "Collecte" .
-
-ex:EVT005 ex:dateDebut "2025-11-05"^^xsd:date ;
-    ex:dateFin "2025-11-10"^^xsd:date ;
-    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse"^^xsd:string ;
-    ex:lieu "Plage de Sousse" ;
-    ex:nomevent "Nettoyage Plage Sousse" ;
-    ex:typeEvenement "Collecte" .
+ex:E920 a :evenement,
+        owl:NamedIndividual ;
+    ex:dateDebut "2025-12-01"^^xsd:date ;
+    ex:dateFin "2025-12-02"^^xsd:date ;
+    ex:descriptionevent "Sensibilisation au tri des déchets" ;
+    ex:evenementID "E920" ;
+    ex:lieu "Centre Culturel de Sfax" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 100 ;
+    ex:nomevent "Conférence Zéro Déchet" ;
+    ex:partOf ex:Campagne_1 ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "Conférence" ;
+    ex:zoneCible "" .
 
 ex:EVT0079 ex:dateDebut "2025-11-05"^^xsd:date ;
     ex:dateFin "2025-11-10"^^xsd:date ;
@@ -326,6 +339,60 @@ ex:EVT0079 ex:dateDebut "2025-11-05"^^xsd:date ;
     ex:quantitecollecte 150.5 ;
     ex:typeEvenement "Collecte" ;
     ex:zoneCible "Zone littorale" .
+
+ex:EVT224699 a :evenement ;
+    ex:dateDebut "2025-11-10" ;
+    ex:dateFin "2025-11-10" ;
+    ex:descriptionevent "Planter des arbres" ;
+    ex:lieu "Tunis" ;
+    ex:nombreBenevoles 15 ;
+    ex:nombreParticipants 20 ;
+    ex:nomevent "Plantation arbres" ;
+    ex:publicCible "Étudiants" ;
+    ex:quantitecollecte 0 ;
+    ex:typeEvenement "Environnement" ;
+    ex:zoneCible "Centre" .
+
+ex:EVT273909 a :evenement,
+        owl:NamedIndividual ;
+    ex:dateDebut "2025-11-10" ;
+    ex:dateFin "2025-11-10" ;
+    ex:descriptionevent "Planter des arbres" ;
+    ex:lieu "Tunis" ;
+    ex:nombreBenevoles 15 ;
+    ex:nombreParticipants 20 ;
+    ex:nomevent "Plantation arbres7845" ;
+    ex:publicCible "Étudiants" ;
+    ex:quantitecollecte 0 ;
+    ex:typeEvenement "Environnement" ;
+    ex:zoneCible "Centre" .
+
+ex:EVT299889 a :evenement,
+        owl:NamedIndividual ;
+    ex:dateDebut "2025-11-10" ;
+    ex:dateFin "2025-11-10" ;
+    ex:descriptionevent "Planter des arbres" ;
+    ex:lieu "Tunis" ;
+    ex:nombreBenevoles 15 ;
+    ex:nombreParticipants 20 ;
+    ex:nomevent "Plantation arbres7845" ;
+    ex:publicCible "Étudiants" ;
+    ex:quantitecollecte 0 ;
+    ex:typeEvenement "Environnement" ;
+    ex:zoneCible "Centre" .
+
+ex:EVT310038 a :evenement ;
+    ex:dateDebut "2025-11-10" ;
+    ex:dateFin "2025-11-10" ;
+    ex:descriptionevent "Planter des arbres" ;
+    ex:lieu "Tunis" ;
+    ex:nombreBenevoles 15 ;
+    ex:nombreParticipants 20 ;
+    ex:nomevent "Yosr from front Plantation arbres" ;
+    ex:publicCible "Étudiants" ;
+    ex:quantitecollecte 0 ;
+    ex:typeEvenement "Environnement" ;
+    ex:zoneCible "Centre" .
 
 ex:F760 a ex:formationPersonnel,
         owl:NamedIndividual ;
@@ -354,6 +421,26 @@ ex:F801 a :FormationPersonnel,
     ex:nombreParticipants 40 ;
     ex:publicCible "Personnel hospitalier" ;
     ex:zoneCible "Ariana" .
+
+ex:Formation_EVT002 ex:nombreParticipants 10 ;
+    ex:partOf ex:EVT002 ;
+    ex:publicCible "Etudiants" ;
+    ex:zoneCible "Zone littorale" .
+
+ex:Formation_EVT003 ex:nombreParticipants 10 ;
+    ex:partOf ex:EVT003 ;
+    ex:publicCible "Etudiants" ;
+    ex:zoneCible "Zone littorale" .
+
+ex:Formation_EVT005 ex:nombreParticipants 10 ;
+    ex:partOf ex:EVT005 ;
+    ex:publicCible "Etudiants" ;
+    ex:zoneCible "Zone littorale" .
+
+ex:Formation_EVT0078 ex:nombreParticipants 10 ;
+    ex:partOf ex:EVT0078 ;
+    ex:publicCible "Etudiants" ;
+    ex:zoneCible "Zone littorale" .
 
 ex:Reseau_865 a :réseaux_sociaux,
         owl:NamedIndividual ;
@@ -1083,6 +1170,54 @@ xsd:date a rdfs:Datatype .
 
 ex:Dechet a owl:Class .
 
+ex:E1073 a :evenement ;
+    ex:dateDebut "2024-12-01"^^xsd:date ;
+    ex:dateFin "2024-12-10"^^xsd:date ;
+    ex:descriptionevent "Nettoyage des plages à Tunis." ;
+    ex:evenementID "E1073"^^xsd:string ;
+    ex:lieu "Plage de la Marsa" ;
+    ex:nombreBenevoles 50 ;
+    ex:nombreParticipants 100 ;
+    ex:nomevent "Nettoyage Plage" ;
+    ex:organizedBy ex:Campagne1 ;
+    ex:partOf ex:Campagne1 ;
+    ex:publicCible "Citoyens, Étudiants" ;
+    ex:quantitecollecte 200.5 ;
+    ex:typeEvenement "Environnement" ;
+    ex:zoneCible "Tunis" .
+
+ex:E1133 a :evenement ;
+    ex:dateDebut "2025-11-23"^^xsd:date ;
+    ex:dateFin "2025-11-23"^^xsd:date ;
+    ex:descriptionevent "yosrr event" ;
+    ex:evenementID "E1133"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 14444 ;
+    ex:nomevent "yosrr event" ;
+    ex:organizedBy ex:Campagne555 ;
+    ex:partOf ex:Campagne555 ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "conference" ;
+    ex:zoneCible "" .
+
+ex:E1149 a :evenement ;
+    ex:dateDebut "2025-11-07"^^xsd:date ;
+    ex:dateFin "2025-11-07"^^xsd:date ;
+    ex:descriptionevent "sdjblebd" ;
+    ex:evenementID "E1149"^^xsd:string ;
+    ex:lieu "tunis" ;
+    ex:nombreBenevoles 0 ;
+    ex:nombreParticipants 14444 ;
+    ex:nomevent "heyeyey" ;
+    ex:organizedBy ex:Campagne1 ;
+    ex:partOf ex:Campagne1 ;
+    ex:publicCible "" ;
+    ex:quantitecollecte 0.0 ;
+    ex:typeEvenement "formation" ;
+    ex:zoneCible "" .
+
 ex:collecte a owl:Class .
 
 :AgriculturalWaste a owl:Class ;
@@ -1229,15 +1364,7 @@ ex:collecte a owl:Class .
     rdfs:range :service_de_transport ;
     rdfs:subPropertyOf :equipemeent .
 
-ex:Campagne1 a :campagne_de_sensibilisation,
-        owl:NamedIndividual ;
-    ex:descriptioncampa "Sensibilisation à la réduction du plastique" ;
-    ex:endDate "2025-11-15"^^xsd:date ;
-    ex:hasEvent ex:E1073,
-        ex:E1149 ;
-    ex:startDate "2025-11-01"^^xsd:date ;
-    ex:targetAudience "Écoles primaires" ;
-    ex:title "Stop au plastique" .
+ex:Campagne555 ex:hasEvent ex:E1133 .
 
 ex:Campagne_842 a :campagne_de_sensibilisation,
         owl:NamedIndividual ;
@@ -1275,6 +1402,71 @@ ex:Campagne_934 a :campagne_de_sensibilisation,
     ex:targetAudience "Grand public" ;
     ex:title "Don de Sang Pour Tous78" .
 
+ex:E775 a :evenement,
+        owl:NamedIndividual ;
+    ex:dateDebut "2025-11-05"^^xsd:date ;
+    ex:dateFin "2025-11-10"^^xsd:date ;
+    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse"^^xsd:string ;
+    ex:evenementID "E775" ;
+    ex:lieu "Plage de Sousse" ;
+    ex:nombreBenevoles 25 ;
+    ex:nombreParticipants 10 ;
+    ex:nomevent "Nettoyage Plage Sousse" ;
+    ex:publicCible "Etudiants" ;
+    ex:quantitecollecte 150.5 ;
+    ex:typeEvenement "Collecte" ;
+    ex:zoneCible "Zone littorale" .
+
+ex:E788 a :evenement,
+        owl:NamedIndividual ;
+    ex:dateDebut "2025-11-05"^^xsd:date ;
+    ex:dateFin "2025-11-10"^^xsd:date ;
+    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse"^^xsd:string ;
+    ex:evenementID "E788" ;
+    ex:lieu "Plage de Sousse" ;
+    ex:nombreBenevoles 25 ;
+    ex:nombreParticipants 10 ;
+    ex:nomevent "Nettoyage Plage Sousse" ;
+    ex:publicCible "Etudiants" ;
+    ex:quantitecollecte 150.5 ;
+    ex:typeEvenement "Collecte" ;
+    ex:zoneCible "Zone littorale" .
+
+ex:EVT002 ex:dateDebut "2025-11-05"^^xsd:date ;
+    ex:dateFin "2025-11-10"^^xsd:date ;
+    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse"^^xsd:string ;
+    ex:lieu "Plage de Sousse" ;
+    ex:nomevent "Nettoyage Plage Sousse" ;
+    ex:typeEvenement "Collecte" .
+
+ex:EVT003 ex:dateDebut "2025-11-05"^^xsd:date ;
+    ex:dateFin "2025-11-10"^^xsd:date ;
+    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse"^^xsd:string ;
+    ex:lieu "Plage de Sousse" ;
+    ex:nomevent "Nettoyage Plage Sousse" ;
+    ex:typeEvenement "Collecte" .
+
+ex:EVT005 ex:dateDebut "2025-11-05"^^xsd:date ;
+    ex:dateFin "2025-11-10"^^xsd:date ;
+    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse"^^xsd:string ;
+    ex:lieu "Plage de Sousse" ;
+    ex:nomevent "Nettoyage Plage Sousse" ;
+    ex:typeEvenement "Collecte" .
+
+ex:EVT0078 a :evenement,
+        owl:NamedIndividual ;
+    ex:dateDebut "2025-11-05"^^xsd:date ;
+    ex:dateFin "2025-11-10"^^xsd:date ;
+    ex:descriptionevent "Opération 78 de nettoyage de la plage de Sousse"^^xsd:string ;
+    ex:lieu "Plage de Sousse" ;
+    ex:nombreBenevoles 25 ;
+    ex:nombreParticipants 10 ;
+    ex:nomevent "Nettoyage Plage Sousse" ;
+    ex:publicCible "Etudiants" ;
+    ex:quantitecollecte 150.5 ;
+    ex:typeEvenement "Collecte" ;
+    ex:zoneCible "Zone littorale" .
+
 :Collect a owl:Class .
 
 :HazardousWaste a owl:Class ;
@@ -1294,6 +1486,9 @@ ex:Campagne_934 a :campagne_de_sensibilisation,
 
 ex:formationPersonnel a owl:Class .
 
+:FormationPersonnel a owl:Class ;
+    rdfs:subClassOf :evenement .
+
 :campagnedesensi a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
 
@@ -1302,6 +1497,11 @@ ex:formationPersonnel a owl:Class .
 
 :eventtt a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
+
+ex:Collecte a owl:Class .
+
+:Collecte a owl:Class ;
+    rdfs:subClassOf :evenement .
 
 :centrederecycla a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
@@ -1337,23 +1537,27 @@ ex:ReseauxSociaux a owl:Class .
 :municipa a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
-:FormationPersonnel a owl:Class ;
-    rdfs:subClassOf :evenement .
-
 :citoyennn a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
 :servicedetrransport a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
+ex:Campagne1 a :campagne_de_sensibilisation,
+        owl:NamedIndividual ;
+    ex:descriptioncampa "Sensibilisation à la réduction du plastique" ;
+    ex:endDate "2025-11-15"^^xsd:date ;
+    ex:hasEvent ex:E1073,
+        ex:E1149 ;
+    ex:startDate "2025-11-01"^^xsd:date ;
+    ex:targetAudience "Écoles primaires" ;
+    ex:title "Stop au plastique" .
+
 :equipementts a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
 :pointdecolecte a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
-
-:Collecte a owl:Class ;
-    rdfs:subClassOf :evenement .
 
 :campagne a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
@@ -1384,9 +1588,9 @@ ex:ReseauxSociaux a owl:Class .
 
 :centre_de_recyclage a owl:Class .
 
-:evenement a owl:Class .
-
 :campagne_de_sensibilisation a owl:Class .
 
 :Dechet a owl:Class .
+
+:evenement a owl:Class .
 

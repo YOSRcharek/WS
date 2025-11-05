@@ -1,10 +1,10 @@
-from flask import Flask
+from flask import Flask,request, jsonify
 from routes.dechets.dechets import dechets_bp
-
+import smtplib
+from email.message import EmailMessage
 
 
 from routes.typeDechets.typeDechets import typedechets_bp
-from routes.citoyen import citoyen_bp
 from routes.aidechet import iadechet_bp
 from routes.events.event import evenement_bp
 from routes.events.collect import collecte_bp
@@ -52,10 +52,12 @@ app.register_blueprint(transport_dechets_dangereux_bp, url_prefix='/api')
 # Enregistrement des Blueprints
 app.register_blueprint(dechets_bp)
 app.register_blueprint(typedechets_bp)
-app.register_blueprint(citoyen_bp)
 app.register_blueprint(iadechet_bp)
 
 app.register_blueprint(ia_bp) 
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

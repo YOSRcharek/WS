@@ -36,6 +36,7 @@ export default function HomePage() {
             <button onClick={() => navigate("/add-waste")} className="btn-primary text-white px-8 py-4 rounded-full font-semibold text-lg">
               Ajouter un Déchet
             </button>
+            
             <button onClick={() => navigate("/waste-list")} className="bg-white text-emerald-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-emerald-50 transition">
               Voir les Déchets
             </button>

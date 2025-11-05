@@ -19,14 +19,41 @@ import EventListPage from "./components/event-list";
 import CampaignListPage from "./components/campaign-list";
 import EditEventPage from "./components/edit-event-page";
 import EditCampaignPage from "./components/edit-campaign-page";
+import Editdechet from "./components/edit-waste";
+
+import MetalType from "./components/typedechetmetal";
+import ElectronicType from "./components/typedechetelectronic";
+import ADDMetalType from "./components/add-metalwaste";
+import ADDelectronicType from "./components/add-electronicwaste";
+import Editelectronic from "./components/edit-electronicwaste";
+
+import AIpage from "./components/aipage";
+
+
+
+
+
+
+
+
 
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+      
+       <Route path="/aipage" element={<AIpage />} />
       <Route path="/add-waste" element={<AddWastePage />} />
+      <Route path="/edit-waste/:id" element={<Editdechet />} />
       <Route path="/waste-list" element={<WasteListPage />} />
+      <Route path="/add-metalwaste" element={<ADDMetalType />} />
+      <Route path="/add-electronicwaste" element={<ADDelectronicType />} />
       <Route path="/waste-types" element={<WasteTypesPage />} />
+      <Route path="/waste-metal" element={<MetalType />} />
+      <Route path="/waste-electronic" element={<ElectronicType />} />
+      <Route path="/edit-electronictype/:id" element={<Editelectronic />} />
+
+      
       <Route path="/centers" element={<CentersPage />} />
       <Route path="/users" element={<UsersPage />} />
       <Route path="/equipment" element={<EquipmentPage />} />

@@ -1,16 +1,20 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const wasteTypes = [
+  { emoji: "💻", name: "Électronique", description: "Appareils, batteries, câbles", status: "Traitement Spécial", amount: "95 kg/mois", color: "amber" },
+  { emoji: "🥫", name: "Métal", description: "Canettes, conserves, ferraille", status: "Recyclable", amount: "280 kg/mois", color: "emerald" },
+
   { emoji: "🥤", name: "Plastique", description: "Bouteilles, emballages, sacs plastiques", status: "Recyclable", amount: "450 kg/mois", color: "emerald" },
   { emoji: "🍾", name: "Verre", description: "Bouteilles, bocaux, contenants en verre", status: "100% Recyclable", amount: "320 kg/mois", color: "emerald" },
   { emoji: "📄", name: "Papier/Carton", description: "Journaux, cartons, documents", status: "Recyclable", amount: "580 kg/mois", color: "emerald" },
-  { emoji: "🥫", name: "Métal", description: "Canettes, conserves, ferraille", status: "Recyclable", amount: "280 kg/mois", color: "emerald" },
   { emoji: "🍎", name: "Organique", description: "Restes alimentaires, déchets verts", status: "Compostable", amount: "720 kg/mois", color: "emerald" },
-  { emoji: "💻", name: "Électronique", description: "Appareils, batteries, câbles", status: "Traitement Spécial", amount: "95 kg/mois", color: "amber" },
 ];
 
 export default function WasteTypesPage() {
-  return (
+  const navigate = useNavigate();
+
+ return (
     <div className="page-content">
       <div className="max-w-7xl mx-auto px-4 py-12">
         <h2 className="text-4xl font-bold text-gray-800 mb-12 text-center">
@@ -19,7 +23,27 @@ export default function WasteTypesPage() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {wasteTypes.map((waste, idx) => (
-            <div key={idx} className="card-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div
+              key={idx}
+              className="card-hover bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer hover:scale-105 transition transform"
+              onClick={() => {
+                // Naviguer selon le type de déchet
+                switch (waste.name) {
+                  case "Métal":
+                    navigate("/waste-metal");
+                    break;
+                  case "plastique":
+                    navigate("/plasticwaste");
+                    break;
+                  case "Électronique":
+                    navigate("/waste-electronic");
+                    break;
+                  // ajouter d'autres cas selon tes types
+                  default:
+                    
+                }
+              }}
+            >
               <div className="h-48 image-placeholder flex items-center justify-center text-6xl">
                 {waste.emoji}
               </div>

@@ -1,24 +1,24 @@
-@prefix : <http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/> .
 @prefix ex: <http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#> .
+@prefix ex1: <http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34> a owl:Ontology .
 
-ex:Affiche_857 a :affiche,
+ex:Affiche_857 a ex1:affiche,
         owl:NamedIndividual ;
     ex:contenuimage "Affiche pour la campagne d’été" ;
     ex:image "https://exemple.com/affiche.png" ;
     ex:partOf ex:campagne1 .
 
-ex:Affiche_861 a :affiche,
+ex:Affiche_861 a ex1:affiche,
         owl:NamedIndividual ;
     ex:contenuimage "Affiche pour la campagne d’été" ;
     ex:image "https://exemple.com/affiche.png" ;
     ex:partOf ex: .
 
-ex:Affiche_870 a :affiche,
+ex:Affiche_870 a ex1:affiche,
         owl:NamedIndividual ;
     ex:contenuimage "Affiche pour la campagne d’été" ;
     ex:image "https://exemple.com/affiche.png" ;
@@ -60,19 +60,19 @@ ex:C756 a ex:collecte,
     ex:nombreBenevoles 12 ;
     ex:quantitecollecte 250.5 .
 
-ex:C806 a :Collect,
+ex:C806 a ex1:Collect,
         owl:NamedIndividual ;
     ex:collecteID "C806" ;
     ex:nombreBenevoles 18 ;
     ex:quantitecollecte 320.75 .
 
-ex:C810 a :Collect,
+ex:C810 a ex1:Collect,
         owl:NamedIndividual ;
     ex:collecteID "C810" ;
     ex:nombreBenevoles 18 ;
     ex:quantitecollecte 320.75 .
 
-ex:C814 a :Collecte,
+ex:C814 a ex1:Collecte,
         owl:NamedIndividual ;
     ex:collecteID "C814" ;
     ex:nombreBenevoles 18 ;
@@ -102,7 +102,7 @@ ex:Collecte_EVT0078 a ex:Collecte,
     ex:partOf ex:EVT0078 ;
     ex:quantitecollecte 150.5 .
 
-ex:E1089 a :evenement ;
+ex:E1089 a ex1:evenement ;
     ex:dateDebut "2025-11-06"^^xsd:date ;
     ex:dateFin "2025-11-06"^^xsd:date ;
     ex:descriptionevent "yosrrr" ;
@@ -116,7 +116,7 @@ ex:E1089 a :evenement ;
     ex:typeEvenement "collecte" ;
     ex:zoneCible "" .
 
-ex:E906 a :evenement,
+ex:E906 a ex1:evenement,
         owl:NamedIndividual ;
     ex:dateDebut "2025-12-01"^^xsd:date ;
     ex:dateFin "2025-12-02"^^xsd:date ;
@@ -132,7 +132,7 @@ ex:E906 a :evenement,
     ex:typeEvenement "Conférence" ;
     ex:zoneCible "" .
 
-ex:E920 a :evenement,
+ex:E920 a ex1:evenement,
         owl:NamedIndividual ;
     ex:dateDebut "2025-12-01"^^xsd:date ;
     ex:dateFin "2025-12-02"^^xsd:date ;
@@ -160,7 +160,7 @@ ex:EVT0079 ex:dateDebut "2025-11-05"^^xsd:date ;
     ex:typeEvenement "Collecte" ;
     ex:zoneCible "Zone littorale" .
 
-ex:EVT224699 a :evenement ;
+ex:EVT224699 a ex1:evenement ;
     ex:dateDebut "2025-11-10" ;
     ex:dateFin "2025-11-10" ;
     ex:descriptionevent "Planter des arbres" ;
@@ -173,7 +173,7 @@ ex:EVT224699 a :evenement ;
     ex:typeEvenement "Environnement" ;
     ex:zoneCible "Centre" .
 
-ex:EVT273909 a :evenement,
+ex:EVT273909 a ex1:evenement,
         owl:NamedIndividual ;
     ex:dateDebut "2025-11-10" ;
     ex:dateFin "2025-11-10" ;
@@ -187,7 +187,7 @@ ex:EVT273909 a :evenement,
     ex:typeEvenement "Environnement" ;
     ex:zoneCible "Centre" .
 
-ex:EVT299889 a :evenement,
+ex:EVT299889 a ex1:evenement,
         owl:NamedIndividual ;
     ex:dateDebut "2025-11-10" ;
     ex:dateFin "2025-11-10" ;
@@ -222,7 +222,7 @@ ex:F770 a ex:formationPersonnel,
     ex:publicCible "Étudiants en environnementsss" ;
     ex:zoneCible "Ariana" .
 
-ex:F801 a :FormationPersonnel,
+ex:F801 a ex1:FormationPersonnel,
         owl:NamedIndividual ;
     ex:formationID "F801" ;
     ex:nombreParticipants 40 ;
@@ -249,7 +249,7 @@ ex:Formation_EVT0078 ex:nombreParticipants 10 ;
     ex:publicCible "Etudiants" ;
     ex:zoneCible "Zone littorale" .
 
-ex:Reseau_865 a :réseaux_sociaux,
+ex:Reseau_865 a ex1:réseaux_sociaux,
         owl:NamedIndividual ;
     ex:contenu "Story de promotion" ;
     ex:lien "https://instagram.com/marque" ;
@@ -368,610 +368,725 @@ ex:typeEvenement a owl:AnnotationProperty .
 
 ex:zoneCible a owl:AnnotationProperty .
 
-:Business a owl:Class ;
-    rdfs:subClassOf :citoyen .
+ex1:Business a owl:Class ;
+    rdfs:subClassOf ex1:citoyen .
 
-:Conférence a owl:Class ;
-    rdfs:subClassOf :campagne_de_sensibilisation .
+ex1:CIT1118 a ex1:citoyen ;
+    ex1:addresscit "aouina" ;
+    ex1:email "yosr@gmail.com" ;
+    ex1:neaemcitoyen "yosr" ;
+    ex1:phoneNumber "43456543" .
 
-:LocaliseDans a owl:ObjectProperty ;
-    rdfs:domain :Point_de_collecte ;
-    rdfs:range :Municipalité ;
-    rdfs:subPropertyOf :point_decollecte ;
-    owl:inverseOf :possedePointCollecte .
+ex1:CIT147355 a ex1:Citoyen ;
+    ex1:neaemcitoyen "mo salah" .
 
-:P_possede a owl:ObjectProperty ;
-    rdfs:domain :Point_de_collecte ;
-    rdfs:range :Dechet ;
-    rdfs:subPropertyOf :point_decollecte ;
-    owl:inverseOf :associePointCollecte .
+ex1:CIT279496 a ex1:Citoyen ;
+    ex1:nom "molka" .
 
-:Point_de_Collecte_Mobile a owl:Class ;
-    rdfs:subClassOf :Point_de_collecte .
+ex1:CIT752376 a ex1:Citoyen ;
+    ex1:nom "aymen" .
 
-:aPourParticipant a owl:ObjectProperty ;
-    rdfs:domain :evenement ;
-    rdfs:range :resident ;
-    rdfs:subPropertyOf :eventtt ;
-    owl:inverseOf :participea .
+ex1:CIT942930 a ex1:Citoyen ;
+    ex1:nom "mari" .
 
-:aPourResident a owl:ObjectProperty ;
-    rdfs:domain :Municipalité ;
-    rdfs:range :resident ;
-    rdfs:subPropertyOf :municcipalite ;
-    owl:inverseOf :habiteDans .
+ex1:Conférence a owl:Class ;
+    rdfs:subClassOf ex1:campagne_de_sensibilisation .
 
-:addresscit a owl:DatatypeProperty ;
-    rdfs:domain :citoyen ;
+ex1:D1076 a ex1:Dechet ;
+    ex1:categorie ""^^xsd:string ;
+    ex1:couleur "noir"^^xsd:string ;
+    ex1:dechetID "D1076"^^xsd:string ;
+    ex1:description "samsung A"^^xsd:string ;
+    ex1:generatedBy ex1:C1087,
+        ex1:CIT1123 ;
+    ex1:generatedDate "2025-11-04"^^xsd:date ;
+    ex1:isrecyclable true ;
+    ex1:nomdechet "smartphone galaxy"^^xsd:string ;
+    ex1:poids "3.0"^^xsd:float ;
+    ex1:quantite 2.0 ;
+    ex1:type_of ex1:EWT1068 .
+
+ex1:D1151 a ex1:Dechet ;
+    ex1:categorie ""^^xsd:string ;
+    ex1:couleur "transparente"^^xsd:string ;
+    ex1:dechetID "D1151"^^xsd:string ;
+    ex1:description "boga cidre"^^xsd:string ;
+    ex1:generatedDate "2025-10-28"^^xsd:date ;
+    ex1:isrecyclable true ;
+    ex1:nomdechet "boga cidre"^^xsd:string ;
+    ex1:poids "3.0"^^xsd:float ;
+    ex1:quantite 4.0 ;
+    ex1:type_of ex1:MWT1061 .
+
+ex1:D1162 a ex1:Dechet ;
+    ex1:categorie ""^^xsd:string ;
+    ex1:couleur "blanc"^^xsd:string ;
+    ex1:dechetID "D1162"^^xsd:string ;
+    ex1:description "bar de bicyclette"^^xsd:string ;
+    ex1:generatedDate "2025-11-04"^^xsd:date ;
+    ex1:isrecyclable false ;
+    ex1:nomdechet "bar de bicyclette"^^xsd:string ;
+    ex1:poids "4.0"^^xsd:float ;
+    ex1:quantite 1.0 ;
+    ex1:type_of ex1:MWT1155 .
+
+ex1:D1173 a ex1:Dechet ;
+    ex1:categorie ""^^xsd:string ;
+    ex1:couleur "rouge"^^xsd:string ;
+    ex1:dechetID "D1173"^^xsd:string ;
+    ex1:description "iphone 11 batterie 80%"^^xsd:string ;
+    ex1:generatedDate "2025-10-31"^^xsd:date ;
+    ex1:isrecyclable true ;
+    ex1:nomdechet "iphone 11"^^xsd:string ;
+    ex1:poids "2.0"^^xsd:float ;
+    ex1:quantite 1.0 ;
+    ex1:type_of ex1:EWT1179 .
+
+ex1:D1184 a ex1:Dechet ;
+    ex1:categorie ""^^xsd:string ;
+    ex1:couleur "orange"^^xsd:string ;
+    ex1:dechetID "D1184"^^xsd:string ;
+    ex1:description "msi 3060 RTX "^^xsd:string ;
+    ex1:generatedDate "2025-10-24"^^xsd:date ;
+    ex1:isrecyclable false ;
+    ex1:nomdechet "msi"^^xsd:string ;
+    ex1:poids "5.0"^^xsd:float ;
+    ex1:quantite 1.0 ;
+    ex1:type_of ex1:EWT1172 .
+
+ex1:D1193 a ex1:Dechet ;
+    ex1:categorie ""^^xsd:string ;
+    ex1:couleur "vert"^^xsd:string ;
+    ex1:dechetID "D1193"^^xsd:string ;
+    ex1:description "fanta pomme"^^xsd:string ;
+    ex1:generatedDate "2025-11-04"^^xsd:date ;
+    ex1:isrecyclable true ;
+    ex1:nomdechet "canette fanta"^^xsd:string ;
+    ex1:poids "0.4"^^xsd:float ;
+    ex1:quantite 3.0 ;
+    ex1:type_of ex1:MWT1061 .
+
+ex1:D1195 a ex1:Dechet ;
+    ex1:categorie ""^^xsd:string ;
+    ex1:couleur "bleu"^^xsd:string ;
+    ex1:dechetID "D1195"^^xsd:string ;
+    ex1:description "iphone depuis 2015"^^xsd:string ;
+    ex1:generatedDate "2025-11-08"^^xsd:date ;
+    ex1:isrecyclable false ;
+    ex1:nomdechet "iphone 6s"^^xsd:string ;
+    ex1:poids "1.5"^^xsd:float ;
+    ex1:quantite 2.0 ;
+    ex1:type_of ex1:EWT1179 .
+
+ex1:DCH325716 a ex1:Dechet ;
+    ex1:couleur "marron" ;
+    ex1:dechetID "DCH325716" ;
+    ex1:description "Bouteille en bronze" ;
+    ex1:generatedBy ex1:CIT297373 ;
+    ex1:generatedDate "2025-11-05"^^xsd:date ;
+    ex1:isrecyclable true ;
+    ex1:nomdechet "Bouteille de soda" ;
+    ex1:poids 0.5 ;
+    ex1:quantite 10.0 .
+
+ex1:LocaliseDans a owl:ObjectProperty ;
+    rdfs:domain ex1:Point_de_collecte ;
+    rdfs:range ex1:Municipalité ;
+    rdfs:subPropertyOf ex1:point_decollecte ;
+    owl:inverseOf ex1:possedePointCollecte .
+
+ex1:P_possede a owl:ObjectProperty ;
+    rdfs:domain ex1:Point_de_collecte ;
+    rdfs:range ex1:Dechet ;
+    rdfs:subPropertyOf ex1:point_decollecte ;
+    owl:inverseOf ex1:associePointCollecte .
+
+ex1:Point_de_Collecte_Mobile a owl:Class ;
+    rdfs:subClassOf ex1:Point_de_collecte .
+
+ex1:aPourParticipant a owl:ObjectProperty ;
+    rdfs:domain ex1:evenement ;
+    rdfs:range ex1:resident ;
+    rdfs:subPropertyOf ex1:eventtt ;
+    owl:inverseOf ex1:participea .
+
+ex1:aPourResident a owl:ObjectProperty ;
+    rdfs:domain ex1:Municipalité ;
+    rdfs:range ex1:resident ;
+    rdfs:subPropertyOf ex1:municcipalite ;
+    owl:inverseOf ex1:habiteDans .
+
+ex1:addresscit a owl:DatatypeProperty ;
+    rdfs:domain ex1:citoyen ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :citoyennn .
+    rdfs:subPropertyOf ex1:citoyennn .
 
-:adresseSiege a owl:DatatypeProperty ;
-    rdfs:domain :Municipalité ;
+ex1:adresseSiege a owl:DatatypeProperty ;
+    rdfs:domain ex1:Municipalité ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :municipa .
+    rdfs:subPropertyOf ex1:municipa .
 
-:adressepointdecollecte a owl:DatatypeProperty ;
-    rdfs:domain :Point_de_collecte ;
+ex1:adressepointdecollecte a owl:DatatypeProperty ;
+    rdfs:domain ex1:Point_de_collecte ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :pointdecolecte .
+    rdfs:subPropertyOf ex1:pointdecolecte .
 
-:age a owl:DatatypeProperty ;
-    rdfs:domain :resident ;
+ex1:age a owl:DatatypeProperty ;
+    rdfs:domain ex1:resident ;
     rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :citoyennn .
+    rdfs:subPropertyOf ex1:citoyennn .
 
-:biodegradable a owl:DatatypeProperty ;
-    rdfs:domain :AgriculturalWaste ;
+ex1:biodegradable a owl:DatatypeProperty ;
+    rdfs:domain ex1:AgriculturalWaste ;
     rdfs:range xsd:boolean ;
-    rdfs:subPropertyOf :dechetts .
+    rdfs:subPropertyOf ex1:dechetts .
 
-:campaignID a owl:DatatypeProperty ;
-    rdfs:domain :campagne_de_sensibilisation ;
+ex1:campaignID a owl:DatatypeProperty ;
+    rdfs:domain ex1:campagne_de_sensibilisation ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :campagne .
+    rdfs:subPropertyOf ex1:campagne .
 
-:capacite a owl:DatatypeProperty ;
-    rdfs:domain :Equipement ;
+ex1:capacite a owl:DatatypeProperty ;
+    rdfs:domain ex1:Equipement ;
     rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :equipementts .
+    rdfs:subPropertyOf ex1:equipementts .
 
-:capaciteMax a owl:DatatypeProperty ;
-    rdfs:domain :service_de_transport ;
+ex1:capaciteMax a owl:DatatypeProperty ;
+    rdfs:domain ex1:service_de_transport ;
     rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :servicedetrransport .
+    rdfs:subPropertyOf ex1:servicedetrransport .
 
-:capacitedepointdecollecte a owl:DatatypeProperty ;
-    rdfs:domain :Point_de_collecte ;
+ex1:capacitedepointdecollecte a owl:DatatypeProperty ;
+    rdfs:domain ex1:Point_de_collecte ;
     rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :pointdecolecte .
+    rdfs:subPropertyOf ex1:pointdecolecte .
 
-:capacity_center a owl:DatatypeProperty ;
-    rdfs:domain :centre_de_recyclage ;
+ex1:capacity_center a owl:DatatypeProperty ;
+    rdfs:domain ex1:centre_de_recyclage ;
     rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :centrederecy .
+    rdfs:subPropertyOf ex1:centrederecy .
 
-:categorie a owl:DatatypeProperty ;
-    rdfs:domain :Type_de_dechet ;
+ex1:categorie a owl:DatatypeProperty ;
+    rdfs:domain ex1:Type_de_dechet ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :typededecheet .
+    rdfs:subPropertyOf ex1:typededecheet .
 
-:centerName a owl:DatatypeProperty ;
-    rdfs:domain :centre_de_recyclage ;
+ex1:centerName a owl:DatatypeProperty ;
+    rdfs:domain ex1:centre_de_recyclage ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :centrederecy .
+    rdfs:subPropertyOf ex1:centrederecy .
 
-:centreid a owl:DatatypeProperty ;
-    rdfs:domain :campagne_de_sensibilisation ;
+ex1:centreid a owl:DatatypeProperty ;
+    rdfs:domain ex1:campagne_de_sensibilisation ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :centrederecy .
+    rdfs:subPropertyOf ex1:centrederecy .
 
-:citieznID a owl:DatatypeProperty ;
-    rdfs:domain :citoyen ;
+ex1:citieznID a owl:DatatypeProperty ;
+    rdfs:domain ex1:citoyen ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :citoyennn .
+    rdfs:subPropertyOf ex1:citoyennn .
 
-:collabaveccampagne a owl:ObjectProperty ;
-    rdfs:domain :centre_de_recyclage ;
-    rdfs:range :campagne_de_sensibilisation ;
-    rdfs:subPropertyOf :centrederecycla ;
-    owl:inverseOf :collaboreAvecCentre .
+ex1:collabaveccampagne a owl:ObjectProperty ;
+    rdfs:domain ex1:centre_de_recyclage ;
+    rdfs:range ex1:campagne_de_sensibilisation ;
+    rdfs:subPropertyOf ex1:centrederecycla ;
+    owl:inverseOf ex1:collaboreAvecCentre .
 
-:collaboreAvecService a owl:ObjectProperty ;
-    rdfs:domain :centre_de_recyclage ;
-    rdfs:range :service_de_transport ;
-    rdfs:subPropertyOf :centrederecycla ;
-    owl:inverseOf :transfertvers .
+ex1:collaboreAvecService a owl:ObjectProperty ;
+    rdfs:domain ex1:centre_de_recyclage ;
+    rdfs:range ex1:service_de_transport ;
+    rdfs:subPropertyOf ex1:centrederecycla ;
+    owl:inverseOf ex1:transfertvers .
 
-:collecteParService a owl:ObjectProperty ;
-    rdfs:domain :Dechet ;
-    rdfs:range :service_de_transport ;
-    rdfs:subPropertyOf :dechetss ;
-    owl:inverseOf :transporteDechet .
+ex1:collecteParService a owl:ObjectProperty ;
+    rdfs:domain ex1:Dechet ;
+    rdfs:range ex1:service_de_transport ;
+    rdfs:subPropertyOf ex1:dechetss ;
+    owl:inverseOf ex1:transporteDechet .
 
-:compositionplatic a owl:DatatypeProperty ;
-    rdfs:domain :PlasticWaste ;
+ex1:compositionplatic a owl:DatatypeProperty ;
+    rdfs:domain ex1:PlasticWaste ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :typededecheet .
+    rdfs:subPropertyOf ex1:typededecheet .
 
-:contenu a owl:DatatypeProperty ;
-    rdfs:domain :réseaux_sociaux ;
+ex1:contenu a owl:DatatypeProperty ;
+    rdfs:domain ex1:réseaux_sociaux ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :campagne .
+    rdfs:subPropertyOf ex1:campagne .
 
-:contenuimage a owl:DatatypeProperty ;
-    rdfs:domain :affiche ;
+ex1:contenuimage a owl:DatatypeProperty ;
+    rdfs:domain ex1:affiche ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :campagne .
+    rdfs:subPropertyOf ex1:campagne .
 
-:couleur a owl:DatatypeProperty ;
-    rdfs:domain :Dechet ;
+ex1:couleur a owl:DatatypeProperty ;
+    rdfs:domain ex1:Dechet ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :dechetts .
+    rdfs:subPropertyOf ex1:dechetts .
 
-:dangerEnvironnement a owl:DatatypeProperty ;
-    rdfs:domain :HazardousWaste ;
+ex1:dangerEnvironnement a owl:DatatypeProperty ;
+    rdfs:domain ex1:HazardousWaste ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :typededecheet .
+    rdfs:subPropertyOf ex1:typededecheet .
 
-:dateDebut a owl:DatatypeProperty ;
-    rdfs:domain :evenement ;
+ex1:dateDebut a owl:DatatypeProperty ;
+    rdfs:domain ex1:evenement ;
     rdfs:range xsd:dateTime ;
-    rdfs:subPropertyOf :eventss .
+    rdfs:subPropertyOf ex1:eventss .
 
-:dateFin a owl:DatatypeProperty ;
-    rdfs:domain :evenement ;
+ex1:dateFin a owl:DatatypeProperty ;
+    rdfs:domain ex1:evenement ;
     rdfs:range xsd:dateTime ;
-    rdfs:subPropertyOf :eventss .
+    rdfs:subPropertyOf ex1:eventss .
 
-:dechetID a owl:DatatypeProperty ;
-    rdfs:domain :Dechet ;
+ex1:dechetID a owl:DatatypeProperty ;
+    rdfs:domain ex1:Dechet ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :dechetts .
+    rdfs:subPropertyOf ex1:dechetts .
 
-:desciptionevent a owl:DatatypeProperty ;
-    rdfs:domain :evenement ;
+ex1:desciptionevent a owl:DatatypeProperty ;
+    rdfs:domain ex1:evenement ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :eventss .
+    rdfs:subPropertyOf ex1:eventss .
 
-:description a owl:DatatypeProperty ;
-    rdfs:domain :Dechet ;
+ex1:description a owl:DatatypeProperty ;
+    rdfs:domain ex1:Dechet ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :dechetts .
+    rdfs:subPropertyOf ex1:dechetts .
 
-:descriptioncampa a owl:DatatypeProperty ;
-    rdfs:domain :campagne_de_sensibilisation ;
+ex1:descriptioncampa a owl:DatatypeProperty ;
+    rdfs:domain ex1:campagne_de_sensibilisation ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :campagne .
+    rdfs:subPropertyOf ex1:campagne .
 
-:dessertPointDeCollecte a owl:ObjectProperty ;
-    rdfs:domain :service_de_transport ;
-    rdfs:range :Point_de_collecte ;
-    rdfs:subPropertyOf :servicedetranssport ;
-    owl:inverseOf :estDesserviPar .
+ex1:dessertPointDeCollecte a owl:ObjectProperty ;
+    rdfs:domain ex1:service_de_transport ;
+    rdfs:range ex1:Point_de_collecte ;
+    rdfs:subPropertyOf ex1:servicedetranssport ;
+    owl:inverseOf ex1:estDesserviPar .
 
-:dureeVie a owl:DatatypeProperty ;
-    rdfs:domain :Type_de_dechet ;
+ex1:dureeVie a owl:DatatypeProperty ;
+    rdfs:domain ex1:Type_de_dechet ;
     rdfs:range xsd:int ;
-    rdfs:subPropertyOf :typededecheet .
+    rdfs:subPropertyOf ex1:typededecheet .
 
-:email a owl:DatatypeProperty ;
-    rdfs:domain :citoyen ;
+ex1:email a owl:DatatypeProperty ;
+    rdfs:domain ex1:citoyen ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :citoyennn .
+    rdfs:subPropertyOf ex1:citoyennn .
 
-:endDate a owl:DatatypeProperty ;
-    rdfs:domain :campagne_de_sensibilisation ;
+ex1:endDate a owl:DatatypeProperty ;
+    rdfs:domain ex1:campagne_de_sensibilisation ;
     rdfs:range xsd:dateTime ;
-    rdfs:subPropertyOf :campagne .
+    rdfs:subPropertyOf ex1:campagne .
 
-:energyConsumption a owl:DatatypeProperty ;
-    rdfs:domain :centre_de_recyclage ;
+ex1:energyConsumption a owl:DatatypeProperty ;
+    rdfs:domain ex1:centre_de_recyclage ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :centrederecy .
+    rdfs:subPropertyOf ex1:centrederecy .
 
-:equipementID a owl:DatatypeProperty ;
-    rdfs:domain :Equipement ;
+ex1:equipementID a owl:DatatypeProperty ;
+    rdfs:domain ex1:Equipement ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :equipementts .
+    rdfs:subPropertyOf ex1:equipementts .
 
-:equipementRecyclagemetaux a owl:DatatypeProperty ;
-    rdfs:domain :Usine_de_Recyclage_Métaux ;
+ex1:equipementRecyclagemetaux a owl:DatatypeProperty ;
+    rdfs:domain ex1:Usine_de_Recyclage_Métaux ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :centrederecy .
+    rdfs:subPropertyOf ex1:centrederecy .
 
-:equipementSpecialisee a owl:DatatypeProperty ;
-    rdfs:domain :Centre_de_Traitement_des_Déchets_Dangereux ;
+ex1:equipementSpecialisee a owl:DatatypeProperty ;
+    rdfs:domain ex1:Centre_de_Traitement_des_Déchets_Dangereux ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :centrederecy .
+    rdfs:subPropertyOf ex1:centrederecy .
 
-:estLocaliseDans a owl:ObjectProperty ;
-    rdfs:domain :centre_de_recyclage ;
-    rdfs:range :Municipalité ;
-    rdfs:subPropertyOf :centrederecycla ;
-    owl:inverseOf :possedeCentreRecyclage .
+ex1:estLocaliseDans a owl:ObjectProperty ;
+    rdfs:domain ex1:centre_de_recyclage ;
+    rdfs:range ex1:Municipalité ;
+    rdfs:subPropertyOf ex1:centrederecycla ;
+    owl:inverseOf ex1:possedeCentreRecyclage .
 
-:estTypeDe a owl:ObjectProperty ;
-    rdfs:domain :Type_de_dechet ;
-    rdfs:range :Dechet ;
+ex1:estTypeDe a owl:ObjectProperty ;
+    rdfs:domain ex1:Type_de_dechet ;
+    rdfs:range ex1:Dechet ;
     rdfs:subPropertyOf owl:topObjectProperty ;
-    owl:inverseOf :type_of .
+    owl:inverseOf ex1:type_of .
 
-:etat a owl:DatatypeProperty ;
-    rdfs:domain :Equipement ;
+ex1:etat a owl:DatatypeProperty ;
+    rdfs:domain ex1:Equipement ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :equipementts .
+    rdfs:subPropertyOf ex1:equipementts .
 
-:etatpointdecollecte a owl:DatatypeProperty ;
-    rdfs:domain :Point_de_collecte ;
+ex1:etatpointdecollecte a owl:DatatypeProperty ;
+    rdfs:domain ex1:Point_de_collecte ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :pointdecolecte .
+    rdfs:subPropertyOf ex1:pointdecolecte .
 
-:etattransport a owl:DatatypeProperty ;
-    rdfs:domain :service_de_transport ;
+ex1:etattransport a owl:DatatypeProperty ;
+    rdfs:domain ex1:service_de_transport ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :servicedetrransport .
+    rdfs:subPropertyOf ex1:servicedetrransport .
 
-:evenementID a owl:DatatypeProperty ;
-    rdfs:domain :evenement ;
+ex1:evenementID a owl:DatatypeProperty ;
+    rdfs:domain ex1:evenement ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :eventss .
+    rdfs:subPropertyOf ex1:eventss .
 
-:fragile a owl:DatatypeProperty ;
-    rdfs:domain :GlassWaste ;
+ex1:fragile a owl:DatatypeProperty ;
+    rdfs:domain ex1:GlassWaste ;
     rdfs:range xsd:boolean ;
-    rdfs:subPropertyOf :typededecheet .
+    rdfs:subPropertyOf ex1:typededecheet .
 
-:frequenceCollecte a owl:DatatypeProperty ;
-    rdfs:domain :Poubelle_Publique ;
+ex1:frequenceCollecte a owl:DatatypeProperty ;
+    rdfs:domain ex1:Poubelle_Publique ;
     rdfs:range xsd:int ;
-    rdfs:subPropertyOf :pointdecolecte .
+    rdfs:subPropertyOf ex1:pointdecolecte .
 
-:generatedBy a owl:ObjectProperty ;
-    rdfs:domain :Dechet ;
-    rdfs:range :citoyen ;
-    rdfs:subPropertyOf :dechetss ;
-    owl:inverseOf :genereDechet .
+ex1:generatedBy a owl:ObjectProperty ;
+    rdfs:domain ex1:Dechet ;
+    rdfs:range ex1:citoyen ;
+    rdfs:subPropertyOf ex1:dechetss ;
+    owl:inverseOf ex1:genereDechet .
 
-:generatedDate a owl:DatatypeProperty ;
-    rdfs:domain :Dechet ;
+ex1:generatedDate a owl:DatatypeProperty ;
+    rdfs:domain ex1:Dechet ;
     rdfs:range xsd:dateTime ;
-    rdfs:subPropertyOf :dechetts .
+    rdfs:subPropertyOf ex1:dechetts .
 
-:grammage a owl:DatatypeProperty ;
-    rdfs:domain :PaperWaste ;
+ex1:grammage a owl:DatatypeProperty ;
+    rdfs:domain ex1:PaperWaste ;
     rdfs:range xsd:float ;
-    rdfs:subPropertyOf :typededecheet .
+    rdfs:subPropertyOf ex1:typededecheet .
 
-:image a owl:DatatypeProperty ;
-    rdfs:domain :affiche ;
+ex1:image a owl:DatatypeProperty ;
+    rdfs:domain ex1:affiche ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :campagne .
+    rdfs:subPropertyOf ex1:campagne .
 
-:impliqueCitoyen a owl:ObjectProperty ;
-    rdfs:domain :campagne_de_sensibilisation ;
-    rdfs:range :citoyen ;
-    rdfs:subPropertyOf :campagnedesensi ;
-    owl:inverseOf :impliquea .
+ex1:impliqueCitoyen a owl:ObjectProperty ;
+    rdfs:domain ex1:campagne_de_sensibilisation ;
+    rdfs:range ex1:citoyen ;
+    rdfs:subPropertyOf ex1:campagnedesensi ;
+    owl:inverseOf ex1:impliquea .
 
-:industrie a owl:DatatypeProperty ;
-    rdfs:domain :IndustrialWaste ;
+ex1:industrie a owl:DatatypeProperty ;
+    rdfs:domain ex1:IndustrialWaste ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :dechetts .
+    rdfs:subPropertyOf ex1:dechetts .
 
-:infectieux a owl:DatatypeProperty ;
-    rdfs:domain :MedicalWaste ;
+ex1:infectieux a owl:DatatypeProperty ;
+    rdfs:domain ex1:MedicalWaste ;
     rdfs:range xsd:boolean ;
-    rdfs:subPropertyOf :dechetts .
+    rdfs:subPropertyOf ex1:dechetts .
 
-:inflammable a owl:DatatypeProperty ;
-    rdfs:domain :HazardousWaste ;
+ex1:inflammable a owl:DatatypeProperty ;
+    rdfs:domain ex1:HazardousWaste ;
     rdfs:range xsd:boolean ;
-    rdfs:subPropertyOf :typededecheet .
+    rdfs:subPropertyOf ex1:typededecheet .
 
-:isrecyclable a owl:DatatypeProperty ;
-    rdfs:domain :Dechet ;
+ex1:isrecyclable a owl:DatatypeProperty ;
+    rdfs:domain ex1:Dechet ;
     rdfs:range xsd:boolean ;
-    rdfs:subPropertyOf :dechetts .
+    rdfs:subPropertyOf ex1:dechetts .
 
-:lien a owl:DatatypeProperty ;
-    rdfs:domain :réseaux_sociaux ;
+ex1:lien a owl:DatatypeProperty ;
+    rdfs:domain ex1:réseaux_sociaux ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :campagne .
+    rdfs:subPropertyOf ex1:campagne .
 
-:lieu a owl:DatatypeProperty ;
-    rdfs:domain :evenement ;
+ex1:lieu a owl:DatatypeProperty ;
+    rdfs:domain ex1:evenement ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :eventss .
+    rdfs:subPropertyOf ex1:eventss .
 
-:localisation a owl:DatatypeProperty ;
-    rdfs:domain :Equipement ;
+ex1:localisation a owl:DatatypeProperty ;
+    rdfs:domain ex1:Equipement ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :equipementts .
+    rdfs:subPropertyOf ex1:equipementts .
 
-:location_center a owl:DatatypeProperty ;
-    rdfs:domain :centre_de_recyclage ;
+ex1:location_center a owl:DatatypeProperty ;
+    rdfs:domain ex1:centre_de_recyclage ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :centrederecy .
+    rdfs:subPropertyOf ex1:centrederecy .
 
-:maintenu a owl:ObjectProperty ;
-    rdfs:domain :Municipalité ;
-    rdfs:range :Equipement ;
-    rdfs:subPropertyOf :municcipalite ;
-    owl:inverseOf :maintenuPar .
+ex1:maintenu a owl:ObjectProperty ;
+    rdfs:domain ex1:Municipalité ;
+    rdfs:range ex1:Equipement ;
+    rdfs:subPropertyOf ex1:municcipalite ;
+    owl:inverseOf ex1:maintenuPar .
 
-:materiau a owl:DatatypeProperty ;
-    rdfs:domain :Poubelle_Publique ;
+ex1:materiau a owl:DatatypeProperty ;
+    rdfs:domain ex1:Poubelle_Publique ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :pointdecolecte .
+    rdfs:subPropertyOf ex1:pointdecolecte .
 
-:municipaliteID a owl:DatatypeProperty ;
-    rdfs:domain :Municipalité ;
+ex1:municipaliteID a owl:DatatypeProperty ;
+    rdfs:domain ex1:Municipalité ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :municipa .
+    rdfs:subPropertyOf ex1:municipa .
 
-:naemcitoyen a owl:DatatypeProperty ;
-    rdfs:domain :citoyen ;
+ex1:naemcitoyen a owl:DatatypeProperty ;
+    rdfs:domain ex1:citoyen ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :citoyennn .
+    rdfs:subPropertyOf ex1:citoyennn .
 
-:nomPlateforme a owl:DatatypeProperty ;
-    rdfs:domain :réseaux_sociaux ;
+ex1:nomPlateforme a owl:DatatypeProperty ;
+    rdfs:domain ex1:réseaux_sociaux ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :campagne .
+    rdfs:subPropertyOf ex1:campagne .
 
-:nombreBenevoles a owl:DatatypeProperty ;
-    rdfs:domain :Collecte ;
+ex1:nombreBenevoles a owl:DatatypeProperty ;
+    rdfs:domain ex1:Collecte ;
     rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :eventss .
+    rdfs:subPropertyOf ex1:eventss .
 
-:nombreParticipants a owl:DatatypeProperty ;
-    rdfs:domain :FormationPersonnel ;
+ex1:nombreParticipants a owl:DatatypeProperty ;
+    rdfs:domain ex1:FormationPersonnel ;
     rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :eventss .
+    rdfs:subPropertyOf ex1:eventss .
 
-:nombreQuartiers a owl:DatatypeProperty ;
-    rdfs:domain :Municipalité_Rurale ;
+ex1:nombreQuartiers a owl:DatatypeProperty ;
+    rdfs:domain ex1:Municipalité_Rurale ;
     rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :municipa .
+    rdfs:subPropertyOf ex1:municipa .
 
-:nombreVillages a owl:DatatypeProperty ;
-    rdfs:domain :Municipalité_Urbaine ;
+ex1:nombreVillages a owl:DatatypeProperty ;
+    rdfs:domain ex1:Municipalité_Urbaine ;
     rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :municipa .
+    rdfs:subPropertyOf ex1:municipa .
 
-:nomdechet a owl:DatatypeProperty ;
-    rdfs:domain :Dechet ;
+ex1:nomdechet a owl:DatatypeProperty ;
+    rdfs:domain ex1:Dechet ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :dechetts .
+    rdfs:subPropertyOf ex1:dechetts .
 
-:nomequiement a owl:DatatypeProperty ;
-    rdfs:domain :Equipement ;
+ex1:nomequiement a owl:DatatypeProperty ;
+    rdfs:domain ex1:Equipement ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :equipementts .
+    rdfs:subPropertyOf ex1:equipementts .
 
-:nomevent a owl:DatatypeProperty ;
-    rdfs:domain :evenement ;
+ex1:nomevent a owl:DatatypeProperty ;
+    rdfs:domain ex1:evenement ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :eventss .
+    rdfs:subPropertyOf ex1:eventss .
 
-:nommunicipalite a owl:DatatypeProperty ;
-    rdfs:domain :Municipalité ;
+ex1:nommunicipalite a owl:DatatypeProperty ;
+    rdfs:domain ex1:Municipalité ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :municipa .
+    rdfs:subPropertyOf ex1:municipa .
 
-:normesSecurite a owl:DatatypeProperty ;
-    rdfs:domain :TransportDechetsDangereux ;
+ex1:normesSecurite a owl:DatatypeProperty ;
+    rdfs:domain ex1:TransportDechetsDangereux ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :servicedetrransport .
+    rdfs:subPropertyOf ex1:servicedetrransport .
 
-:odeur a owl:DatatypeProperty ;
-    rdfs:domain :HouseholdWaste ;
+ex1:odeur a owl:DatatypeProperty ;
+    rdfs:domain ex1:HouseholdWaste ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :dechetts .
+    rdfs:subPropertyOf ex1:dechetts .
 
-:operation_Status a owl:DatatypeProperty ;
-    rdfs:domain :centre_de_recyclage ;
+ex1:operation_Status a owl:DatatypeProperty ;
+    rdfs:domain ex1:centre_de_recyclage ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :centrederecy .
+    rdfs:subPropertyOf ex1:centrederecy .
 
-:organiserevent a owl:ObjectProperty ;
-    rdfs:domain :Municipalité ;
-    rdfs:range :evenement ;
-    rdfs:subPropertyOf :municcipalite ;
-    owl:inverseOf :orginazedby .
+ex1:organiserevent a owl:ObjectProperty ;
+    rdfs:domain ex1:Municipalité ;
+    rdfs:range ex1:evenement ;
+    rdfs:subPropertyOf ex1:municcipalite ;
+    owl:inverseOf ex1:orginazedby .
 
-:origine a owl:DatatypeProperty ;
-    rdfs:domain :OrganicWaste ;
+ex1:origine a owl:DatatypeProperty ;
+    rdfs:domain ex1:OrganicWaste ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :typededecheet .
+    rdfs:subPropertyOf ex1:typededecheet .
 
-:phoneNumber a owl:DatatypeProperty ;
-    rdfs:domain :citoyen ;
+ex1:phoneNumber a owl:DatatypeProperty ;
+    rdfs:domain ex1:citoyen ;
     rdfs:range xsd:integer ;
-    rdfs:subPropertyOf :citoyennn .
+    rdfs:subPropertyOf ex1:citoyennn .
 
-:planned a owl:ObjectProperty ;
-    rdfs:domain :campagne_de_sensibilisation ;
-    rdfs:range :evenement ;
-    rdfs:subPropertyOf :campagnedesensi ;
-    owl:inverseOf :plannedby .
+ex1:planned a owl:ObjectProperty ;
+    rdfs:domain ex1:campagne_de_sensibilisation ;
+    rdfs:range ex1:evenement ;
+    rdfs:subPropertyOf ex1:campagnedesensi ;
+    owl:inverseOf ex1:plannedby .
 
-:poids a owl:DatatypeProperty ;
-    rdfs:domain :Dechet ;
+ex1:poids a owl:DatatypeProperty ;
+    rdfs:domain ex1:Dechet ;
     rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :dechetts .
+    rdfs:subPropertyOf ex1:dechetts .
 
-:pointID a owl:DatatypeProperty ;
-    rdfs:domain :Point_de_collecte ;
+ex1:pointID a owl:DatatypeProperty ;
+    rdfs:domain ex1:Point_de_collecte ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :pointdecolecte .
+    rdfs:subPropertyOf ex1:pointdecolecte .
 
-:population a owl:DatatypeProperty ;
-    rdfs:domain :Municipalité ;
+ex1:population a owl:DatatypeProperty ;
+    rdfs:domain ex1:Municipalité ;
     rdfs:range xsd:integer ;
-    rdfs:subPropertyOf :municipa .
+    rdfs:subPropertyOf ex1:municipa .
 
-:pressionCompaction a owl:DatatypeProperty ;
-    rdfs:domain :compacteur ;
+ex1:pressionCompaction a owl:DatatypeProperty ;
+    rdfs:domain ex1:compacteur ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :equipementts .
+    rdfs:subPropertyOf ex1:equipementts .
 
-:publicCible a owl:DatatypeProperty ;
-    rdfs:domain :FormationPersonnel ;
+ex1:publicCible a owl:DatatypeProperty ;
+    rdfs:domain ex1:FormationPersonnel ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :eventss .
+    rdfs:subPropertyOf ex1:eventss .
 
-:quantite a owl:DatatypeProperty ;
-    rdfs:domain :Dechet ;
+ex1:quantite a owl:DatatypeProperty ;
+    rdfs:domain ex1:Dechet ;
     rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :dechetts .
+    rdfs:subPropertyOf ex1:dechetts .
 
-:quantitecollecte a owl:DatatypeProperty ;
-    rdfs:domain :Collecte ;
+ex1:quantitecollecte a owl:DatatypeProperty ;
+    rdfs:domain ex1:Collecte ;
     rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :eventss .
+    rdfs:subPropertyOf ex1:eventss .
 
-:recoitDechet a owl:ObjectProperty ;
-    rdfs:domain :centre_de_recyclage ;
-    rdfs:range :Dechet ;
-    rdfs:subPropertyOf :centrederecycla ;
-    owl:inverseOf :traiteDansCentre .
+ex1:recoitDechet a owl:ObjectProperty ;
+    rdfs:domain ex1:centre_de_recyclage ;
+    rdfs:range ex1:Dechet ;
+    rdfs:subPropertyOf ex1:centrederecycla ;
+    owl:inverseOf ex1:traiteDansCentre .
 
-:recyclingRate a owl:DatatypeProperty ;
-    rdfs:domain :centre_de_recyclage ;
+ex1:recyclingRate a owl:DatatypeProperty ;
+    rdfs:domain ex1:centre_de_recyclage ;
     rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :centrederecy .
+    rdfs:subPropertyOf ex1:centrederecy .
 
-:servicetransportID a owl:DatatypeProperty ;
-    rdfs:domain :service_de_transport ;
+ex1:servicetransportID a owl:DatatypeProperty ;
+    rdfs:domain ex1:service_de_transport ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :servicedetrransport .
+    rdfs:subPropertyOf ex1:servicedetrransport .
 
-:startDate a owl:DatatypeProperty ;
-    rdfs:domain :campagne_de_sensibilisation ;
+ex1:startDate a owl:DatatypeProperty ;
+    rdfs:domain ex1:campagne_de_sensibilisation ;
     rdfs:range xsd:dateTime ;
-    rdfs:subPropertyOf :campagne .
+    rdfs:subPropertyOf ex1:campagne .
 
-:stockageSpecial a owl:DatatypeProperty ;
-    rdfs:domain :MedicalWaste ;
+ex1:stockageSpecial a owl:DatatypeProperty ;
+    rdfs:domain ex1:MedicalWaste ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :dechetts .
+    rdfs:subPropertyOf ex1:dechetts .
 
-:taille a owl:DatatypeProperty ;
-    rdfs:domain :Conteneur ;
+ex1:taille a owl:DatatypeProperty ;
+    rdfs:domain ex1:Conteneur ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :equipementts .
+    rdfs:subPropertyOf ex1:equipementts .
 
-:targetAudience a owl:DatatypeProperty ;
-    rdfs:domain :campagne_de_sensibilisation ;
+ex1:targetAudience a owl:DatatypeProperty ;
+    rdfs:domain ex1:campagne_de_sensibilisation ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :campagne .
+    rdfs:subPropertyOf ex1:campagne .
 
-:tempsCompostage a owl:DatatypeProperty ;
-    rdfs:domain :Centre_de_Compostage ;
+ex1:tempsCompostage a owl:DatatypeProperty ;
+    rdfs:domain ex1:Centre_de_Compostage ;
     rdfs:range xsd:int ;
-    rdfs:subPropertyOf :centrederecy .
+    rdfs:subPropertyOf ex1:centrederecy .
 
-:title a owl:DatatypeProperty ;
-    rdfs:domain :campagne_de_sensibilisation ;
+ex1:title a owl:DatatypeProperty ;
+    rdfs:domain ex1:campagne_de_sensibilisation ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :campagne .
+    rdfs:subPropertyOf ex1:campagne .
 
-:toxic a owl:DatatypeProperty ;
-    rdfs:domain :Type_de_dechet ;
+ex1:toxic a owl:DatatypeProperty ;
+    rdfs:domain ex1:Type_de_dechet ;
     rdfs:range xsd:boolean ;
-    rdfs:subPropertyOf :typededecheet .
+    rdfs:subPropertyOf ex1:typededecheet .
 
-:typeAppareil a owl:DatatypeProperty ;
-    rdfs:domain :ElectronicWaste ;
+ex1:typeAppareil a owl:DatatypeProperty ;
+    rdfs:domain ex1:ElectronicWaste ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :typededecheet .
+    rdfs:subPropertyOf ex1:typededecheet .
 
-:typeBusiness a owl:DatatypeProperty ;
-    rdfs:subPropertyOf :citoyennn .
+ex1:typeBusiness a owl:DatatypeProperty ;
+    rdfs:subPropertyOf ex1:citoyennn .
 
-:typeDeDechetTraite a owl:DatatypeProperty ;
-    rdfs:domain :centre_de_recyclage ;
+ex1:typeDeDechetTraite a owl:DatatypeProperty ;
+    rdfs:domain ex1:centre_de_recyclage ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :centrederecy .
+    rdfs:subPropertyOf ex1:centrederecy .
 
-:typeDeMetauxTraites a owl:DatatypeProperty ;
-    rdfs:domain :Usine_de_Recyclage_Métaux ;
+ex1:typeDeMetauxTraites a owl:DatatypeProperty ;
+    rdfs:domain ex1:Usine_de_Recyclage_Métaux ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :centrederecy .
+    rdfs:subPropertyOf ex1:centrederecy .
 
-:typeDechetAccepte a owl:DatatypeProperty ;
-    rdfs:domain :Point_de_collecte ;
+ex1:typeDechetAccepte a owl:DatatypeProperty ;
+    rdfs:domain ex1:Point_de_collecte ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :pointdecolecte .
+    rdfs:subPropertyOf ex1:pointdecolecte .
 
-:typeDechetBroyé a owl:DatatypeProperty ;
-    rdfs:domain :Broyeur ;
+ex1:typeDechetBroyé a owl:DatatypeProperty ;
+    rdfs:domain ex1:Broyeur ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :equipementts .
+    rdfs:subPropertyOf ex1:equipementts .
 
-:typeDechetDangereux a owl:DatatypeProperty ;
-    rdfs:domain :TransportDechetsDangereux ;
+ex1:typeDechetDangereux a owl:DatatypeProperty ;
+    rdfs:domain ex1:TransportDechetsDangereux ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :servicedetrransport .
+    rdfs:subPropertyOf ex1:servicedetrransport .
 
-:typeDechetTransporte a owl:DatatypeProperty ;
-    rdfs:domain :camion_de_déchets ;
+ex1:typeDechetTransporte a owl:DatatypeProperty ;
+    rdfs:domain ex1:camion_de_déchets ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :servicedetrransport .
+    rdfs:subPropertyOf ex1:servicedetrransport .
 
-:typeEvenement a owl:DatatypeProperty ;
-    rdfs:domain :evenement ;
+ex1:typeEvenement a owl:DatatypeProperty ;
+    rdfs:domain ex1:evenement ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :eventss .
+    rdfs:subPropertyOf ex1:eventss .
 
-:typeID a owl:DatatypeProperty ;
-    rdfs:domain :Type_de_dechet ;
+ex1:typeID a owl:DatatypeProperty ;
+    rdfs:domain ex1:Type_de_dechet ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :typededecheet .
+    rdfs:subPropertyOf ex1:typededecheet .
 
-:typeMetal a owl:DatatypeProperty ;
-    rdfs:domain :MetalWaste ;
+ex1:typeMetal a owl:DatatypeProperty ;
+    rdfs:domain ex1:MetalWaste ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :typededecheet .
+    rdfs:subPropertyOf ex1:typededecheet .
 
-:typePoint a owl:DatatypeProperty ;
-    rdfs:domain :Point_de_collecte ;
+ex1:typePoint a owl:DatatypeProperty ;
+    rdfs:domain ex1:Point_de_collecte ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :pointdecolecte .
+    rdfs:subPropertyOf ex1:pointdecolecte .
 
-:use a owl:ObjectProperty ;
-    rdfs:domain :Point_de_collecte ;
-    rdfs:range :Equipement ;
-    rdfs:subPropertyOf :point_decollecte ;
-    owl:inverseOf :utilisePour .
+ex1:use a owl:ObjectProperty ;
+    rdfs:domain ex1:Point_de_collecte ;
+    rdfs:range ex1:Equipement ;
+    rdfs:subPropertyOf ex1:point_decollecte ;
+    owl:inverseOf ex1:utilisePour .
 
-:utiliseVehicule a owl:ObjectProperty ;
-    rdfs:domain :service_de_transport ;
-    rdfs:range :Equipement ;
-    rdfs:subPropertyOf :servicedetranssport ;
-    owl:inverseOf :utilisepar .
+ex1:utiliseVehicule a owl:ObjectProperty ;
+    rdfs:domain ex1:service_de_transport ;
+    rdfs:range ex1:Equipement ;
+    rdfs:subPropertyOf ex1:servicedetranssport ;
+    owl:inverseOf ex1:utilisepar .
 
-:vehiculeAssocie a owl:DatatypeProperty ;
-    rdfs:domain :Point_de_collecte ;
+ex1:vehiculeAssocie a owl:DatatypeProperty ;
+    rdfs:domain ex1:Point_de_collecte ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :pointdecolecte .
+    rdfs:subPropertyOf ex1:pointdecolecte .
 
-:volumeBenne a owl:DatatypeProperty ;
-    rdfs:domain :CamionBenne ;
+ex1:volumeBenne a owl:DatatypeProperty ;
+    rdfs:domain ex1:CamionBenne ;
     rdfs:range xsd:decimal ;
-    rdfs:subPropertyOf :equipementts .
+    rdfs:subPropertyOf ex1:equipementts .
 
-:zoneCible a owl:DatatypeProperty ;
-    rdfs:domain :Collecte ;
+ex1:zoneCible a owl:DatatypeProperty ;
+    rdfs:domain ex1:Collecte ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :eventss .
+    rdfs:subPropertyOf ex1:eventss .
 
-:zoneCouverture a owl:DatatypeProperty ;
-    rdfs:domain :service_de_transport ;
+ex1:zoneCouverture a owl:DatatypeProperty ;
+    rdfs:domain ex1:service_de_transport ;
     rdfs:range xsd:string ;
-    rdfs:subPropertyOf :servicedetrransport .
+    rdfs:subPropertyOf ex1:servicedetrransport .
 
 xsd:date a rdfs:Datatype .
 
@@ -979,151 +1094,179 @@ ex:Dechet a owl:Class .
 
 ex:collecte a owl:Class .
 
-:AgriculturalWaste a owl:Class ;
-    rdfs:subClassOf :Dechet .
+ex1:AgriculturalWaste a owl:Class ;
+    rdfs:subClassOf ex1:Dechet .
 
-:Broyeur a owl:Class ;
-    rdfs:subClassOf :Equipement .
+ex1:Broyeur a owl:Class ;
+    rdfs:subClassOf ex1:Equipement .
 
-:CamionBenne a owl:Class ;
-    rdfs:subClassOf :Equipement .
+ex1:CIT1123 a ex1:citoyen ;
+    ex1:addresscit "monastir" ;
+    ex1:email "aymen@gmail.com" ;
+    ex1:neaemcitoyen "aymen" ;
+    ex1:phoneNumber "22675456" .
 
-:Centre_de_Compostage a owl:Class ;
-    rdfs:subClassOf :centre_de_recyclage .
+ex1:CIT297373 a ex1:Citoyen ;
+    ex1:nom "Ali Ben Ahmed" .
 
-:Centre_de_Traitement_des_Déchets_Dangereux a owl:Class ;
-    rdfs:subClassOf :centre_de_recyclage .
+ex1:CamionBenne a owl:Class ;
+    rdfs:subClassOf ex1:Equipement .
 
-:Conteneur a owl:Class ;
-    rdfs:subClassOf :Equipement .
+ex1:Centre_de_Compostage a owl:Class ;
+    rdfs:subClassOf ex1:centre_de_recyclage .
 
-:ElectronicWaste a owl:Class ;
-    rdfs:subClassOf :Type_de_dechet .
+ex1:Centre_de_Traitement_des_Déchets_Dangereux a owl:Class ;
+    rdfs:subClassOf ex1:centre_de_recyclage .
 
-:GlassWaste a owl:Class ;
-    rdfs:subClassOf :Type_de_dechet .
+ex1:Conteneur a owl:Class ;
+    rdfs:subClassOf ex1:Equipement .
 
-:HouseholdWaste a owl:Class ;
-    rdfs:subClassOf :Dechet .
+ex1:EWT1068 a ex1:ElectronicWaste ;
+    ex1:categorie "tablette"^^xsd:string ;
+    ex1:dureeVie "13"^^xsd:string ;
+    ex1:recyclable ""^^xsd:string ;
+    ex1:toxic "true"^^xsd:string ;
+    ex1:typeAppareil "tablette samsung"^^xsd:string ;
+    ex1:typeID "EWT1068"^^xsd:string ;
+    rdfs:subClassOf ex1:Type_de_dechet .
 
-:IndustrialWaste a owl:Class ;
-    rdfs:subClassOf :Dechet .
+ex1:EWT1172 a ex1:ElectronicWaste ;
+    ex1:categorie "ordinateur"^^xsd:string ;
+    ex1:dureeVie "111"^^xsd:string ;
+    ex1:toxic "true"^^xsd:string ;
+    ex1:typeAppareil "ordinateur portable"^^xsd:string ;
+    ex1:typeID "EWT1172"^^xsd:string ;
+    rdfs:subClassOf ex1:Type_de_dechet .
 
-:MetalWaste a owl:Class ;
-    rdfs:subClassOf :Type_de_dechet .
+ex1:GlassWaste a owl:Class ;
+    rdfs:subClassOf ex1:Type_de_dechet .
 
-:Municipalité_Rurale a owl:Class ;
-    rdfs:subClassOf :Municipalité .
+ex1:HouseholdWaste a owl:Class ;
+    rdfs:subClassOf ex1:Dechet .
 
-:Municipalité_Urbaine a owl:Class ;
-    rdfs:subClassOf :Municipalité .
+ex1:IndustrialWaste a owl:Class ;
+    rdfs:subClassOf ex1:Dechet .
 
-:OrganicWaste a owl:Class ;
-    rdfs:subClassOf :Type_de_dechet .
+ex1:MWT1155 a ex1:MetalWaste ;
+    ex1:categorie "bar "^^xsd:string ;
+    ex1:dureeVie 14 ;
+    ex1:toxic true ;
+    ex1:typeID "MWT1155"^^xsd:string ;
+    ex1:typeMetal "Fer"^^xsd:string ;
+    rdfs:subClassOf ex1:Type_de_dechet .
 
-:PaperWaste a owl:Class ;
-    rdfs:subClassOf :Type_de_dechet .
+ex1:Municipalité_Rurale a owl:Class ;
+    rdfs:subClassOf ex1:Municipalité .
 
-:PlasticWaste a owl:Class ;
-    rdfs:subClassOf :Type_de_dechet .
+ex1:Municipalité_Urbaine a owl:Class ;
+    rdfs:subClassOf ex1:Municipalité .
 
-:associePointCollecte a owl:ObjectProperty ;
-    rdfs:domain :Dechet ;
-    rdfs:range :Point_de_collecte ;
-    rdfs:subPropertyOf :dechetss .
+ex1:OrganicWaste a owl:Class ;
+    rdfs:subClassOf ex1:Type_de_dechet .
 
-:camion_de_déchets a owl:Class ;
-    rdfs:subClassOf :service_de_transport .
+ex1:PaperWaste a owl:Class ;
+    rdfs:subClassOf ex1:Type_de_dechet .
 
-:collaboreAvecCentre a owl:ObjectProperty ;
-    rdfs:domain :campagne_de_sensibilisation ;
-    rdfs:range :centre_de_recyclage ;
-    rdfs:subPropertyOf :campagnedesensi .
+ex1:PlasticWaste a owl:Class ;
+    rdfs:subClassOf ex1:Type_de_dechet .
 
-:compacteur a owl:Class ;
-    rdfs:subClassOf :Equipement .
+ex1:associePointCollecte a owl:ObjectProperty ;
+    rdfs:domain ex1:Dechet ;
+    rdfs:range ex1:Point_de_collecte ;
+    rdfs:subPropertyOf ex1:dechetss .
 
-:estDesserviPar a owl:ObjectProperty ;
-    rdfs:domain :Point_de_collecte ;
-    rdfs:range :service_de_transport ;
-    rdfs:subPropertyOf :point_decollecte .
+ex1:camion_de_déchets a owl:Class ;
+    rdfs:subClassOf ex1:service_de_transport .
 
-:genereDechet a owl:ObjectProperty ;
-    rdfs:domain :citoyen ;
-    rdfs:range :Dechet ;
-    rdfs:subPropertyOf :citoyyyen .
+ex1:collaboreAvecCentre a owl:ObjectProperty ;
+    rdfs:domain ex1:campagne_de_sensibilisation ;
+    rdfs:range ex1:centre_de_recyclage ;
+    rdfs:subPropertyOf ex1:campagnedesensi .
 
-:habiteDans a owl:ObjectProperty ;
-    rdfs:domain :resident ;
-    rdfs:range :Municipalité ;
-    rdfs:subPropertyOf :citoyyyen .
+ex1:compacteur a owl:Class ;
+    rdfs:subClassOf ex1:Equipement .
 
-:impliquea a owl:ObjectProperty ;
-    rdfs:domain :citoyen ;
-    rdfs:range :campagne_de_sensibilisation ;
-    rdfs:subPropertyOf :citoyyyen .
+ex1:estDesserviPar a owl:ObjectProperty ;
+    rdfs:domain ex1:Point_de_collecte ;
+    rdfs:range ex1:service_de_transport ;
+    rdfs:subPropertyOf ex1:point_decollecte .
 
-:maintenuPar a owl:ObjectProperty ;
-    rdfs:domain :Equipement ;
-    rdfs:range :Municipalité ;
-    rdfs:subPropertyOf :equipemeent .
+ex1:genereDechet a owl:ObjectProperty ;
+    rdfs:domain ex1:citoyen ;
+    rdfs:range ex1:Dechet ;
+    rdfs:subPropertyOf ex1:citoyyyen .
 
-:orginazedby a owl:ObjectProperty ;
-    rdfs:domain :evenement ;
-    rdfs:range :Municipalité ;
-    rdfs:subPropertyOf :eventtt .
+ex1:habiteDans a owl:ObjectProperty ;
+    rdfs:domain ex1:resident ;
+    rdfs:range ex1:Municipalité ;
+    rdfs:subPropertyOf ex1:citoyyyen .
 
-:participea a owl:ObjectProperty ;
-    rdfs:domain :resident ;
-    rdfs:range :evenement ;
-    rdfs:subPropertyOf :citoyyyen .
+ex1:impliquea a owl:ObjectProperty ;
+    rdfs:domain ex1:citoyen ;
+    rdfs:range ex1:campagne_de_sensibilisation ;
+    rdfs:subPropertyOf ex1:citoyyyen .
 
-:plannedby a owl:ObjectProperty ;
-    rdfs:domain :evenement ;
-    rdfs:range :campagne_de_sensibilisation ;
-    rdfs:subPropertyOf :eventtt .
+ex1:maintenuPar a owl:ObjectProperty ;
+    rdfs:domain ex1:Equipement ;
+    rdfs:range ex1:Municipalité ;
+    rdfs:subPropertyOf ex1:equipemeent .
 
-:possedeCentreRecyclage a owl:ObjectProperty ;
-    rdfs:domain :Municipalité ;
-    rdfs:range :centre_de_recyclage ;
-    rdfs:subPropertyOf :municcipalite .
+ex1:orginazedby a owl:ObjectProperty ;
+    rdfs:domain ex1:evenement ;
+    rdfs:range ex1:Municipalité ;
+    rdfs:subPropertyOf ex1:eventtt .
 
-:possedePointCollecte a owl:ObjectProperty ;
-    rdfs:domain :Municipalité ;
-    rdfs:range :Point_de_collecte ;
-    rdfs:subPropertyOf :municcipalite .
+ex1:participea a owl:ObjectProperty ;
+    rdfs:domain ex1:resident ;
+    rdfs:range ex1:evenement ;
+    rdfs:subPropertyOf ex1:citoyyyen .
 
-:traiteDansCentre a owl:ObjectProperty ;
-    rdfs:domain :Dechet ;
-    rdfs:range :centre_de_recyclage ;
-    rdfs:subPropertyOf :dechetss .
+ex1:plannedby a owl:ObjectProperty ;
+    rdfs:domain ex1:evenement ;
+    rdfs:range ex1:campagne_de_sensibilisation ;
+    rdfs:subPropertyOf ex1:eventtt .
 
-:transfertvers a owl:ObjectProperty ;
-    rdfs:domain :service_de_transport ;
-    rdfs:range :centre_de_recyclage ;
-    rdfs:subPropertyOf :servicedetranssport .
+ex1:possedeCentreRecyclage a owl:ObjectProperty ;
+    rdfs:domain ex1:Municipalité ;
+    rdfs:range ex1:centre_de_recyclage ;
+    rdfs:subPropertyOf ex1:municcipalite .
 
-:transporteDechet a owl:ObjectProperty ;
-    rdfs:domain :service_de_transport ;
-    rdfs:range :Dechet ;
-    rdfs:subPropertyOf :servicedetranssport .
+ex1:possedePointCollecte a owl:ObjectProperty ;
+    rdfs:domain ex1:Municipalité ;
+    rdfs:range ex1:Point_de_collecte ;
+    rdfs:subPropertyOf ex1:municcipalite .
 
-:type_of a owl:ObjectProperty ;
-    rdfs:domain :Dechet ;
-    rdfs:range :Type_de_dechet ;
-    rdfs:subPropertyOf :dechetss .
+ex1:traiteDansCentre a owl:ObjectProperty ;
+    rdfs:domain ex1:Dechet ;
+    rdfs:range ex1:centre_de_recyclage ;
+    rdfs:subPropertyOf ex1:dechetss .
 
-:utilisePour a owl:ObjectProperty ;
-    rdfs:domain :Equipement ;
-    rdfs:range :Point_de_collecte ;
-    rdfs:subPropertyOf :equipemeent .
+ex1:transfertvers a owl:ObjectProperty ;
+    rdfs:domain ex1:service_de_transport ;
+    rdfs:range ex1:centre_de_recyclage ;
+    rdfs:subPropertyOf ex1:servicedetranssport .
 
-:utilisepar a owl:ObjectProperty ;
-    rdfs:domain :Equipement ;
-    rdfs:range :service_de_transport ;
-    rdfs:subPropertyOf :equipemeent .
+ex1:transporteDechet a owl:ObjectProperty ;
+    rdfs:domain ex1:service_de_transport ;
+    rdfs:range ex1:Dechet ;
+    rdfs:subPropertyOf ex1:servicedetranssport .
 
-ex:Campagne1 a :campagne_de_sensibilisation,
+ex1:type_of a owl:ObjectProperty ;
+    rdfs:domain ex1:Dechet ;
+    rdfs:range ex1:Type_de_dechet ;
+    rdfs:subPropertyOf ex1:dechetss .
+
+ex1:utilisePour a owl:ObjectProperty ;
+    rdfs:domain ex1:Equipement ;
+    rdfs:range ex1:Point_de_collecte ;
+    rdfs:subPropertyOf ex1:equipemeent .
+
+ex1:utilisepar a owl:ObjectProperty ;
+    rdfs:domain ex1:Equipement ;
+    rdfs:range ex1:service_de_transport ;
+    rdfs:subPropertyOf ex1:equipemeent .
+
+ex:Campagne1 a ex1:campagne_de_sensibilisation,
         owl:NamedIndividual ;
     ex:descriptioncampa "Sensibilisation à la réduction du plastique" ;
     ex:endDate "2025-11-15"^^xsd:date ;
@@ -1131,7 +1274,7 @@ ex:Campagne1 a :campagne_de_sensibilisation,
     ex:targetAudience "Écoles primaires" ;
     ex:title "Stop au plastique" .
 
-ex:Campagne_842 a :campagne_de_sensibilisation,
+ex:Campagne_842 a ex1:campagne_de_sensibilisation,
         owl:NamedIndividual ;
     ex:descriptioncampa "Sensibilisation à la réduction du plastique" ;
     ex:endDate "2025-11-15"^^xsd:date ;
@@ -1139,7 +1282,7 @@ ex:Campagne_842 a :campagne_de_sensibilisation,
     ex:targetAudience "Écoles primaires" ;
     ex:title "Stop au plastique" .
 
-ex:Campagne_874 a :campagne_de_sensibilisation,
+ex:Campagne_874 a ex1:campagne_de_sensibilisation,
         owl:NamedIndividual ;
     ex:descriptioncampa "Campagne pour sensibiliser au recyclage" ;
     ex:endDate "2025-03-31"^^xsd:date ;
@@ -1147,7 +1290,7 @@ ex:Campagne_874 a :campagne_de_sensibilisation,
     ex:targetAudience "Étudiants" ;
     ex:title "Recyclage Campus" .
 
-ex:Campagne_889 a :campagne_de_sensibilisation,
+ex:Campagne_889 a ex1:campagne_de_sensibilisation,
         owl:NamedIndividual ;
     ex:descriptioncampa "Campagne nationale de don du sang" ;
     ex:endDate "2025-06-15"^^xsd:date ;
@@ -1157,7 +1300,7 @@ ex:Campagne_889 a :campagne_de_sensibilisation,
     ex:targetAudience "Grand public" ;
     ex:title "Don de Sang Pour Tous" .
 
-ex:Campagne_934 a :campagne_de_sensibilisation,
+ex:Campagne_934 a ex1:campagne_de_sensibilisation,
         owl:NamedIndividual ;
     ex:descriptioncampa "Campagne nationale de don du sang7888" ;
     ex:endDate "2025-06-15"^^xsd:date ;
@@ -1167,7 +1310,7 @@ ex:Campagne_934 a :campagne_de_sensibilisation,
     ex:targetAudience "Grand public" ;
     ex:title "Don de Sang Pour Tous78" .
 
-ex:E775 a :evenement,
+ex:E775 a ex1:evenement,
         owl:NamedIndividual ;
     ex:dateDebut "2025-11-05"^^xsd:date ;
     ex:dateFin "2025-11-10"^^xsd:date ;
@@ -1182,7 +1325,7 @@ ex:E775 a :evenement,
     ex:typeEvenement "Collecte" ;
     ex:zoneCible "Zone littorale" .
 
-ex:E788 a :evenement,
+ex:E788 a ex1:evenement,
         owl:NamedIndividual ;
     ex:dateDebut "2025-11-05"^^xsd:date ;
     ex:dateFin "2025-11-10"^^xsd:date ;
@@ -1218,7 +1361,7 @@ ex:EVT005 ex:dateDebut "2025-11-05"^^xsd:date ;
     ex:nomevent "Nettoyage Plage Sousse" ;
     ex:typeEvenement "Collecte" .
 
-ex:EVT0078 a :evenement,
+ex:EVT0078 a ex1:evenement,
         owl:NamedIndividual ;
     ex:dateDebut "2025-11-05"^^xsd:date ;
     ex:dateFin "2025-11-10"^^xsd:date ;
@@ -1232,120 +1375,142 @@ ex:EVT0078 a :evenement,
     ex:typeEvenement "Collecte" ;
     ex:zoneCible "Zone littorale" .
 
-:Collect a owl:Class .
+ex1:Collect a owl:Class .
 
-:HazardousWaste a owl:Class ;
-    rdfs:subClassOf :Type_de_dechet .
+ex1:EWT1179 a ex1:ElectronicWaste ;
+    ex1:categorie "iphone"^^xsd:string ;
+    ex1:dureeVie "50"^^xsd:string ;
+    ex1:toxic "false"^^xsd:string ;
+    ex1:typeAppareil "smartphone"^^xsd:string ;
+    ex1:typeID "EWT1179"^^xsd:string ;
+    rdfs:subClassOf ex1:Type_de_dechet .
 
-:MedicalWaste a owl:Class ;
-    rdfs:subClassOf :Dechet .
+ex1:HazardousWaste a owl:Class ;
+    rdfs:subClassOf ex1:Type_de_dechet .
 
-:Poubelle_Publique a owl:Class ;
-    rdfs:subClassOf :Point_de_collecte .
+ex1:MWT1061 a ex1:MetalWaste ;
+    ex1:categorie "canette "^^xsd:string ;
+    ex1:dureeVie "5"^^xsd:string ;
+    ex1:toxic "false"^^xsd:string ;
+    ex1:typeID "MWT1061"^^xsd:string ;
+    ex1:typeMetal "aluminium"^^xsd:string ;
+    rdfs:subClassOf ex1:Type_de_dechet .
 
-:TransportDechetsDangereux a owl:Class ;
-    rdfs:subClassOf :service_de_transport .
+ex1:MedicalWaste a owl:Class ;
+    rdfs:subClassOf ex1:Dechet .
 
-:Usine_de_Recyclage_Métaux a owl:Class ;
-    rdfs:subClassOf :centre_de_recyclage .
+ex1:Poubelle_Publique a owl:Class ;
+    rdfs:subClassOf ex1:Point_de_collecte .
+
+ex1:TransportDechetsDangereux a owl:Class ;
+    rdfs:subClassOf ex1:service_de_transport .
+
+ex1:Usine_de_Recyclage_Métaux a owl:Class ;
+    rdfs:subClassOf ex1:centre_de_recyclage .
 
 ex:formationPersonnel a owl:Class .
 
-:FormationPersonnel a owl:Class ;
-    rdfs:subClassOf :evenement .
+ex1:FormationPersonnel a owl:Class ;
+    rdfs:subClassOf ex1:evenement .
 
-:campagnedesensi a owl:ObjectProperty ;
+ex1:MetalWaste a owl:Class ;
+    rdfs:subClassOf ex1:Type_de_dechet .
+
+ex1:campagnedesensi a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
 
-:equipemeent a owl:ObjectProperty ;
+ex1:equipemeent a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
 
-:eventtt a owl:ObjectProperty ;
+ex1:eventtt a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
 
 ex:Collecte a owl:Class .
 
-:Collecte a owl:Class ;
-    rdfs:subClassOf :evenement .
+ex1:Collecte a owl:Class ;
+    rdfs:subClassOf ex1:evenement .
 
-:centrederecycla a owl:ObjectProperty ;
+ex1:ElectronicWaste a owl:Class ;
+    rdfs:subClassOf ex1:Type_de_dechet .
+
+ex1:centrederecycla a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
 
-:citoyyyen a owl:ObjectProperty ;
+ex1:citoyyyen a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
 
-:point_decollecte a owl:ObjectProperty ;
+ex1:point_decollecte a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
 
-:réseaux_sociaux a owl:Class ;
-    rdfs:subClassOf :campagne_de_sensibilisation .
+ex1:réseaux_sociaux a owl:Class ;
+    rdfs:subClassOf ex1:campagne_de_sensibilisation .
 
-:servicedetranssport a owl:ObjectProperty ;
+ex1:servicedetranssport a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
 
 ex:Affiche a owl:Class .
 
 ex:ReseauxSociaux a owl:Class .
 
-:affiche a owl:Class ;
-    rdfs:subClassOf :campagne_de_sensibilisation .
+ex1:affiche a owl:Class ;
+    rdfs:subClassOf ex1:campagne_de_sensibilisation .
 
-:dechetss a owl:ObjectProperty ;
+ex1:dechetss a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
 
-:municcipalite a owl:ObjectProperty ;
+ex1:municcipalite a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
 
-:resident a owl:Class ;
-    rdfs:subClassOf :citoyen .
+ex1:resident a owl:Class ;
+    rdfs:subClassOf ex1:citoyen .
 
-:municipa a owl:DatatypeProperty ;
+ex1:municipa a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
-:citoyennn a owl:DatatypeProperty ;
+ex1:citoyennn a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
-:servicedetrransport a owl:DatatypeProperty ;
+ex1:servicedetrransport a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
-:equipementts a owl:DatatypeProperty ;
+ex1:equipementts a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
-:pointdecolecte a owl:DatatypeProperty ;
+ex1:pointdecolecte a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
-:campagne a owl:DatatypeProperty ;
+ex1:campagne a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
-:citoyen a owl:Class .
-
-:centrederecy a owl:DatatypeProperty ;
+ex1:centrederecy a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
-:eventss a owl:DatatypeProperty ;
+ex1:eventss a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
-:typededecheet a owl:DatatypeProperty ;
+ex1:typededecheet a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
-:Type_de_dechet a owl:Class .
+ex1:citoyen a owl:Class .
 
-:dechetts a owl:DatatypeProperty ;
+ex1:dechetts a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
-:service_de_transport a owl:Class .
+ex1:service_de_transport a owl:Class .
 
-:Equipement a owl:Class .
+ex1:Equipement a owl:Class .
 
-:Municipalité a owl:Class .
+ex1:Municipalité a owl:Class .
 
-:Point_de_collecte a owl:Class .
+ex1:Point_de_collecte a owl:Class .
 
-:centre_de_recyclage a owl:Class .
+ex1:Type_de_dechet a owl:Class .
 
-:campagne_de_sensibilisation a owl:Class .
+ex1:centre_de_recyclage a owl:Class .
 
-:Dechet a owl:Class .
+ex1:campagne_de_sensibilisation a owl:Class .
 
-:evenement a owl:Class .
+ex1:evenement a owl:Class .
+
+ex1:Dechet a owl:Class .
 

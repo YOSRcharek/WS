@@ -1,8 +1,12 @@
 # This file must be used with "source bin/activate" *from bash*
 <<<<<<< HEAD
+<<<<<<< HEAD
 # You cannot run it directly
 =======
 # you cannot run it directly
+>>>>>>> doua
+=======
+# You cannot run it directly
 >>>>>>> doua
 
 deactivate () {
@@ -19,6 +23,7 @@ deactivate () {
     fi
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     # Call hash to forget past locations. Without forgetting
     # past locations the $PATH changes we made may not be respected.
@@ -30,6 +35,11 @@ deactivate () {
 =======
     # Call hash to forget past commands. Without forgetting
     # past commands the $PATH changes we made may not be respected
+>>>>>>> doua
+=======
+    # Call hash to forget past locations. Without forgetting
+    # past locations the $PATH changes we made may not be respected.
+    # See "man bash" for more details. hash is usually a builtin of your shell
 >>>>>>> doua
     hash -r 2> /dev/null
 
@@ -51,17 +61,26 @@ deactivate () {
 deactivate nondestructive
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # on Windows, a path can contain colons and backslashes and has to be converted:
 <<<<<<< Updated upstream
+=======
+# on Windows, a path can contain colons and backslashes and has to be converted:
+>>>>>>> doua
 case "$(uname)" in
     CYGWIN*|MSYS*|MINGW*)
         # transform D:\path\to\venv to /d/path/to/venv on MSYS and MINGW
         # and to /cygdrive/d/path/to/venv on Cygwin
+<<<<<<< HEAD
         VIRTUAL_ENV=$(cygpath 'C:\Users\ASUS\Desktop\web semantique\WS\wsback\venv')
+=======
+        VIRTUAL_ENV=$(cygpath 'C:\Users\ASUS\Desktop\Nouveau dossier (8)\web semantique1\WS\wsback\venv')
+>>>>>>> doua
         export VIRTUAL_ENV
         ;;
     *)
         # use the path as-is
+<<<<<<< HEAD
         export VIRTUAL_ENV='C:\Users\ASUS\Desktop\web semantique\WS\wsback\venv'
         ;;
 esac
@@ -86,14 +105,25 @@ fi
 VIRTUAL_ENV="C:\Users\DOUAA\Desktop\web semantique1\WS\wsback\venv"
 export VIRTUAL_ENV
 >>>>>>> doua
+=======
+        export VIRTUAL_ENV='C:\Users\ASUS\Desktop\Nouveau dossier (8)\web semantique1\WS\wsback\venv'
+        ;;
+esac
+>>>>>>> doua
 
 _OLD_VIRTUAL_PATH="$PATH"
-PATH="$VIRTUAL_ENV/Scripts:$PATH"
+PATH="$VIRTUAL_ENV/"Scripts":$PATH"
 export PATH
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> Stashed changes
 =======
+>>>>>>> doua
+=======
+VIRTUAL_ENV_PROMPT='(venv) '
+export VIRTUAL_ENV_PROMPT
+
 >>>>>>> doua
 # unset PYTHONHOME if set
 # this will fail if PYTHONHOME is set to the empty string (which is bad anyway)
@@ -105,6 +135,7 @@ fi
 
 if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
     _OLD_VIRTUAL_PS1="${PS1:-}"
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< Updated upstream
     PS1="("'(venv) '") ${PS1:-}"
@@ -119,6 +150,10 @@ if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
 <<<<<<< HEAD
 >>>>>>> Stashed changes
 =======
+>>>>>>> doua
+=======
+    PS1="("'(venv) '") ${PS1:-}"
+    export PS1
 >>>>>>> doua
 fi
 

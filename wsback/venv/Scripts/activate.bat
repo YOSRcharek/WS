@@ -9,6 +9,7 @@ if defined _OLD_CODEPAGE (
 )
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 set "VIRTUAL_ENV=C:\Users\ASUS\Desktop\web semantique\WS\wsback\venv"
 =======
@@ -16,6 +17,9 @@ set VIRTUAL_ENV=C:\Users\Lenovo\Desktop\Esprit\5\WebSem\WS\wsback\venv
 >>>>>>> Stashed changes
 =======
 set VIRTUAL_ENV=C:\Users\DOUAA\Desktop\web semantique1\WS\wsback\venv
+>>>>>>> doua
+=======
+set "VIRTUAL_ENV=C:\Users\ASUS\Desktop\Nouveau dossier (8)\web semantique1\WS\wsback\venv"
 >>>>>>> doua
 
 if not defined PROMPT set PROMPT=$P$G
@@ -33,6 +37,7 @@ if defined _OLD_VIRTUAL_PATH set PATH=%_OLD_VIRTUAL_PATH%
 if not defined _OLD_VIRTUAL_PATH set _OLD_VIRTUAL_PATH=%PATH%
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 set "PATH=%VIRTUAL_ENV%\Scripts;%PATH%"
 set "VIRTUAL_ENV_PROMPT=(venv) "
@@ -43,6 +48,10 @@ set VIRTUAL_ENV_PROMPT=(venv)
 =======
 set PATH=%VIRTUAL_ENV%\Scripts;%PATH%
 set VIRTUAL_ENV_PROMPT=(venv) 
+>>>>>>> doua
+=======
+set "PATH=%VIRTUAL_ENV%\Scripts;%PATH%"
+set "VIRTUAL_ENV_PROMPT=(venv) "
 >>>>>>> doua
 
 :END

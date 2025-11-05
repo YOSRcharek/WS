@@ -14,6 +14,8 @@ export default function Header() {
     { id: "equipment", label: "Équipements", path: "/equipment" },
     { id: "events", label: "Événements", path: "/events" },
     { id: "dashboard", label: "Dashboard", path: "/dashboard" },
+    { id: "ai-matching", label: "IA Matching", path: "/ai-matching" },
+    { id: "citizen-requests", label: "Demandes Citoyennes", path: "/citizen-requests" },
     { id: "add-event", label: "Créer Événement", path: "/add-event" },
     { id: "add-campaign", label: "Créer Campagne", path: "/add-campaign" },
   ];

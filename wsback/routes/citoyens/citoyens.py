@@ -13,18 +13,19 @@ CITOYEN_CLASS_URI = URIRef("http://www.semanticweb.org/msi/ontologies/2025/9/unt
 @citoyen_bp.route("/citoyens", methods=["POST"])
 def add_citoyen():
     data = request.json
-    citizen_id = "C" + str(len(g) + 1)
+    citizen_id = "C" + str(len(list(g.triples((None, RDF.type, CITOYEN_CLASS_URI)))) + 1)
     citizen_ref = EX[citizen_id]
 
     insert_query = PREFIX + f"""
     INSERT DATA {{
-        {citizen_ref.n3()} a <{CITOYEN_CLASS_URI}> ;
+        {citizen_ref.n3()} a ex:Citoyen ;
             ex:citizenID "{citizen_id}"^^xsd:string ;
             ex:neaemcitoyen "{data.get('neaemcitoyen','')}"^^xsd:string ;
             ex:addresscit "{data.get('addresscit','')}"^^xsd:string ;
             ex:age "{data.get('age',0)}"^^xsd:integer ;
             ex:email "{data.get('email','')}"^^xsd:string ;
-            ex:phoneNumber "{data.get('phoneNumber','')}"^^xsd:string .
+            ex:phoneNumber "{data.get('phoneNumber','')}"^^xsd:string ;
+            ex:type "{data.get('type','Resident')}"^^xsd:string .
     }}
     """
 
@@ -41,23 +42,25 @@ def add_citoyen():
     g.add((citizen_ref, EX.age, Literal(data.get('age',0), datatype=XSD.integer)))
     g.add((citizen_ref, EX.email, Literal(data.get('email',''), datatype=XSD.string)))
     g.add((citizen_ref, EX.phoneNumber, Literal(data.get('phoneNumber',''), datatype=XSD.string)))
+    g.add((citizen_ref, EX.type, Literal(data.get('type','Resident'), datatype=XSD.string)))
 
     g.serialize(destination=RDF_FILE, format="turtle")
-    return jsonify({"message": f"✅ Citoyen '{citizen_id}' ajouté avec succès !"})
+    return jsonify({"message": f"✅ Citoyen '{citizen_id}' ajouté avec succès !", "citizenID": citizen_id})
 
 # --- READ ALL ---
 @citoyen_bp.route("/citoyens", methods=["GET"])
 def get_all_citoyens():
     query = PREFIX + """
-    SELECT ?citoyen ?citizenID ?namecitoyen ?addresscit ?age ?email ?phoneNumber
+    SELECT ?citoyen ?citizenID ?neaemcitoyen ?addresscit ?age ?email ?phoneNumber ?type
     WHERE {
-        ?citoyen a ex:citoyen .
+        ?citoyen a ex:Citoyen .
         OPTIONAL { ?citoyen ex:citizenID ?citizenID . }
         OPTIONAL { ?citoyen ex:neaemcitoyen ?neaemcitoyen . }
         OPTIONAL { ?citoyen ex:addresscit ?addresscit . }
         OPTIONAL { ?citoyen ex:age ?age . }
         OPTIONAL { ?citoyen ex:email ?email . }
         OPTIONAL { ?citoyen ex:phoneNumber ?phoneNumber . }
+        OPTIONAL { ?citoyen ex:type ?type . }
     }
     """
     sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
@@ -74,7 +77,8 @@ def get_all_citoyens():
             "addresscit": result.get("addresscit", {}).get("value"),
             "age": result.get("age", {}).get("value"),
             "email": result.get("email", {}).get("value"),
-            "phoneNumber": result.get("phoneNumber", {}).get("value")
+            "phoneNumber": result.get("phoneNumber", {}).get("value"),
+            "type": result.get("type", {}).get("value")
         })
 
     return jsonify(citoyens)
@@ -83,7 +87,7 @@ def get_all_citoyens():
 @citoyen_bp.route("/citoyens/<citizen_id>", methods=["GET"])
 def get_citoyen(citizen_id):
     query = PREFIX + f"""
-    SELECT ?citoyen ?namecitoyen ?addresscit ?age ?email ?phoneNumber
+    SELECT ?citoyen ?neaemcitoyen ?addresscit ?age ?email ?phoneNumber ?type
     WHERE {{
         ?citoyen a ex:Citoyen ;
                  ex:citizenID "{citizen_id}"^^xsd:string .
@@ -92,6 +96,7 @@ def get_citoyen(citizen_id):
         OPTIONAL {{ ?citoyen ex:age ?age . }}
         OPTIONAL {{ ?citoyen ex:email ?email . }}
         OPTIONAL {{ ?citoyen ex:phoneNumber ?phoneNumber . }}
+        OPTIONAL {{ ?citoyen ex:type ?type . }}
     }}
     """
     sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
@@ -109,7 +114,8 @@ def get_citoyen(citizen_id):
         "addresscit": r.get("addresscit", {}).get("value"),
         "age": r.get("age", {}).get("value"),
         "email": r.get("email", {}).get("value"),
-        "phoneNumber": r.get("phoneNumber", {}).get("value")
+        "phoneNumber": r.get("phoneNumber", {}).get("value"),
+        "type": r.get("type", {}).get("value")
     }
 
     return jsonify(citoyen)
@@ -129,7 +135,8 @@ def update_citoyen(citizen_id):
             ex:addresscit "{data.get('addresscit','')}"^^xsd:string ;
             ex:age "{data.get('age',0)}"^^xsd:integer ;
             ex:email "{data.get('email','')}"^^xsd:string ;
-            ex:phoneNumber "{data.get('phoneNumber','')}"^^xsd:string .
+            ex:phoneNumber "{data.get('phoneNumber','')}"^^xsd:string ;
+            ex:type "{data.get('type','Resident')}"^^xsd:string .
     }}
     """
 
@@ -140,6 +147,20 @@ def update_citoyen(citizen_id):
     sparql.setQuery(insert_query)
     sparql.query()
 
+    # Update local graph
+    for triple in list(g.triples((citizen_ref, None, None))):
+        g.remove(triple)
+    
+    g.add((citizen_ref, RDF.type, CITOYEN_CLASS_URI))
+    g.add((citizen_ref, EX.citizenID, Literal(citizen_id, datatype=XSD.string)))
+    g.add((citizen_ref, EX.neaemcitoyen, Literal(data.get('neaemcitoyen',''), datatype=XSD.string)))
+    g.add((citizen_ref, EX.addresscit, Literal(data.get('addresscit',''), datatype=XSD.string)))
+    g.add((citizen_ref, EX.age, Literal(data.get('age',0), datatype=XSD.integer)))
+    g.add((citizen_ref, EX.email, Literal(data.get('email',''), datatype=XSD.string)))
+    g.add((citizen_ref, EX.phoneNumber, Literal(data.get('phoneNumber',''), datatype=XSD.string)))
+    g.add((citizen_ref, EX.type, Literal(data.get('type','Resident'), datatype=XSD.string)))
+    
+    g.serialize(destination=RDF_FILE, format="turtle")
     return jsonify({"message": f"♻️ Citoyen '{citizen_id}' mis à jour avec succès !"})
 
 # --- DELETE ---

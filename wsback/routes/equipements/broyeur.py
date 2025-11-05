@@ -41,8 +41,6 @@ def create_broyeur():
     sparql.setQuery(query)
     sparql.query()
     
-<<<<<<< HEAD
-=======
     # --- Ajout dans le graphe RDF local ---
     broyeur_ref = EX[broyeur_id]
     g.add((broyeur_ref, RDF.type, EX.Broyeur))
@@ -57,7 +55,6 @@ def create_broyeur():
     # Sauvegarder le fichier TTL
     g.serialize(destination=RDF_FILE, format="turtle")
     
->>>>>>> doua
     return jsonify({"message": "Broyeur créé avec succès", "id": broyeur_id}), 201
 
 # Récupérer tous les broyeurs
@@ -65,18 +62,6 @@ def create_broyeur():
 def get_broyeurs():
     query = f"""
     {SPARQL_PREFIX}
-<<<<<<< HEAD
-    SELECT ?broyeur ?equipementID ?nomEquipement ?etat ?capacite ?localisation ?typeDechetBroye
-    WHERE {{
-        ?broyeur a ex:Broyeur ;
-                ex:equipementID ?equipementID ;
-                ex:nomequiement ?nomEquipement ;
-                ex:etat ?etat ;
-                ex:capacite ?capacite ;
-                ex:localisation ?localisation ;
-                ex:typeDechetBroyé ?typeDechetBroye .
-    }}
-=======
     SELECT DISTINCT ?equipementID ?nomequiement ?etat ?capacite ?localisation ?typeDechetBroyé
     WHERE {{
         ?broyeur a ex:Broyeur ;
@@ -88,7 +73,6 @@ def get_broyeurs():
                 ex:typeDechetBroyé ?typeDechetBroyé .
     }}
     GROUP BY ?equipementID ?nomequiement ?etat ?capacite ?localisation ?typeDechetBroyé
->>>>>>> doua
     """
     
     sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
@@ -97,17 +81,6 @@ def get_broyeurs():
     results = sparql.query().convert()
     
     broyeurs = []
-<<<<<<< HEAD
-    for result in results["results"]["bindings"]:
-        broyeurs.append({
-            "id": result["equipementID"]["value"],
-            "nomEquipement": result["nomEquipement"]["value"],
-            "etat": result["etat"]["value"],
-            "capacite": result["capacite"]["value"],
-            "localisation": result["localisation"]["value"],
-            "typeDechetBroye": result["typeDechetBroye"]["value"]
-        })
-=======
     seen_ids = set()
     for result in results["results"]["bindings"]:
         broyeur_id = result["equipementID"]["value"]
@@ -121,7 +94,6 @@ def get_broyeurs():
                 "localisation": result["localisation"]["value"],
                 "typeDechetBroye": result["typeDechetBroyé"]["value"]
             })
->>>>>>> doua
     
     return jsonify(broyeurs)
 
@@ -130,28 +102,16 @@ def get_broyeurs():
 def get_broyeur(broyeur_id):
     query = f"""
     {SPARQL_PREFIX}
-<<<<<<< HEAD
-    SELECT ?broyeur ?equipementID ?nomEquipement ?etat ?capacite ?localisation ?typeDechetBroye
-=======
     SELECT ?broyeur ?equipementID ?nomequiement ?etat ?capacite ?localisation ?typeDechetBroyé
->>>>>>> doua
     WHERE {{
         ?broyeur a ex:Broyeur ;
                 ex:equipementID "{broyeur_id}" ;
                 ex:equipementID ?equipementID ;
-<<<<<<< HEAD
-                ex:nomequiement ?nomEquipement ;
-                ex:etat ?etat ;
-                ex:capacite ?capacite ;
-                ex:localisation ?localisation ;
-                ex:typeDechetBroyé ?typeDechetBroye .
-=======
                 ex:nomequiement ?nomequiement ;
                 ex:etat ?etat ;
                 ex:capacite ?capacite ;
                 ex:localisation ?localisation ;
                 ex:typeDechetBroyé ?typeDechetBroyé .
->>>>>>> doua
     }}
     """
     
@@ -164,19 +124,11 @@ def get_broyeur(broyeur_id):
         result = results["results"]["bindings"][0]
         broyeur = {
             "id": result["equipementID"]["value"],
-<<<<<<< HEAD
-            "nomEquipement": result["nomEquipement"]["value"],
-            "etat": result["etat"]["value"],
-            "capacite": result["capacite"]["value"],
-            "localisation": result["localisation"]["value"],
-            "typeDechetBroye": result["typeDechetBroye"]["value"]
-=======
             "nomEquipement": result["nomequiement"]["value"],
             "etat": result["etat"]["value"],
             "capacite": result["capacite"]["value"],
             "localisation": result["localisation"]["value"],
             "typeDechetBroye": result["typeDechetBroyé"]["value"]
->>>>>>> doua
         }
         return jsonify(broyeur)
     
@@ -187,40 +139,6 @@ def get_broyeur(broyeur_id):
 def update_broyeur(broyeur_id):
     data = request.json
     
-<<<<<<< HEAD
-    query = f"""
-    {SPARQL_PREFIX}
-    DELETE {{
-        ?broyeur ex:nomequiement ?oldNom ;
-                ex:etat ?oldEtat ;
-                ex:capacite ?oldCapacite ;
-                ex:localisation ?oldLocalisation ;
-                ex:typeDechetBroyé ?oldType .
-    }}
-    INSERT {{
-        ?broyeur ex:nomequiement "{data.get('nomEquipement', '')}" ;
-                ex:etat "{data.get('etat', '')}" ;
-                ex:capacite "{data.get('capacite', 0)}"^^xsd:decimal ;
-                ex:localisation "{data.get('localisation', '')}" ;
-                ex:typeDechetBroyé "{data.get('typeDechetBroye', '')}" .
-    }}
-    WHERE {{
-        ?broyeur a ex:Broyeur ;
-                ex:equipementID "{broyeur_id}" ;
-                ex:nomequiement ?oldNom ;
-                ex:etat ?oldEtat ;
-                ex:capacite ?oldCapacite ;
-                ex:localisation ?oldLocalisation ;
-                ex:typeDechetBroyé ?oldType .
-    }}
-    """
-    
-    sparql = SPARQLWrapper(FUSEKI_UPDATE_URL)
-    sparql.setMethod(POST)
-    sparql.setQuery(query)
-    sparql.query()
-    
-=======
     sparql = SPARQLWrapper(FUSEKI_UPDATE_URL)
     sparql.setMethod(POST)
     
@@ -262,7 +180,6 @@ def update_broyeur(broyeur_id):
     g.add((broyeur_ref, EX.typeDechetBroyé, Literal(data.get('typeDechetBroye', ''), datatype=XSD.string)))
     g.serialize(destination=RDF_FILE, format="turtle")
     
->>>>>>> doua
     return jsonify({"message": "Broyeur mis à jour avec succès"})
 
 # Supprimer un broyeur
@@ -271,13 +188,7 @@ def delete_broyeur(broyeur_id):
     query = f"""
     {SPARQL_PREFIX}
     DELETE WHERE {{
-<<<<<<< HEAD
-        ?broyeur a ex:Broyeur ;
-                ex:equipementID "{broyeur_id}" ;
-                ?p ?o .
-=======
         ex:{broyeur_id} ?p ?o .
->>>>>>> doua
     }}
     """
     
@@ -286,13 +197,10 @@ def delete_broyeur(broyeur_id):
     sparql.setQuery(query)
     sparql.query()
     
-<<<<<<< HEAD
-=======
     # Supprimer localement du fichier dechet.ttl
     broyeur_ref = EX[broyeur_id]
     for triple in list(g.triples((broyeur_ref, None, None))):
         g.remove(triple)
     g.serialize(destination=RDF_FILE, format="turtle")
     
->>>>>>> doua
     return jsonify({"message": "Broyeur supprimé avec succès"})

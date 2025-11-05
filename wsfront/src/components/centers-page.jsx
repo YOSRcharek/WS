@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import {
   getCentres, addCentre, updateCentre, deleteCentre
 } from "../services/centreRecyclageService";
 import {
-  getPointsCollecte, addPointCollecte, updatePointCollecte, deletePointCollecte
+  getPointsCollecte, addPointCollecte, updatePointCollecte, deletePointCollecte, addPointCollecteNLP, filterPointsCollecte
 } from "../services/pointsCollecteService";
 
 export default function CentersPage() {
@@ -37,6 +36,14 @@ export default function CentersPage() {
   });
   const [editingPointId, setEditingPointId] = useState(null);
   const [showPointForm, setShowPointForm] = useState(false);
+
+  // Pour l'IA NLP
+  const [nlpPhrase, setNlpPhrase] = useState("");
+  const [showNlpForm, setShowNlpForm] = useState(false);
+
+  // Pour le filtrage des points
+  const [filteredPoints, setFilteredPoints] = useState([]);
+  const [showFilteredPoints, setShowFilteredPoints] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -144,6 +151,29 @@ export default function CentersPage() {
     }
   };
 
+  const handleNlpSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const result = await addPointCollecteNLP(nlpPhrase);
+      alert(result.message || "Point ajouté avec succès via IA !");
+      setNlpPhrase("");
+      setShowNlpForm(false);
+      fetchData();
+    } catch (err) {
+      alert("Erreur IA: " + err.message);
+    }
+  };
+
+  const handleFilterPoints = async () => {
+    try {
+      const result = await filterPointsCollecte();
+      setFilteredPoints(result.points_filtered || []);
+      setShowFilteredPoints(true);
+    } catch (err) {
+      alert("Erreur lors du filtrage: " + err.message);
+    }
+  };
+
 
   if (loading)
     return (
@@ -178,6 +208,18 @@ export default function CentersPage() {
           className="bg-teal-500 hover:bg-teal-600 text-white font-bold px-6 py-2 rounded-full transition"
         >
           {showPointForm ? "Fermer le formulaire" : "Ajouter un point de collecte"}
+        </button>
+        <button
+          onClick={() => setShowNlpForm(!showNlpForm)}
+          className="bg-purple-500 hover:bg-purple-600 text-white font-bold px-6 py-2 rounded-full transition"
+        >
+          {showNlpForm ? "Fermer IA" : "Ajouter via IA"}
+        </button>
+        <button
+          onClick={handleFilterPoints}
+          className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-6 py-2 rounded-full transition"
+        >
+          Filtrer Points
         </button>
       </div>
 
@@ -324,6 +366,33 @@ export default function CentersPage() {
         </div>
       )}
 
+      {/* Formulaire IA NLP */}
+      {showNlpForm && (
+        <div className="bg-white p-6 rounded-3xl shadow-2xl mb-8">
+          <h3 className="text-2xl font-bold mb-4">
+            Ajouter un point de collecte via IA
+          </h3>
+          <p className="text-gray-600 mb-4">
+            Exemple: "Ajoute un point de collecte mobile nommé Point ven11 à Tunis associé au centre Cpo"
+          </p>
+          <form onSubmit={handleNlpSubmit}>
+            <textarea
+              value={nlpPhrase}
+              onChange={(e) => setNlpPhrase(e.target.value)}
+              placeholder="Entrez une phrase pour créer un point de collecte..."
+              required
+              className="border p-2 rounded-lg w-full h-24 resize-none"
+            />
+            <button
+              type="submit"
+              className="bg-purple-500 hover:bg-purple-600 text-white font-bold px-6 py-2 rounded-full mt-4 transition"
+            >
+              Ajouter via IA
+            </button>
+          </form>
+        </div>
+      )}
+
       {/* Liste des centres */}
       <div className="grid lg:grid-cols-2 gap-10 mb-12">
         {recyclingCenters.map((center, idx) => (
@@ -403,118 +472,40 @@ export default function CentersPage() {
           ) : (
             <p className="text-gray-600">Aucun point de collecte trouvé.</p>
           )}
-=======
-import React from "react";
-
-const recyclingCenters = [
-  {
-    name: "Centre EcoVert Nord",
-    location: "Zone Industrielle Nord, Casablanca",
-    hours: "Lun-Sam: 8h-18h",
-    capacity: "500 tonnes/mois",
-  },
-  {
-    name: "Centre RecycloPlus",
-    location: "Avenue Hassan II, Rabat",
-    hours: "Lun-Ven: 9h-17h",
-    capacity: "350 tonnes/mois",
-  },
-  {
-    name: "Centre GreenTech Sud",
-    location: "Quartier Industriel, Marrakech",
-    hours: "Lun-Sam: 7h-19h",
-    capacity: "420 tonnes/mois",
-  },
-];
-
-const collectionPoints = [
-  {
-    name: "Point Quartier Maarif",
-    location: "Boulevard Zerktouni, Casablanca",
-    types: "Plastique, Verre, Papier",
-  },
-  {
-    name: "Point Centre Ville",
-    location: "Place Mohammed V, Rabat",
-    types: "Tous types de déchets",
-  },
-  {
-    name: "Point Résidentiel Agdal",
-    location: "Avenue des FAR, Rabat",
-    types: "Organique, Plastique, Métal",
-  },
-  {
-    name: "Point Médina",
-    location: "Bab Ftouh, Marrakech",
-    types: "Papier, Carton, Verre",
-  },
-];
-
-export default function CentersPage() {
-  return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
-      <h2 className="text-4xl font-bold text-gray-800 mb-12 text-center">
-        Centres de Recyclage & Points de Collecte
-      </h2>
-
-      <div className="grid lg:grid-cols-2 gap-8 mb-12">
-        <div className="bg-white rounded-3xl shadow-xl p-8">
-          <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <span className="text-4xl mr-3">🏭</span> Centres de Recyclage
-          </h3>
-          <div className="space-y-4">
-            {recyclingCenters.map((center, idx) => (
-              <div
-                key={idx}
-                className="border-l-4 border-emerald-500 pl-4 py-3 bg-emerald-50 rounded-r-xl"
-              >
-                <h4 className="font-bold text-gray-800">{center.name}</h4>
-                <p className="text-gray-600 text-sm mt-1">📍 {center.location}</p>
-                <p className="text-gray-600 text-sm">⏰ {center.hours}</p>
-                <p className="text-emerald-600 font-semibold text-sm mt-2">
-                  Capacité: {center.capacity}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="bg-white rounded-3xl shadow-xl p-8">
-          <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <span className="text-4xl mr-3">📍</span> Points de Collecte
-          </h3>
-          <div className="space-y-4">
-            {collectionPoints.map((point, idx) => (
-              <div
-                key={idx}
-                className="border-l-4 border-teal-500 pl-4 py-3 bg-teal-50 rounded-r-xl"
-              >
-                <h4 className="font-bold text-gray-800">{point.name}</h4>
-                <p className="text-gray-600 text-sm mt-1">📍 {point.location}</p>
-                <p className="text-teal-600 font-semibold text-sm mt-2">
-                  Types: {point.types}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
 
-      <div className="bg-gradient-to-br from-emerald-500 to-teal-500 rounded-3xl shadow-xl p-8 text-white">
-        <h3 className="text-2xl font-bold mb-4">Carte Interactive</h3>
-        <div className="bg-white rounded-xl h-96 flex items-center justify-center text-gray-400">
-          <div className="text-center">
-            <div className="text-6xl mb-4">🗺️</div>
-            <p className="text-gray-600 font-semibold">
-              Carte des centres et points de collecte
-            </p>
-            <p className="text-gray-500 text-sm mt-2">
-              Visualisation géographique interactive
-            </p>
+      {/* Points de collecte filtrés */}
+      {showFilteredPoints && (
+        <div className="bg-white rounded-3xl shadow-2xl p-8 mb-12">
+          <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+            <span className="text-4xl mr-3">🔍</span> Points de Collecte Filtrés (Capacité {'>'} 100)
+          </h3>
+          <div className="space-y-4">
+            {filteredPoints.length > 0 ? (
+              filteredPoints.map((point, idx) => (
+                <div
+                  key={point.point_uri || idx}
+                  className="border-l-4 border-orange-500 pl-4 py-4 bg-orange-50 rounded-r-2xl shadow-inner hover:shadow-md transition-shadow duration-300"
+                >
+                  <div>
+                    <h4 className="font-bold text-gray-800">{point.name}</h4>
+                    <p className="text-gray-600 text-sm mt-1">📍 {point.location}</p>
+                    <p className="text-orange-600 font-semibold text-sm mt-2">
+                      Centre: {point.centre_uri}
+                    </p>
+                    <p className="text-orange-600 font-semibold text-sm">
+                      Capacité du centre: {point.capacity} tonnes
+                    </p>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-600">Aucun point de collecte filtré trouvé.</p>
+            )}
           </div>
->>>>>>> doua
         </div>
-      </div>
+      )}
     </div>
   );
 }

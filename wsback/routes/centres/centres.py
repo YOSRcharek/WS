@@ -3,7 +3,7 @@ from SPARQLWrapper import SPARQLWrapper, POST, JSON
 from rdflib import Literal, URIRef
 from rdflib.namespace import RDF, XSD
 from config import g, EX, PREFIX, FUSEKI_UPDATE_URL, FUSEKI_QUERY_URL, RDF_FILE
-
+import requests
 centres_bp = Blueprint("centres_bp", __name__)
 
 # === URIs des classes RDF ===
@@ -16,7 +16,7 @@ CLASSES = {
 }
 
 # === CREATE ===
-@centres_bp.route("/centres", methods=["POST"])
+@centres_bp.route("", methods=["POST"])
 def add_centre():
     data = request.json
     centre_id = "C" + data.get("centerName", "").replace(" ", "_")
@@ -78,7 +78,7 @@ def add_centre():
     return jsonify({"message": f"✅ Centre '{centre_id}' ajouté avec succès."})
 
 # === READ ALL ===
-@centres_bp.route("/centres", methods=["GET"])
+@centres_bp.route("", methods=["GET"])
 def get_centres():
     query = PREFIX + """
     SELECT ?centre ?type ?centerName ?capacity_center ?energyConsumption
@@ -112,7 +112,7 @@ def get_centres():
     return jsonify({"count": len(centres), "results": centres})
 
 # === READ ONE ===
-@centres_bp.route("/centres/<centre_id>", methods=["GET"])
+@centres_bp.route("/<centre_id>", methods=["GET"])
 def get_centre(centre_id):
     centre_ref = EX[centre_id]
     query = PREFIX + f"SELECT ?p ?o WHERE {{ <{centre_ref}> ?p ?o . }}"
@@ -128,7 +128,7 @@ def get_centre(centre_id):
     return jsonify(data)
 
 # === UPDATE ===
-@centres_bp.route("/centres/<centre_id>", methods=["PUT"])
+@centres_bp.route("/<centre_id>", methods=["PUT"])
 def update_centre(centre_id):
     data = request.json
     centre_ref = EX[centre_id]
@@ -201,7 +201,7 @@ def update_centre(centre_id):
     return jsonify({"message": f"✅ Centre '{centre_id}' mis à jour avec succès."})
 
 # === DELETE ===
-@centres_bp.route("/centres/<centre_id>", methods=["DELETE"])
+@centres_bp.route("/<centre_id>", methods=["DELETE"])
 def delete_centre(centre_id):
     centre_ref = EX[centre_id]
     delete_query = PREFIX + f"DELETE WHERE {{ <{centre_ref}> ?p ?o . }}"
@@ -216,3 +216,76 @@ def delete_centre(centre_id):
     g.serialize(destination=RDF_FILE, format="turtle")
 
     return jsonify({"message": f"✅ Centre '{centre_id}' supprimé avec succès."})
+
+
+nlp_bp = Blueprint("nlp_bp", __name__)
+
+# === Configuration ===
+OPENROUTER_API_KEY = "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"
+OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
+
+
+@centres_bp.route("/filtrage_nlp", methods=["POST"])
+def filtrage_nlp():
+    data = request.get_json()
+    prompt = data.get("prompt", "").strip()
+
+    if not prompt:
+        return jsonify({"error": "Le prompt est vide"}), 400
+
+    # 🔧 Nouveau prompt système plus strict
+    system_prompt = (
+        "Tu es un assistant spécialisé en SPARQL. "
+        "Ton rôle est de convertir des phrases naturelles en requêtes SPARQL **valide et complète**. "
+        "Ne donne **aucune explication**, seulement la requête. "
+        "Utilise les préfixes suivants :\n"
+        "PREFIX ex: <http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#>\n"
+        "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n\n"
+        "Exemple :\n"
+        "Phrase : Montre les centres avec un taux de recyclage supérieur à 70%\n"
+        "Réponse :\n"
+        "SELECT ?centre ?taux WHERE { ?centre ex:recyclingRate ?taux . FILTER(xsd:float(?taux) > 70) }"
+    )
+
+    response = requests.post(
+        "https://openrouter.ai/api/v1/chat/completions",
+        headers={
+            "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+            "Content-Type": "application/json",
+        },
+        json={
+            "model": "mistralai/mistral-7b-instruct",
+            "messages": [
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": prompt}
+            ],
+            "temperature": 0.3
+        }
+    )
+
+    data = response.json()
+    sparql_query = data.get("choices", [{}])[0].get("message", {}).get("content", "").strip()
+
+    if not sparql_query or not sparql_query.lower().startswith("select"):
+        return jsonify({
+            "error": "La requête générée n'est pas valide",
+            "query": sparql_query
+        }), 400
+
+    # Exécution SPARQL
+    sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
+    sparql.setQuery(PREFIX + sparql_query)
+    sparql.setReturnFormat(JSON)
+
+    try:
+        results = sparql.query().convert()
+    except Exception as e:
+        return jsonify({
+            "error": f"Erreur SPARQL : {str(e)}",
+            "query": sparql_query
+        }), 500
+
+    return jsonify({
+        "query": sparql_query,
+        "results": results["results"]["bindings"]
+    })

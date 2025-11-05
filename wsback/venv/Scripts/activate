@@ -1,5 +1,9 @@
 # This file must be used with "source bin/activate" *from bash*
+<<<<<<< HEAD
 # You cannot run it directly
+=======
+# you cannot run it directly
+>>>>>>> doua
 
 deactivate () {
     # reset old environment variables
@@ -14,6 +18,7 @@ deactivate () {
         unset _OLD_VIRTUAL_PYTHONHOME
     fi
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     # Call hash to forget past locations. Without forgetting
     # past locations the $PATH changes we made may not be respected.
@@ -22,6 +27,10 @@ deactivate () {
     # Call hash to forget past commands. Without forgetting
     # past commands the $PATH changes we made may not be respected
 >>>>>>> Stashed changes
+=======
+    # Call hash to forget past commands. Without forgetting
+    # past commands the $PATH changes we made may not be respected
+>>>>>>> doua
     hash -r 2> /dev/null
 
     if [ -n "${_OLD_VIRTUAL_PS1:-}" ] ; then
@@ -41,6 +50,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
+<<<<<<< HEAD
 # on Windows, a path can contain colons and backslashes and has to be converted:
 <<<<<<< Updated upstream
 case "$(uname)" in
@@ -72,12 +82,19 @@ else
     # use the path as-is
     export VIRTUAL_ENV="C:\Users\Lenovo\Desktop\Esprit\5\WebSem\WS\wsback\venv"
 fi
+=======
+VIRTUAL_ENV="C:\Users\DOUAA\Desktop\web semantique1\WS\wsback\venv"
+export VIRTUAL_ENV
+>>>>>>> doua
 
 _OLD_VIRTUAL_PATH="$PATH"
 PATH="$VIRTUAL_ENV/Scripts:$PATH"
 export PATH
 
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> doua
 # unset PYTHONHOME if set
 # this will fail if PYTHONHOME is set to the empty string (which is bad anyway)
 # could use `if (set -u; : $PYTHONHOME) ;` in bash
@@ -88,15 +105,21 @@ fi
 
 if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
     _OLD_VIRTUAL_PS1="${PS1:-}"
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     PS1="("'(venv) '") ${PS1:-}"
     export PS1
 =======
+=======
+>>>>>>> doua
     PS1="(venv) ${PS1:-}"
     export PS1
     VIRTUAL_ENV_PROMPT="(venv) "
     export VIRTUAL_ENV_PROMPT
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> doua
 fi
 
 # Call hash to forget past commands. Without forgetting

@@ -54,6 +54,7 @@ ex:Affiche_Campagne_934 a ex:Affiche,
     ex:image "visuel_don_sang.jpg" ;
     ex:partOf ex:Campagne_934 .
 
+<<<<<<< HEAD
 ex:C1 a :citoyen ;
     ex:addresscit "cité sanebel, kef"^^xsd:string ;
     ex:age 40 ;
@@ -148,6 +149,43 @@ ex:C7 a ex:Citoyen ;
     ex:neaemcitoyen "test"^^xsd:string ;
     ex:phoneNumber "93377210"^^xsd:string ;
     ex:type "Resident"^^xsd:string .
+=======
+ex:BR1 a ex:Broyeur,
+        ex:Equipement ;
+    ex:capacite 100.0,
+        400.0,
+        500.0 ;
+    ex:equipementID "BR1" ;
+    ex:etat "disponible" ;
+    ex:localisation "aaaaaaaaaa" ;
+    ex:nomequiement "ff" .
+
+ex:BR5557 a ex:Broyeur,
+        ex:Equipement ;
+    ex:capacite 500.0 ;
+    ex:equipementID "BR80143" ;
+    ex:etat "disponible" ;
+    ex:localisation "aaaaaaaaaa" ;
+    ex:nomequiement "douaaa" .
+
+ex:BR8759 a ex:Broyeur,
+        ex:Equipement ;
+    ex:capacite 500.0 ;
+    ex:equipementID "BR93704"^^xsd:string ;
+    ex:etat "disponible"^^xsd:string ;
+    ex:localisation "aaaaaaaaaa"^^xsd:string ;
+    ex:nomequiement "douaaa"^^xsd:string ;
+    ex:typeDechetBroyé "ggggggggg"^^xsd:string .
+
+ex:BR98773 a ex:Broyeur,
+        ex:Equipement ;
+    ex:capacite 500.0 ;
+    ex:equipementID "BR98773"^^xsd:string ;
+    ex:etat "disponible"^^xsd:string ;
+    ex:localisation "aaaaaaaaaa"^^xsd:string ;
+    ex:nomequiement "dd"^^xsd:string ;
+    ex:typeDechetBroyé "ggggggggg"^^xsd:string .
+>>>>>>> doua
 
 ex:C756 a ex:collecte,
         owl:NamedIndividual ;
@@ -173,6 +211,7 @@ ex:C814 a :Collecte,
     ex:nombreBenevoles 18 ;
     ex:quantitecollecte 320.75 .
 
+<<<<<<< HEAD
 ex:C884 a ex:Citoyen ;
     ex:addresscit "tunis"^^xsd:string ;
     ex:age 30 ;
@@ -181,6 +220,155 @@ ex:C884 a ex:Citoyen ;
     ex:habiteDans ex:M874 ;
     ex:neaemcitoyen "Eya Chamekh"^^xsd:string ;
     ex:phoneNumber "93377210"^^xsd:string .
+=======
+ex:CB14552 a ex:CamionBenne,
+        ex:Equipement ;
+    ex:capacite 600.0 ;
+    ex:equipementID "CB14552" ;
+    ex:etat "disponible" ;
+    ex:localisation "jjjj" ;
+    ex:nomequiement "ff" .
+
+ex:CB32631 a ex:CamionBenne,
+        ex:Equipement ;
+    ex:capacite 600.0 ;
+    ex:equipementID "CB32631" ;
+    ex:etat "disponible" ;
+    ex:localisation "yyyy" ;
+    ex:nomequiement "ff" .
+
+ex:CB40006 a ex:CamionBenne,
+        ex:Equipement ;
+    ex:capacite 600.0 ;
+    ex:equipementID "CB40006" ;
+    ex:etat "en_maintenance" ;
+    ex:localisation "jjjj" ;
+    ex:nomequiement "aaa" .
+
+ex:CB50010 a ex:CamionBenne,
+        ex:Equipement ;
+    ex:capacite 600.0 ;
+    ex:equipementID "CB50010" ;
+    ex:etat "hors_service" ;
+    ex:localisation "jjjj" ;
+    ex:nomequiement "aaa" .
+
+ex:CB5210 a ex:CamionBenne,
+        ex:Equipement ;
+    ex:capacite 125.0 ;
+    ex:equipementID "CB5210"^^xsd:string ;
+    ex:etat "disponible"^^xsd:string ;
+    ex:localisation "okhjk"^^xsd:string ;
+    ex:nomequiement "qwwwwwww"^^xsd:string ;
+    ex:volumeBenne 600.0 .
+
+ex:CB58021 a ex:CamionBenne,
+        ex:Equipement ;
+    ex:capacite 500.0 ;
+    ex:equipementID "CB58021" ;
+    ex:etat "disponible" ;
+    ex:localisation "tttttt" ;
+    ex:nomequiement "ff" .
+
+ex:CB66906 a ex:CamionBenne,
+        ex:Equipement ;
+    ex:capacite 600.0 ;
+    ex:equipementID "CB66906" ;
+    ex:etat "hors_service" ;
+    ex:localisation "jjjj" ;
+    ex:nomequiement "ff" .
+
+ex:CB67757 a ex:CamionBenne,
+        ex:Equipement ;
+    ex:capacite 600.0 ;
+    ex:equipementID "CB67757" ;
+    ex:etat "disponible" ;
+    ex:localisation "ff" ;
+    ex:nomequiement "aaa" .
+
+ex:CB73702 a ex:CamionBenne,
+        ex:Equipement ;
+    ex:capacite 600.0 ;
+    ex:equipementID "CB73702" ;
+    ex:etat "en_maintenance" ;
+    ex:localisation "ff" ;
+    ex:nomequiement "aaa" .
+
+ex:CB85289 a ex:CamionBenne,
+        ex:Equipement ;
+    ex:capacite 600.0 ;
+    ex:equipementID "CB85289" ;
+    ex:etat "disponible" ;
+    ex:localisation "hhhhh" ;
+    ex:nomequiement "ff" .
+
+ex:CB87451 a ex:CamionBenne,
+        ex:Equipement ;
+    ex:capacite 600.0 ;
+    ex:equipementID "CB87451" ;
+    ex:etat "disponible" ;
+    ex:localisation "tttttt" ;
+    ex:nomequiement "ff" .
+
+ex:CD96106 a ex:camion_de_déchets ;
+    ex:capaciteMax 40.0 ;
+    ex:etattransport "actif"^^xsd:string ;
+    ex:servicetransportID "CD96106"^^xsd:string ;
+    ex:typeDechetTransporte "kkkk"^^xsd:string ;
+    ex:zoneCouverture "bbbb"^^xsd:string .
+
+ex:CN1 a ex:Conteneur,
+        ex:Equipement ;
+    ex:capacite 400.0 ;
+    ex:equipementID "CN1" ;
+    ex:etat "disponible" ;
+    ex:localisation "dddd" ;
+    ex:nomequiement "aaa" .
+
+ex:CN1777 a ex:Conteneur,
+        ex:Equipement ;
+    ex:capacite 600.0 ;
+    ex:equipementID "CN96379"^^xsd:string ;
+    ex:etat "disponible"^^xsd:string ;
+    ex:localisation "dddd"^^xsd:string ;
+    ex:nomequiement "bbb"^^xsd:string ;
+    ex:taille "20"^^xsd:string .
+
+ex:CN39168 a ex:Conteneur,
+        ex:Equipement ;
+    ex:capacite 600.0 ;
+    ex:equipementID "CN39168"^^xsd:string ;
+    ex:etat "disponible"^^xsd:string ;
+    ex:localisation "dddd"^^xsd:string ;
+    ex:nomequiement "bbbddd"^^xsd:string ;
+    ex:taille "20"^^xsd:string .
+
+ex:CN79362 a ex:Conteneur,
+        ex:Equipement ;
+    ex:capacite 600.0 ;
+    ex:equipementID "CN79362"^^xsd:string ;
+    ex:etat "disponible"^^xsd:string ;
+    ex:localisation "dddd"^^xsd:string ;
+    ex:nomequiement "bbba"^^xsd:string ;
+    ex:taille "20"^^xsd:string .
+
+ex:CN9877 a ex:Conteneur,
+        ex:Equipement ;
+    ex:capacite 600.0 ;
+    ex:equipementID "CN75934"^^xsd:string ;
+    ex:etat "disponible"^^xsd:string ;
+    ex:localisation "dddd"^^xsd:string ;
+    ex:nomequiement "bbbgggg"^^xsd:string ;
+    ex:taille "20"^^xsd:string .
+
+ex:CO9305 a ex:Equipement,
+        ex:compacteur ;
+    ex:capacite 600.0 ;
+    ex:equipementID "CO7875" ;
+    ex:etat "disponible" ;
+    ex:localisation "dddd" ;
+    ex:nomequiement "ff" .
+>>>>>>> doua
 
 ex:Collecte_EVT002 a ex:Collecte,
         owl:NamedIndividual ;
@@ -207,16 +395,23 @@ ex:Collecte_EVT0078 a ex:Collecte,
     ex:quantitecollecte 150.5 .
 
 ex:E1089 a :evenement ;
+<<<<<<< HEAD
     ex:dateDebut "2025-11-06"^^xsd:date,
         "2025-11-12"^^xsd:date ;
     ex:dateFin "2025-11-06"^^xsd:date,
         "2025-11-12"^^xsd:date ;
     ex:descriptionevent "un event relierrr from front",
         "yosrrr" ;
+=======
+    ex:dateDebut "2025-11-06"^^xsd:date ;
+    ex:dateFin "2025-11-06"^^xsd:date ;
+    ex:descriptionevent "yosrrr" ;
+>>>>>>> doua
     ex:evenementID "E1089"^^xsd:string ;
     ex:lieu "tunis" ;
     ex:nombreBenevoles 0 ;
     ex:nombreParticipants 14444 ;
+<<<<<<< HEAD
     ex:nomevent "un event relierrr from front",
         "yosrrr" ;
     ex:publicCible "" ;
@@ -234,11 +429,15 @@ ex:E1095 a :evenement ;
     ex:nombreBenevoles 0 ;
     ex:nombreParticipants 14444 ;
     ex:nomevent "hhhhhhhhh" ;
+=======
+    ex:nomevent "yosrrr" ;
+>>>>>>> doua
     ex:publicCible "" ;
     ex:quantitecollecte 0.0 ;
     ex:typeEvenement "collecte" ;
     ex:zoneCible "" .
 
+<<<<<<< HEAD
 ex:E1108 a :evenement ;
     ex:dateDebut "2025-11-06"^^xsd:date ;
     ex:dateFin "2025-11-06"^^xsd:date ;
@@ -384,6 +583,8 @@ ex:E1275 a :evenement ;
     ex:typeEvenement "formation" ;
     ex:zoneCible "Île-de-France" .
 
+=======
+>>>>>>> doua
 ex:E906 a :evenement,
         owl:NamedIndividual ;
     ex:dateDebut "2025-12-01"^^xsd:date ;
@@ -469,6 +670,7 @@ ex:EVT299889 a :evenement,
     ex:typeEvenement "Environnement" ;
     ex:zoneCible "Centre" .
 
+<<<<<<< HEAD
 ex:EVT310038 a :evenement ;
     ex:dateDebut "2025-11-10" ;
     ex:dateFin "2025-11-10" ;
@@ -482,6 +684,8 @@ ex:EVT310038 a :evenement ;
     ex:typeEvenement "Environnement" ;
     ex:zoneCible "Centre" .
 
+=======
+>>>>>>> doua
 ex:F760 a ex:formationPersonnel,
         owl:NamedIndividual ;
     ex:formationID "F760" ;
@@ -530,6 +734,7 @@ ex:Formation_EVT0078 ex:nombreParticipants 10 ;
     ex:publicCible "Etudiants" ;
     ex:zoneCible "Zone littorale" .
 
+<<<<<<< HEAD
 ex:M1159 a :Municipalite ;
     ex:adresse "test"^^xsd:string ;
     ex:codePostal "5465"^^xsd:string ;
@@ -653,6 +858,10 @@ ex:REQ398851 a ex:CitizenRequest ;
     ex:status "En attente"^^xsd:string .
 
 ex:Reseau_865 a :réseaux_sociaux ;
+=======
+ex:Reseau_865 a :réseaux_sociaux,
+        owl:NamedIndividual ;
+>>>>>>> doua
     ex:contenu "Story de promotion" ;
     ex:lien "https://instagram.com/marque" ;
     ex:nomPlateforme "Instagram" ;
@@ -693,6 +902,17 @@ ex:Reseau_Campagne_934 a ex:ReseauxSociaux,
     ex:nomPlateforme "Twitter" ;
     ex:partOf ex:Campagne_934 .
 
+<<<<<<< HEAD
+=======
+ex:TDD27443 a ex:TransportDechetsDangereux ;
+    ex:capaciteMax 145.0 ;
+    ex:etattransport "actif"^^xsd:string ;
+    ex:normesSecurite "hhhh"^^xsd:string ;
+    ex:servicetransportID "TDD27443"^^xsd:string ;
+    ex:typeDechetDangereux "hhh"^^xsd:string ;
+    ex:zoneCouverture "kkk"^^xsd:string .
+
+>>>>>>> doua
 ex:collecteID a owl:AnnotationProperty .
 
 ex:contenu a owl:AnnotationProperty .
@@ -1379,6 +1599,7 @@ xsd:date a rdfs:Datatype .
 
 ex:Dechet a owl:Class .
 
+<<<<<<< HEAD
 ex:E1073 a :evenement ;
     ex:dateDebut "2024-12-01"^^xsd:date ;
     ex:dateFin "2024-12-10"^^xsd:date ;
@@ -1427,6 +1648,8 @@ ex:E1149 a :evenement ;
     ex:typeEvenement "formation" ;
     ex:zoneCible "" .
 
+=======
+>>>>>>> doua
 ex:collecte a owl:Class .
 
 :AgriculturalWaste a owl:Class ;
@@ -1573,7 +1796,17 @@ ex:collecte a owl:Class .
     rdfs:range :service_de_transport ;
     rdfs:subPropertyOf :equipemeent .
 
+<<<<<<< HEAD
 ex:Campagne555 ex:hasEvent ex:E1133 .
+=======
+ex:Campagne1 a :campagne_de_sensibilisation,
+        owl:NamedIndividual ;
+    ex:descriptioncampa "Sensibilisation à la réduction du plastique" ;
+    ex:endDate "2025-11-15"^^xsd:date ;
+    ex:startDate "2025-11-01"^^xsd:date ;
+    ex:targetAudience "Écoles primaires" ;
+    ex:title "Stop au plastique" .
+>>>>>>> doua
 
 ex:Campagne_842 a :campagne_de_sensibilisation,
         owl:NamedIndividual ;
@@ -1676,6 +1909,7 @@ ex:EVT0078 a :evenement,
     ex:typeEvenement "Collecte" ;
     ex:zoneCible "Zone littorale" .
 
+<<<<<<< HEAD
 ex:M1111 a :Municipalite ;
     ex:adresse "kef"^^xsd:string ;
     ex:codePostal "7170"^^xsd:string ;
@@ -1699,6 +1933,8 @@ ex:M908 a :Municipalite ;
     ex:surface "14855.0"^^xsd:float ;
     ex:telephone "78325652"^^xsd:string .
 
+=======
+>>>>>>> doua
 :Collect a owl:Class .
 
 :HazardousWaste a owl:Class ;
@@ -1752,6 +1988,7 @@ ex:Collecte a owl:Class .
 
 ex:Affiche a owl:Class .
 
+<<<<<<< HEAD
 ex:M874 a :Municipalite ;
     ex:adresse "Avenue Habib Bourguiba"^^xsd:string ;
     ex:codePostal "1000"^^xsd:string ;
@@ -1763,6 +2000,8 @@ ex:M874 a :Municipalite ;
     ex:surface "212.63"^^xsd:float ;
     ex:telephone "+216 71 123 456"^^xsd:string .
 
+=======
+>>>>>>> doua
 ex:ReseauxSociaux a owl:Class .
 
 :affiche a owl:Class ;
@@ -1771,12 +2010,21 @@ ex:ReseauxSociaux a owl:Class .
 :dechetss a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
 
+<<<<<<< HEAD
 :resident a owl:Class ;
     rdfs:subClassOf :citoyen .
 
 :municcipalite a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
 
+=======
+:municcipalite a owl:ObjectProperty ;
+    rdfs:subPropertyOf owl:topObjectProperty .
+
+:resident a owl:Class ;
+    rdfs:subClassOf :citoyen .
+
+>>>>>>> doua
 :municipa a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
@@ -1786,6 +2034,7 @@ ex:ReseauxSociaux a owl:Class .
 :servicedetrransport a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
+<<<<<<< HEAD
 ex:Campagne1 a :campagne_de_sensibilisation,
         owl:NamedIndividual ;
     ex:descriptioncampa "Sensibilisation à la réduction du plastique" ;
@@ -1796,6 +2045,8 @@ ex:Campagne1 a :campagne_de_sensibilisation,
     ex:targetAudience "Écoles primaires" ;
     ex:title "Stop au plastique" .
 
+=======
+>>>>>>> doua
 :equipementts a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
@@ -1805,6 +2056,11 @@ ex:Campagne1 a :campagne_de_sensibilisation,
 :campagne a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
+<<<<<<< HEAD
+=======
+:citoyen a owl:Class .
+
+>>>>>>> doua
 :centrederecy a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
@@ -1823,8 +2079,11 @@ ex:Campagne1 a :campagne_de_sensibilisation,
 
 :Equipement a owl:Class .
 
+<<<<<<< HEAD
 :citoyen a owl:Class .
 
+=======
+>>>>>>> doua
 :Municipalité a owl:Class .
 
 :Point_de_collecte a owl:Class .

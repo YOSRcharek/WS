@@ -129,4 +129,53 @@ def delete_equipement(equipement_id):
     sparql.setQuery(query)
     sparql.query()
     
+<<<<<<< HEAD
     return jsonify({"message": "Équipement supprimé avec succès"})
+=======
+    return jsonify({"message": "Équipement supprimé avec succès"})
+
+# Assigner un équipement à un service de transport
+@equipement_bp.route('/equipements/<equipement_id>/assign/<service_id>', methods=['POST'])
+def assign_equipement_to_service(equipement_id, service_id):
+    query = f"""
+    {SPARQL_PREFIX}
+    INSERT DATA {{
+        ex:{equipement_id} ex:utilisepar ex:{service_id} .
+    }}
+    """
+    
+    sparql = SPARQLWrapper(FUSEKI_UPDATE_URL)
+    sparql.setMethod(POST)
+    sparql.setQuery(query)
+    sparql.query()
+    
+    return jsonify({"message": "Équipement assigné au service avec succès"})
+
+# Récupérer les équipements utilisés par un service
+@equipement_bp.route('/services/<service_id>/equipements', methods=['GET'])
+def get_equipements_by_service(service_id):
+    query = f"""
+    {SPARQL_PREFIX}
+    SELECT ?equipement ?nomequiement ?etat
+    WHERE {{
+        ?equipement :utilisepar ex:{service_id} ;
+                   :nomequiement ?nomequiement ;
+                   :etat ?etat .
+    }}
+    """
+    
+    sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
+    sparql.setQuery(query)
+    sparql.setReturnFormat(JSON)
+    results = sparql.query().convert()
+    
+    equipements = []
+    for result in results["results"]["bindings"]:
+        equipements.append({
+            "id": result["equipement"]["value"].split("#")[-1],
+            "nom": result["nomequiement"]["value"],
+            "etat": result["etat"]["value"]
+        })
+    
+    return jsonify(equipements)
+>>>>>>> doua

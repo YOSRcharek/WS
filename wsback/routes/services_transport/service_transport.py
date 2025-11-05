@@ -21,6 +21,7 @@ def create_service_transport():
     query = f"""
     {SPARQL_PREFIX}
     INSERT DATA {{
+<<<<<<< HEAD
         ex:{service_id} a ex:ServiceTransport ;
             ex:serviceID "{service_id}" ;
             ex:nomService "{data.get('nomService', '')}" ;
@@ -28,6 +29,13 @@ def create_service_transport():
             ex:zoneCouverture "{data.get('zoneCouverture', '')}" ;
             ex:capaciteMax "{data.get('capaciteMax', 0)}"^^xsd:decimal ;
             ex:estActif "{data.get('estActif', 'true')}"^^xsd:boolean .
+=======
+        ex:{service_id} a :service_de_transport ;
+            :servicetransportID "{service_id}" ;
+            :etattransport "{data.get('etat', 'Actif')}" ;
+            :capaciteMax "{data.get('capaciteMax', 0)}"^^xsd:decimal ;
+            :zoneCouverture "{data.get('zoneCouverture', '')}" .
+>>>>>>> doua
     }}
     """
     
@@ -43,6 +51,7 @@ def create_service_transport():
 def get_services_transport():
     query = f"""
     {SPARQL_PREFIX}
+<<<<<<< HEAD
     SELECT ?service ?serviceID ?nomService ?typeService ?zoneCouverture ?capaciteMax ?estActif
     WHERE {{
         ?service a ex:ServiceTransport ;
@@ -52,6 +61,15 @@ def get_services_transport():
                 ex:zoneCouverture ?zoneCouverture ;
                 ex:capaciteMax ?capaciteMax ;
                 ex:estActif ?estActif .
+=======
+    SELECT ?service ?serviceID ?etat ?zoneCouverture ?capaciteMax
+    WHERE {{
+        ?service a :service_de_transport ;
+                :servicetransportID ?serviceID ;
+                :etattransport ?etat ;
+                :zoneCouverture ?zoneCouverture ;
+                :capaciteMax ?capaciteMax .
+>>>>>>> doua
     }}
     """
     
@@ -64,11 +82,18 @@ def get_services_transport():
     for result in results["results"]["bindings"]:
         services.append({
             "id": result["serviceID"]["value"],
+<<<<<<< HEAD
             "nomService": result["nomService"]["value"],
             "typeService": result["typeService"]["value"],
             "zoneCouverture": result["zoneCouverture"]["value"],
             "capaciteMax": result["capaciteMax"]["value"],
             "estActif": result["estActif"]["value"]
+=======
+            "nomService": result["serviceID"]["value"],
+            "etat": result["etat"]["value"],
+            "zoneCouverture": result["zoneCouverture"]["value"],
+            "capaciteMax": result["capaciteMax"]["value"]
+>>>>>>> doua
         })
     
     return jsonify(services)
@@ -129,4 +154,34 @@ def delete_service_transport(service_id):
     sparql.setQuery(query)
     sparql.query()
     
+<<<<<<< HEAD
     return jsonify({"message": "Service de transport supprimé avec succès"})
+=======
+    return jsonify({"message": "Service de transport supprimé avec succès"})
+# Récupérer les services utilisant un équipement
+@service_transport_bp.route('/equipements/<equipement_id>/services', methods=['GET'])
+def get_services_by_equipement(equipement_id):
+    query = f"""
+    {SPARQL_PREFIX}
+    SELECT ?service ?servicetransportID ?etattransport
+    WHERE {{
+        ex:{equipement_id} :utilisepar ?service .
+        ?service :servicetransportID ?servicetransportID ;
+                :etattransport ?etattransport .
+    }}
+    """
+    
+    sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
+    sparql.setQuery(query)
+    sparql.setReturnFormat(JSON)
+    results = sparql.query().convert()
+    
+    services = []
+    for result in results["results"]["bindings"]:
+        services.append({
+            "id": result["servicetransportID"]["value"],
+            "etat": result["etattransport"]["value"]
+        })
+    
+    return jsonify(services)
+>>>>>>> doua

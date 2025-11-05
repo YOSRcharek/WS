@@ -170,6 +170,7 @@
             animation: pulse 2s infinite;
         }
         
+<<<<<<< HEAD
     .popup {
   position: fixed;
   top: 0;
@@ -203,3 +204,6 @@
 .popbutton:hover {
   background-color: #45a049;
 }
+=======
+    
+>>>>>>> doua

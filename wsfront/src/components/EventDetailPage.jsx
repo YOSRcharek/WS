@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+<<<<<<< HEAD
 import { getEvenement,getCampagneByEvenement,getParticipantsByEvenement, getAllCitoyens, associerCitoyenAEvenement } from "../services/eventService";
 
+=======
+import { getEvenement } from "../services/eventService";
+>>>>>>> doua
 
 export default function EventDetailPage() {
   const { id } = useParams(); // ✅ récupère /event/:id
   const [config, setConfig] = useState(null);
+<<<<<<< HEAD
   const [campagne, setCampagne] = useState(null);
  const [participants, setParticipants] = useState([]);
   const [citoyens, setCitoyens] = useState([]);
@@ -67,6 +72,9 @@ useEffect(() => {
       }
     }
   };
+=======
+
+>>>>>>> doua
   useEffect(() => {
     const fetchEvent = async () => {
       const data = await getEvenement(id);
@@ -99,6 +107,7 @@ useEffect(() => {
   }, [id]);
 
   // Effet pour appliquer les styles dynamiques
+<<<<<<< HEAD
 useEffect(() => {
     const fetchCampagneName = async () => {
       try {
@@ -116,12 +125,37 @@ useEffect(() => {
 
     fetchCampagneName();
   }, [id]);
+=======
+  useEffect(() => {
+    if (!config) return;
+
+    document.body.style.background = `linear-gradient(to bottom right, ${config.background_color}, ${config.accent_color}20)`;
+    const headers = document.querySelectorAll("h1, h2, h3");
+    headers.forEach((h) => (h.style.color = config.text_color));
+
+    const statCards = document.querySelectorAll(".stat-card .text-emerald-600");
+    statCards.forEach((card) => (card.style.color = config.primary_color));
+
+    const ctaButton = document.getElementById("cta-button");
+    if (ctaButton) {
+      ctaButton.style.background = `linear-gradient(135deg, ${config.button_color} 0%, ${config.primary_color} 100%)`;
+    }
+
+    const gradientHeader = document.querySelector(".gradient-green");
+    if (gradientHeader) {
+      gradientHeader.style.background = `linear-gradient(135deg, ${config.button_color} 0%, ${config.primary_color} 50%, ${config.accent_color} 100%)`;
+    }
+  }, [config]);
+>>>>>>> doua
 
   if (!config) {
     return <div className="text-center py-10 text-gray-600">Chargement des détails...</div>;
   }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> doua
   return (
     <main>
       <header className="relative h-96 gradient-green overflow-hidden">
@@ -233,14 +267,22 @@ useEffect(() => {
               <div className="badge bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold inline-block mb-4">Places limitées</div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Participez !</h3>
               <p className="text-gray-600 mb-6">Inscrivez-vous dès maintenant et faites partie du changement.</p>
+<<<<<<< HEAD
               <button id="cta-button" className="btn-primary w-full text-white font-bold py-4 px-6 rounded-xl text-lg" onClick={handleOpenPopup} >Associer un citoyen</button>
             </div>
 
                       <div className="bg-white rounded-2xl shadow-lg p-6">
+=======
+              <button id="cta-button" className="btn-primary w-full text-white font-bold py-4 px-6 rounded-xl text-lg">S'inscrire maintenant</button>
+            </div>
+
+            <div className="bg-white rounded-2xl shadow-lg p-6">
+>>>>>>> doua
               <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center"><span className="text-2xl mr-2">👥</span> Organisation</h3>
               <div className="space-y-4">
                 <div className="bg-gray-50 p-4 rounded-xl">
                   <div className="text-sm text-gray-500 mb-1">Organisateur</div>
+<<<<<<< HEAD
                   <div id="organisateur" className="font-semibold text-gray-800">{campagne}</div> {/* Nom de la campagne */}
                 </div>
                
@@ -265,6 +307,26 @@ useEffect(() => {
   </div>
 </div>
 
+=======
+                  <div id="organisateur" className="font-semibold text-gray-800">{config.organisateur}</div>
+                </div>
+                <div className="bg-gray-50 p-4 rounded-xl">
+                  <div className="text-sm text-gray-500 mb-1">Campagne associée</div>
+                  <div id="campagne-associee" className="font-semibold text-gray-800">{config.campagne_associee}</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-2xl shadow-lg p-6">
+              <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center"><span className="text-2xl mr-2">ℹ️</span> Informations pratiques</h3>
+              <div className="space-y-3 text-gray-600">
+                <div className="flex items-center gap-3"><span className="text-xl">🎫</span> Gratuit</div>
+                <div className="flex items-center gap-3"><span className="text-xl">👕</span> Tenue décontractée</div>
+                <div className="flex items-center gap-3"><span className="text-xl">🌤️</span> En extérieur</div>
+                <div className="flex items-center gap-3"><span className="text-xl">♿</span> Accessible PMR</div>
+              </div>
+            </div>
+>>>>>>> doua
 
             <div className="bg-white rounded-2xl shadow-lg p-6">
               <h3 className="text-xl font-bold text-gray-800 mb-4">Partagez l'événement</h3>
@@ -277,6 +339,7 @@ useEffect(() => {
           </div>
         </div>
       </div>
+<<<<<<< HEAD
      {isPopupOpen && (
   <div className="popup">
     <div className="popup-content">
@@ -305,6 +368,8 @@ useEffect(() => {
   </div>
 )}
 
+=======
+>>>>>>> doua
     </main>
   );
 }

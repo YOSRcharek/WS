@@ -98,6 +98,7 @@ export const deleteCampagne = async (campagneId) => {
     return null;
   }
 };
+<<<<<<< HEAD
 
 export const associateEventToCampagne = async (campagneId, evenementId) => {
   try {
@@ -111,3 +112,5 @@ export const associateEventToCampagne = async (campagneId, evenementId) => {
     return null;
   }
 };
+=======
+>>>>>>> doua

@@ -189,6 +189,7 @@ def generate_and_execute_sparql():
             return jsonify({"status": "success", "results": simplified})
 
         # === INSERT ===
+<<<<<<< HEAD
         # === INSERT ===
         elif query_type == "insert":
             # ✅ Génération d’un ID unique cohérent
@@ -201,12 +202,24 @@ def generate_and_execute_sparql():
                 "dateDebut": re.search(r"début(?:e)?\s+le\s+([\d\-]+)", prompt_text),
                 "dateFin": re.search(r"fin(?:it)?\s+le\s+([\d\-]+)", prompt_text),
                 "lieu": re.search(r"(?:au|à)\s+'([^']+)'", prompt_text),
+=======
+        elif query_type == "insert":
+            new_event_id = "EVT" + str(uuid.uuid4().int)[:6]
+            evt_ref = EX[new_event_id]
+
+            event_data = {
+                "nomevent": re.search(r"nommé\s+'([^']+)'", prompt_text),
+                "dateDebut": re.search(r"début le\s+([\d\-]+)", prompt_text),
+                "dateFin": re.search(r"fin le\s+([\d\-]+)", prompt_text),
+                "lieu": re.search(r"lieu\s+'([^']+)'", prompt_text),
+>>>>>>> doua
                 "descriptionevent": re.search(r"description\s+'([^']+)'", prompt_text),
                 "typeEvenement": re.search(r"type\s+'([^']+)'", prompt_text),
                 "nombreBenevoles": re.search(r"(\d+)\s+bénévoles", prompt_text),
                 "quantitecollecte": re.search(r"(\d+)\s+kg", prompt_text),
                 "nombreParticipants": re.search(r"(\d+)\s+participants", prompt_text),
                 "publicCible": re.search(r"public cible\s+'([^']+)'", prompt_text),
+<<<<<<< HEAD
                 "zoneCible": re.search(r"zone cible\s+'([^']+)'", prompt_text),
                 "campaign": re.search(r"campagne\s+(E?\w+)", prompt_text),  # 🔹 détecter la campagne mentionnée
             }
@@ -238,11 +251,27 @@ def generate_and_execute_sparql():
             sparql_insert = PREFIX + "\nINSERT DATA {\n    " + triples_str + "\n}"
 
             # --- Exécution SPARQL ---
+=======
+                "zoneCible": re.search(r"zone cible\s+'([^']+)'", prompt_text)
+            }
+
+            triples = [f"{evt_ref.n3()} a <{EVENEMENT_CLASS_URI}> ."]
+            for field, match in event_data.items():
+                if match:
+                    value = match.group(1)
+                    if field in ["nombreBenevoles", "quantitecollecte", "nombreParticipants"]:
+                        triples.append(f'{evt_ref.n3()} ex:{field} "{value}"^^xsd:integer .')
+                    else:
+                        triples.append(f'{evt_ref.n3()} ex:{field} "{value}" .')
+
+            sparql_insert = PREFIX + "\nINSERT DATA {\n" + "\n".join(triples) + "\n}"
+>>>>>>> doua
             sparql_wrapper = SPARQLWrapper(FUSEKI_UPDATE_URL)
             sparql_wrapper.setMethod(POST)
             sparql_wrapper.setQuery(sparql_insert)
             sparql_wrapper.query()
 
+<<<<<<< HEAD
             # --- Sauvegarde RDF locale ---
             g.add((evt_ref, RDF.type, EVENEMENT_CLASS_URI))
             g.add((evt_ref, EX.evenementID, Literal(new_event_id, datatype=XSD.string)))
@@ -261,10 +290,22 @@ def generate_and_execute_sparql():
                 g.add((evt_ref, EX.planned, camp_ref))
                 print(f"🔗 Événement {new_event_id} lié à la campagne {campaign_id}")
 
+=======
+            # Sauvegarde RDF locale
+            g.add((evt_ref, RDF.type, EVENEMENT_CLASS_URI))
+            for field, match in event_data.items():
+                if match:
+                    value = match.group(1)
+                    if field in ["nombreBenevoles", "quantitecollecte", "nombreParticipants"]:
+                        g.add((evt_ref, EX[field], Literal(int(value), datatype=XSD.integer)))
+                    else:
+                        g.add((evt_ref, EX[field], Literal(value)))
+>>>>>>> doua
             g.serialize(destination=RDF_FILE, format="turtle")
 
             result_item = {f: m.group(1) for f, m in event_data.items() if m}
             result_item["evenement"] = new_event_id
+<<<<<<< HEAD
             if campaign_id:
                 result_item["campaign"] = campaign_id
 
@@ -274,6 +315,9 @@ def generate_and_execute_sparql():
                 "results": [result_item],
                 "sparql": sparql_insert
             }), 200
+=======
+            return jsonify({"status": "success", "results": [result_item]}), 200
+>>>>>>> doua
 
        # === DELETE ===
         elif query_type == "delete":

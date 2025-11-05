@@ -8,7 +8,11 @@ import WasteListPage from "./components/waste-list-page";
 import WasteTypesPage from "./components/waste-types-page";
 import CentersPage from "./components/centers-page";
 import UsersPage from "./components/users-page";
-import EquipmentPage from "./components/equipment-page";
+import EquipmentPage from "./components/equipment/EquipmentPage";
+import BroyeursPage from "./components/equipment/BroyeursPage";
+import CamionsBennePage from "./components/equipment/CamionsBennePage";
+import CompacteursPage from "./components/equipment/CompacteursPage";
+import ConteneursPage from "./components/equipment/ConteneursPage";
 import AddEventPage from "./components/add-event-page";
 import AddCampaignPage from "./components/add-campaign-page";
 import EventsPage from "./components/events-page";
@@ -21,6 +25,10 @@ import EditEventPage from "./components/edit-event-page";
 import EditCampaignPage from "./components/edit-campaign-page";
 import CitizenMatchingAI from "./components/citizen-matching-ai";
 import CitizenRequests from "./components/citizen-requests";
+import TransportListPage from "./components/transport/TransportListPage";
+import TransportServiceListPage from "./components/transport/TransportServiceListPage";
+import TransportDangereuxPage from "./components/transport/TransportDangereuxPage";
+import CamionsDechetsPage from "./components/transport/CamionsDechetsPage";
 
 export default function AppRoutes() {
   return (
@@ -32,6 +40,10 @@ export default function AppRoutes() {
       <Route path="/centers" element={<CentersPage />} />
       <Route path="/users" element={<UsersPage />} />
       <Route path="/equipment" element={<EquipmentPage />} />
+      <Route path="/equipment/broyeurs" element={<BroyeursPage />} />
+      <Route path="/equipment/camions-benne" element={<CamionsBennePage />} />
+      <Route path="/equipment/compacteurs" element={<CompacteursPage />} />
+      <Route path="/equipment/conteneurs" element={<ConteneursPage />} />
       <Route path="/add-event" element={<AddEventPage />} />
       <Route path="/edit-event/:id" element={<EditEventPage />} />
       <Route path="/add-campaign" element={<AddCampaignPage />} />
@@ -44,6 +56,11 @@ export default function AppRoutes() {
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/ai-matching" element={<CitizenMatchingAI />} />
       <Route path="/citizen-requests" element={<CitizenRequests />} />
+      <Route path="/transport" element={<TransportListPage />} />
+      <Route path="/transport/dangereux" element={<TransportDangereuxPage />} />
+      <Route path="/transport/camions" element={<CamionsDechetsPage />} />
+      <Route path="/transport/dangereux" element={<TransportDangereuxPage />} />
+      <Route path="/transport/camions" element={<CamionsDechetsPage />} />
     </Routes>
   );
 }

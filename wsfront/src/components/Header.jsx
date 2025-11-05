@@ -16,6 +16,7 @@ export default function Header() {
     { id: "dashboard", label: "Dashboard", path: "/dashboard" },
     { id: "ai-matching", label: "IA Matching", path: "/ai-matching" },
     { id: "citizen-requests", label: "Demandes Citoyennes", path: "/citizen-requests" },
+    { id: "transport", label: "Services Transport", path: "/transport" },
     { id: "add-event", label: "Créer Événement", path: "/add-event" },
     { id: "add-campaign", label: "Créer Campagne", path: "/add-campaign" },
   ];
@@ -35,7 +36,11 @@ export default function Header() {
 
           {/* Liens desktop */}
           <div className="hidden md:flex space-x-8">
+<<<<<<< HEAD
             {pages.slice(0, 7).map((page) => {
+=======
+            {pages.slice(0, 8).map((page) => {
+>>>>>>> doua
               const isActive = location.pathname === page.path;
               return (
                 <button

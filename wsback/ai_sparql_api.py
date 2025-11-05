@@ -218,7 +218,21 @@ def process_natural_language():
         # Exécuter la requête SPARQL
         success, result = execute_sparql_query(query, is_update)
         
-        # Pas besoin d'ajouter dans l'API Flask car elle lit déjà depuis Fuseki
+        # Sauvegarder dans dechet.ttl si c'est une mise à jour réussie
+        if success and is_update:
+            try:
+                import os
+                RDF_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "dechet.ttl")
+                query_all = "CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }"
+                sparql_get = SPARQLWrapper(FUSEKI_QUERY_URL)
+                sparql_get.setQuery(query_all)
+                sparql_get.setReturnFormat('turtle')
+                ttl_data = sparql_get.query().convert()
+                with open(RDF_FILE, 'wb') as f:
+                    f.write(ttl_data)
+                print(f"✅ Fichier {RDF_FILE} sauvegardé")
+            except Exception as e:
+                print(f"❌ Erreur sauvegarde: {e}")
         
         if success:
             response = {

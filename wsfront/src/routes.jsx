@@ -29,14 +29,18 @@ import TransportListPage from "./components/transport/TransportListPage";
 import TransportServiceListPage from "./components/transport/TransportServiceListPage";
 import TransportDangereuxPage from "./components/transport/TransportDangereuxPage";
 import CamionsDechetsPage from "./components/transport/CamionsDechetsPage";
+import Editdechet from "./components/edit-waste";
+import AIpage from "./components/aipage";
 
+import MetalType from "./components/typedechetmetal";
+import ElectronicType from "./components/typedechetelectronic";
+import ADDMetalType from "./components/add-metalwaste";
+import ADDelectronicType from "./components/add-electronicwaste";
+import Editelectronic from "./components/edit-electronicwaste";
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/add-waste" element={<AddWastePage />} />
-      <Route path="/waste-list" element={<WasteListPage />} />
-      <Route path="/waste-types" element={<WasteTypesPage />} />
       <Route path="/centers" element={<CentersPage />} />
       <Route path="/users" element={<UsersPage />} />
       <Route path="/equipment" element={<EquipmentPage />} />
@@ -61,6 +65,17 @@ export default function AppRoutes() {
       <Route path="/transport/camions" element={<CamionsDechetsPage />} />
       <Route path="/transport/dangereux" element={<TransportDangereuxPage />} />
       <Route path="/transport/camions" element={<CamionsDechetsPage />} />
+        
+       <Route path="/aipage" element={<AIpage />} />
+      <Route path="/add-waste" element={<AddWastePage />} />
+      <Route path="/edit-waste/:id" element={<Editdechet />} />
+      <Route path="/waste-list" element={<WasteListPage />} />
+      <Route path="/add-metalwaste" element={<ADDMetalType />} />
+      <Route path="/add-electronicwaste" element={<ADDelectronicType />} />
+      <Route path="/waste-types" element={<WasteTypesPage />} />
+      <Route path="/waste-metal" element={<MetalType />} />
+      <Route path="/waste-electronic" element={<ElectronicType />} />
+      <Route path="/edit-electronictype/:id" element={<Editelectronic />} />
     </Routes>
   );
 }

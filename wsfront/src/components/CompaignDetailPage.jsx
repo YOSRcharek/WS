@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-<<<<<<< HEAD
 import { getCampagneById , getEvenementsByCampagne } from "../services/campagneService";
 import {useNavigate } from "react-router-dom";
-=======
-import { getCampagneById } from "../services/campagneService";
->>>>>>> doua
 
 const defaultConfig = {
   title: "Campagne Océans Propres",
@@ -28,7 +24,6 @@ const defaultConfig = {
 export default function CampaignDetailPage() {
   const { id } = useParams(); // Récupère l’ID depuis /campaign/:id
   const [campaign, setCampaign] = useState(null);
-<<<<<<< HEAD
   const [events, setEvents] = useState(null);
   const navigate = useNavigate(); // Hook pour naviguer
 
@@ -81,49 +76,13 @@ export default function CampaignDetailPage() {
     if (id) {
       fetchEvents();
     }
-=======
-
-  useEffect(() => {
-    const fetchCampagne = async () => {
-      try {
-        const data = await getCampagneById(id);
-        if (data) {
-          setCampaign({
-            title: data.title || defaultConfig.title,
-            start_date: data.startDate || defaultConfig.start_date,
-            end_date: data.endDate || defaultConfig.end_date,
-            nom_plateforme: data.nom_plateforme || defaultConfig.nom_plateforme,
-            description_campa: data.descriptioncampa || defaultConfig.description_campa,
-            contenu: data.contenu || defaultConfig.contenu,
-            target_audience: data.targetAudience || defaultConfig.target_audience,
-            lien: data.lien || defaultConfig.lien,
-            primary_color: data.primary_color || defaultConfig.primary_color,
-            background_color: data.background_color || defaultConfig.background_color,
-            text_color: data.text_color || defaultConfig.text_color,
-            button_color: data.button_color || defaultConfig.button_color,
-            accent_color: data.accent_color || defaultConfig.accent_color,
-          });
-        } else {
-          setCampaign(defaultConfig);
-        }
-      } catch (err) {
-        console.error("Erreur lors du chargement de la campagne:", err);
-        setCampaign(defaultConfig);
-      }
-    };
-
-    fetchCampagne();
->>>>>>> doua
   }, [id]);
 
   if (!campaign) {
     return <div className="text-center py-10 text-gray-600">Chargement de la campagne...</div>;
   }
-<<<<<<< HEAD
    console.log( campaign.id)
 
-=======
->>>>>>> doua
 
   return (
     <main>
@@ -186,7 +145,6 @@ export default function CampaignDetailPage() {
                 <GoalCard icon="🤝" title="Communauté" desc="Créer un réseau d'ambassadeurs" bg="orange" />
               </div>
             </Section>
-<<<<<<< HEAD
 
               <Section title="Événements de la campagne" icon="📝">
               <div>
@@ -209,13 +167,10 @@ export default function CampaignDetailPage() {
               </div>
             </Section>
 
-=======
->>>>>>> doua
           </div>
 
           {/* Sidebar */}
           <div className="space-y-6">
-<<<<<<< HEAD
             <div className="bg-white rounded-2xl shadow-lg p-6 fade-in">
               <div className="badge bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold inline-block mb-4">
                 Campagne active
@@ -237,9 +192,6 @@ export default function CampaignDetailPage() {
 
             </div>
            
-=======
-            <CTAButton link={campaign.lien} primaryColor={campaign.primary_color} buttonColor={campaign.button_color} />
->>>>>>> doua
             <PlatformCard plateforme={campaign.nom_plateforme} />
             <TimelineCard start={campaign.start_date} end={campaign.end_date} />
             <ShareCard />
@@ -278,11 +230,7 @@ const GoalCard = ({ icon, title, desc, bg }) => (
   </div>
 );
 
-<<<<<<< HEAD
 const CTAButton = ({ link, primaryColor, buttonColor, campaign, onClick }) => (
-=======
-const CTAButton = ({ link, primaryColor, buttonColor }) => (
->>>>>>> doua
   <div className="bg-white rounded-2xl shadow-lg p-6 fade-in">
     <div className="badge bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-semibold inline-block mb-4">
       Campagne active
@@ -292,33 +240,21 @@ const CTAButton = ({ link, primaryColor, buttonColor }) => (
       Participez à cette campagne et faites la différence.
     </p>
     <a
-<<<<<<< HEAD
       href="#"
       onClick={onClick} // Ajout de onClick ici
     
-=======
-      href={link}
-      target="_blank"
->>>>>>> doua
       rel="noopener noreferrer"
       className="w-full block text-white font-bold py-4 px-6 rounded-xl text-lg mb-4 text-center"
       style={{
         background: `linear-gradient(135deg, ${buttonColor} 0%, ${primaryColor} 100%)`,
       }}
     >
-<<<<<<< HEAD
       Ajouter un événement
-=======
-      Participer maintenant
->>>>>>> doua
     </a>
   </div>
 );
 
-<<<<<<< HEAD
 
-=======
->>>>>>> doua
 const PlatformCard = ({ plateforme }) => (
   <div className="bg-white rounded-2xl shadow-lg p-6">
     <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">

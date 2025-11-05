@@ -86,9 +86,6 @@ def normalize_predicates(sparql_query: str) -> str:
 def generate_and_execute_sparql():
     data = request.json
     prompt_text = data.get("prompt", "")
-    print(f"\n{'='*60}")
-    print(f"REQUETE IA REÇUE: {prompt_text}")
-    print(f"{'='*60}\n")
 
     # --- Génération SPARQL via IA ---
     url = "https://openrouter.ai/api/v1/chat/completions"
@@ -192,168 +189,68 @@ def generate_and_execute_sparql():
             return jsonify({"status": "success", "results": simplified})
 
         # === INSERT ===
-<<<<<<< HEAD
         # === INSERT ===
+        # === INSERT ===
+# === INSERT ===
+# === INSERT ===
         elif query_type == "insert":
-            # ✅ Génération d’un ID unique cohérent
+            # ✅ Génération d’un ID unique
             new_event_id = "E" + str(len(g) + 1)
             evt_ref = EX[new_event_id]
 
-            # 🧩 Extraction des champs depuis le prompt
+            # --- Extraction depuis prompt ou JSON ---
             event_data = {
-                "nomevent": re.search(r"nomm[ée]\s+'([^']+)'", prompt_text),
-                "dateDebut": re.search(r"début(?:e)?\s+le\s+([\d\-]+)", prompt_text),
-                "dateFin": re.search(r"fin(?:it)?\s+le\s+([\d\-]+)", prompt_text),
-                "lieu": re.search(r"(?:au|à)\s+'([^']+)'", prompt_text),
-=======
-        elif query_type == "insert":
-            print(f"\n>>> INSERT détecté. Prompt: {prompt_text}")
-            # Détecter si c'est un camion benne
-            if "camion" in prompt_text.lower() and "benne" in prompt_text.lower():
-                print(">>> CAMION BENNE détecté!")
-                import time
-                camion_id = f"CB{int(time.time() * 1000) % 100000}"
-                
-                # Extraire les données du prompt
-                nom = re.search(r"nom\s+(\w+)", prompt_text, re.IGNORECASE)
-                capacite = re.search(r"capacit[ée]\s+(?:de\s+)?(\d+(?:\.\d+)?)", prompt_text, re.IGNORECASE)
-                volume = re.search(r"volume\s+(?:de\s+benne\s+)?(?:de\s+)?(\d+(?:\.\d+)?)", prompt_text, re.IGNORECASE)
-                etat = re.search(r"[ée]tat\s+(\w+)", prompt_text, re.IGNORECASE)
-                localisation = re.search(r"localisation\s+(\w+)", prompt_text, re.IGNORECASE)
-                service = re.search(r"service\s+(?:assign[ée]\s+)?(\w+)", prompt_text, re.IGNORECASE)
-                
-                # Construire la requête INSERT
-                sparql_insert = f"""
-                {PREFIX}
-                INSERT DATA {{
-                    ex:{camion_id} rdf:type ex:CamionBenne, ex:Equipement ;
-                        ex:equipementID "{camion_id}"^^xsd:string ;
-                        ex:nomequiement "{nom.group(1) if nom else 'Sans nom'}"^^xsd:string ;
-                        ex:etat "{etat.group(1) if etat else 'disponible'}"^^xsd:string ;
-                        ex:capacite "{capacite.group(1) if capacite else '0'}"^^xsd:decimal ;
-                        ex:localisation "{localisation.group(1) if localisation else ''}"^^xsd:string ;
-                        ex:volumeBenne "{volume.group(1) if volume else '0'}"^^xsd:decimal .
-                """
-                
-                if service:
-                    sparql_insert += f"        ex:{camion_id} ex:utilisepar ex:{service.group(1)} .\n"
-                
-                sparql_insert += "    }"
-                
-                # Exécuter sur Fuseki
-                sparql_wrapper = SPARQLWrapper(FUSEKI_UPDATE_URL)
-                sparql_wrapper.setMethod(POST)
-                sparql_wrapper.setQuery(sparql_insert)
-                sparql_wrapper.query()
-                print(">>> Requête INSERT exécutée sur Fuseki")
-                
-                # Récupérer toutes les données depuis Fuseki et sauvegarder
-                print(f"\n=== DEBUT SAUVEGARDE CAMION {camion_id} ===")
-                print(f"Fichier cible: {RDF_FILE}")
-                print(f"URL Fuseki: {FUSEKI_QUERY_URL}")
-                
-                query_all = "CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o }"
-                sparql_get = SPARQLWrapper(FUSEKI_QUERY_URL)
-                sparql_get.setQuery(query_all)
-                sparql_get.setReturnFormat('turtle')
-                
-                try:
-                    print("Récupération des données depuis Fuseki...")
-                    result = sparql_get.query().convert()
-                    print(f"Données récupérées: {len(result)} bytes")
-                    
-                    print(f"Écriture dans {RDF_FILE}...")
-                    with open(RDF_FILE, 'wb') as f:
-                        f.write(result)
-                    print(f"✅ SUCCES: Fichier sauvegardé")
-                except Exception as e:
-                    print(f"❌ ERREUR: {e}")
-                    import traceback
-                    traceback.print_exc()
-                
-                print(f"=== FIN SAUVEGARDE ===\n")
-                
-                return jsonify({
-                    "status": "success",
-                    "message": f"Camion benne {camion_id} ajouté avec succès - Service: {service.group(1) if service else 'Aucun'}",
-                    "sparql": sparql_insert
-                }), 200
-            
-            # Sinon, c'est un événement
-            new_event_id = "EVT" + str(uuid.uuid4().int)[:6]
-            evt_ref = EX[new_event_id]
-
-            event_data = {
-                "nomevent": re.search(r"nommé\s+'([^']+)'", prompt_text),
-                "dateDebut": re.search(r"début le\s+([\d\-]+)", prompt_text),
-                "dateFin": re.search(r"fin le\s+([\d\-]+)", prompt_text),
-                "lieu": re.search(r"lieu\s+'([^']+)'", prompt_text),
->>>>>>> doua
-                "descriptionevent": re.search(r"description\s+'([^']+)'", prompt_text),
-                "typeEvenement": re.search(r"type\s+'([^']+)'", prompt_text),
-                "nombreBenevoles": re.search(r"(\d+)\s+bénévoles", prompt_text),
-                "quantitecollecte": re.search(r"(\d+)\s+kg", prompt_text),
-                "nombreParticipants": re.search(r"(\d+)\s+participants", prompt_text),
-                "publicCible": re.search(r"public cible\s+'([^']+)'", prompt_text),
-<<<<<<< HEAD
-                "zoneCible": re.search(r"zone cible\s+'([^']+)'", prompt_text),
-                "campaign": re.search(r"campagne\s+(E?\w+)", prompt_text),  # 🔹 détecter la campagne mentionnée
+                "nomevent": re.search(r"nomm[ée]\s+'([^']+)'", prompt_text) or data.get("nomevent"),
+                "dateDebut": re.search(r"début(?:e)?\s+le\s+([\d\-]+)", prompt_text) or data.get("dateDebut"),
+                "dateFin": re.search(r"fin(?:it)?\s+le\s+([\d\-]+)", prompt_text) or data.get("dateFin"),
+                "lieu": re.search(r"(?:au|à)\s+'([^']+)'", prompt_text) or data.get("lieu"),
+                "descriptionevent": re.search(r"description\s+'([^']+)'", prompt_text) or data.get("descriptionevent"),
+                "typeEvenement": re.search(r"type\s+'([^']+)'", prompt_text) or data.get("typeEvenement"),
+                "nombreBenevoles": re.search(r"(\d+)\s+bénévoles", prompt_text) or data.get("nombreBenevoles"),
+                "quantitecollecte": re.search(r"(\d+)\s+kg", prompt_text) or data.get("quantitecollecte"),
+                "nombreParticipants": re.search(r"(\d+)\s+participants", prompt_text) or data.get("nombreParticipants"),
+                "publicCible": re.search(r"public cible\s+'([^']+)'", prompt_text) or data.get("publicCible"),
+                "zoneCible": re.search(r"zone cible\s+'([^']+)'", prompt_text) or data.get("zoneCible"),
+                "campaignID": data.get("campaignID")  # champ facultatif
             }
 
-            # 🧱 Construction des triplets RDF
+            # --- Construction des triples pour SPARQL ---
             triples = [
                 f"{evt_ref.n3()} a <{EVENEMENT_CLASS_URI}> ;",
                 f'ex:evenementID "{new_event_id}"^^xsd:string ;'
             ]
 
             for field, match in event_data.items():
-                if match and field != "campaign":
-                    value = match.group(1)
+                if match and field != "campaignID":
+                    value = match.group(1) if hasattr(match, "group") else match
                     if field in ["nombreBenevoles", "quantitecollecte", "nombreParticipants"]:
-                        triples.append(f'ex:{field} "{value}"^^xsd:integer ;')
+                        triples.append(f'ex:{field} "{int(value)}"^^xsd:integer ;')
                     elif field in ["dateDebut", "dateFin"]:
                         triples.append(f'ex:{field} "{value}"^^xsd:date ;')
                     else:
                         triples.append(f'ex:{field} "{value}"^^xsd:string ;')
 
-            # 🔗 Si une campagne est mentionnée
-            campaign_id = event_data["campaign"].group(1) if event_data["campaign"] else None
+            # --- Ajout relation avec la campagne si campaignID est fourni ---
+            campaign_id = event_data.get("campaignID")
             if campaign_id:
-                triples.append(f"ex:planned ex:{campaign_id} ;")
+                triples.append(f"{evt_ref.n3()} ex:planned ex:{campaign_id} ;")
 
-            # Supprimer le dernier point-virgule et fermer le bloc
+            # --- Finalisation SPARQL ---
             triples_str = "\n    ".join(triples).rstrip(";") + " ."
-
             sparql_insert = PREFIX + "\nINSERT DATA {\n    " + triples_str + "\n}"
 
             # --- Exécution SPARQL ---
-=======
-                "zoneCible": re.search(r"zone cible\s+'([^']+)'", prompt_text)
-            }
-
-            triples = [f"{evt_ref.n3()} a <{EVENEMENT_CLASS_URI}> ."]
-            for field, match in event_data.items():
-                if match:
-                    value = match.group(1)
-                    if field in ["nombreBenevoles", "quantitecollecte", "nombreParticipants"]:
-                        triples.append(f'{evt_ref.n3()} ex:{field} "{value}"^^xsd:integer .')
-                    else:
-                        triples.append(f'{evt_ref.n3()} ex:{field} "{value}" .')
-
-            sparql_insert = PREFIX + "\nINSERT DATA {\n" + "\n".join(triples) + "\n}"
->>>>>>> doua
             sparql_wrapper = SPARQLWrapper(FUSEKI_UPDATE_URL)
             sparql_wrapper.setMethod(POST)
             sparql_wrapper.setQuery(sparql_insert)
             sparql_wrapper.query()
 
-<<<<<<< HEAD
             # --- Sauvegarde RDF locale ---
             g.add((evt_ref, RDF.type, EVENEMENT_CLASS_URI))
             g.add((evt_ref, EX.evenementID, Literal(new_event_id, datatype=XSD.string)))
             for field, match in event_data.items():
-                if match and field != "campaign":
-                    value = match.group(1)
+                if match and field != "campaignID":
+                    value = match.group(1) if hasattr(match, "group") else match
                     if field in ["nombreBenevoles", "quantitecollecte", "nombreParticipants"]:
                         g.add((evt_ref, EX[field], Literal(int(value), datatype=XSD.integer)))
                     elif field in ["dateDebut", "dateFin"]:
@@ -361,33 +258,22 @@ def generate_and_execute_sparql():
                     else:
                         g.add((evt_ref, EX[field], Literal(value, datatype=XSD.string)))
 
+            # --- Relation locale avec la campagne ---
             if campaign_id:
                 camp_ref = EX[campaign_id]
                 g.add((evt_ref, EX.planned, camp_ref))
                 print(f"🔗 Événement {new_event_id} lié à la campagne {campaign_id}")
 
-=======
-            # Sauvegarde RDF locale
-            g.add((evt_ref, RDF.type, EVENEMENT_CLASS_URI))
-            for field, match in event_data.items():
-                if match:
-                    value = match.group(1)
-                    if field in ["nombreBenevoles", "quantitecollecte", "nombreParticipants"]:
-                        g.add((evt_ref, EX[field], Literal(int(value), datatype=XSD.integer)))
-                    else:
-                        g.add((evt_ref, EX[field], Literal(value)))
-<<<<<<< HEAD
->>>>>>> doua
-=======
-            print(f"Sauvegarde dans : {RDF_FILE}")
->>>>>>> doua
+            # --- Sauvegarde locale dans fichier RDF ---
             g.serialize(destination=RDF_FILE, format="turtle")
 
-            result_item = {f: m.group(1) for f, m in event_data.items() if m}
+            # --- Préparation résultat JSON ---
+            result_item = {}
+            for field, match in event_data.items():
+                if match and field != "campaignID":
+                    result_item[field] = match.group(1) if hasattr(match, "group") else match
             result_item["evenement"] = new_event_id
-<<<<<<< HEAD
-            if campaign_id:
-                result_item["campaign"] = campaign_id
+            result_item["campaignID"] = campaign_id if campaign_id else None
 
             return jsonify({
                 "status": "success",
@@ -395,11 +281,8 @@ def generate_and_execute_sparql():
                 "results": [result_item],
                 "sparql": sparql_insert
             }), 200
-=======
-            return jsonify({"status": "success", "results": [result_item]}), 200
->>>>>>> doua
 
-       # === DELETE ===
+            # === DELETE ===
         elif query_type == "delete":
             # 🔍 Extraire le nom de l'événement depuis le prompt
             name_match = re.search(r"nomm[eé]\s+'([^']+)'", prompt_text)
@@ -436,7 +319,6 @@ def generate_and_execute_sparql():
             # 🔥 Supprimer aussi localement dans le graphe RDF
             for s, p, o in list(g.triples((None, EX["nomevent"], Literal(event_name)))):
                 g.remove((s, None, None))
-            print(f"Sauvegarde dans : {RDF_FILE}")
             g.serialize(destination=RDF_FILE, format="turtle")
 
             return jsonify({
@@ -495,7 +377,6 @@ def generate_and_execute_sparql():
                             g.add((s, EX["descriptionevent"], Literal(new_value, datatype=XSD.string)))
 
                     # 💾 Sauvegarde locale pour Protégé
-                    print(f"Sauvegarde dans : {RDF_FILE}")
                     g.serialize(destination=RDF_FILE, format="turtle")
 
                 return jsonify({

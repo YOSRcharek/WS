@@ -55,13 +55,8 @@ def add_campagne():
             evt_ref = EX[evt_id]
             link_query = PREFIX + f"""
             INSERT DATA {{
-<<<<<<< HEAD
                 {camp_ref.n3()} ex:planned {evt_ref.n3()} .  # La campagne planifie cet événement
                 {evt_ref.n3()} ex:plannedby {camp_ref.n3()} .  # L'événement est planifié par cette campagne
-=======
-                {camp_ref.n3()} ex:organise {evt_ref.n3()} .
-                {evt_ref.n3()} ex:estOrganisePar {camp_ref.n3()} .
->>>>>>> doua
             }}
             """
             sparql.setQuery(link_query)
@@ -70,11 +65,8 @@ def add_campagne():
 
     return jsonify({"message": f"✅ Campagne '{cid}' ajoutée avec succès."})
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> doua
 # ============================
 # 🔹 READ ALL Campagnes
 # ============================
@@ -103,7 +95,6 @@ def get_all_campagnes():
         campagneID = camp_uri.split("#")[-1] if "#" in camp_uri else camp_uri.split("/")[-1]
 
         campagnes_dict[camp_uri] = {
-<<<<<<< HEAD
             "campaignID": campagneID,  # 🔹 nom cohérent avec React
             "campagne": camp_uri,
             "descriptioncampa": r.get("descriptioncampa", {}).get("value"),
@@ -115,30 +106,12 @@ def get_all_campagnes():
         }
 
     # 2️⃣ Pour chaque campagne, récupérer uniquement ses événements liés via la relation ex:planned
-=======
-        "campaignID": campagneID,  # 🔹 nom cohérent avec React
-        "campagne": camp_uri,
-        "descriptioncampa": r.get("descriptioncampa", {}).get("value"),
-        "startDate": r.get("startDate", {}).get("value"),
-        "endDate": r.get("endDate", {}).get("value"),
-        "targetAudience": r.get("targetAudience", {}).get("value"),
-        "title": r.get("title", {}).get("value"),
-        "evenements": []
-    }
-
-
-    # 2️⃣ Pour chaque campagne, récupérer uniquement ses événements liés
->>>>>>> doua
     for camp_uri, camp_data in campagnes_dict.items():
         camp_ref = f"<{camp_uri}>"
         query_events = PREFIX + f"""
         SELECT ?evenement ?nom ?dateDebut ?dateFin ?lieu ?descriptionevent
         WHERE {{
-<<<<<<< HEAD
             {camp_ref} ex:planned ?evenement .  # La campagne planifie ces événements
-=======
-            {camp_ref} ex:organise ?evenement .
->>>>>>> doua
             OPTIONAL {{ ?evenement ex:nomevent ?nom }}
             OPTIONAL {{ ?evenement ex:dateDebut ?dateDebut }}
             OPTIONAL {{ ?evenement ex:dateFin ?dateFin }}
@@ -164,13 +137,7 @@ def get_all_campagnes():
 
     return jsonify(list(campagnes_dict.values()))
 
-<<<<<<< HEAD
 
-=======
-# ============================
-# 🔹 READ ONE Campagne
-# ============================
->>>>>>> doua
 @campagne_bp.route("/campagnes/<campagne_id>", methods=["GET"])
 def get_campagne(campagne_id):
     camp_ref = EX[campagne_id]
@@ -178,13 +145,8 @@ def get_campagne(campagne_id):
     # 1️⃣ Récupérer les propriétés de la campagne
     query_props = PREFIX + f"""
     SELECT ?p ?o WHERE {{
-<<<<<<< HEAD
         <{camp_ref}> ?p ?o . 
         FILTER(?p != ex:planned)  # On exclut les liens vers les événements ici
-=======
-        <{camp_ref}> ?p ?o .
-        FILTER(?p != ex:organise)  # On exclut les liens vers les événements ici
->>>>>>> doua
     }}
     """
     sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
@@ -197,19 +159,11 @@ def get_campagne(campagne_id):
         key = r["p"]["value"].split("#")[-1]
         campagne[key] = r["o"]["value"]
 
-<<<<<<< HEAD
     # 2️⃣ Récupérer les événements liés via la relation ex:planned
     query_events = PREFIX + f"""
     SELECT ?evenement ?nom ?dateDebut ?dateFin ?lieu ?descriptionevent
     WHERE {{
         <{camp_ref}> ex:planned ?evenement .  # La campagne planifie ces événements
-=======
-    # 2️⃣ Récupérer uniquement les événements liés
-    query_events = PREFIX + f"""
-    SELECT ?evenement ?nom ?dateDebut ?dateFin ?lieu ?descriptionevent
-    WHERE {{
-        <{camp_ref}> ex:organise ?evenement .
->>>>>>> doua
         OPTIONAL {{ ?evenement ex:nomevent ?nom }}
         OPTIONAL {{ ?evenement ex:dateDebut ?dateDebut }}
         OPTIONAL {{ ?evenement ex:dateFin ?dateFin }}
@@ -231,17 +185,11 @@ def get_campagne(campagne_id):
             "descriptionevent": r.get("descriptionevent", {}).get("value")
         })
 
-<<<<<<< HEAD
     # Ajouter les événements liés à la campagne dans la réponse
     if evenements:
         campagne["evenements"] = evenements
 
     campagne["id"] = campagne_id
-=======
-    if evenements:
-        campagne["evenements"] = evenements
-
->>>>>>> doua
     return jsonify(campagne)
 
 
@@ -293,7 +241,6 @@ def update_campagne(campagne_id):
 # ============================
 @campagne_bp.route("/campagnes/<campagne_id>/evenements", methods=["GET"])
 def get_evenements_by_campagne(campagne_id):
-<<<<<<< HEAD
     # Construire la référence de la campagne dans l'URI
     camp_ref = f"<http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#{campagne_id}>"
 
@@ -327,18 +274,6 @@ def get_evenements_by_campagne(campagne_id):
       ?evenement ex:nombreParticipants ?nombreParticipants .
       ?evenement ex:publicCible ?publicCible .
       ?evenement ex:zoneCible ?zoneCible .
-=======
-    camp_ref = EX[campagne_id]
-    query = PREFIX + f"""
-    SELECT ?evenement ?nomevent ?dateDebut ?dateFin ?lieu ?descriptionevent
-    WHERE {{
-        {camp_ref.n3()} ex:organise ?evenement .
-        OPTIONAL {{ ?evenement ex:nomevent ?nomevent }}
-        OPTIONAL {{ ?evenement ex:dateDebut ?dateDebut }}
-        OPTIONAL {{ ?evenement ex:dateFin ?dateFin }}
-        OPTIONAL {{ ?evenement ex:lieu ?lieu }}
-        OPTIONAL {{ ?evenement ex:descriptionevent ?descriptionevent }}
->>>>>>> doua
     }}
     """
 
@@ -349,7 +284,6 @@ def get_evenements_by_campagne(campagne_id):
 
     evenements = []
     for result in results["results"]["bindings"]:
-<<<<<<< HEAD
         evenement = {k: v["value"] for k, v in result.items()}
         evenements.append(evenement)
 
@@ -379,11 +313,6 @@ def associer_evenement(campagne_id, evenement_id):
 
     return jsonify({"message": f"✅ L'événement '{evenement_id}' a été associé à la campagne '{campagne_id}' avec succès."})
 
-=======
-        evenements.append({k: v["value"] for k, v in result.items()})
-
-    return jsonify(evenements)
->>>>>>> doua
 
 # --- DELETE ---
 @campagne_bp.route("/campagnes/<campagne_id>", methods=["DELETE"])

@@ -1,9 +1,6 @@
 # wsback/routes/camion_benne.py
 from flask import Blueprint, request, jsonify
 from SPARQLWrapper import SPARQLWrapper, POST, JSON
-<<<<<<< HEAD
-from config import PREFIX, FUSEKI_UPDATE_URL, FUSEKI_QUERY_URL
-=======
 from config import PREFIX, FUSEKI_UPDATE_URL, FUSEKI_QUERY_URL, g, EX, RDF_FILE
 from rdflib import Literal, URIRef
 from rdflib.namespace import RDF, XSD
@@ -41,7 +38,6 @@ def get_service_type_and_id(service_id):
     except Exception as e:
         print(f"Erreur recherche service: {e}")
         return f"Service - {service_id}"
->>>>>>> doua
 
 camion_benne_bp = Blueprint('camion_benne_bp', __name__)
 
@@ -56,23 +52,14 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 @camion_benne_bp.route('/camions-benne', methods=['POST'])
 def create_camion_benne():
     data = request.json
-<<<<<<< HEAD
-    camion_id = f"CB{data.get('id', '1')}"
-=======
     import time
     camion_id = f"CB{int(time.time() * 1000) % 100000}"
->>>>>>> doua
     
     query = f"""
     {SPARQL_PREFIX}
     INSERT DATA {{
-<<<<<<< HEAD
-        ex:{camion_id} a ex:CamionBenne ;
-            ex:equipementID "{camion_id}" ;
-=======
         ex:{camion_id} a ex:CamionBenne, ex:Equipement ;
             ex:equipementID "{camion_id}"^^xsd:string ;
->>>>>>> doua
             ex:nomequiement "{data.get('nomEquipement', '')}" ;
             ex:etat "{data.get('etat', 'disponible')}" ;
             ex:capacite "{data.get('capacite', 0)}"^^xsd:decimal ;
@@ -86,8 +73,6 @@ def create_camion_benne():
     sparql.setQuery(query)
     sparql.query()
     
-<<<<<<< HEAD
-=======
     # --- Ajout dans le graphe RDF local ---
     camion_ref = EX[camion_id]
     g.add((camion_ref, RDF.type, EX.CamionBenne))
@@ -117,7 +102,6 @@ def create_camion_benne():
     # Sauvegarder le fichier TTL
     g.serialize(destination=RDF_FILE, format="turtle")
     
->>>>>>> doua
     return jsonify({"message": "Camion benne créé avec succès", "id": camion_id}), 201
 
 # Récupérer tous les camions benne
@@ -125,29 +109,18 @@ def create_camion_benne():
 def get_camions_benne():
     query = f"""
     {SPARQL_PREFIX}
-<<<<<<< HEAD
-    SELECT ?camion ?equipementID ?nomEquipement ?etat ?capacite ?localisation ?volumeBenne
-    WHERE {{
-        ?camion a ex:CamionBenne ;
-                ex:equipementID ?equipementID ;
-                ex:nomequiement ?nomEquipement ;
-=======
     SELECT DISTINCT ?equipementID ?nomequiement ?etat ?capacite ?localisation ?volumeBenne ?service
     WHERE {{
         ?camion a ex:CamionBenne ;
                 ex:equipementID ?equipementID ;
                 ex:nomequiement ?nomequiement ;
->>>>>>> doua
                 ex:etat ?etat ;
                 ex:capacite ?capacite ;
                 ex:localisation ?localisation ;
                 ex:volumeBenne ?volumeBenne .
-<<<<<<< HEAD
-=======
         OPTIONAL {{
             ?camion ex:utilisepar ?service .
         }}
->>>>>>> doua
     }}
     """
     
@@ -157,17 +130,6 @@ def get_camions_benne():
     results = sparql.query().convert()
     
     camions = []
-<<<<<<< HEAD
-    for result in results["results"]["bindings"]:
-        camions.append({
-            "id": result["equipementID"]["value"],
-            "nomEquipement": result["nomEquipement"]["value"],
-            "etat": result["etat"]["value"],
-            "capacite": result["capacite"]["value"],
-            "localisation": result["localisation"]["value"],
-            "volumeBenne": result["volumeBenne"]["value"]
-        })
-=======
     seen_ids = set()
     for result in results["results"]["bindings"]:
         camion_id = result["equipementID"]["value"]
@@ -186,7 +148,6 @@ def get_camions_benne():
                     else "Aucun"
                 )
             })
->>>>>>> doua
     
     return jsonify(camions)
 
@@ -195,20 +156,12 @@ def get_camions_benne():
 def get_camion_benne(camion_id):
     query = f"""
     {SPARQL_PREFIX}
-<<<<<<< HEAD
-    SELECT ?camion ?equipementID ?nomEquipement ?etat ?capacite ?localisation ?volumeBenne
-=======
     SELECT ?camion ?equipementID ?nomequiement ?etat ?capacite ?localisation ?volumeBenne
->>>>>>> doua
     WHERE {{
         ?camion a ex:CamionBenne ;
                 ex:equipementID "{camion_id}" ;
                 ex:equipementID ?equipementID ;
-<<<<<<< HEAD
-                ex:nomequiement ?nomEquipement ;
-=======
                 ex:nomequiement ?nomequiement ;
->>>>>>> doua
                 ex:etat ?etat ;
                 ex:capacite ?capacite ;
                 ex:localisation ?localisation ;
@@ -225,11 +178,7 @@ def get_camion_benne(camion_id):
         result = results["results"]["bindings"][0]
         camion = {
             "id": result["equipementID"]["value"],
-<<<<<<< HEAD
-            "nomEquipement": result["nomEquipement"]["value"],
-=======
             "nomEquipement": result["nomequiement"]["value"],
->>>>>>> doua
             "etat": result["etat"]["value"],
             "capacite": result["capacite"]["value"],
             "localisation": result["localisation"]["value"],
@@ -244,40 +193,6 @@ def get_camion_benne(camion_id):
 def update_camion_benne(camion_id):
     data = request.json
     
-<<<<<<< HEAD
-    query = f"""
-    {SPARQL_PREFIX}
-    DELETE {{
-        ?camion ex:nomequiement ?oldNom ;
-                ex:etat ?oldEtat ;
-                ex:capacite ?oldCapacite ;
-                ex:localisation ?oldLocalisation ;
-                ex:volumeBenne ?oldVolume .
-    }}
-    INSERT {{
-        ?camion ex:nomequiement "{data.get('nomEquipement', '')}" ;
-                ex:etat "{data.get('etat', '')}" ;
-                ex:capacite "{data.get('capacite', 0)}"^^xsd:decimal ;
-                ex:localisation "{data.get('localisation', '')}" ;
-                ex:volumeBenne "{data.get('volumeBenne', 0)}"^^xsd:decimal .
-    }}
-    WHERE {{
-        ?camion a ex:CamionBenne ;
-                ex:equipementID "{camion_id}" ;
-                ex:nomequiement ?oldNom ;
-                ex:etat ?oldEtat ;
-                ex:capacite ?oldCapacite ;
-                ex:localisation ?oldLocalisation ;
-                ex:volumeBenne ?oldVolume .
-    }}
-    """
-    
-    sparql = SPARQLWrapper(FUSEKI_UPDATE_URL)
-    sparql.setMethod(POST)
-    sparql.setQuery(query)
-    sparql.query()
-    
-=======
     sparql = SPARQLWrapper(FUSEKI_UPDATE_URL)
     sparql.setMethod(POST)
     
@@ -324,7 +239,6 @@ def update_camion_benne(camion_id):
     # Sauvegarder le fichier TTL
     g.serialize(destination=RDF_FILE, format="turtle")
     
->>>>>>> doua
     return jsonify({"message": "Camion benne mis à jour avec succès"})
 
 # Supprimer un camion benne
@@ -344,9 +258,6 @@ def delete_camion_benne(camion_id):
     sparql.setQuery(query)
     sparql.query()
     
-<<<<<<< HEAD
-    return jsonify({"message": "Camion benne supprimé avec succès"})
-=======
     # --- Suppression dans le graphe RDF local ---
     camion_ref = EX[camion_id]
     for triple in list(g.triples((camion_ref, None, None))):
@@ -384,4 +295,3 @@ def assigner_service_camion(camion_id):
     g.serialize(destination=RDF_FILE, format="turtle")
     
     return jsonify({"message": "Service assigné avec succès"})
->>>>>>> doua

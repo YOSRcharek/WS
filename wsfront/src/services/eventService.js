@@ -44,7 +44,6 @@ export const getStats = async () => {
   if (!res.ok) throw new Error("Erreur lors de la récupération des statistiques");
   return res.json();
 };
-<<<<<<< HEAD
 
 export const generateAndExecuteSPARQL = async (prompt) => {
   const res = await fetch("http://localhost:5000/sparql-generator", {
@@ -99,5 +98,3 @@ export const getAllCitoyens = async () => {
 
   return res.json();
 };
-=======
->>>>>>> doua

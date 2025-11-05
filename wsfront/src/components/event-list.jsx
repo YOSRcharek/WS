@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import {
   getEvenements,
   deleteEvenement,
-<<<<<<< HEAD
   generateAndExecuteSPARQL, // Import de la méthode de génération SPARQL
 } from "../services/eventService"; // ton service backend
 
@@ -12,13 +11,6 @@ export default function EventListPage() {
   const [loading, setLoading] = useState(true); // État de chargement
   const [prompt, setPrompt] = useState(""); // Etat pour la zone de texte du prompt
   const [sparqlResult, setSparqlResult] = useState(null); // Etat pour stocker la réponse de l'IA
-=======
-} from "../services/eventService"; // ton service backend
-
-export default function EventListPage() {
-  const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
->>>>>>> doua
   const navigate = useNavigate();
 
   // --- Charger les événements depuis Flask ---
@@ -56,7 +48,6 @@ export default function EventListPage() {
     }
   };
 
-<<<<<<< HEAD
   // --- Soumettre le prompt à l'IA ---
   const handleGenerateSPARQL = async () => {
     try {
@@ -70,8 +61,6 @@ export default function EventListPage() {
     }
   };
 
-=======
->>>>>>> doua
   if (loading) {
     return (
       <div className="text-center py-20 text-gray-500">
@@ -80,14 +69,11 @@ export default function EventListPage() {
     );
   }
 
-<<<<<<< HEAD
   // --- Fusionner les événements existants et les résultats SPARQL ---
   const eventsToDisplay = sparqlResult && sparqlResult.length > 0
     ? sparqlResult  // Si la requête SPARQL a retourné des résultats, les afficher
     : events;       // Sinon, afficher les événements chargés depuis l'API
 
-=======
->>>>>>> doua
   return (
     <div className="page-content">
       <div className="max-w-7xl mx-auto px-4 py-12">
@@ -104,7 +90,6 @@ export default function EventListPage() {
           </button>
         </div>
 
-<<<<<<< HEAD
         {/* Zone pour le prompt SPARQL */}
         <div className="mb-8">
           <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -129,9 +114,6 @@ export default function EventListPage() {
         
 
         {/* Tableau des événements */}
-=======
-        {/* Tableau */}
->>>>>>> doua
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -146,30 +128,21 @@ export default function EventListPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-<<<<<<< HEAD
                 {eventsToDisplay.length > 0 ? (
                   eventsToDisplay.map((event, idx) => (
-                    <tr key={idx} className="hover:bg-gray-50 transition" >
-=======
-                {events.length > 0 ? (
-                  events.map((event, idx) => (
                     <tr key={idx} className="hover:bg-gray-50 transition">
->>>>>>> doua
                       <td className="px-6 py-4">{event.nomevent || "—"}</td>
                       <td className="px-6 py-4">{event.dateDebut || "—"}</td>
                       <td className="px-6 py-4">{event.dateFin || "—"}</td>
                       <td className="px-6 py-4">{event.lieu || "—"}</td>
                       <td className="px-6 py-4">{event.typeEvenement || "—"}</td>
                       <td className="px-6 py-4">
-<<<<<<< HEAD
-                          <button
-                         onClick={() => navigate(`/event/${event.evenementID}`)}
+                         <button
+                        onClick={() => navigate(`/event/${event.evenementID}`)}
                           className="text-blue-600 hover:underline mr-3"
                         >
-                         Details
+                          Details
                         </button>
-=======
->>>>>>> doua
                         <button
                           onClick={() => navigate(`/edit-event/${event.evenementID}`)}
                           className="text-blue-600 hover:underline mr-3"

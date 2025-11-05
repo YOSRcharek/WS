@@ -18,20 +18,20 @@ export default function AddEventPage() {
     objectives: "",
   });
 
-<<<<<<< HEAD
   // Récupérer la campagne si elle est passée via navigate
  const campaign = location.state?.campaign; // Accède à l'objet complet de la campagne
 console.log(campaign); // Vérifiez ici si l'objet `campaign` est bien passé
 const campaignId = campaign?.id; // Accède à l'id de la campagne
 console.log(campaignId); // Vérifiez si l'ID est bien récupéré
 
-=======
   // 🟢 Gestion du changement de valeur des champs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // 🟢 Soumission du formulaire
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const eventData = {
@@ -47,7 +47,6 @@ console.log(campaignId); // Vérifiez si l'ID est bien récupéré
       publicCible: "",
       zoneCible: "",
       objectifs: formData.objectives,
-<<<<<<< HEAD
       // Ajouter la campaignId si une campagne est présente
        campagneID: campaign?.id, // Accède à l'id de la campagne
     };
@@ -55,10 +54,6 @@ console.log(campaignId); // Vérifiez si l'ID est bien récupéré
     // Affichage dans la console pour vérifier que les données sont correctes
     console.log(eventData);
 
-=======
-    };
-
->>>>>>> doua
     try {
       const res = await fetch("http://127.0.0.1:5000/evenements", {
         method: "POST",
@@ -133,18 +128,9 @@ console.log(campaignId); // Vérifiez si l'ID est bien récupéré
                 required
               >
                 <option value="">Sélectionner un type</option>
-<<<<<<< HEAD
-                <option value="General">General</option>
-                <option value="formation">Formation</option>
-                <option value="collecte">Collecte</option>
-=======
-                <option value="sensibilisation">Sensibilisation</option>
                 <option value="formation">Formation</option>
                 <option value="collecte">Collecte Citoyenne</option>
-                <option value="atelier">Atelier Pratique</option>
-                <option value="conference">Conférence</option>
-                <option value="nettoyage">Nettoyage Communautaire</option>
->>>>>>> doua
+                <option value="general">General</option>
               </select>
             </div>
           </div>

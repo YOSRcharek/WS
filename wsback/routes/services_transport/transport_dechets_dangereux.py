@@ -1,13 +1,9 @@
 # wsback/routes/transport_dechets_dangereux.py
 from flask import Blueprint, request, jsonify
 from SPARQLWrapper import SPARQLWrapper, POST, JSON
-<<<<<<< HEAD
-from config import PREFIX, FUSEKI_UPDATE_URL, FUSEKI_QUERY_URL
-=======
 from rdflib import Literal, URIRef
 from rdflib.namespace import RDF, XSD
 from config import PREFIX, FUSEKI_UPDATE_URL, FUSEKI_QUERY_URL, g, EX, RDF_FILE
->>>>>>> doua
 
 transport_dechets_dangereux_bp = Blueprint('transport_dechets_dangereux_bp', __name__)
 
@@ -22,22 +18,14 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 @transport_dechets_dangereux_bp.route('/transports-dechets-dangereux', methods=['POST'])
 def create_transport_dechets_dangereux():
     data = request.json
-<<<<<<< HEAD
-    transport_id = f"TDD{data.get('id', '1')}"
-=======
     import time
     transport_id = f"TDD{int(time.time() * 1000) % 100000}"
->>>>>>> doua
     
     query = f"""
     {SPARQL_PREFIX}
     INSERT DATA {{
         ex:{transport_id} a ex:TransportDechetsDangereux ;
-<<<<<<< HEAD
-            ex:servicetransportID "{transport_id}" ;
-=======
             ex:servicetransportID "{transport_id}"^^xsd:string ;
->>>>>>> doua
             ex:zoneCouverture "{data.get('zoneCouverture', '')}" ;
             ex:capaciteMax "{data.get('capaciteMax', 0)}"^^xsd:decimal ;
             ex:etattransport "{data.get('etat', 'actif')}" ;
@@ -51,8 +39,6 @@ def create_transport_dechets_dangereux():
     sparql.setQuery(query)
     sparql.query()
     
-<<<<<<< HEAD
-=======
     # Sauvegarder localement dans dechet.ttl
     transport_ref = EX[transport_id]
     g.add((transport_ref, RDF.type, EX.TransportDechetsDangereux))
@@ -64,7 +50,6 @@ def create_transport_dechets_dangereux():
     g.add((transport_ref, EX.normesSecurite, Literal(data.get('normesSecurite', ''), datatype=XSD.string)))
     g.serialize(destination=RDF_FILE, format="turtle")
     
->>>>>>> doua
     return jsonify({"message": "Transport de déchets dangereux créé avec succès", "id": transport_id}), 201
 
 # Récupérer tous les transports de déchets dangereux
@@ -72,11 +57,7 @@ def create_transport_dechets_dangereux():
 def get_transports_dechets_dangereux():
     query = f"""
     {SPARQL_PREFIX}
-<<<<<<< HEAD
-    SELECT ?transport ?serviceID ?zoneCouverture ?capaciteMax ?etat ?typeDechetDangereux ?normesSecurite
-=======
     SELECT DISTINCT ?serviceID ?zoneCouverture ?capaciteMax ?etat ?typeDechetDangereux ?normesSecurite
->>>>>>> doua
     WHERE {{
         ?transport a ex:TransportDechetsDangereux ;
                 ex:servicetransportID ?serviceID ;
@@ -86,10 +67,7 @@ def get_transports_dechets_dangereux():
                 ex:typeDechetDangereux ?typeDechetDangereux ;
                 ex:normesSecurite ?normesSecurite .
     }}
-<<<<<<< HEAD
-=======
     GROUP BY ?serviceID ?zoneCouverture ?capaciteMax ?etat ?typeDechetDangereux ?normesSecurite
->>>>>>> doua
     """
     
     sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
@@ -98,17 +76,6 @@ def get_transports_dechets_dangereux():
     results = sparql.query().convert()
     
     transports = []
-<<<<<<< HEAD
-    for result in results["results"]["bindings"]:
-        transports.append({
-            "id": result["serviceID"]["value"],
-            "zoneCouverture": result["zoneCouverture"]["value"],
-            "capaciteMax": result["capaciteMax"]["value"],
-            "etat": result["etat"]["value"],
-            "typeDechetDangereux": result["typeDechetDangereux"]["value"],
-            "normesSecurite": result["normesSecurite"]["value"]
-        })
-=======
     seen_ids = set()
     for result in results["results"]["bindings"]:
         transport_id = result["serviceID"]["value"]
@@ -122,7 +89,6 @@ def get_transports_dechets_dangereux():
                 "typeDechetDangereux": result["typeDechetDangereux"]["value"],
                 "normesSecurite": result["normesSecurite"]["value"]
             })
->>>>>>> doua
     
     return jsonify(transports)
 
@@ -168,40 +134,6 @@ def get_transport_dechets_dangereux(transport_id):
 def update_transport_dechets_dangereux(transport_id):
     data = request.json
     
-<<<<<<< HEAD
-    query = f"""
-    {SPARQL_PREFIX}
-    DELETE {{
-        ?transport ex:zoneCouverture ?oldZone ;
-                ex:capaciteMax ?oldCapacite ;
-                ex:etattransport ?oldEtat ;
-                ex:typeDechetDangereux ?oldType ;
-                ex:normesSecurite ?oldNormes .
-    }}
-    INSERT {{
-        ?transport ex:zoneCouverture "{data.get('zoneCouverture', '')}" ;
-                ex:capaciteMax "{data.get('capaciteMax', 0)}"^^xsd:decimal ;
-                ex:etattransport "{data.get('etat', '')}" ;
-                ex:typeDechetDangereux "{data.get('typeDechetDangereux', '')}" ;
-                ex:normesSecurite "{data.get('normesSecurite', '')}" .
-    }}
-    WHERE {{
-        ?transport a ex:TransportDechetsDangereux ;
-                ex:servicetransportID "{transport_id}" ;
-                ex:zoneCouverture ?oldZone ;
-                ex:capaciteMax ?oldCapacite ;
-                ex:etattransport ?oldEtat ;
-                ex:typeDechetDangereux ?oldType ;
-                ex:normesSecurite ?oldNormes .
-    }}
-    """
-    
-    sparql = SPARQLWrapper(FUSEKI_UPDATE_URL)
-    sparql.setMethod(POST)
-    sparql.setQuery(query)
-    sparql.query()
-    
-=======
     sparql = SPARQLWrapper(FUSEKI_UPDATE_URL)
     sparql.setMethod(POST)
     
@@ -240,7 +172,6 @@ def update_transport_dechets_dangereux(transport_id):
     g.add((transport_ref, EX.normesSecurite, Literal(data.get('normesSecurite', ''), datatype=XSD.string)))
     g.serialize(destination=RDF_FILE, format="turtle")
     
->>>>>>> doua
     return jsonify({"message": "Transport de déchets dangereux mis à jour avec succès"})
 
 # Supprimer un transport de déchets dangereux
@@ -260,13 +191,10 @@ def delete_transport_dechets_dangereux(transport_id):
     sparql.setQuery(query)
     sparql.query()
     
-<<<<<<< HEAD
-=======
     # Supprimer localement du fichier dechet.ttl
     transport_ref = EX[transport_id]
     for triple in list(g.triples((transport_ref, None, None))):
         g.remove(triple)
     g.serialize(destination=RDF_FILE, format="turtle")
     
->>>>>>> doua
     return jsonify({"message": "Transport de déchets dangereux supprimé avec succès"})

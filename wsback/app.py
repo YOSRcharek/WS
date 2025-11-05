@@ -39,7 +39,15 @@ from routes.citizen_requests import citizen_requests_bp
 
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:3006"], supports_credentials=True)
+CORS(app, origins=["http://localhost:3000"], supports_credentials=True)
+
+@app.route('/test')
+def test():
+    return {'message': 'Server is working'}
+
+@app.route('/api/test')
+def api_test():
+    return {'message': 'API is working'}
 
 
 
@@ -74,7 +82,7 @@ app.register_blueprint(conteneur_bp, url_prefix='/api')
 # Transport service subclasses
 app.register_blueprint(camion_dechets_bp, url_prefix='/api')
 app.register_blueprint(transport_dechets_dangereux_bp, url_prefix='/api')
-app.register_blueprint(municipalite_bp, url_prefix='/api')
+app.register_blueprint(municipalite_bp)  # sans url_prefix
 app.register_blueprint(citoyen_bp)
 
 # Autres routes

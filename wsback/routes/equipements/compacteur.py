@@ -1,13 +1,9 @@
 # wsback/routes/compacteur.py
 from flask import Blueprint, request, jsonify
 from SPARQLWrapper import SPARQLWrapper, POST, JSON
-<<<<<<< HEAD
-from config import PREFIX, FUSEKI_UPDATE_URL, FUSEKI_QUERY_URL
-=======
 from rdflib import Literal, URIRef
 from rdflib.namespace import RDF, XSD
 from config import PREFIX, FUSEKI_UPDATE_URL, FUSEKI_QUERY_URL, g, EX, RDF_FILE
->>>>>>> doua
 
 compacteur_bp = Blueprint('compacteur_bp', __name__)
 
@@ -22,25 +18,16 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 @compacteur_bp.route('/compacteurs', methods=['POST'])
 def create_compacteur():
     data = request.json
-<<<<<<< HEAD
-    compacteur_id = f"CO{data.get('id', '1')}"
-=======
     import time
     compacteur_id = f"CO{int(time.time() * 1000) % 100000}"
     compacteur_uri = compacteur_id
     compacteur_tech_id = compacteur_id
->>>>>>> doua
     
     query = f"""
     {SPARQL_PREFIX}
     INSERT DATA {{
-<<<<<<< HEAD
-        ex:{compacteur_id} a ex:compacteur ;
-            ex:equipementID "{compacteur_id}" ;
-=======
         ex:{compacteur_id} a ex:compacteur, ex:Equipement ;
             ex:equipementID "{compacteur_id}"^^xsd:string ;
->>>>>>> doua
             ex:nomequiement "{data.get('nomEquipement', '')}" ;
             ex:etat "{data.get('etat', 'disponible')}" ;
             ex:capacite "{data.get('capacite', 0)}"^^xsd:decimal ;
@@ -54,8 +41,6 @@ def create_compacteur():
     sparql.setQuery(query)
     sparql.query()
     
-<<<<<<< HEAD
-=======
     # Sauvegarder localement dans dechet.ttl
     compacteur_ref = EX[compacteur_id]
     g.add((compacteur_ref, RDF.type, EX.compacteur))
@@ -68,7 +53,6 @@ def create_compacteur():
     g.add((compacteur_ref, EX.pressionCompaction, Literal(data.get('pressionCompaction', ''), datatype=XSD.string)))
     g.serialize(destination=RDF_FILE, format="turtle")
     
->>>>>>> doua
     return jsonify({"message": "Compacteur créé avec succès", "id": compacteur_id}), 201
 
 # Récupérer tous les compacteurs
@@ -76,28 +60,17 @@ def create_compacteur():
 def get_compacteurs():
     query = f"""
     {SPARQL_PREFIX}
-<<<<<<< HEAD
-    SELECT ?compacteur ?equipementID ?nomEquipement ?etat ?capacite ?localisation ?pressionCompaction
-    WHERE {{
-        ?compacteur a ex:compacteur ;
-                ex:equipementID ?equipementID ;
-                ex:nomequiement ?nomEquipement ;
-=======
     SELECT DISTINCT ?equipementID ?nomequiement ?etat ?capacite ?localisation ?pressionCompaction
     WHERE {{
         ?compacteur a ex:compacteur ;
                 ex:equipementID ?equipementID ;
                 ex:nomequiement ?nomequiement ;
->>>>>>> doua
                 ex:etat ?etat ;
                 ex:capacite ?capacite ;
                 ex:localisation ?localisation ;
                 ex:pressionCompaction ?pressionCompaction .
     }}
-<<<<<<< HEAD
-=======
     GROUP BY ?equipementID ?nomequiement ?etat ?capacite ?localisation ?pressionCompaction
->>>>>>> doua
     """
     
     sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
@@ -106,17 +79,6 @@ def get_compacteurs():
     results = sparql.query().convert()
     
     compacteurs = []
-<<<<<<< HEAD
-    for result in results["results"]["bindings"]:
-        compacteurs.append({
-            "id": result["equipementID"]["value"],
-            "nomEquipement": result["nomEquipement"]["value"],
-            "etat": result["etat"]["value"],
-            "capacite": result["capacite"]["value"],
-            "localisation": result["localisation"]["value"],
-            "pressionCompaction": result["pressionCompaction"]["value"]
-        })
-=======
     seen_ids = set()
     for result in results["results"]["bindings"]:
         compacteur_id = result["equipementID"]["value"]
@@ -130,7 +92,6 @@ def get_compacteurs():
                 "localisation": result["localisation"]["value"],
                 "pressionCompaction": result["pressionCompaction"]["value"]
             })
->>>>>>> doua
     
     return jsonify(compacteurs)
 
@@ -139,20 +100,12 @@ def get_compacteurs():
 def get_compacteur(compacteur_id):
     query = f"""
     {SPARQL_PREFIX}
-<<<<<<< HEAD
-    SELECT ?compacteur ?equipementID ?nomEquipement ?etat ?capacite ?localisation ?pressionCompaction
-=======
     SELECT ?compacteur ?equipementID ?nomequiement ?etat ?capacite ?localisation ?pressionCompaction
->>>>>>> doua
     WHERE {{
         ?compacteur a ex:compacteur ;
                 ex:equipementID "{compacteur_id}" ;
                 ex:equipementID ?equipementID ;
-<<<<<<< HEAD
-                ex:nomequiement ?nomEquipement ;
-=======
                 ex:nomequiement ?nomequiement ;
->>>>>>> doua
                 ex:etat ?etat ;
                 ex:capacite ?capacite ;
                 ex:localisation ?localisation ;
@@ -169,11 +122,7 @@ def get_compacteur(compacteur_id):
         result = results["results"]["bindings"][0]
         compacteur = {
             "id": result["equipementID"]["value"],
-<<<<<<< HEAD
-            "nomEquipement": result["nomEquipement"]["value"],
-=======
             "nomEquipement": result["nomequiement"]["value"],
->>>>>>> doua
             "etat": result["etat"]["value"],
             "capacite": result["capacite"]["value"],
             "localisation": result["localisation"]["value"],
@@ -188,40 +137,6 @@ def get_compacteur(compacteur_id):
 def update_compacteur(compacteur_id):
     data = request.json
     
-<<<<<<< HEAD
-    query = f"""
-    {SPARQL_PREFIX}
-    DELETE {{
-        ?compacteur ex:nomequiement ?oldNom ;
-                ex:etat ?oldEtat ;
-                ex:capacite ?oldCapacite ;
-                ex:localisation ?oldLocalisation ;
-                ex:pressionCompaction ?oldPression .
-    }}
-    INSERT {{
-        ?compacteur ex:nomequiement "{data.get('nomEquipement', '')}" ;
-                ex:etat "{data.get('etat', '')}" ;
-                ex:capacite "{data.get('capacite', 0)}"^^xsd:decimal ;
-                ex:localisation "{data.get('localisation', '')}" ;
-                ex:pressionCompaction "{data.get('pressionCompaction', '')}" .
-    }}
-    WHERE {{
-        ?compacteur a ex:compacteur ;
-                ex:equipementID "{compacteur_id}" ;
-                ex:nomequiement ?oldNom ;
-                ex:etat ?oldEtat ;
-                ex:capacite ?oldCapacite ;
-                ex:localisation ?oldLocalisation ;
-                ex:pressionCompaction ?oldPression .
-    }}
-    """
-    
-    sparql = SPARQLWrapper(FUSEKI_UPDATE_URL)
-    sparql.setMethod(POST)
-    sparql.setQuery(query)
-    sparql.query()
-    
-=======
     sparql = SPARQLWrapper(FUSEKI_UPDATE_URL)
     sparql.setMethod(POST)
     
@@ -261,7 +176,6 @@ def update_compacteur(compacteur_id):
     g.add((compacteur_ref, EX.pressionCompaction, Literal(data.get('pressionCompaction', ''), datatype=XSD.string)))
     g.serialize(destination=RDF_FILE, format="turtle")
     
->>>>>>> doua
     return jsonify({"message": "Compacteur mis à jour avec succès"})
 
 # Supprimer un compacteur
@@ -281,13 +195,10 @@ def delete_compacteur(compacteur_id):
     sparql.setQuery(query)
     sparql.query()
     
-<<<<<<< HEAD
-=======
     # Supprimer localement du fichier dechet.ttl
     compacteur_ref = EX[compacteur_id]
     for triple in list(g.triples((compacteur_ref, None, None))):
         g.remove(triple)
     g.serialize(destination=RDF_FILE, format="turtle")
     
->>>>>>> doua
     return jsonify({"message": "Compacteur supprimé avec succès"})

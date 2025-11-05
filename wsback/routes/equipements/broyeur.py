@@ -1,13 +1,9 @@
 # wsback/routes/broyeur.py
 from flask import Blueprint, request, jsonify
 from SPARQLWrapper import SPARQLWrapper, POST, JSON
-<<<<<<< HEAD
-from config import PREFIX, FUSEKI_UPDATE_URL, FUSEKI_QUERY_URL
-=======
 from config import PREFIX, FUSEKI_UPDATE_URL, FUSEKI_QUERY_URL, g, EX, RDF_FILE
 from rdflib import Literal, URIRef
 from rdflib.namespace import RDF, XSD
->>>>>>> doua
 
 broyeur_bp = Blueprint('broyeur_bp', __name__)
 
@@ -22,25 +18,16 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 @broyeur_bp.route('/broyeurs', methods=['POST'])
 def create_broyeur():
     data = request.json
-<<<<<<< HEAD
-    broyeur_id = f"BR{data.get('id', '1')}"
-=======
     import time
     broyeur_id = f"BR{int(time.time() * 1000) % 100000}"
     broyeur_uri = broyeur_id
     broyeur_tech_id = broyeur_id
->>>>>>> doua
     
     query = f"""
     {SPARQL_PREFIX}
     INSERT DATA {{
-<<<<<<< HEAD
-        ex:{broyeur_id} a ex:Broyeur ;
-            ex:equipementID "{broyeur_id}" ;
-=======
         ex:{broyeur_id} a ex:Broyeur, ex:Equipement ;
             ex:equipementID "{broyeur_id}"^^xsd:string ;
->>>>>>> doua
             ex:nomequiement "{data.get('nomEquipement', '')}" ;
             ex:etat "{data.get('etat', 'disponible')}" ;
             ex:capacite "{data.get('capacite', 0)}"^^xsd:decimal ;

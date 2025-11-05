@@ -37,11 +37,7 @@ def add_evenement():
             ex:nombreParticipants "{data.get('nombreParticipants',0)}"^^xsd:integer ;
             ex:publicCible "{data.get('publicCible','')}"^^xsd:string ;
             ex:zoneCible "{data.get('zoneCible','')}"^^xsd:string
-<<<<<<< HEAD
             {"; ex:planned " + camp_ref.n3() if camp_ref else ""} ;  # Utilisation de ex:planned
-=======
-            {"; ex:partOf " + camp_ref.n3() if camp_ref else ""} .
->>>>>>> doua
     }}
     """
 
@@ -67,14 +63,8 @@ def add_evenement():
 
     # Lier à la campagne localement
     if camp_ref:
-<<<<<<< HEAD
         g.add((evt_ref, EX.planned, camp_ref))  # Lier l'événement à la campagne avec ex:planned
         print(f"Événement {evenement_id} lié à la campagne {campaign_id}.")  # Log pour vérifier que la relation est ajoutée
-=======
-        g.add((evt_ref, EX.partOf, camp_ref))
-        # Optionnel : lier la campagne à cet événement
-        g.add((camp_ref, EX.hasEvent, evt_ref))
->>>>>>> doua
 
     # Sauvegarder RDF local
     g.serialize(destination=RDF_FILE, format="turtle")
@@ -86,10 +76,7 @@ def add_evenement():
     return jsonify({"message": msg})
 
 # --- READ ALL ---
-<<<<<<< HEAD
 # --- READ ALL (Liste des événements) ---
-=======
->>>>>>> doua
 @evenement_bp.route("/evenements", methods=["GET"])
 def get_evenements_fuseki():
     sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
@@ -99,11 +86,7 @@ def get_evenements_fuseki():
         SELECT ?evenement ?nomevent ?dateDebut ?dateFin ?lieu ?descriptionevent ?typeEvenement
                ?nombreBenevoles ?quantitecollecte ?nombreParticipants ?publicCible ?zoneCible ?campaign
         WHERE {
-<<<<<<< HEAD
             ?evenement a <http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/evenement> . 
-=======
-            ?evenement a <http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/evenement> .
->>>>>>> doua
             OPTIONAL { ?evenement ex:nomevent ?nomevent }
             OPTIONAL { ?evenement ex:dateDebut ?dateDebut }
             OPTIONAL { ?evenement ex:dateFin ?dateFin }
@@ -115,29 +98,20 @@ def get_evenements_fuseki():
             OPTIONAL { ?evenement ex:nombreParticipants ?nombreParticipants }
             OPTIONAL { ?evenement ex:publicCible ?publicCible }
             OPTIONAL { ?evenement ex:zoneCible ?zoneCible }
-<<<<<<< HEAD
             OPTIONAL { ?evenement ex:plannedBy ?campaign }  # Utilisation de ex:plannedBy
-=======
-            OPTIONAL { ?evenement ex:partOf ?campaign }
->>>>>>> doua
         }
     """)
 
     sparql.setReturnFormat(JSON)
     results = sparql.query().convert()
 
-<<<<<<< HEAD
     # Utilisation d'un dictionnaire pour éviter les doublons par evenementID
     events_dict = {}
 
-=======
-    events = []
->>>>>>> doua
     for result in results["results"]["bindings"]:
         event_data = {}
         for k, v in result.items():
             if k == "evenement":
-<<<<<<< HEAD
                 evenementID = v["value"].split('#')[-1]
                 event_data["evenementID"] = evenementID  # ID unique de l'événement
             if k == "campaign":
@@ -150,14 +124,6 @@ def get_evenements_fuseki():
 
     # Convertir le dictionnaire en liste
     events = list(events_dict.values())
-=======
-                event_data["evenementID"] = v["value"].split('#')[-1]  # ✅ Ajouté ici
-            if k == "campaign":
-                event_data["campaignID"] = v["value"].split('#')[-1]
-            else:
-                event_data[k] = v["value"]
-        events.append(event_data)
->>>>>>> doua
 
     return jsonify({
         "status": "success",
@@ -165,11 +131,7 @@ def get_evenements_fuseki():
         "results": events
     })
 
-<<<<<<< HEAD
 # --- READ ONE (Détails d'un événement) ---
-=======
-# --- READ ONE ---
->>>>>>> doua
 @evenement_bp.route("/evenements/<evenement_id>", methods=["GET"])
 def get_evenement(evenement_id):
     evt_ref = EX[evenement_id]
@@ -187,18 +149,13 @@ def get_evenement(evenement_id):
     for r in results["results"]["bindings"]:
         key = r["p"]["value"].split('#')[-1]
         value = r["o"]["value"]
-<<<<<<< HEAD
         if key == "plannedBy":  # ✅ campaign (relation plannedBy)
-=======
-        if key == "partOf":  # ✅ campagne
->>>>>>> doua
             data["campaignID"] = value.split('#')[-1]
         else:
             data[key] = value
 
     return jsonify(data)
 
-<<<<<<< HEAD
 # --- READ ONE (Détails d'un événement avec ID) ---
 @evenement_bp.route("/evenements/<evenement_id>/details", methods=["GET"])
 def get_evenement_details(evenement_id):
@@ -261,8 +218,6 @@ def get_campagne_by_evenement(evenement_id):
     except Exception as e:
         print(f"Erreur lors de la requête SPARQL: {e}")
         return jsonify({"error": "Erreur de serveur."}), 500
-=======
->>>>>>> doua
 
 # --- UPDATE ---
 @evenement_bp.route("/evenements/<evenement_id>", methods=["PUT"])
@@ -295,7 +250,6 @@ def update_evenement(evenement_id):
     sparql.query()
     return jsonify({"message": f"Événement '{evenement_id}' mis à jour."})
 
-<<<<<<< HEAD
 @evenement_bp.route("/evenements/<evenement_id>/associer-citoyen/<citoyen_id>", methods=["POST"])
 def associer_citoyen_a_evenement(evenement_id, citoyen_id):
     # Créer l'URI du citoyen et de l'événement
@@ -424,8 +378,6 @@ def get_citoyen_by_id(citizen_id):
         print(f"Erreur lors de la requête SPARQL: {e}")
         return {"error": "Erreur de serveur."}
 
-=======
->>>>>>> doua
 # --- DELETE ---
 @evenement_bp.route("/evenements/<evenement_id>", methods=["DELETE"])
 def delete_evenement(evenement_id):
@@ -453,7 +405,6 @@ def delete_evenement(evenement_id):
 
     return jsonify({"message": f"✅ Événement '{evenement_id}' supprimé avec succès."})
 
-<<<<<<< HEAD
 @evenement_bp.route("/citoyens", methods=["GET"])
 def get_all_citoyens():
     query = PREFIX + """
@@ -498,8 +449,6 @@ def get_all_citoyens():
         print(f"Erreur lors de la requête SPARQL: {e}")
         return jsonify({"error": "Erreur de serveur."}), 500
 
-=======
->>>>>>> doua
 @evenement_bp.route("/stats", methods=["GET"])
 def get_dashboard_stats():
     try:

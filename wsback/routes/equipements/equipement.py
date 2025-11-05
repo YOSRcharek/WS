@@ -129,9 +129,6 @@ def delete_equipement(equipement_id):
     sparql.setQuery(query)
     sparql.query()
     
-<<<<<<< HEAD
-    return jsonify({"message": "Équipement supprimé avec succès"})
-=======
     return jsonify({"message": "Équipement supprimé avec succès"})
 
 # Assigner un équipement à un service de transport
@@ -178,4 +175,3 @@ def get_equipements_by_service(service_id):
         })
     
     return jsonify(equipements)
->>>>>>> doua

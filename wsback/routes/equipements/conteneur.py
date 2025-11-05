@@ -1,13 +1,9 @@
 # wsback/routes/conteneur.py
 from flask import Blueprint, request, jsonify
 from SPARQLWrapper import SPARQLWrapper, POST, JSON
-<<<<<<< HEAD
-from config import PREFIX, FUSEKI_UPDATE_URL, FUSEKI_QUERY_URL
-=======
 from rdflib import Literal, URIRef
 from rdflib.namespace import RDF, XSD
 from config import PREFIX, FUSEKI_UPDATE_URL, FUSEKI_QUERY_URL, g, EX, RDF_FILE
->>>>>>> doua
 
 conteneur_bp = Blueprint('conteneur_bp', __name__)
 
@@ -22,25 +18,16 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 @conteneur_bp.route('/conteneurs', methods=['POST'])
 def create_conteneur():
     data = request.json
-<<<<<<< HEAD
-    conteneur_id = f"CN{data.get('id', '1')}"
-=======
     import time
     conteneur_id = f"CN{int(time.time() * 1000) % 100000}"
     conteneur_uri = conteneur_id
     conteneur_tech_id = conteneur_id
->>>>>>> doua
     
     query = f"""
     {SPARQL_PREFIX}
     INSERT DATA {{
-<<<<<<< HEAD
-        ex:{conteneur_id} a ex:Conteneur ;
-            ex:equipementID "{conteneur_id}" ;
-=======
         ex:{conteneur_id} a ex:Conteneur, ex:Equipement ;
             ex:equipementID "{conteneur_id}"^^xsd:string ;
->>>>>>> doua
             ex:nomequiement "{data.get('nomEquipement', '')}" ;
             ex:etat "{data.get('etat', 'disponible')}" ;
             ex:capacite "{data.get('capacite', 0)}"^^xsd:decimal ;
@@ -54,8 +41,6 @@ def create_conteneur():
     sparql.setQuery(query)
     sparql.query()
     
-<<<<<<< HEAD
-=======
     # Sauvegarder localement dans dechet.ttl
     conteneur_ref = EX[conteneur_id]
     g.add((conteneur_ref, RDF.type, EX.Conteneur))
@@ -68,7 +53,6 @@ def create_conteneur():
     g.add((conteneur_ref, EX.taille, Literal(data.get('taille', ''), datatype=XSD.string)))
     g.serialize(destination=RDF_FILE, format="turtle")
     
->>>>>>> doua
     return jsonify({"message": "Conteneur créé avec succès", "id": conteneur_id}), 201
 
 # Récupérer tous les conteneurs
@@ -76,28 +60,17 @@ def create_conteneur():
 def get_conteneurs():
     query = f"""
     {SPARQL_PREFIX}
-<<<<<<< HEAD
-    SELECT ?conteneur ?equipementID ?nomEquipement ?etat ?capacite ?localisation ?taille
-    WHERE {{
-        ?conteneur a ex:Conteneur ;
-                ex:equipementID ?equipementID ;
-                ex:nomequiement ?nomEquipement ;
-=======
     SELECT DISTINCT ?equipementID ?nomequiement ?etat ?capacite ?localisation ?taille
     WHERE {{
         ?conteneur a ex:Conteneur ;
                 ex:equipementID ?equipementID ;
                 ex:nomequiement ?nomequiement ;
->>>>>>> doua
                 ex:etat ?etat ;
                 ex:capacite ?capacite ;
                 ex:localisation ?localisation ;
                 ex:taille ?taille .
     }}
-<<<<<<< HEAD
-=======
     GROUP BY ?equipementID ?nomequiement ?etat ?capacite ?localisation ?taille
->>>>>>> doua
     """
     
     sparql = SPARQLWrapper(FUSEKI_QUERY_URL)
@@ -106,17 +79,6 @@ def get_conteneurs():
     results = sparql.query().convert()
     
     conteneurs = []
-<<<<<<< HEAD
-    for result in results["results"]["bindings"]:
-        conteneurs.append({
-            "id": result["equipementID"]["value"],
-            "nomEquipement": result["nomEquipement"]["value"],
-            "etat": result["etat"]["value"],
-            "capacite": result["capacite"]["value"],
-            "localisation": result["localisation"]["value"],
-            "taille": result["taille"]["value"]
-        })
-=======
     seen_ids = set()
     for result in results["results"]["bindings"]:
         conteneur_id = result["equipementID"]["value"]
@@ -130,7 +92,6 @@ def get_conteneurs():
                 "localisation": result["localisation"]["value"],
                 "taille": result["taille"]["value"]
             })
->>>>>>> doua
     
     return jsonify(conteneurs)
 
@@ -139,20 +100,12 @@ def get_conteneurs():
 def get_conteneur(conteneur_id):
     query = f"""
     {SPARQL_PREFIX}
-<<<<<<< HEAD
-    SELECT ?conteneur ?equipementID ?nomEquipement ?etat ?capacite ?localisation ?taille
-=======
     SELECT ?conteneur ?equipementID ?nomequiement ?etat ?capacite ?localisation ?taille
->>>>>>> doua
     WHERE {{
         ?conteneur a ex:Conteneur ;
                 ex:equipementID "{conteneur_id}" ;
                 ex:equipementID ?equipementID ;
-<<<<<<< HEAD
-                ex:nomequiement ?nomEquipement ;
-=======
                 ex:nomequiement ?nomequiement ;
->>>>>>> doua
                 ex:etat ?etat ;
                 ex:capacite ?capacite ;
                 ex:localisation ?localisation ;
@@ -169,11 +122,7 @@ def get_conteneur(conteneur_id):
         result = results["results"]["bindings"][0]
         conteneur = {
             "id": result["equipementID"]["value"],
-<<<<<<< HEAD
-            "nomEquipement": result["nomEquipement"]["value"],
-=======
             "nomEquipement": result["nomequiement"]["value"],
->>>>>>> doua
             "etat": result["etat"]["value"],
             "capacite": result["capacite"]["value"],
             "localisation": result["localisation"]["value"],
@@ -188,40 +137,6 @@ def get_conteneur(conteneur_id):
 def update_conteneur(conteneur_id):
     data = request.json
     
-<<<<<<< HEAD
-    query = f"""
-    {SPARQL_PREFIX}
-    DELETE {{
-        ?conteneur ex:nomequiement ?oldNom ;
-                ex:etat ?oldEtat ;
-                ex:capacite ?oldCapacite ;
-                ex:localisation ?oldLocalisation ;
-                ex:taille ?oldTaille .
-    }}
-    INSERT {{
-        ?conteneur ex:nomequiement "{data.get('nomEquipement', '')}" ;
-                ex:etat "{data.get('etat', '')}" ;
-                ex:capacite "{data.get('capacite', 0)}"^^xsd:decimal ;
-                ex:localisation "{data.get('localisation', '')}" ;
-                ex:taille "{data.get('taille', '')}" .
-    }}
-    WHERE {{
-        ?conteneur a ex:Conteneur ;
-                ex:equipementID "{conteneur_id}" ;
-                ex:nomequiement ?oldNom ;
-                ex:etat ?oldEtat ;
-                ex:capacite ?oldCapacite ;
-                ex:localisation ?oldLocalisation ;
-                ex:taille ?oldTaille .
-    }}
-    """
-    
-    sparql = SPARQLWrapper(FUSEKI_UPDATE_URL)
-    sparql.setMethod(POST)
-    sparql.setQuery(query)
-    sparql.query()
-    
-=======
     sparql = SPARQLWrapper(FUSEKI_UPDATE_URL)
     sparql.setMethod(POST)
     
@@ -261,7 +176,6 @@ def update_conteneur(conteneur_id):
     g.add((conteneur_ref, EX.taille, Literal(data.get('taille', ''), datatype=XSD.string)))
     g.serialize(destination=RDF_FILE, format="turtle")
     
->>>>>>> doua
     return jsonify({"message": "Conteneur mis à jour avec succès"})
 
 # Supprimer un conteneur
@@ -281,13 +195,10 @@ def delete_conteneur(conteneur_id):
     sparql.setQuery(query)
     sparql.query()
     
-<<<<<<< HEAD
-=======
     # Supprimer localement du fichier dechet.ttl
     conteneur_ref = EX[conteneur_id]
     for triple in list(g.triples((conteneur_ref, None, None))):
         g.remove(triple)
     g.serialize(destination=RDF_FILE, format="turtle")
     
->>>>>>> doua
     return jsonify({"message": "Conteneur supprimé avec succès"})

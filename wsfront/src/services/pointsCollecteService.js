@@ -43,3 +43,19 @@ export const deletePointCollecte = async (id) => {
   });
   return response.json();
 };
+
+// Nouvelle fonction pour l'IA NLP
+export const addPointCollecteNLP = async (phrase) => {
+  const response = await fetch("http://localhost:5000/points_collecte_nlp", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ phrase }),
+  });
+  return response.json();
+};
+
+// Nouvelle fonction pour filtrer les points de collecte
+export const filterPointsCollecte = async () => {
+  const response = await fetch("http://localhost:5000/points_collecte_filtre");
+  return response.json();
+};

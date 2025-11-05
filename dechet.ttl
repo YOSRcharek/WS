@@ -212,16 +212,35 @@ ex:CR1238 a :Centre_de_Compostage,
     ex:recyclingRate 45.6 ;
     ex:typeDeDechetTraite "Organique" .
 
-ex:Caaa a :Usine_de_Recyclage_Métaux,
+ex:Caaa a :Centre_de_Compostage,
+        :Usine_de_Recyclage_Métaux,
         owl:NamedIndividual ;
-    ex:capacity_center "120" ;
-    ex:centerName "bbbb" ;
+    ex:capacity_center "100",
+        "120" ;
+    ex:centerName "aaa",
+        "bbbb" ;
     ex:energyConsumption "" ;
     ex:equipmentRecyclagemetaux "" ;
-    ex:location_center "zz" ;
-    ex:operation_Status "" ;
-    ex:recyclingRate "" ;
-    ex:typeDeDechetTraite "pppp" ;
+    ex:location_center "ddd",
+        "zz" ;
+    ex:operation_Status "",
+        "Actif" ;
+    ex:recyclingRate "",
+        "7" ;
+    ex:tempsCompostage "" ;
+    ex:typeDeDechetTraite "ooo",
+        "pppp" ;
+    ex:typeDeMetauxTraites "" .
+
+ex:Coaooa12 a :Usine_de_Recyclage_Métaux ;
+    ex:capacity_center "2000" ;
+    ex:centerName "oaooa12" ;
+    ex:energyConsumption "" ;
+    ex:equipmentRecyclagemetaux "" ;
+    ex:location_center "xxxx" ;
+    ex:operation_Status "lala" ;
+    ex:recyclingRate "200" ;
+    ex:typeDeDechetTraite "xxxxx" ;
     ex:typeDeMetauxTraites "" .
 
 ex:Collecte_EVT002 a ex:Collecte,
@@ -1341,6 +1360,16 @@ ex:Ccarasco a :centre_de_recyclage ;
     ex:recyclingRate "20" ;
     ex:typeDeDechetTraite "toxic" .
 
+ex:CxqqxQ a :centre_de_recyclage ;
+    ex:avoir ex:PC_ss ;
+    ex:capacity_center "12222" ;
+    ex:centerName "xqqxQ" ;
+    ex:energyConsumption "" ;
+    ex:location_center "aaaa" ;
+    ex:operation_Status "555" ;
+    ex:recyclingRate "555" ;
+    ex:typeDeDechetTraite "555555" .
+
 ex:Dechet a owl:Class .
 
 ex:PC_Point a :Point_de_Collecte_Mobile ;
@@ -1349,11 +1378,23 @@ ex:PC_Point a :Point_de_Collecte_Mobile ;
     ex:location "Tunis"^^xsd:string ;
     ex:name "Point"^^xsd:string .
 
+ex:PC_Point_slouma a ex:Point_de_Collecte_Mobile ;
+    ex:associe_a ex:Cpo ;
+    ex:description "Point de collecte généré depuis la phrase"^^xsd:string ;
+    ex:location "Tunis"^^xsd:string ;
+    ex:name "Point slouma"^^xsd:string .
+
 ex:PC_Point_v71 a ex:Point_de_Collecte_Mobile ;
     ex:associe_a ex:Cpo ;
     ex:description "Point de collecte généré depuis la phrase"^^xsd:string ;
     ex:location "Tunis"^^xsd:string ;
     ex:name "Point v71"^^xsd:string .
+
+ex:PC_Point_vav13 a ex:Point_de_Collecte_Mobile ;
+    ex:associe_a ex:Cpo ;
+    ex:description "Point de collecte généré depuis la phrase"^^xsd:string ;
+    ex:location "Tunis"^^xsd:string ;
+    ex:name "Point vav13"^^xsd:string .
 
 ex:PC_Point_ve1 a ex:Point_de_Collecte_Mobile ;
     ex:associe_a ex:Cpo ;
@@ -1372,6 +1413,12 @@ ex:PC_Point_ven911 a ex:Point_de_Collecte_Mobile ;
     ex:description "Point de collecte généré depuis la phrase"^^xsd:string ;
     ex:location "Tunis"^^xsd:string ;
     ex:name "Point ven911"^^xsd:string .
+
+ex:PC_Point_voaoao a ex:Point_de_Collecte_Mobile ;
+    ex:associe_a ex:Cpo ;
+    ex:description "Point de collecte généré depuis la phrase"^^xsd:string ;
+    ex:location "Tunis"^^xsd:string ;
+    ex:name "Point voaoao"^^xsd:string .
 
 ex:PC_azaz a :Point_de_Collecte_Mobile ;
     ex:associe_a ex:Ceya ;
@@ -1415,6 +1462,12 @@ ex:PC_popo a :Point_de_Collecte_Mobile,
     ex:description "ajajja" ;
     ex:location "pp" ;
     ex:name "popo" .
+
+ex:PC_ss a :Point_de_Collecte_Mobile ;
+    ex:associe_a ex:CxqqxQ ;
+    ex:description "ssss" ;
+    ex:location "xx" ;
+    ex:name "ss" .
 
 ex:PC_xaxaxaa a :Point_de_Collecte_Mobile ;
     ex:associe_a ex:Ceya ;
@@ -1580,6 +1633,12 @@ ex:collecte a owl:Class .
     ex:description "Point de collecte généré depuis la phrase"^^xsd:string ;
     ex:location "Tunis"^^xsd:string ;
     ex:name "Point v11"^^xsd:string .
+
+:PC_Point_vaviii a :Point_de_Collecte_Mobile ;
+    ex:associe_a :Cpo ;
+    ex:description "Point de collecte généré depuis la phrase"^^xsd:string ;
+    ex:location "Tunis"^^xsd:string ;
+    ex:name "Point vaviii"^^xsd:string .
 
 :PC_Point_ven10 a :Point_de_Collecte_Mobile ;
     ex:associe_a :Cpo ;
@@ -1874,9 +1933,6 @@ ex:EVT0078 a :evenement,
     ex:typeEvenement "Collecte" ;
     ex:zoneCible "Zone littorale" .
 
-:Centre_de_Compostage a owl:Class ;
-    rdfs:subClassOf :centre_de_recyclage .
-
 :Collect a owl:Class .
 
 :HazardousWaste a owl:Class ;
@@ -1912,6 +1968,9 @@ ex:formationPersonnel a owl:Class .
         :PC_Point_v1,
         :PC_Point_v11 .
 
+:Centre_de_Compostage a owl:Class ;
+    rdfs:subClassOf :centre_de_recyclage .
+
 :FormationPersonnel a owl:Class ;
     rdfs:subClassOf :evenement .
 
@@ -1945,9 +2004,6 @@ ex:Collecte a owl:Class .
 :Poubelle_Publique a owl:Class ;
     rdfs:subClassOf :Point_de_collecte .
 
-:Usine_de_Recyclage_Métaux a owl:Class ;
-    rdfs:subClassOf :centre_de_recyclage .
-
 :citoyyyen a owl:ObjectProperty ;
     rdfs:subPropertyOf owl:topObjectProperty .
 
@@ -1959,21 +2015,10 @@ ex:Collecte a owl:Class .
 
 ex:Affiche a owl:Class .
 
-ex:Cpo a :centre_de_recyclage ;
-    ex:avoir ex:PC_Point,
-        ex:PC_Point_v71,
-        ex:PC_Point_ve1,
-        ex:PC_Point_ven91,
-        ex:PC_Point_ven911 ;
-    ex:capacity_center "520" ;
-    ex:centerName "po" ;
-    ex:energyConsumption "" ;
-    ex:location_center "po" ;
-    ex:operation_Status "lalal" ;
-    ex:recyclingRate "2000" ;
-    ex:typeDeDechetTraite "aaaa" .
-
 ex:ReseauxSociaux a owl:Class .
+
+:Usine_de_Recyclage_Métaux a owl:Class ;
+    rdfs:subClassOf :centre_de_recyclage .
 
 :affiche a owl:Class ;
     rdfs:subClassOf :campagne_de_sensibilisation .
@@ -2002,6 +2047,23 @@ ex:ReseauxSociaux a owl:Class .
 :servicedetrransport a owl:DatatypeProperty ;
     rdfs:subPropertyOf owl:topDataProperty .
 
+ex:Cpo a :centre_de_recyclage ;
+    ex:avoir ex:PC_Point,
+        ex:PC_Point_slouma,
+        ex:PC_Point_v71,
+        ex:PC_Point_vav13,
+        ex:PC_Point_ve1,
+        ex:PC_Point_ven91,
+        ex:PC_Point_ven911,
+        ex:PC_Point_voaoao ;
+    ex:capacity_center "520" ;
+    ex:centerName "po" ;
+    ex:energyConsumption "" ;
+    ex:location_center "po" ;
+    ex:operation_Status "lalal" ;
+    ex:recyclingRate "2000" ;
+    ex:typeDeDechetTraite "aaaa" .
+
 :C1 a :centre_de_recyclage ;
     :avoir :PC_Point_Lac_11,
         :PC_Point_Lac_111,
@@ -2021,6 +2083,7 @@ ex:ReseauxSociaux a owl:Class .
 :Cpo ex:avoir :PC_Ajoute_un_point_de_collecte_mobile_nommé_Point_ven1_à_Tunis_associé_au_centre_Cpo,
         :PC_Point,
         :PC_Point_Collecte_Test,
+        :PC_Point_vaviii,
         :PC_Point_ven10,
         :PC_Point_ven112,
         :PC_Point_ven119,

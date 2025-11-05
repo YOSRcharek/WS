@@ -14,7 +14,7 @@ nlp_bp = Blueprint("nlp_bp", __name__)
 CORS(nlp_bp)
 
 # === URIs des classes RDF ===
-ONTOLOGY_BASE = "http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34#"
+ONTOLOGY_BASE = "http://www.semanticweb.org/msi/ontologies/2025/9/untitled-ontology-34/"
 CLASSES = {
     "mobile": URIRef(ONTOLOGY_BASE + "Point_de_Collecte_Mobile"),
     "poubelle": URIRef(ONTOLOGY_BASE + "Poubelle_Publique"),

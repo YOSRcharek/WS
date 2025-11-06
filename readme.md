@@ -6,7 +6,7 @@ WasteWise est une application web dédiée à la gestion des déchets. Ce projet
 
 ## 🚀 Technologies Utilisées
 
-- **Node.js** 🌐 : Serveur backend pour gérer les requêtes et l'API.
+- **Python** 🌐 : Serveur backend pour gérer les requêtes et l'API.
 - **React** ⚛️ : Framework frontend pour construire l'interface utilisateur.
 - **SPARQL** 🔍 : Langage de requête pour interroger les données RDF.
 - **Apache Jena Fuseki** 🗄️ : Triple store pour stocker et gérer les données RDF.
@@ -17,8 +17,6 @@ WasteWise est une application web dédiée à la gestion des déchets. Ce projet
 
 Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
 
-- [Node.js]
-- [Docker] (pour exécuter Fuseki)
 - [Python] et la bibliothèque RDFLib
 
 ## 🛠️ Installation
@@ -35,7 +33,7 @@ Pour le backend (Node.js) :
 ```bash
 
 cd wsback
-npm install
+pip install requirements.txt
 ```
 Pour le frontend (React) :
 
@@ -51,11 +49,11 @@ java -jar fuseki-server.jar
 ```
 Accédez à l'interface web de Fuseki à l'adresse [http://localhost:3030]. 
 
-### 4. Démarrer le serveur Node.js
+### 4. Démarrer le serveur Python
 ```bash
 
 cd backend
-npm start
+py app.py
 
 ```
 ### 5. Démarrer l'application React
